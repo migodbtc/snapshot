@@ -1,4 +1,4 @@
-import { BookOpen, Briefcase, Code2, GraduationCap, Mail, Menu, Wrench } from "lucide-react";
+import { BookOpen, Briefcase, Code2, GraduationCap, Mail, Menu, User, Wrench } from "lucide-react";
 import Image from "next/image";
 
 export default function Home() {
@@ -78,22 +78,85 @@ export default function Home() {
               </button>
             </div>
           </div>
-            <div className="flex flex-1 h-full items-center justify-center bg-radial from-rose-800 dark:from-slate-50/25 to-transparent to-70%">
-              <div className="relative w-[80%] aspect-square rounded-xl overflow-hidden">
-                <Image
-                  src="/images/hero_picture.jpg"
-                  alt="Miguel Justin Bunda"
-                  fill
-                  className="object-cover object-top"
-                />
-              </div>
+          <div className="flex flex-1 h-full items-center justify-center bg-radial from-rose-800 dark:from-slate-50/25 to-transparent to-70%">
+            <div className="relative w-[80%] aspect-square rounded-xl overflow-hidden">
+              <Image
+                src="/images/hero_picture.jpg"
+                alt="Miguel Justin Bunda"
+                fill
+                className="object-cover object-top"
+              />
             </div>
+          </div>
         </section>
 
-        
-        <section className="w-full bg-violet-300 aspect-video py-8 px-12">
-          Summary/Introduction
+        {/* Summary/Introduction Section */}
+        <section className="w-full aspect-video flex flex-col pb-4">
+          <div className="flex flex-col px-6 py-4 w-full h-fit items-center justify-center gap-3 ">
+            <h1 className="text-2xl lg:text-4xl tracking-wider font-bold uppercase text-slate-400">About Me</h1>
+          </div>
+          <div className="flex flex-1 w-full h-fill px-8 pb-8 gap-4 align-middle justify-center">
+            <div className="flex-1 bg-transparent flex flex-col items-center py-2 px-4 lg:py-4 lg:px-6 gap-3">
+              <div className="border-3 border-slate-950 dark:border-slate-50 rounded-full bg-transparent w-12 lg:w-20 h-12 lg:h-20 flex items-center justify-center align-middle">
+                <User className="w-6 lg:w-10 h-6 lg:h-10 text-slate-950 dark:text-slate-50"/>
+              </div>
+              <h1 className="text-lg lg:text-2xl font-bold tracking-wide">Who is <span className="text-rose-800">Migo?</span></h1>
+              <p className="w-full text-justify text-gray-700 dark:text-gray-300 text-xs md:text-sm lg:text-base">
+                <b>Miguel Justin Bunda</b> is a software engineer dedicated to building modern, technical solutions that put people first. A graduate of Don Bosco Technical College in Mandaluyong City with a Bachelor of Science in Information Technology, Migo earned Magna Cum Laude honors, a Service Award, and the distinction of Batch Valedictorian.
+              </p>
+              <p className="w-full text-justify text-gray-700 dark:text-gray-300 text-xs md:text-sm lg:text-base">
+                Migo first started programming by developing simple web pages on his laptop. Raw HTML, CSS, with little JavaScript. Now, Migo primarily uses both <b>TypeScript</b> and <b>Python</b>, along with a consortium of languages, frameworks, and technologies such as GitHub, Docker, AWS, Nextjs, Supabase, and more.
+              </p>
+            </div>
+            <div className="flex-1 flex items-center align-middle justify-center bg-radial from-rose-800 dark:from-slate-50/25 to-transparent to-70%">
+              <div className="grid grid-cols-2 gap-4 m-auto">
+                <div className="border border-slate-800 rounded-2xl p-4 aspect-[3/1.4] backdrop-blur-xl">
+                  <h3>Location</h3>
+                </div>
+                <div className="border border-slate-800 rounded-2xl p-4 aspect-[3/1.4] backdrop-blur-xl">
+                  <h3>Alma Mater</h3>
+                </div>
+                <div className="border border-slate-800 rounded-2xl p-4 aspect-[3/1.4] backdrop-blur-xl">
+                  <h3>Currently Studying</h3>
+                </div>
+                <div className="border border-slate-800 rounded-2xl p-4 aspect-[3/1.4] backdrop-blur-xl">
+                  <h3>Favorite Coffee</h3>
+                </div>
+                <div className="border border-slate-800 rounded-2xl p-4 aspect-[3/1.4] backdrop-blur-xl">
+                  <h3>Hobbies</h3>
+                </div>
+                <div className="border border-slate-800 rounded-2xl p-4 aspect-[3/1.4] backdrop-blur-xl">
+                  <h3>Goals</h3>
+                </div>
+              </div>
+            </div>
+            {/* <div className="flex-1 ">
+              <div className="mx-auto max-w-7xl px-6">
+                <div className="ml-4 space-y-12 border-l border-zinc-800">
+                  
+                    <div className="relative pl-10">
+                      <div
+                        className={`absolute -left-[5px] top-2 size-2.5 rounded-full ${
+                          true
+                            ? "bg-rose-500 shadow-[0_0_10px_#e11d48]"
+                            : "bg-zinc-700"
+                        }`}
+                      />
+                      <span className="mb-2 block font-mono text-xs text-zinc-500">
+                        Period
+                      </span>
+                      <h4 className="text-lg font-medium">Title</h4>
+                      <p className="mb-2 text-sm text-zinc-500">Org</p>
+                      <p className="max-w-2xl text-sm leading-relaxed text-zinc-400">
+                        Body
+                      </p>
+                    </div>
+                </div>
+              </div>
+            </div> */}
+          </div>
         </section>
+
         <section className="w-full bg-pink-200 aspect-video py-8 px-12">
           Skills - Preview
         </section>
