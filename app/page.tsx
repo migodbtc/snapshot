@@ -1,6 +1,257 @@
-import { BookOpen, Briefcase, Code2, GraduationCap, Mail, Menu, User, Wrench } from "lucide-react";
-import Image from "next/image";
+"use client"
 
+import { Blocks, BookOpen, Briefcase, Cloud, Code2, Coffee, Dumbbell, GraduationCap, Languages, LucideIcon, Mail, MapPin, Menu, School, Target, User, Wrench } from "lucide-react";
+import Image from "next/image";
+import { useState } from "react";
+
+// Constants
+const ABOUT_ME_INFO: {
+  icon: LucideIcon;
+  title: string;
+  value: string;
+}[] = [
+  {
+    icon: MapPin,
+    title: "Location",
+    value: "Mandaluyong",
+  },
+  {
+    icon: School,
+    title: "Alma Mater",
+    value: "DBTC",
+  },
+  {
+    icon: BookOpen,
+    title: "Currently Studying",
+    value: "Terraform",
+  },
+  {
+    icon: Coffee,
+    title: "Favorite Coffee",
+    value: "Vietnamese Coffee",
+  },
+  {
+    icon: Dumbbell,
+    title: "Hobbies",
+    value: "Fitness & Travel",
+  },
+  {
+    icon: Target,
+    title: "Goals",
+    value: "Secure First Job",
+  },
+];
+
+// AboutMeCard: A dedicated subcomponent for the rendering of the about me cards for both desktop and mobile
+type AboutMeCardProps = {
+  icon: LucideIcon;
+  title: string;
+  value: string;
+  className?: string;
+};
+
+function AboutMeCard({
+  icon: Icon,
+  title,
+  value,
+  className = "",
+}: AboutMeCardProps) {
+  return (
+    <div
+      className={`flex flex-col justify-center border border-slate-400 dark:border-slate-800 rounded-2xl p-4 backdrop-blur-xl ${className}`}
+    >
+      <span className="text-xs lg:text-sm text-rose-500 font-medium flex items-center gap-1">
+        <Icon className="w-3 h-3 lg:w-4 lg:h-4" />
+        {title}
+      </span>
+
+      <h3 className="text-sm lg:text-xl text-gray-800 dark:text-gray-100 font-bold">
+        {value}
+      </h3>
+    </div>
+  );
+}
+
+// SkillsSection: The dedicated section for the skills where there are subpages for the display depending
+// on the selected skill (i.e. languages is the default)
+type SkillCategory =
+  | "languages"
+  | "frameworks"
+  | "tools"
+  | "platforms";
+
+function SkillsSection() {
+  const [selectedCategory, setSelectedCategory] =
+    useState<SkillCategory>("languages");
+
+  // Dedicated class constant due to complexity of the background radial gradient ++ active styling
+  const getButtonClass = (category: SkillCategory) =>
+  `flex-1 py-2 px-4 rounded-lg border flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer ${
+    selectedCategory === category
+      ? "bg-rose-50 dark:bg-rose-950/30 text-rose-700 dark:text-rose-300 border-rose-200 dark:border-rose-900"
+      : "bg-transparent text-slate-700 dark:text-slate-300 border-slate-300 dark:border-slate-700 hover:bg-rose-50 dark:hover:bg-rose-950/30 hover:text-rose-700 dark:hover:text-rose-300 hover:border-rose-300 dark:hover:border-rose-800"
+  }`;
+
+  return (
+    <section className="flex flex-col w-full">
+      <div className="flex flex-col px-6 py-4 w-full h-fit items-center justify-center gap-3">
+        <h1 className="text-2xl lg:text-4xl tracking-wider font-bold uppercase text-slate-400">
+          Skills
+        </h1>
+      </div>
+
+      <div className="flex flex-row w-full h-fit items-center justify-center gap-4 px-8 pb-4 text-center">
+        <button
+          onClick={() => setSelectedCategory("languages")}
+          className={getButtonClass("languages")}
+        >
+          <Languages size={18} />
+          <span>Languages</span>
+        </button>
+
+        <button
+          onClick={() => setSelectedCategory("frameworks")}
+          className={getButtonClass("frameworks")}
+        >
+          <Blocks size={18} />
+          <span>Frameworks</span>
+        </button>
+
+        <button
+          onClick={() => setSelectedCategory("tools")}
+          className={getButtonClass("tools")}
+        >
+          <Wrench size={18} />
+          <span>Tools</span>
+        </button>
+
+        <button
+          onClick={() => setSelectedCategory("platforms")}
+          className={getButtonClass("platforms")}
+        >
+          <Cloud size={18} />
+          <span>platforms</span>
+        </button>
+      </div>
+
+      <div className="flex flex-1 w-full h-full pb-8 gap-4 justify-center">
+        <div className="w-full aspect-video mx-8 mt-2">
+          {selectedCategory === "languages" && (
+            <div className="relative w-full h-full overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800">
+              <div className="absolute inset-0 bg-radial from-slate-200/20 via-slate-200/10 to-transparent dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent" />
+
+              <div className="relative w-full h-full backdrop-blur-xl p-6">
+                <h2>Languages</h2>
+                <p>Placeholder content</p>
+              </div>
+            </div>
+          )}
+
+          {selectedCategory === "frameworks" && (
+            <div className="relative w-full h-full overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800">
+              <div className="absolute inset-0 bg-radial from-slate-200/20 via-slate-200/10 to-transparent dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent" />
+
+              <div className="relative w-full h-full backdrop-blur-xl p-6">
+                <div className="flex items-center gap-2 mb-4">
+                  <Blocks size={24} className="text-rose-700" />
+                  <h2 className="text-2xl font-bold">Frameworks</h2>
+                </div>
+
+                <p className="text-slate-600 dark:text-slate-400 mb-6">
+                  Frameworks and libraries used to build modern web applications and user interfaces.
+                </p>
+
+                <div className="space-y-3">
+                  <div className="rounded-lg border border-slate-200 dark:border-slate-800 p-4">
+                    <h3 className="font-semibold">Next.js</h3>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">
+                      Placeholder description.
+                    </p>
+                  </div>
+
+                  <div className="rounded-lg border border-slate-200 dark:border-slate-800 p-4">
+                    <h3 className="font-semibold">React</h3>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">
+                      Placeholder description.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {selectedCategory === "tools" && (
+            <div className="relative w-full h-full overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800">
+              <div className="absolute inset-0 bg-radial from-slate-200/20 via-slate-200/10 to-transparent dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent" />
+
+              <div className="relative w-full h-full backdrop-blur-xl p-6">
+                <div className="flex items-center gap-2 mb-4">
+                  <Wrench size={24} className="text-rose-700" />
+                  <h2 className="text-2xl font-bold">Tools</h2>
+                </div>
+
+                <p className="text-slate-600 dark:text-slate-400 mb-6">
+                  Development tools used for coding, collaboration, deployment, and operations.
+                </p>
+
+                <div className="space-y-3">
+                  <div className="rounded-lg border border-slate-200 dark:border-slate-800 p-4">
+                    <h3 className="font-semibold">Git</h3>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">
+                      Placeholder description.
+                    </p>
+                  </div>
+
+                  <div className="rounded-lg border border-slate-200 dark:border-slate-800 p-4">
+                    <h3 className="font-semibold">Docker</h3>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">
+                      Placeholder description.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {selectedCategory === "platforms" && (
+            <div className="relative w-full h-full overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800">
+              <div className="absolute inset-0 bg-radial from-slate-200/20 via-slate-200/10 to-transparent dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent" />
+
+              <div className="relative w-full h-full backdrop-blur-xl p-6">
+                <div className="flex items-center gap-2 mb-4">
+                  <Cloud size={24} className="text-rose-700" />
+                  <h2 className="text-2xl font-bold">Services</h2>
+                </div>
+
+                <p className="text-slate-600 dark:text-slate-400 mb-6">
+                  Cloud and managed  used to host, deploy, monitor, and scale applications.
+                </p>
+
+                <div className="space-y-3">
+                  <div className="rounded-lg border border-slate-200 dark:border-slate-800 p-4">
+                    <h3 className="font-semibold">AWS</h3>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">
+                      Placeholder description.
+                    </p>
+                  </div>
+
+                  <div className="rounded-lg border border-slate-200 dark:border-slate-800 p-4">
+                    <h3 className="font-semibold">Supabase</h3>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">
+                      Placeholder description.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// Home: the default component to be exported, contains the entirety of the home page.
 export default function Home() {
   return (
     <div className="flex flex-col flex-1 items-center justify-center bg-slate-50 dark:bg-slate-950">
@@ -62,7 +313,7 @@ export default function Home() {
       <main className="hidden sm:flex flex-1 w-full h-fit lg:max-w-6xl flex-col items-center justify-between sm:items-start ">
 
         {/* Hero Section */}
-        <section className="w-full aspect-video flex flex-row">
+        <section className="w-full aspect-video flex flex-row mb-8">
           <div className="flex flex-1 flex-col px-6 h-full items-start justify-center gap-3">
             <span className="text-sm lg:text-base text-gray-500">Welcome to my professional website</span>
             <h1 className="text-4xl lg:text-5xl ">My name is <b className="text-rose-800">Migo</b>.</h1>
@@ -91,7 +342,7 @@ export default function Home() {
         </section>
 
         {/* Summary/Introduction Section */}
-        <section className="w-full aspect-video flex flex-col pb-4">
+        <section className="w-full aspect-video flex flex-col pb-12">
           <div className="flex flex-col px-6 py-4 w-full h-fit items-center justify-center gap-3 ">
             <h1 className="text-2xl lg:text-4xl tracking-wider font-bold uppercase text-slate-400">About Me</h1>
           </div>
@@ -108,26 +359,17 @@ export default function Home() {
                 Migo first started programming by developing simple web pages on his laptop. Raw HTML, CSS, with little JavaScript. Now, Migo primarily uses both <b>TypeScript</b> and <b>Python</b>, along with a consortium of languages, frameworks, and technologies such as GitHub, Docker, AWS, Nextjs, Supabase, and more.
               </p>
             </div>
-            <div className="flex-1 flex items-center align-middle justify-center bg-radial from-rose-800 dark:from-slate-50/25 to-transparent to-70%">
-              <div className="grid grid-cols-2 gap-4 m-auto">
-                <div className="border border-slate-800 rounded-2xl p-4 aspect-[3/1.4] backdrop-blur-xl">
-                  <h3>Location</h3>
-                </div>
-                <div className="border border-slate-800 rounded-2xl p-4 aspect-[3/1.4] backdrop-blur-xl">
-                  <h3>Alma Mater</h3>
-                </div>
-                <div className="border border-slate-800 rounded-2xl p-4 aspect-[3/1.4] backdrop-blur-xl">
-                  <h3>Currently Studying</h3>
-                </div>
-                <div className="border border-slate-800 rounded-2xl p-4 aspect-[3/1.4] backdrop-blur-xl">
-                  <h3>Favorite Coffee</h3>
-                </div>
-                <div className="border border-slate-800 rounded-2xl p-4 aspect-[3/1.4] backdrop-blur-xl">
-                  <h3>Hobbies</h3>
-                </div>
-                <div className="border border-slate-800 rounded-2xl p-4 aspect-[3/1.4] backdrop-blur-xl">
-                  <h3>Goals</h3>
-                </div>
+            <div className="flex-1 flex items-center justify-center bg-radial from-rose-800/25 dark:from-slate-50/25 to-transparent to-70%">
+              <div className="w-full h-full grid grid-cols-2 gap-4 m-auto">
+                  {ABOUT_ME_INFO.map((item) => (
+                    <AboutMeCard
+                      key={item.title}
+                      icon={item.icon}
+                      title={item.title}
+                      value={item.value}
+                      className="h-full"
+                    />
+                  ))}
               </div>
             </div>
             {/* <div className="flex-1 ">
@@ -157,9 +399,10 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="w-full bg-pink-200 aspect-video py-8 px-12">
-          Skills - Preview
-        </section>
+        
+        {/* Skills Section */}
+        <SkillsSection />
+
         <section className="w-full bg-violet-300 aspect-video py-8 px-12">
           Education - Preview
         </section>
@@ -177,7 +420,7 @@ export default function Home() {
       {/* Main Content - Small */}
       <main className="flex sm:hidden flex-1 w-full h-fit lg:max-w-6xl flex-col items-center justify-between sm:items-start ">
 
-        <section className="w-full min-h-[90vh] flex flex-col px-6 py-10 gap-6 text-center justify-center  bg-radial from-rose-800/40 dark:from-slate-50/10 to-transparent to-65%">
+        <section className="w-full min-h-[90vh] flex flex-col px-6 pt-6 gap-6 text-center justify-center  bg-radial from-rose-800/25 dark:from-slate-50/10 to-transparent to-65%">
           <div className="flex flex-col gap-4">
             <span className="text-sm text-gray-500">
               Welcome to my professional website
@@ -210,9 +453,39 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="w-full bg-violet-300 h-screen py-8 px-12">
-          Summary/Introduction
+        {/* About Me - Small */}
+        <section className="w-full aspect-video flex flex-col pb-4">
+          <div className="flex flex-col px-6 w-full h-fit items-center justify-center gap-3 ">
+            <h1 className="text-2xl lg:text-4xl tracking-wider font-bold uppercase text-slate-400">About Me</h1>
+          </div>
+          <div className="flex flex-col flex-1 w-full h-fill px-8 pb-8 gap-4 align-middle justify-center">
+            <div className="flex-1 bg-transparent flex flex-col items-center py-2 px-4 lg:py-4 lg:px-6 gap-3">
+              <div className="border-3 border-slate-950 dark:border-slate-50 rounded-full bg-transparent w-12 lg:w-20 h-12 lg:h-20 flex items-center justify-center align-middle">
+                <User className="w-6 lg:w-10 h-6 lg:h-10 text-slate-950 dark:text-slate-50"/>
+              </div>
+              <h1 className="text-lg lg:text-2xl font-bold tracking-wide">Who is <span className="text-rose-800">Migo?</span></h1>
+              <p className="w-full text-justify text-gray-700 dark:text-gray-300 text-xs md:text-sm lg:text-base">
+                <b>Miguel Justin Bunda</b> is a software engineer dedicated to building modern, technical solutions that put people first. A graduate of Don Bosco Technical College in Mandaluyong City with a Bachelor of Science in Information Technology, Migo earned Magna Cum Laude honors, a Service Award, and the distinction of Batch Valedictorian.
+              </p>
+              <p className="w-full text-justify text-gray-700 dark:text-gray-300 text-xs md:text-sm lg:text-base">
+                Migo first started programming by developing simple web pages on his laptop. Raw HTML, CSS, with little JavaScript. Now, Migo primarily uses both <b>TypeScript</b> and <b>Python</b>, along with a consortium of languages, frameworks, and technologies such as GitHub, Docker, AWS, Nextjs, Supabase, and more.
+              </p>
+            </div>
+
+            <div className="mx-4 flex gap-3 overflow-x-auto pb-2">
+              {ABOUT_ME_INFO.map((item) => (
+                <AboutMeCard
+                  key={item.title}
+                  icon={item.icon}
+                  title={item.title}
+                  value={item.value}
+                  className="aspect-5/3 min-w-fit"
+                />
+              ))}
+            </div>
+          </div>
         </section>
+
         <section className="w-full bg-pink-200 h-screen py-8 px-12">
           Skills - Preview
         </section>
