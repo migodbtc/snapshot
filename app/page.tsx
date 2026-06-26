@@ -1,46 +1,9 @@
 "use client"
 
-import { Blocks, BookOpen, Briefcase, Cloud, Code2, Coffee, Dumbbell, GraduationCap, Languages, LucideIcon, Mail, MapPin, Menu, School, Target, User, Wrench } from "lucide-react";
+import { ABOUT_ME_INFO, SKILLS_CONSTS } from "@/lib/constants";
+import { Atom, Blocks, BookOpen, Braces, Briefcase, Cloud, Code2, Coffee, Cpu, Database, Dumbbell, FileCode2, GitBranch, GraduationCap, Languages, LanguagesIcon, LucideIcon, Mail, MapPin, Menu, School, Server, Target, User, Wind, Wrench } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
-
-// Constants
-const ABOUT_ME_INFO: {
-  icon: LucideIcon;
-  title: string;
-  value: string;
-}[] = [
-  {
-    icon: MapPin,
-    title: "Location",
-    value: "Mandaluyong",
-  },
-  {
-    icon: School,
-    title: "Alma Mater",
-    value: "DBTC",
-  },
-  {
-    icon: BookOpen,
-    title: "Currently Studying",
-    value: "Terraform",
-  },
-  {
-    icon: Coffee,
-    title: "Favorite Coffee",
-    value: "Vietnamese Coffee",
-  },
-  {
-    icon: Dumbbell,
-    title: "Hobbies",
-    value: "Fitness & Travel",
-  },
-  {
-    icon: Target,
-    title: "Goals",
-    value: "Secure First Job",
-  },
-];
 
 // AboutMeCard: A dedicated subcomponent for the rendering of the about me cards for both desktop and mobile
 type AboutMeCardProps = {
@@ -58,7 +21,7 @@ function AboutMeCard({
 }: AboutMeCardProps) {
   return (
     <div
-      className={`flex flex-col justify-center border border-slate-400 dark:border-slate-800 rounded-2xl p-4 backdrop-blur-xl ${className}`}
+      className={`flex flex-col justify-center border border-slate-400/50 dark:border-slate-800 rounded-2xl p-4 backdrop-blur-xl ${className}`}
     >
       <span className="text-xs lg:text-sm text-rose-500 font-medium flex items-center gap-1">
         <Icon className="w-3 h-3 lg:w-4 lg:h-4" />
@@ -70,6 +33,46 @@ function AboutMeCard({
       </h3>
     </div>
   );
+}
+
+// SkillCard: A dedicated subcomponent for the rendering of the skill
+type SkillCardProps = {
+  icon: LucideIcon,
+  skillName: string, 
+  years: string,
+  description: string
+}
+
+const SkillCard = ({
+  icon: Icon = LanguagesIcon, skillName, years, description
+}: SkillCardProps) => {
+
+  return (
+    <div className="relative aspect-5/2 overflow-hidden rounded-xl border border-slate-300 dark:border-slate-800 backdrop-blur-md">
+      <div className="absolute inset-0 -z-10 bg-radial from-slate-300/40 via-slate-200/20 to-transparent dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent" />
+
+      <div className="flex h-full">
+        <div className="flex flex-1 items-center justify-center">
+          <div className="ml-2 flex h-[75%] w-full items-center justify-center border-r-2 border-slate-200 dark:border-slate-900">
+            <Icon className="w-full text-rose-800 dark:text-rose-500" />
+          </div>
+        </div>
+
+        <div className="flex-3 flex flex-col items-start justify-center gap-0 py-2 pl-4 lg:gap-1">
+          <div className="flex w-full items-center justify-between pr-4">
+            <h3 className="font-bold">{skillName}</h3>
+            <span className="rounded-xl bg-rose-500 px-2 py-0.5 text-xs dark:bg-rose-800 font-semibold text-slate-50">
+              {years + "yrs"}
+            </span>
+          </div>
+
+          <p className="w-full pr-4 text-justify text-xs italic text-gray-800 dark:text-gray-400 ">
+            {description.length > 125 ? `${description.slice(0, 124)}...` : description }
+          </p>
+        </div>
+      </div>
+    </div>
+  )
 }
 
 // SkillsSection: The dedicated section for the skills where there are subpages for the display depending
@@ -100,7 +103,7 @@ function SkillsSection() {
         </h1>
       </div>
 
-      <div className="flex flex-row w-full h-fit items-center justify-center gap-4 px-8 pb-4 text-center">
+      <div className="flex flex-row w-full h-fit items-center justify-center gap-4 px-8 pb-4 text-center max-w-xl lg:max-w-3xl mx-auto text-xs lg:text-base">
         <button
           onClick={() => setSelectedCategory("languages")}
           className={getButtonClass("languages")}
@@ -130,21 +133,24 @@ function SkillsSection() {
           className={getButtonClass("platforms")}
         >
           <Cloud size={18} />
-          <span>platforms</span>
+          <span>Platforms</span>
         </button>
       </div>
 
       <div className="flex flex-1 w-full h-full pb-8 gap-4 justify-center">
-        <div className="w-full aspect-video mx-8 mt-2">
+        <div className="w-full aspect-video mx-8 mt-2 flex flex-col">
           {selectedCategory === "languages" && (
-            <div className="relative w-full h-full overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800">
-              <div className="absolute inset-0 bg-radial from-slate-200/20 via-slate-200/10 to-transparent dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent" />
-
-              <div className="relative w-full h-full backdrop-blur-xl p-6">
-                <h2>Languages</h2>
-                <p>Placeholder content</p>
+              <div className="relative w-full h-75 lg:h-120 overflow-hidden rounded-xl ">
+                <div className="relative w-full">
+                  <div className="w-full h-[full] grid grid-cols-2 lg:grid-cols-3 gap-2 auto-rows-[144px]">
+                    {
+                      SKILLS_CONSTS.map((skill) => {
+                        return <SkillCard key={skill.skillName} icon={skill.icon} skillName={skill.skillName} description={skill.description} years={skill.years.toString()}/>
+                      })
+                    }
+                  </div>
+                </div>
               </div>
-            </div>
           )}
 
           {selectedCategory === "frameworks" && (
@@ -245,6 +251,8 @@ function SkillsSection() {
               </div>
             </div>
           )}
+
+          <div className="w-full text-slate-950/90 text-center text-base font-semibold">Want to know more about what I can offer? <a className="cursor-pointer text-rose-800 dark:text-rose-500 hover:underline">Head to the skills page here.</a></div>
         </div>
       </div>
     </section>
@@ -359,7 +367,7 @@ export default function Home() {
                 Migo first started programming by developing simple web pages on his laptop. Raw HTML, CSS, with little JavaScript. Now, Migo primarily uses both <b>TypeScript</b> and <b>Python</b>, along with a consortium of languages, frameworks, and technologies such as GitHub, Docker, AWS, Nextjs, Supabase, and more.
               </p>
             </div>
-            <div className="flex-1 flex items-center justify-center bg-radial from-rose-800/25 dark:from-slate-50/25 to-transparent to-70%">
+            <div className="flex-1 flex items-center justify-center bg-radial from-slate-500/25 dark:from-slate-50/25 to-transparent to-70%">
               <div className="w-full h-full grid grid-cols-2 gap-4 m-auto">
                   {ABOUT_ME_INFO.map((item) => (
                     <AboutMeCard
