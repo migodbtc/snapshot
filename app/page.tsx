@@ -1,7 +1,7 @@
 "use client"
 
-import { ABOUT_ME_INFO, FRAMEWORK_CONSTS, LANGUAGE_CONSTS, PLATFORM_CONSTS, TOOL_CONSTS } from "@/lib/constants";
-import { ArrowUpRight, Atom, Blocks, BookOpen, Braces, Briefcase, Cloud, Code2, GraduationCap, Languages,Mail, Menu, School, Server, Target, User, Wind, Wrench } from "lucide-react";
+import { ABOUT_ME_INFO, EDUCATION_CONSTS, FRAMEWORK_CONSTS, LANGUAGE_CONSTS, PLATFORM_CONSTS, TOOL_CONSTS } from "@/lib/constants";
+import { ArrowUpRight, Atom, Blocks, BookOpen, Braces, Briefcase, Cloud, Code2, GraduationCap, Languages,Mail, Medal, Menu, School, Server, Target, User, Wind, Wrench } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import { AboutMeCard, TechnologyCard } from "./_components/cards";
@@ -106,30 +106,7 @@ const AboutSection = () => {
             ))}
         </div>
       </div>
-      {/* <div className="flex-1 ">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="ml-4 space-y-12 border-l border-zinc-800">
-            
-              <div className="relative pl-10">
-                <div
-                  className={`absolute -left-[5px] top-2 size-2.5 rounded-full ${
-                    true
-                      ? "bg-rose-500 shadow-[0_0_10px_#e11d48]"
-                      : "bg-zinc-700"
-                  }`}
-                />
-                <span className="mb-2 block font-mono text-xs text-zinc-500">
-                  Period
-                </span>
-                <h4 className="text-lg font-medium">Title</h4>
-                <p className="mb-2 text-sm text-zinc-500">Org</p>
-                <p className="max-w-2xl text-sm leading-relaxed text-zinc-400">
-                  Body
-                </p>
-              </div>
-          </div>
-        </div>
-      </div> */}
+      
     </div>
   </section>
 }
@@ -196,7 +173,7 @@ const SkillsSection = () => {
         </h1>
       </div>
 
-      <div className="flex flex-row w-full h-fit items-center justify-center gap-4 px-8 pb-4 text-center max-w-xl lg:max-w-3xl mx-auto text-xs lg:text-base">
+      <div className="flex flex-row w-full h-fit items-center justify-center gap-4 px-8 pb-4 text-center max-w-xl mx-auto text-xs lg:text-base">
         <button
           onClick={() => setSelectedCategory("languages")}
           className={getButtonClass("languages")}
@@ -231,7 +208,7 @@ const SkillsSection = () => {
       </div>
 
       <div className="flex flex-1 w-full h-full pb-8 gap-4 justify-center">
-        <div className="w-full aspect-video mx-8 mt-2 flex flex-col">
+        <div className="w-full aspect-5/2 mx-8 my-2 flex flex-col">
           {selectedCategory === "languages" && (
             <div className="relative w-full h-100 overflow-hidden rounded-xl mb-4">
               <div className="relative w-full">
@@ -411,7 +388,7 @@ const SkillSectionSmall = () => {
       </div>
 
       <div className="flex flex-1 w-full h-full pb-8 gap-4 justify-center">
-        <div className="w-full aspect-video mx-8 mt-2 flex flex-col">
+        <div className="w-full aspect-5/2 mx-8 my-2 flex flex-col">
           {selectedCategory === "languages" && (
             <div className="relative w-full h-100 overflow-hidden rounded-xl mb-4">
               <div className="relative w-full">
@@ -507,6 +484,124 @@ const SkillSectionSmall = () => {
 
 // EducationSection: Dedicated section for previewing education. Design is a split type with 
 // card on the left and timeline on the right.
+type EducationKey = keyof typeof EDUCATION_CONSTS;
+
+const EducationSection = () => {
+  const [selectedInstitution, setSelectedInstitution] =
+    useState<EducationKey>("college");
+  const preview = (({ college, shs, hs2 }) => ({ college, shs, hs2 }))(EDUCATION_CONSTS);
+  const selected = EDUCATION_CONSTS[selectedInstitution];
+
+  return (
+    <section className="flex flex-col w-full overflow-hidden">
+      <div className="flex flex-col px-6 mb-4 w-full h-fit items-center justify-center gap-3">
+        <h1 className="text-2xl lg:text-4xl tracking-wider font-bold uppercase text-slate-400">
+          Education
+        </h1>
+      </div>
+
+      <div className="flex flex-row w-full h-144 items-start justify-center gap-2 pb-4 text-center mx-auto lg:max-w-6xl px-8 text-xs lg:text-base ">
+
+        <div className="flex-1 h-full">
+          <div className="flex-1 text-left">
+            <div className="mx-auto max-w-7xl px-6 ">
+              <div className="ml-4 space-y-8 lg:space-y-12 border-l border-zinc-800 pt-8">
+                {Object.entries(preview).map(([key, education]) => (
+                  <button
+                    key={key}
+                    onClick={() => setSelectedInstitution(key as EducationKey)}
+                    className="rounded-xl cursor-pointer"
+                  >
+                    <div className="relative pl-10">
+                      <div
+                        className={`absolute -left-1.25 top-2 size-2.5 rounded-full transition-all ${
+                          selectedInstitution === key
+                            ? "bg-rose-500 shadow-[0_0_10px_#e11d48]"
+                            : "bg-zinc-700"
+                        }`}
+                      />
+
+                      <span className="mb-1 block w-full text-left font-mono text-xs text-zinc-500">
+                        {education.date_range}
+                      </span>
+
+                      <h4 className="flex items-center gap-2 text-left text-sm font-medium lg:text-lg">
+                        <School />
+                        {education.school_name}
+                      </h4>
+
+                      <p className="my-1 text-left text-xs text-zinc-500 lg:text-sm">
+                        {education.subtitle}
+                      </p>
+
+                      <p className="flex items-center gap-0.5 text-left text-sm leading-relaxed text-zinc-400 hover:underline">
+                        View
+                        <ArrowUpRight className="h-4 w-4 -translate-y-0.5" />
+                      </p>
+                    </div>
+                  </button>
+                ))}
+                <button 
+                  // onClick={() => setSelectedInstitution("hs2")}
+                  className="rounded-xl cursor-pointer"
+                >
+                  <div className="relative pl-10 h-48 lg:h-32">
+                    <div
+                      className={`absolute -left-1.25 top-2 size-2.5 rounded-full ${
+                        false
+                          ? "bg-rose-500 shadow-[0_0_10px_#e11d48]"
+                          : "bg-zinc-700"
+                      }`}
+                    />
+                    <span className="mb-1 rounded-xl bg-rose-500 px-3 py-1 font-semibold text-slate-50 dark:bg-rose-800 select-none hover:underline hover:bg-rose-400 dark:hover:bg-rose-700 cursor-pointer flex flex-row gap-1 text-left text-xs lg:text-sm">
+                      See more of my education <ArrowUpRight className="h-4 w-4 mt-0.5 -translate-y-0.5" />
+                    </span>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex-1 h-120 px-2 lg:px-4">
+          <div className="w-full h-fit max-h-fill relative overflow-hidden rounded-xl border border-slate-300 dark:border-slate-800 backdrop-blur-md pt-0 overflow-y-auto [scrollbar:thin] [scrollbar-color:#52525b_transparent] [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-slate-600 hover:[&::-webkit-scrollbar-thumb]:bg-slate-500">
+            <div className="absolute inset-0 -z-10 bg-radial from-slate-400/25 via-slate-200/20 to-transparent dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent" />
+            <div className="flex flex-col h-full overflow-y-auto px-6 py-8 lg:px-8 gap-2">
+              <span className="rounded-xl bg-rose-500 px-2 py-1 text-sm font-semibold text-slate-50 dark:bg-rose-800 w-fit">
+                {selected.badge_content}
+              </span>
+
+              <h3 className="text-2xl font-semibold text-left">
+                {selected.school_name}
+              </h3>
+
+              <p className="italic text-justify text-sm text-gray-800 dark:text-gray-400">
+                {selected.address}
+              </p>
+
+              <div className="mt-2 grid w-full auto-rows-min grid-cols-1 gap-2 text-left text-xs lg:grid-cols-2 lg:text-sm">
+                <div className="col-span-1 font-semibold text-slate-700 dark:text-slate-400 lg:col-span-2">
+                  Awards & Honors
+                </div>
+
+                {selected.awards_and_honors.map((award) => (
+                  <div key={award} className="flex items-center gap-2">
+                    <Medal className="h-4 w-4 shrink-0" />
+                    <span>{award}</span>
+                  </div>
+                ))}
+              </div>
+
+              <p className="mt-2 text-justify text-sm italic text-slate-700 dark:text-slate-300 lg:text-base">
+                {selected.personal_description}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
 
 // Home: the default component to be exported, contains the entirety of the home page.
 export default function Home() {
@@ -529,11 +624,9 @@ export default function Home() {
         <SkillsSection />
 
         {/* Education Section */}
-        <section className="w-full bg-violet-300 aspect-video py-8 px-12">
-          Education - Preview
-        </section>
+        <EducationSection />
 
-        <section className="w-full bg-pink-200 aspect-video py-8 px-12">
+        <section className="w-full aspect-video py-8 px-12">
           Experience - Preview
         </section>
         <section className="w-full bg-violet-300 aspect-video py-8 px-12">
