@@ -1,4 +1,4 @@
-import { LucideIcon, MapPin, School, BookOpen, Coffee, Dumbbell, Target, LanguagesIcon, Atom, FileCode2, Wind, Database, GitBranch, Braces, Cpu, Server } from "lucide-react";
+import { LucideIcon, MapPin, School, BookOpen, Coffee, Dumbbell, Target, LanguagesIcon, Atom, FileCode2, Wind, Database, GitBranch, Braces, Cpu, Server, Code2, FlaskConical, Globe, Zap, Boxes, Container, Terminal, Workflow, Cloud } from "lucide-react";
 
 export const ABOUT_ME_INFO: {
   icon: LucideIcon;
@@ -37,68 +37,182 @@ export const ABOUT_ME_INFO: {
   },
 ];
 
-export const SKILLS_CONSTS = [
-  {
-    icon: LanguagesIcon,
-    skillName: "Python",
-    years: 4,
-    description:
-      "Experienced in building automation scripts, backend APIs, data processing tools, and desktop applications using Python.",
-  },
-  {
-    icon: Atom,
-    skillName: "React",
-    years: 3,
-    description:
-      "Develop responsive, component-driven user interfaces with modern React patterns, hooks, and state management.",
-  },
+export const LANGUAGE_CONSTS = [
   {
     icon: FileCode2,
-    skillName: "TypeScript",
+    name: "TypeScript",
     years: 3,
     description:
-      "Build scalable and maintainable applications with static typing, improving code quality and developer productivity.",
-  },
-  {
-    icon: Wind,
-    skillName: "Tailwind CSS",
-    years: 3,
-    description:
-      "Create responsive, modern interfaces quickly using utility-first styling while maintaining a consistent design system.",
-  },
-  {
-    icon: Database,
-    skillName: "PostgreSQL",
-    years: 2,
-    description:
-      "Design relational databases, write optimized SQL queries, and manage application data efficiently.",
-  },
-  {
-    icon: Server,
-    skillName: "Node.js",
-    years: 2,
-    description:
-      "Develop REST APIs, backend services, and real-time applications using Express and other Node.js libraries.",
-  },
-  {
-    icon: GitBranch,
-    skillName: "Git",
-    years: 4,
-    description:
-      "Comfortable with branching strategies, pull requests, collaborative workflows, and version control best practices.",
+      "Primary language for building scalable full-stack applications across React, Next.js, Node.js, and cloud-native projects.",
   },
   {
     icon: Braces,
-    skillName: "C++",
-    years: 2,
+    name: "JavaScript",
+    years: 4,
     description:
-      "Strong foundation in object-oriented programming, algorithms, and data structures for academic and personal projects.",
+      "Used extensively for frontend and backend development, delivering responsive web applications and RESTful services.",
   },
   {
-    icon: Cpu,
-    skillName: "Arduino",
-    years: 2,
+    icon: LanguagesIcon,
+    name: "Python",
+    years: 4,
     description:
-      "Built embedded systems and IoT prototypes integrating sensors, actuators, and serial communication.",
+      "Developed Flask APIs, automation utilities, machine learning integrations, and cloud-connected backend services.",
+  },
+  {
+    icon: Database,
+    name: "SQL",
+    years: 3,
+    description:
+      "Designed relational schemas, optimized queries, and managed application data across MySQL and PostgreSQL systems.",
+  },
+  {
+    icon: FileCode2,
+    name: "PHP",
+    years: 1,
+    description:
+      "Built database-driven web applications and backend functionality using Laravel and modern PHP practices.",
+  },
+];
+
+export const FRAMEWORK_CONSTS = [
+  {
+    icon: Atom,
+    name: "React",
+    years: "3",
+    description:
+      "Built responsive single-page applications using component-based architecture and modern React patterns.",
+  },
+  {
+    icon: Globe,
+    name: "Next.js",
+    years: "2",
+    description:
+      "Developed full-stack web applications with SSR, SSG, API routes, and optimized performance.",
+  },
+  {
+    icon: Zap,
+    name: "Vite",
+    years: "2",
+    description:
+      "Used as a modern frontend build tool for fast development, HMR, and optimized production builds.",
+  },
+  {
+    icon: Code2,
+    name: "FastAPI",
+    years: "1",
+    description:
+      "Built high-performance REST APIs with automatic OpenAPI documentation and Python type hints.",
+  },
+  {
+    icon: FlaskConical,
+    name: "Flask",
+    years: "1",
+    description:
+      "Developed lightweight Python web applications and backend services with flexible architecture.",
+  },
+  {
+    icon: Database,
+    name: "Laravel",
+    years: "1",
+    description:
+      "Implemented CRUD systems, authentication flows, and database-driven web applications.",
+  },
+  {
+    icon: Code2,
+    name: "Express.js",
+    years: "2",
+    description:
+      "Built lightweight backend services and REST APIs using Node.js and Express.",
+  },
+];
+
+export const TOOL_CONSTS = [
+  {
+    icon: GitBranch,
+    name: "GitHub",
+    years: "2",
+    description:
+      "Repository hosting, pull requests, project management, and code reviews.",
+  },
+  {
+    icon: Container,
+    name: "Docker",
+    years: "3",
+    description:
+      "Containerization, multi-service development environments, and deployment consistency.",
+  },
+  {
+    icon: Terminal,
+    name: "Linux",
+    years: "2",
+    description:
+      "Server administration, shell scripting, and development environment management.",
+  },
+  {
+    icon: Boxes,
+    name: "Bicep",
+    years: "<1",
+    description:
+      "Infrastructure-as-Code provisioning and Azure resource automation.",
+  },
+  {
+    icon: Workflow,
+    name: "GitHub Actions",
+    years: "1",
+    description:
+      "Continuous integration and deployment automation for cloud-native applications.",
+  },
+  {
+    icon: GitBranch,
+    name: "Git",
+    years: "2",
+    description:
+      "Version control, branching strategies, and collaborative development workflows.",
+  },
+];
+
+export const PLATFORM_CONSTS = [
+  {
+    icon: Cloud,
+    name: "Microsoft Azure",
+    years: "1",
+    description:
+      "Provisioned and managed cloud-native infrastructure, networking, and application hosting using Azure services.",
+  },
+  {
+    icon: Cloud,
+    name: "AWS",
+    years: "1",
+    description:
+      "Deployed and hosted applications using AWS services, including cloud compute and machine learning workloads.",
+  },
+  {
+    icon: Database,
+    name: "Supabase",
+    years: "2",
+    description:
+      "Utilized managed PostgreSQL, authentication, storage, and realtime capabilities for full-stack applications.",
+  },
+  {
+    icon: Database,
+    name: "PostgreSQL",
+    years: "2",
+    description:
+      "Designed relational schemas and managed production-ready application data for modern web systems.",
+  },
+  {
+    icon: Database,
+    name: "MySQL",
+    years: "3",
+    description:
+      "Developed and maintained relational databases supporting CRUD operations, analytics, and business workflows.",
+  },
+  {
+    icon: Server,
+    name: "Vercel",
+    years: "2",
+    description:
+      "Hosted and deployed Next.js applications with automated CI/CD integration and global edge delivery.",
   },
 ];

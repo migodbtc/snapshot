@@ -1,79 +1,12 @@
 "use client"
 
-import { ABOUT_ME_INFO, SKILLS_CONSTS } from "@/lib/constants";
-import { Atom, Blocks, BookOpen, Braces, Briefcase, Cloud, Code2, Coffee, Cpu, Database, Dumbbell, FileCode2, GitBranch, GraduationCap, Languages, LanguagesIcon, LucideIcon, Mail, MapPin, Menu, School, Server, Target, User, Wind, Wrench } from "lucide-react";
+import { ABOUT_ME_INFO, FRAMEWORK_CONSTS, LANGUAGE_CONSTS, PLATFORM_CONSTS, TOOL_CONSTS } from "@/lib/constants";
+import { ArrowUpRight, Atom, Blocks, BookOpen, Braces, Briefcase, Cloud, Code2, GraduationCap, Languages,Mail, Menu, School, Server, Target, User, Wind, Wrench } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
+import { AboutMeCard, TechnologyCard } from "./_components/cards";
 
-// AboutMeCard: A dedicated subcomponent for the rendering of the about me cards for both desktop and mobile
-type AboutMeCardProps = {
-  icon: LucideIcon;
-  title: string;
-  value: string;
-  className?: string;
-};
 
-function AboutMeCard({
-  icon: Icon,
-  title,
-  value,
-  className = "",
-}: AboutMeCardProps) {
-  return (
-    <div
-      className={`flex flex-col justify-center border border-slate-400/50 dark:border-slate-800 rounded-2xl p-4 backdrop-blur-xl ${className}`}
-    >
-      <span className="text-xs lg:text-sm text-rose-500 font-medium flex items-center gap-1">
-        <Icon className="w-3 h-3 lg:w-4 lg:h-4" />
-        {title}
-      </span>
-
-      <h3 className="text-sm lg:text-xl text-gray-800 dark:text-gray-100 font-bold">
-        {value}
-      </h3>
-    </div>
-  );
-}
-
-// SkillCard: A dedicated subcomponent for the rendering of the skill
-type SkillCardProps = {
-  icon: LucideIcon,
-  skillName: string, 
-  years: string,
-  description: string
-}
-
-const SkillCard = ({
-  icon: Icon = LanguagesIcon, skillName, years, description
-}: SkillCardProps) => {
-
-  return (
-    <div className="relative aspect-5/2 overflow-hidden rounded-xl border border-slate-300 dark:border-slate-800 backdrop-blur-md">
-      <div className="absolute inset-0 -z-10 bg-radial from-slate-300/40 via-slate-200/20 to-transparent dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent" />
-
-      <div className="flex h-full">
-        <div className="flex flex-1 items-center justify-center">
-          <div className="ml-2 flex h-[75%] w-full items-center justify-center border-r-2 border-slate-200 dark:border-slate-900">
-            <Icon className="w-full text-rose-800 dark:text-rose-500" />
-          </div>
-        </div>
-
-        <div className="flex-3 flex flex-col items-start justify-center gap-0 py-2 pl-4 lg:gap-1">
-          <div className="flex w-full items-center justify-between pr-4">
-            <h3 className="font-bold">{skillName}</h3>
-            <span className="rounded-xl bg-rose-500 px-2 py-0.5 text-xs dark:bg-rose-800 font-semibold text-slate-50">
-              {years + "yrs"}
-            </span>
-          </div>
-
-          <p className="w-full pr-4 text-justify text-xs italic text-gray-800 dark:text-gray-400 ">
-            {description.length > 125 ? `${description.slice(0, 124)}...` : description }
-          </p>
-        </div>
-      </div>
-    </div>
-  )
-}
 
 // SkillsSection: The dedicated section for the skills where there are subpages for the display depending
 // on the selected skill (i.e. languages is the default)
@@ -108,7 +41,7 @@ function SkillsSection() {
           onClick={() => setSelectedCategory("languages")}
           className={getButtonClass("languages")}
         >
-          <Languages size={18} />
+          <Braces size={18} />
           <span>Languages</span>
         </button>
 
@@ -140,123 +73,276 @@ function SkillsSection() {
       <div className="flex flex-1 w-full h-full pb-8 gap-4 justify-center">
         <div className="w-full aspect-video mx-8 mt-2 flex flex-col">
           {selectedCategory === "languages" && (
-              <div className="relative w-full h-75 lg:h-120 overflow-hidden rounded-xl ">
-                <div className="relative w-full">
-                  <div className="w-full h-[full] grid grid-cols-2 lg:grid-cols-3 gap-2 auto-rows-[144px]">
-                    {
-                      SKILLS_CONSTS.map((skill) => {
-                        return <SkillCard key={skill.skillName} icon={skill.icon} skillName={skill.skillName} description={skill.description} years={skill.years.toString()}/>
-                      })
-                    }
-                  </div>
+            <div className="relative w-full h-100 overflow-hidden rounded-xl mb-4">
+              <div className="relative w-full">
+                <div className="w-full grid grid-cols-1 lg:grid-cols-1 gap-4 auto-rows-[120px]">
+                  {
+                    LANGUAGE_CONSTS.map((lang) => {
+                      return <TechnologyCard 
+                        key={lang.name} 
+                        icon={lang.icon} 
+                        name={lang.name} 
+                        description={lang.description} 
+                        years={lang.years.toString()}
+                      />
+                    })
+                  }
                 </div>
               </div>
+            </div>
           )}
 
           {selectedCategory === "frameworks" && (
-            <div className="relative w-full h-full overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800">
-              <div className="absolute inset-0 bg-radial from-slate-200/20 via-slate-200/10 to-transparent dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent" />
-
-              <div className="relative w-full h-full backdrop-blur-xl p-6">
-                <div className="flex items-center gap-2 mb-4">
-                  <Blocks size={24} className="text-rose-700" />
-                  <h2 className="text-2xl font-bold">Frameworks</h2>
-                </div>
-
-                <p className="text-slate-600 dark:text-slate-400 mb-6">
-                  Frameworks and libraries used to build modern web applications and user interfaces.
-                </p>
-
-                <div className="space-y-3">
-                  <div className="rounded-lg border border-slate-200 dark:border-slate-800 p-4">
-                    <h3 className="font-semibold">Next.js</h3>
-                    <p className="text-sm text-slate-600 dark:text-slate-400">
-                      Placeholder description.
-                    </p>
-                  </div>
-
-                  <div className="rounded-lg border border-slate-200 dark:border-slate-800 p-4">
-                    <h3 className="font-semibold">React</h3>
-                    <p className="text-sm text-slate-600 dark:text-slate-400">
-                      Placeholder description.
-                    </p>
-                  </div>
+            <div className="relative w-full h-100 overflow-hidden rounded-xl mb-4">
+              <div className="relative w-full">
+                <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-4 auto-rows-[120px]">
+                  {
+                    FRAMEWORK_CONSTS.map((framework) => {
+                      return <TechnologyCard 
+                        key={framework.name} 
+                        icon={framework.icon} 
+                        name={framework.name} 
+                        description={framework.description} 
+                        years={framework.years} 
+                      />
+                    })
+                  }
                 </div>
               </div>
             </div>
           )}
 
           {selectedCategory === "tools" && (
-            <div className="relative w-full h-full overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800">
-              <div className="absolute inset-0 bg-radial from-slate-200/20 via-slate-200/10 to-transparent dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent" />
-
-              <div className="relative w-full h-full backdrop-blur-xl p-6">
-                <div className="flex items-center gap-2 mb-4">
-                  <Wrench size={24} className="text-rose-700" />
-                  <h2 className="text-2xl font-bold">Tools</h2>
-                </div>
-
-                <p className="text-slate-600 dark:text-slate-400 mb-6">
-                  Development tools used for coding, collaboration, deployment, and operations.
-                </p>
-
-                <div className="space-y-3">
-                  <div className="rounded-lg border border-slate-200 dark:border-slate-800 p-4">
-                    <h3 className="font-semibold">Git</h3>
-                    <p className="text-sm text-slate-600 dark:text-slate-400">
-                      Placeholder description.
-                    </p>
-                  </div>
-
-                  <div className="rounded-lg border border-slate-200 dark:border-slate-800 p-4">
-                    <h3 className="font-semibold">Docker</h3>
-                    <p className="text-sm text-slate-600 dark:text-slate-400">
-                      Placeholder description.
-                    </p>
-                  </div>
+            <div className="relative mb-4 h-100 w-full overflow-hidden rounded-xl">
+              <div className="relative w-full">
+                <div className="grid w-full auto-rows-[120px] grid-cols-1 gap-4 lg:grid-cols-2">
+                  {TOOL_CONSTS.map((tool) => {
+                    return (
+                      <TechnologyCard
+                        key={tool.name}
+                        icon={tool.icon}
+                        name={tool.name}
+                        description={tool.description}
+                        years={tool.years}
+                      />
+                    );
+                  })}
                 </div>
               </div>
             </div>
           )}
 
           {selectedCategory === "platforms" && (
-            <div className="relative w-full h-full overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800">
-              <div className="absolute inset-0 bg-radial from-slate-200/20 via-slate-200/10 to-transparent dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent" />
-
-              <div className="relative w-full h-full backdrop-blur-xl p-6">
-                <div className="flex items-center gap-2 mb-4">
-                  <Cloud size={24} className="text-rose-700" />
-                  <h2 className="text-2xl font-bold">Services</h2>
-                </div>
-
-                <p className="text-slate-600 dark:text-slate-400 mb-6">
-                  Cloud and managed  used to host, deploy, monitor, and scale applications.
-                </p>
-
-                <div className="space-y-3">
-                  <div className="rounded-lg border border-slate-200 dark:border-slate-800 p-4">
-                    <h3 className="font-semibold">AWS</h3>
-                    <p className="text-sm text-slate-600 dark:text-slate-400">
-                      Placeholder description.
-                    </p>
-                  </div>
-
-                  <div className="rounded-lg border border-slate-200 dark:border-slate-800 p-4">
-                    <h3 className="font-semibold">Supabase</h3>
-                    <p className="text-sm text-slate-600 dark:text-slate-400">
-                      Placeholder description.
-                    </p>
-                  </div>
+            <div className="relative mb-4 h-100 w-full overflow-hidden rounded-xl">
+              <div className="relative w-full">
+                <div className="grid w-full auto-rows-[120px] grid-cols-1 gap-4 lg:grid-cols-2">
+                  {PLATFORM_CONSTS.map((tool) => {
+                    return (
+                      <TechnologyCard
+                        key={tool.name}
+                        icon={tool.icon}
+                        name={tool.name}
+                        description={tool.description}
+                        years={tool.years}
+                      />
+                    );
+                  })}
                 </div>
               </div>
             </div>
           )}
 
-          <div className="w-full text-slate-950/90 text-center text-base font-semibold">Want to know more about what I can offer? <a className="cursor-pointer text-rose-800 dark:text-rose-500 hover:underline">Head to the skills page here.</a></div>
+          <div className="w-full text-center text-base font-semibold text-slate-950/90 dark:text-slate-50/90">
+            Want to know more about what I can offer?{" "}
+            <a className="inline-flex items-start text-rose-800 dark:text-rose-500 hover:underline cursor-pointer">
+              Head to the skills page here.
+              <ArrowUpRight className="h-4 w-4 mt-0.5 -translate-y-0.5" />
+            </a>
+          </div>
         </div>
       </div>
     </section>
   );
+}
+
+const SkillsSectionMobile = () => {
+  const [selectedCategory, setSelectedCategory] =
+    useState<SkillCategory>("languages");
+
+  const getButtonClass = (category: SkillCategory) =>
+  `w-fit py-2 px-4 rounded-lg border flex items-center justify-center gap-0 transition-all duration-200 cursor-pointer text-xs ${
+    selectedCategory === category
+      ? "bg-rose-50 dark:bg-rose-950/30 text-rose-700 dark:text-rose-300 border-rose-200 dark:border-rose-900"
+      : "bg-transparent text-slate-700 dark:text-slate-300 border-slate-300 dark:border-slate-700 hover:bg-rose-50 dark:hover:bg-rose-950/30 hover:text-rose-700 dark:hover:text-rose-300 hover:border-rose-300 dark:hover:border-rose-800"
+  }`;
+
+  return (
+    <section className="flex flex-col w-full">
+      <div className="flex flex-col px-6 py-4 w-full h-fit items-center justify-center gap-3">
+        <h1 className="text-2xl lg:text-4xl tracking-wider font-bold uppercase text-slate-400">
+          Skills
+        </h1>
+      </div>
+
+      <div className="flex flex-row w-full h-fit items-center justify-center gap-2 px-4 pb-4 text-center max-w-md mx-auto text-xs lg:text-base">
+        <button
+          onClick={() => setSelectedCategory("languages")}
+          className={getButtonClass("languages")}
+        >
+          <Braces size={18} />
+            <span
+              className={`overflow-hidden whitespace-nowrap transition-all duration-300 ease-out ${
+                selectedCategory === "languages"
+                  ? "max-w-25 opacity-100 ml-2"
+                  : "max-w-0 opacity-0 ml-0"
+              }`}
+            >
+              Languages
+            </span>
+        </button>
+
+        <button
+          onClick={() => setSelectedCategory("frameworks")}
+          className={getButtonClass("frameworks")}
+        >
+          <Blocks size={18} />
+          <span
+            className={`overflow-hidden whitespace-nowrap transition-all duration-300 ease-out ${
+              selectedCategory === "frameworks"
+                ? "max-w-25 opacity-100 ml-2"
+                : "max-w-0 opacity-0 ml-0"
+            }`}
+          >
+            Frameworks
+          </span>
+        </button>
+
+        <button
+          onClick={() => setSelectedCategory("tools")}
+          className={getButtonClass("tools")}
+        >
+          <Wrench size={18} />
+          <span
+              className={`overflow-hidden whitespace-nowrap transition-all duration-300 ease-out ${
+                selectedCategory === "tools"
+                  ? "max-w-25 opacity-100 ml-2"
+                  : "max-w-0 opacity-0 ml-0"
+              }`}
+            >
+            Tools
+          </span>
+        </button>
+
+        <button
+          onClick={() => setSelectedCategory("platforms")}
+          className={getButtonClass("platforms")}
+        >
+          <Cloud size={18} />
+          <span
+            className={`overflow-hidden whitespace-nowrap transition-all duration-300 ease-out ${
+              selectedCategory === "platforms"
+                ? "max-w-25 opacity-100 ml-2"
+                : "max-w-0 opacity-0 ml-0"
+            }`}
+          >
+            Platforms
+          </span>
+        </button>
+      </div>
+
+      <div className="flex flex-1 w-full h-full pb-8 gap-4 justify-center">
+        <div className="w-full aspect-video mx-8 mt-2 flex flex-col">
+          {selectedCategory === "languages" && (
+            <div className="relative w-full h-100 overflow-hidden rounded-xl mb-4">
+              <div className="relative w-full">
+                <div className="w-full grid grid-cols-1 lg:grid-cols-1 gap-4 auto-rows-[120px]">
+                  {
+                    LANGUAGE_CONSTS.map((lang) => {
+                      return <TechnologyCard 
+                        key={lang.name} 
+                        icon={lang.icon} 
+                        name={lang.name} 
+                        description={lang.description} 
+                        years={lang.years.toString()}
+                      />
+                    })
+                  }
+                </div>
+              </div>
+            </div>
+          )}
+
+          {selectedCategory === "frameworks" && (
+            <div className="relative w-full h-100 overflow-hidden rounded-xl mb-4">
+              <div className="relative w-full">
+                <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-4 auto-rows-[120px]">
+                  {
+                    FRAMEWORK_CONSTS.map((framework) => {
+                      return <TechnologyCard 
+                        key={framework.name} 
+                        icon={framework.icon} 
+                        name={framework.name} 
+                        description={framework.description} 
+                        years={framework.years} 
+                      />
+                    })
+                  }
+                </div>
+              </div>
+            </div>
+          )}
+
+          {selectedCategory === "tools" && (
+            <div className="relative mb-4 h-100 w-full overflow-hidden rounded-xl">
+              <div className="relative w-full">
+                <div className="grid w-full auto-rows-[120px] grid-cols-1 gap-4 lg:grid-cols-2">
+                  {TOOL_CONSTS.map((tool) => {
+                    return (
+                      <TechnologyCard
+                        key={tool.name}
+                        icon={tool.icon}
+                        name={tool.name}
+                        description={tool.description}
+                        years={tool.years}
+                      />
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {selectedCategory === "platforms" && (
+            <div className="relative mb-4 h-100 w-full overflow-hidden rounded-xl">
+              <div className="relative w-full">
+                <div className="grid w-full auto-rows-[120px] grid-cols-1 gap-4 lg:grid-cols-2">
+                  {PLATFORM_CONSTS.map((tool) => {
+                    return (
+                      <TechnologyCard
+                        key={tool.name}
+                        icon={tool.icon}
+                        name={tool.name}
+                        description={tool.description}
+                        years={tool.years}
+                      />
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          )}
+
+          <div className="w-full text-center text-base font-semibold text-slate-950/90 dark:text-slate-50/90">
+            Want to know more about what I can offer?{" "}
+            <a className="inline-flex items-start text-rose-800 dark:text-rose-500 hover:underline cursor-pointer">
+              Head to the skills page here.
+              <ArrowUpRight className="h-4 w-4 mt-0.5 -translate-y-0.5" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
 }
 
 // Home: the default component to be exported, contains the entirety of the home page.
@@ -494,9 +580,10 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="w-full bg-pink-200 h-screen py-8 px-12">
-          Skills - Preview
-        </section>
+        {/* Skills Section - Small */}
+        <SkillsSectionMobile />
+        
+        
         <section className="w-full bg-violet-300 h-screen py-8 px-12">
           Education - Preview
         </section>
