@@ -1,7 +1,7 @@
 "use client"
 
-import { ABOUT_ME_INFO, EDUCATION_CONSTS, FRAMEWORK_CONSTS, LANGUAGE_CONSTS, PLATFORM_CONSTS, TOOL_CONSTS } from "@/lib/constants";
-import { ArrowUpRight, Atom, Blocks, BookOpen, Braces, Briefcase, Cloud, Code2, GraduationCap, Languages,Mail, Medal, Menu, School, Server, Target, User, Wind, Wrench } from "lucide-react";
+import { ABOUT_ME_INFO, EDUCATION_CONSTS, EXPERIENCE_CONSTS, FRAMEWORK_CONSTS, LANGUAGE_CONSTS, PLATFORM_CONSTS, TOOL_CONSTS } from "@/lib/constants";
+import { ArrowUpRight, Atom, Blocks, BookOpen, Braces, Briefcase, Circle, Cloud, Code2, GraduationCap, Languages,Mail, Medal, Menu, School, Server, Target, User, Wind, Wrench } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import { AboutMeCard, TechnologyCard } from "./_components/cards";
@@ -604,7 +604,6 @@ const EducationSection = () => {
   )
 }
 
-
 const EducationSectionSmall = () => {
   const [selectedInstitution, setSelectedInstitution] =
   useState<EducationKey | null>(null);
@@ -711,7 +710,7 @@ const EducationSectionSmall = () => {
           border border-slate-300
           dark:border-slate-800
           backdrop-blur-md
-          bg-slate-50/70
+          bg-slate-50
           dark:bg-slate-950/70
           transition-all duration-300
           ${
@@ -721,7 +720,7 @@ const EducationSectionSmall = () => {
           }
         `}
       >
-        <div className="absolute inset-0 -z-10 bg-radial from-slate-400/25 via-slate-200/20 to-transparent dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent" />
+        <div className="absolute inset-0 -z-10 bg-radial from-slate-400/50 via-slate-200/20 to-transparent dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent" />
 
         {selected && (
           <div className="m-6 my-8">
@@ -772,6 +771,364 @@ const EducationSectionSmall = () => {
   </section>)
 }
 
+// ExperienceSection: The section containing all the experience I have professionally.
+// Not much to put considering I just graduated and finished a 3-month internship so, unfortunate.
+
+// TimelinePoint: Dedicated subcomponent to show different points in time for my journey
+type TimelinePointProps = {
+  role: string;
+  date: string;
+  position?: "top" | "bottom";
+  onClick?: () => void;
+};
+
+const TimelinePoint = ({
+  role,
+  date,
+  position = "bottom",
+  onClick
+}: TimelinePointProps) => {
+  const isTop = position === "top";
+
+  return (
+    <div className="relative">
+      {isTop && (
+        <div
+          className="
+            absolute
+            bottom-8
+            left-1/2
+            -translate-x-1/2
+            whitespace-nowrap
+            text-center
+          "
+        >
+          <p className="text-sm lg:text-base font-semibold">
+            {role}
+          </p>
+
+          <p className="text-xs lg:text-sm text-gray-500 dark:text-gray-400 italic">
+            ({date})
+          </p>
+        </div>
+      )}
+
+      <div
+        className="
+          h-6 w-6 rounded-full
+          bg-rose-800 dark:bg-rose-500
+          border-4
+          border-slate-50 dark:border-slate-950
+          z-10
+          transition-all duration-300
+          hover:scale-125
+          hover:shadow-[0_0_16px_rgba(190,24,93,0.6)]
+          dark:hover:shadow-[0_0_20px_rgba(244,63,94,0.75)]
+          cursor-pointer
+        "
+        onClick={onClick}
+      />
+
+      {!isTop && (
+        <div
+          className="
+            absolute
+            top-8
+            left-1/2
+            -translate-x-1/2
+            whitespace-nowrap
+            text-center
+          "
+        >
+          <p className="text-sm lg:text-base font-semibold">
+            {role}
+          </p>
+
+          <p className="text-xs lg:text-sm text-gray-500 dark:text-gray-400 italic">
+            ({date})
+          </p>
+        </div>
+      )}
+    </div>
+  );
+};
+
+const ExperienceSection = () => {
+  const [selectedExperience, setSelectedExperience] =
+    useState(EXPERIENCE_CONSTS[0]);
+
+  const [isTechModalOpen, setIsTechModalOpen] =
+    useState(false);
+
+  const visibleTechnologies =
+    selectedExperience.technologies.slice(0, 5);
+
+  const hiddenTechnologies =
+    selectedExperience.technologies.slice(5);
+  
+  return (
+    <section className="flex flex-col w-full h-160 overflow-hidden">
+
+      {/* Header */}
+      <div className="flex flex-col px-6 mb-4 w-full h-fit items-center justify-center gap-3">
+        <h1 className="text-2xl lg:text-4xl tracking-wider font-bold uppercase text-slate-400">
+          Experience
+        </h1>
+      </div>
+
+      {/* Selected Experience Preview */}
+      <div className="flex-1">
+        <div
+          className="
+            flex h-full overflow-hidden
+            rounded-xl
+            border border-slate-300
+            dark:border-slate-800
+            p-4 
+          "
+        >
+          <div className="w-1/2 p-6 overflow-y-auto">
+            <div className="mb-2">
+              <div className="flex items-center gap-3 flex-wrap justify-between">
+                <h2 className="text-lg lg:text-xl font-bold">
+                  {selectedExperience.role}
+                </h2>
+
+                <p className="text-sm italic text-slate-500 text-right">
+                  {selectedExperience.start_date} - {selectedExperience.finish_date}
+                </p>
+              </div>
+
+              <p className="text-base text-gray-500 dark:text-gray-400">
+                {selectedExperience.company_name}
+              </p>
+            </div>
+
+            <div className="my-3">
+              <div className="flex flex-wrap gap-2">
+                {visibleTechnologies.map((tech) => (
+                  <span
+                    key={tech}
+                    className="
+                      rounded-xl
+                      bg-slate-200
+                      dark:bg-slate-800
+                      px-3 py-1
+                      text-xs
+                      font-semibold
+                    "
+                  >
+                    {tech}
+                  </span>
+                ))}
+
+                {hiddenTechnologies.length > 0 && (
+                  <button
+                    onClick={() => setIsTechModalOpen(true)}
+                    className="
+                      rounded-xl
+                      bg-rose-100
+                      dark:bg-rose-950
+                      text-rose-800
+                      dark:text-rose-300
+                      px-3 py-1
+                      text-xs
+                      font-semibold
+                      cursor-pointer
+                      transition-colors
+                      hover:bg-rose-200
+                      dark:hover:bg-rose-900
+                    "
+                  >
+                    +{hiddenTechnologies.length}
+                  </button>
+                )}
+              </div>
+            </div>
+
+            <div>
+              <ul
+                className="
+                  h-60
+                  overflow-y-auto
+                  space-y-3
+
+                  bg-transparent
+
+                  text-sm
+                  text-slate-600
+                  dark:text-slate-300
+
+                  pr-2
+
+                  scrollbar-thin
+                  scrollbar-track-transparent
+                  scrollbar-thumb-slate-300
+                  dark:scrollbar-thumb-slate-700
+                "
+              >
+                {selectedExperience.achievements.map((item) => (
+                  <li
+                    key={item}
+                    className="
+                      text-sm
+                      text-gray-600
+                      dark:text-gray-300
+                      leading-relaxed
+                      flex flex-row gap-2 items-center
+                      text-justify
+                    "
+                  >
+                    <Circle className="w-4 h-4" /> <p className=" flex-1 mx-2">{item}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <div
+            className="
+              w-1/2
+              border-l
+              border-slate-300
+              dark:border-slate-800
+              flex
+              items-center
+              justify-center
+            "
+          >
+            <div
+              className="
+                h-[80%]
+                w-[80%]
+                rounded-xl
+                border
+                border-dashed
+                border-slate-300
+                dark:border-slate-700
+              "
+            >
+              Visual Placeholder
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Timeline */}
+      <div className="relative h-36 flex items-center">
+
+        {/* Line */}
+        <div className="absolute h-px bg-rose-300 dark:bg-rose-950 w-full" />
+
+        {/* Points */}
+        <div className="relative z-10 flex w-[60%] mx-auto justify-between">
+
+          {
+            EXPERIENCE_CONSTS.map((exp) => {
+              return <TimelinePoint
+                key={exp.role}
+                role={exp.role}
+                date={exp.shortened_date}
+                position="bottom"
+                onClick={() => setSelectedExperience(exp)}
+              />
+            })
+          }
+
+        </div>
+      </div>
+
+      {/* Technologies Modal */}
+      <div
+        className={`
+          fixed inset-0 z-50
+          flex items-center justify-center
+
+          bg-black/40
+          backdrop-blur-sm
+
+          transition-opacity duration-300
+
+          ${
+            isTechModalOpen
+              ? "opacity-100 pointer-events-auto"
+              : "opacity-0 pointer-events-none"
+          }
+        `}
+        onClick={() => setIsTechModalOpen(false)}
+      >
+        <div
+          onClick={(e) => e.stopPropagation()}
+          className={`
+            w-[90%]
+            max-w-2xl
+
+            rounded-xl
+            border border-slate-300
+            dark:border-slate-800
+
+            bg-slate-50
+            dark:bg-slate-950
+
+            p-6
+
+            transition-all duration-300
+
+            ${
+              isTechModalOpen
+                ? "scale-100 opacity-100"
+                : "scale-95 opacity-0"
+            }
+          `}
+        >
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-xl font-bold">
+              Technologies Used
+            </h3>
+
+            <button
+              onClick={() => setIsTechModalOpen(false)}
+              className="
+                text-sm
+                text-slate-500
+                hover:text-slate-700
+                dark:hover:text-slate-300
+                cursor-pointer
+              "
+            >
+              Close
+            </button>
+          </div>
+
+          <div className="flex flex-wrap gap-2">
+            {selectedExperience.technologies.map((tech) => (
+              <span
+                key={tech}
+                className="
+                  rounded-xl
+                  bg-slate-200
+                  dark:bg-slate-800
+
+                  px-3 py-1
+
+                  text-xs
+                  font-semibold
+                "
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const ExperienceSectionSmall = () => {
+  
+  return <></>
+}
+
 // Home: the default component to be exported, contains the entirety of the home page.
 export default function Home() {
   return (
@@ -795,9 +1152,9 @@ export default function Home() {
         {/* Education Section */}
         <EducationSection />
 
-        <section className="w-full aspect-video py-8 px-12">
-          Experience - Preview
-        </section>
+        {/* Experience Section */}
+        <ExperienceSection />
+
         <section className="w-full bg-violet-300 aspect-video py-8 px-12">
           Blog - Preview
         </section>
