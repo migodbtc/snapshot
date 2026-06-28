@@ -33,6 +33,7 @@ const HeroSection = () => {
           alt="Miguel Justin Bunda"
           fill
           className="object-cover object-top"
+          loading="eager"
         />
       </div>
     </div>
@@ -603,6 +604,174 @@ const EducationSection = () => {
   )
 }
 
+
+const EducationSectionSmall = () => {
+  const [selectedInstitution, setSelectedInstitution] =
+  useState<EducationKey | null>(null);
+  const preview =
+    (({ college, shs, hs2 }) => ({ college, shs, hs2 }))(EDUCATION_CONSTS);
+  const selected =
+    selectedInstitution
+      ? EDUCATION_CONSTS[selectedInstitution]
+      : null;
+
+  return (<section className="flex flex-col w-full overflow-hidden">
+    {/* Header */}
+    <div className="flex flex-col px-6 my-4 w-full h-fit items-center justify-center gap-3">
+      <h1 className="text-2xl lg:text-4xl tracking-wider font-bold uppercase text-slate-400">
+        Education
+      </h1>
+    </div>
+
+    {/* Timeline */}
+    <div className="mx-auto w-full max-w-2xl px-6">
+      <div className="ml-4 border-l border-zinc-800 pt-8 space-y-8">
+        {Object.entries(preview).map(([key, education]) => (
+          <button
+            key={key}
+            onClick={() =>
+              setSelectedInstitution(key as EducationKey)
+            }
+            className="w-full text-left cursor-pointer group"
+          >
+            <div className="relative pl-10">
+
+              <div className="
+                absolute -left-1.25 top-2
+                size-2.5 rounded-full
+                bg-zinc-700
+                group-hover:bg-rose-500
+                transition-colors
+              "/>
+
+              <span className="block text-xs text-zinc-500 font-mono mb-1">
+                {education.date_range}
+              </span>
+
+              <h4 className="flex items-center gap-2 text-sm font-medium">
+                <School />
+                {education.school_name}
+              </h4>
+
+              <p className="text-xs text-zinc-500 my-1">
+                {education.subtitle}
+              </p>
+
+              <p className="flex items-center gap-1 text-sm text-zinc-400 hover:underline">
+                View
+                <ArrowUpRight size={16}/>
+              </p>
+
+            </div>
+          </button>
+        ))}
+        <button 
+          // onClick={() => setSelectedInstitution("hs2")}
+          className="rounded-xl cursor-pointer"
+        >
+          <div className="relative pl-10 h-24">
+            <div
+              className={`absolute -left-1.25 top-2 size-2.5 rounded-full ${
+                false
+                  ? "bg-rose-500 shadow-[0_0_10px_#e11d48]"
+                  : "bg-zinc-700"
+              }`}
+            />
+            <span className="mb-1 rounded-xl bg-rose-500 px-3 py-1 font-semibold text-slate-50 dark:bg-rose-800 select-none hover:underline hover:bg-rose-400 dark:hover:bg-rose-700 cursor-pointer flex flex-row gap-1 text-left text-xs lg:text-sm">
+              See more of my education <ArrowUpRight className="h-4 w-4 mt-0.5 -translate-y-0.5" />
+            </span>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    {/* Modal */}
+    <div
+      className={`
+        fixed inset-0 z-50
+        flex items-center justify-center
+        bg-black/50 backdrop-blur-xs
+        transition-opacity duration-300
+        ${
+          selected
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        }
+      `}
+      onClick={() => setSelectedInstitution(null)}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className={`
+          relative overflow-hidden
+          w-[90%] max-w-xl
+          max-h-[80vh]
+          overflow-y-auto
+          rounded-xl
+          border border-slate-300
+          dark:border-slate-800
+          backdrop-blur-md
+          bg-slate-50/70
+          dark:bg-slate-950/70
+          transition-all duration-300
+          ${
+            selected
+              ? "opacity-100 scale-100"
+              : "opacity-0 scale-95"
+          }
+        `}
+      >
+        <div className="absolute inset-0 -z-10 bg-radial from-slate-400/25 via-slate-200/20 to-transparent dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent" />
+
+        {selected && (
+          <div className="m-6 my-8">
+            <span className="rounded-xl bg-rose-500 px-2 py-1 text-sm font-semibold text-white w-fit">
+              {selected.badge_content}
+            </span>
+
+            <h3 className="text-2xl font-semibold mt-3">
+              {selected.school_name}
+            </h3>
+
+            <p className="italic text-sm text-gray-500">
+              {selected.address}
+            </p>
+
+            <div className="mt-4">
+              <h4 className="font-semibold mb-2">
+                Awards & Honors
+              </h4>
+
+              <div className="space-y-2">
+                {selected.awards_and_honors.map((award) => (
+                  <div
+                    key={award}
+                    className="flex items-center gap-2"
+                  >
+                    <Medal size={16}/>
+                    <span>{award}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <p className="mt-4 text-sm italic text-justify">
+              {selected.personal_description}
+            </p>
+
+            <button
+              onClick={() => setSelectedInstitution(null)}
+              className="mt-6 w-full rounded-lg bg-rose-800 py-2 text-white"
+            >
+              Close
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>)
+}
+
 // Home: the default component to be exported, contains the entirety of the home page.
 export default function Home() {
   return (
@@ -649,10 +818,9 @@ export default function Home() {
         {/* Skills Section - Small */}
         <SkillSectionSmall />
         
-        
-        <section className="w-full bg-violet-300 h-screen py-8 px-12">
-          Education - Preview
-        </section>
+        {/* Education Section - Small  */}
+        <EducationSectionSmall />
+
         <section className="w-full bg-pink-200 h-screen py-8 px-12">
           Experience - Preview
         </section>
