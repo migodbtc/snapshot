@@ -280,27 +280,6 @@ export const EDUCATION_CONSTS = {
   },
 }
 
-export const blank = [
-  {
-    id: 1,
-    year: "2026",
-    title: "Software Engineer Intern",
-    company: "Company Name",
-  },
-  {
-    id: 2,
-    year: "2027",
-    title: "Junior Software Engineer",
-    company: "Company Name",
-  },
-  {
-    id: 3,
-    year: "2028",
-    title: "Software Engineer",
-    company: "Company Name",
-  },
-];
-
 export const EXPERIENCE_CONSTS = [
   {
     role: "Backend Development Intern",
