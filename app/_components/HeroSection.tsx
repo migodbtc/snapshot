@@ -25,9 +25,9 @@ export const HeroSection = () => {
         <Image
           src="/images/hero_picture.jpg"
           alt="Miguel Justin Bunda"
-          fill
           className="object-cover object-top"
           loading="eager"
+          fill
         />
       </div>
     </div>
