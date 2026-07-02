@@ -308,3 +308,26 @@ export const EXPERIENCE_CONSTS = [
     ]
   }
 ]
+
+export const BLOG_POSTS = [
+  {
+    title: "Dealing with Career Unknowns Post-Graduation",
+    date: "07-02-2026, 1:53 PM",
+    excerpt:
+      "This description is intentionally AI-generated because the actual article has not been written yet. The goal is not to perfectly represent my thoughts, but to provide a placeholder for the type of discussion I eventually want to have. As a recent graduate entering the professional world, one of the most uncomfortable realizations is that uncertainty does not disappear after earning a degree. In many ways, it becomes more visible. Questions about specialization, career direction, long-term goals, industry expectations, and personal growth become harder to answer when there is no longer a structured academic environment providing guidance. This future article will likely explore the tension between ambition and uncertainty, the pressure to make the 'right' decisions early in a career, and how navigating unknowns may be less about finding immediate answers and more about developing confidence in adapting to change over time.",
+  },
+
+  {
+    title: "A Fresh Graduate's Perspective on the Current Technology Job Market",
+    date: "06-28-2026, 9:10 AM",
+    excerpt:
+      "This excerpt was generated with AI and should be treated as a temporary stand-in until I write the article myself. The intended topic revolves around my observations of the current technology landscape from the perspective of someone entering the industry rather than someone already established within it. Discussions around software engineering, infrastructure, cloud computing, cybersecurity, AI, and application development often come from experienced professionals, but the experience can look very different from the viewpoint of a new graduate trying to understand where opportunities actually exist. The article may explore trends in hiring, the growing emphasis on practical experience, the influence of artificial intelligence on entry-level roles, the increasing expectations placed on junior developers, and the challenge of determining which technologies are genuinely worth learning versus those that are simply receiving temporary attention. Rather than offering expert conclusions, the goal is to document observations, questions, and lessons learned while attempting to understand an industry that continues to evolve faster than most people can comfortably keep up with.",
+  },
+
+  {
+    title: "Learning to Slow Down in the Age of Artificial Intelligence",
+    date: "06-20-2026, 4:45 PM",
+    excerpt:
+      "This summary is also AI-generated and serves only as a placeholder until I replace it with my own writing. The central idea is a reflection on how easy it has become to move too quickly in a world increasingly assisted by artificial intelligence. Modern tools can accelerate research, learning, development, communication, and content creation to an unprecedented degree. While this can be incredibly empowering, it also introduces the temptation to prioritize speed over understanding. The future article may discuss the importance of slowing down intentionally, spending more time thinking through problems independently, questioning assumptions, developing original perspectives, and allowing genuine learning to occur before reaching for automated assistance. As someone working within technology, I find this tension particularly interesting because the same tools that increase productivity can also reduce opportunities for deep practice if used carelessly. The article will likely explore how artificial intelligence can be integrated into personal growth without allowing it to replace the deliberate effort that builds competence, judgment, and long-term expertise.",
+  },
+];

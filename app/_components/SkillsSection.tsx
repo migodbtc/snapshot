@@ -148,7 +148,7 @@ export const SkillsSection = () => {
             </div>
           )}
 
-          <div className="w-full text-center text-base font-semibold text-slate-950/90 dark:text-slate-50/90">
+          <div className="w-full text-center text-base text-gray-800/90 dark:text-slate-50/90">
             Want to know more about what I can offer?{" "}
             <a className="inline-flex items-start text-rose-800 dark:text-rose-500 hover:underline cursor-pointer">
               Head to the skills page here.
@@ -328,7 +328,7 @@ export const SkillSectionSmall = () => {
             </div>
           )}
 
-          <div className="w-full text-center text-base font-semibold text-slate-950/90 dark:text-slate-50/90">
+          <div className="w-full text-center text-base text-gray-700/90 dark:text-slate-50/90">
             Want to know more about what I can offer?{" "}
             <a className="inline-flex items-start text-rose-800 dark:text-rose-500 hover:underline cursor-pointer">
               Head to the skills page here.
