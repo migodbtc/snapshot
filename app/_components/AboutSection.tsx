@@ -1,6 +1,35 @@
 import { ABOUT_ME_INFO } from "@/lib/constants"
-import { User } from "lucide-react"
-import { AboutMeCard } from "./cards"
+import { LucideIcon, User } from "lucide-react"
+
+// AboutMeCard: A dedicated subcomponent for the rendering of the about me cards for both desktop and mobile
+type AboutMeCardProps = {
+  icon: LucideIcon;
+  title: string;
+  value: string;
+  className?: string;
+};
+
+export function AboutMeCard({
+  icon: Icon,
+  title,
+  value,
+  className = "",
+}: AboutMeCardProps) {
+  return (
+    <div
+      className={`flex flex-col justify-center border border-slate-400/50 dark:border-slate-800 rounded-2xl p-4 backdrop-blur-xl ${className}`}
+    >
+      <span className="text-xs lg:text-sm text-rose-500 font-medium flex items-center gap-1">
+        <Icon className="w-3 h-3 lg:w-4 lg:h-4" />
+        {title}
+      </span>
+
+      <h3 className="text-sm lg:text-xl text-gray-800 dark:text-gray-100 font-bold">
+        {value}
+      </h3>
+    </div>
+  );
+}
 
 // AboutSection: Dedicated section for a small summary of myself
 export const AboutSection = () => {

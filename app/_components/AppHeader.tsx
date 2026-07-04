@@ -1,6 +1,6 @@
 import { Code2, Wrench, GraduationCap, Briefcase, BookOpen, Mail, Menu } from "lucide-react";
 
-export default function Header() {
+export default function AppHeader() {
     return (
 
       <div className="flex flex-row px-4 sm:px-8 py-4 w-full text-rose-800 ">

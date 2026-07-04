@@ -1,9 +1,53 @@
 // SkillsSection: The dedicated section for the skills where there are subpages for the display depending
 
 import { LANGUAGE_CONSTS, FRAMEWORK_CONSTS, TOOL_CONSTS, PLATFORM_CONSTS } from "@/lib/constants";
-import { Braces, Blocks, Wrench, Cloud, ArrowUpRight } from "lucide-react";
+import { Braces, Blocks, Wrench, Cloud, ArrowUpRight, LucideIcon } from "lucide-react";
 import { useState } from "react";
-import { TechnologyCard } from "./cards";
+
+// TechnologyCard: A unified card in order to deal with languages, frameworks, tools, and platforms.
+type TechnologyCardProps = {
+  icon: LucideIcon;
+  name: string;
+  years: string | number;
+  description: string;
+};
+
+export const TechnologyCard = ({
+  icon: Icon,
+  name,
+  years,
+  description,
+}: TechnologyCardProps) => {
+  return (
+    <div className="relative overflow-hidden rounded-xl border border-slate-300 dark:border-slate-800 backdrop-blur-md">
+      <div className="absolute inset-0 -z-10 bg-radial from-slate-300/40 via-slate-200/20 to-transparent dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent" />
+
+      <div className="flex h-full">
+        <div className="flex flex-1 items-center justify-center">
+          <div className="ml-2 flex h-[75%] w-full items-center justify-center border-r-2 border-slate-200 dark:border-slate-900 bg-radial from-rose-700/10 dark:from-rose-800/40 to-transparent to-50%">
+            <Icon className="h-8 w-8 lg:h-12 lg:w-12 text-rose-800 dark:text-rose-500" />
+          </div>
+        </div>
+
+        <div className="flex-3 flex flex-col items-start justify-center gap-0 py-2 pl-4 lg:gap-1">
+          <div className="flex w-full items-center justify-between pr-4">
+            <h3 className="font-bold">{name}</h3>
+
+            <span className="rounded-xl bg-rose-500 px-2 py-0.5 text-xs font-semibold text-slate-50 dark:bg-rose-800">
+              {years}yrs
+            </span>
+          </div>
+
+          <p className="w-full pr-4 text-justify text-xs italic text-gray-800 dark:text-gray-400">
+            {description.length > 125
+              ? `${description.slice(0, 124)}...`
+              : description}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 // on the selected skill (i.e. languages is the default)
 type SkillCategory =
