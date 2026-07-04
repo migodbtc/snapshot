@@ -1,4 +1,16 @@
-import { Code2, Code, BriefcaseBusinessIcon, FileText, Mail } from "lucide-react";
+import {
+  Code2,
+  Code,
+  BriefcaseBusinessIcon,
+  FileText,
+  Mail,
+  User,
+  Braces,
+  GraduationCap,
+  Briefcase,
+  Newspaper,
+  Eye,
+} from "lucide-react";
 
 // Footer: The footer to be used throughout the website.
 export const AppFooter = () => {
@@ -27,7 +39,6 @@ export const AppFooter = () => {
             </span>
 
             <Code2
-              size={20}
               className="text-slate-950 dark:text-slate-50"
             />
 
@@ -36,7 +47,7 @@ export const AppFooter = () => {
             </span>
           </span>
 
-          <p className="text-sm text-slate-600 dark:text-slate-400 max-w-xs text-justify">
+          <p className="text-base text-slate-600 dark:text-slate-400 max-w-xs text-justify">
             Information Technology graduate focused on application
             development, software engineering, and continuous learning.
           </p>
@@ -48,23 +59,38 @@ export const AppFooter = () => {
             Navigation
           </h3>
 
-          <a className="hover:underline cursor-pointer">
+          <a className="flex items-center gap-2 hover:underline cursor-pointer">
+            <User size={16} />
+            About
+          </a>
+
+          <a className="flex items-center gap-2 hover:underline cursor-pointer">
+            <Braces size={16} />
             Skills
           </a>
 
-          <a className="hover:underline cursor-pointer">
+          <a className="flex items-center gap-2 hover:underline cursor-pointer">
+            <GraduationCap size={16} />
             Education
           </a>
 
-          <a className="hover:underline cursor-pointer">
+          <a className="flex items-center gap-2 hover:underline cursor-pointer">
+            <Briefcase size={16} />
             Experience
           </a>
 
-          <a className="hover:underline cursor-pointer">
+          <a className="flex items-center gap-2 hover:underline cursor-pointer">
+            <Newspaper size={16} />
             Blog
           </a>
 
-          <a className="hover:underline cursor-pointer">
+          <a className="flex items-center gap-2 hover:underline cursor-pointer">
+            <Eye size={16} />
+            Communeye
+          </a>
+
+          <a className="flex items-center gap-2 hover:underline cursor-pointer">
+            <Mail size={16} />
             Contact
           </a>
         </div>
@@ -102,13 +128,12 @@ export const AppFooter = () => {
 
         {/* Branding */}
         <div className="flex flex-col gap-3">
-          <span className="font-bold text-lg uppercase tracking-wide flex flex-row gap-2 items-center justify-center">
+          <span className="font-bold text-2xl uppercase tracking-wide flex flex-row gap-2 items-center justify-center">
             <span className="text-slate-950 dark:text-slate-50">
               MIGUEL
             </span>
 
             <Code2
-              size={18}
               className="text-slate-950 dark:text-slate-50"
             />
 
@@ -131,23 +156,38 @@ export const AppFooter = () => {
               Navigation
             </h3>
 
-            <a className="hover:underline cursor-pointer text-sm">
+            <a className="flex items-center gap-2 hover:underline cursor-pointer text-sm">
+              <User size={14} />
+              About
+            </a>
+
+            <a className="flex items-center gap-2 hover:underline cursor-pointer text-sm">
+              <Braces size={14} />
               Skills
             </a>
 
-            <a className="hover:underline cursor-pointer text-sm">
+            <a className="flex items-center gap-2 hover:underline cursor-pointer text-sm">
+              <GraduationCap size={14} />
               Education
             </a>
 
-            <a className="hover:underline cursor-pointer text-sm">
+            <a className="flex items-center gap-2 hover:underline cursor-pointer text-sm">
+              <Briefcase size={14} />
               Experience
             </a>
 
-            <a className="hover:underline cursor-pointer text-sm">
+            <a className="flex items-center gap-2 hover:underline cursor-pointer text-sm">
+              <Newspaper size={14} />
               Blog
             </a>
 
-            <a className="hover:underline cursor-pointer text-sm">
+            <a className="flex items-center gap-2 hover:underline cursor-pointer text-sm">
+              <Eye size={14} />
+              Communeye
+            </a>
+
+            <a className="flex items-center gap-2 hover:underline cursor-pointer text-sm">
+              <Mail size={14} />
               Contact
             </a>
           </div>

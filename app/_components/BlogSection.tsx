@@ -45,7 +45,7 @@ const BlogCard = ({
       <div className="absolute inset-0 -z-10 bg-radial from-slate-400/25 via-slate-200/20 to-transparent dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent" />
 
       <div className="flex flex-col h-full overflow-y-auto p-4 lg:p-6 gap-2">
-        <h3 className="text-xl font-semibold text-justify">
+        <h3 className="text-2xl md:text-2xl lg:text-xl font-semibold text-justify">
           {title}
         </h3>
 
@@ -53,18 +53,33 @@ const BlogCard = ({
           {date}
         </span>
 
-        <p className="md:mt-2 text-justify 
-        text-base 
-        italic text-slate-700 dark:text-slate-300 lg:text-base">
-          {excerpt.length > 128
-            ? `${excerpt.slice(0, 128)}...`
-            : excerpt}
+        {/* Paragraph Content */}
+        <p className="
+        flex-1
+        overflow-hidden
+        md:mt-2 text-justify 
+        text-lg md:text-lg lg:text-base 
+        italic text-slate-700 dark:text-slate-300
+        ">
+          {excerpt + "..."}
         </p>
 
-        <div className="flex flex-1 items-end justify-end">
+        {/* Gradient Mask */}
+        <div
+          className="
+            pointer-events-none
+            absolute bottom-0 left-0 right-0
+            h-8
+            bg-linear-to-t
+            from-slate-50 dark:from-slate-950
+            to-transparent
+          "
+        />
+
+        <div className="flex h-fit items-end justify-end pt-4">
           <a
             href={href}
-            className="w-fit text-md lg:text-md text-slate-700 dark:text-slate-300 cursor-pointer hover:underline flex flex-row items-start"
+            className="w-fit text-sm lg:text-md text-slate-700 dark:text-slate-300 cursor-pointer hover:underline flex flex-row items-start"
           >
             Read more
             <ArrowUpRight className="w-3 h-3 lg:w-4 lg:h-4" />
@@ -144,16 +159,17 @@ export const BlogSectionSmall = () => {
             key={post.title}
             {...post}
             className="
-              w-[85%]
+              w-80
+              mx-auto
               min-h-48
-              aspect-auto
+              aspect-square
             "
           />
         ))}
       </div>
 
       {/* Footer */}
-      <div className="mt-6 text-center text-sm text-gray-800/90 dark:text-slate-50/90">
+      <div className="mt-12 text-center text-sm text-gray-800/90 dark:text-slate-50/90">
         Read all of my other blog posts{" "}
         <a className="inline-flex items-start text-rose-800 dark:text-rose-500 hover:underline cursor-pointer">
           using this link right here

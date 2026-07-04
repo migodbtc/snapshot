@@ -108,14 +108,13 @@ const ContactForm = () => {
         relative
         overflow-hidden
         w-full
-        max-w-md
         rounded-xl
         border border-slate-300
         dark:border-slate-800
         backdrop-blur-md
-        p-6
+        p-4 md:p-6
         flex flex-col
-        gap-4
+        gap-2
       "
     >
 
@@ -306,8 +305,33 @@ const ContactSection = () => {
 }
 
 const ContactSectionSmall = () => {
-  return 
-}
+  return (
+    <section className="flex flex-col w-full h-fit overflow-hidden mb-8 px-8 mt-16">
+
+      {/* Text Block */}
+      <div className="w-full bg-transparent flex flex-col items-center justify-center py-4 gap-3 text-center">
+        <h1 className="text-2xl tracking-wide text-justify">
+          Got a concern in mind? <b className="text-rose-800">Let's connect!</b>
+        </h1>
+        <p className="text-sm text-gray-700 dark:text-gray-400 text-justify max-w-lg">
+          I'm always up for a conversation about software engineering, web development, or the industry in general. The form below sends a message straight to my email — or if you'd rather reach out directly, I've listed a few social links below.
+        </p>
+        <div className="w-full grid grid-cols-2 grid-rows-auto gap-2">
+          <ContactButton icon={Briefcase} label="Facebook" href="..." />
+          <ContactButton icon={Mail} label="LinkedIn" href="..." />
+          <ContactButton icon={Code2} label="GitHub" href="..." />
+          <ContactButton icon={Code2} label="Communeye IG" href="..." />
+        </div>
+      </div>
+
+      {/* Form */}
+      <div className="w-full flex items-center justify-center bg-radial from-slate-500/25 dark:from-slate-50/25 to-transparent to-70%">
+        <ContactForm />
+      </div>
+
+    </section>
+  );
+};
 
 
 // Home: the default component to be exported, contains the entirety of the home page.
@@ -368,12 +392,11 @@ export default function Home() {
         {/* Blog Section - Small */}
         <BlogSectionSmall />
 
-        {/* CommuneyeSectionSmall */}
+        {/* Communeye Section - Small */}
         <CommuneyeSectionSmall />
 
-        <section className="w-full bg-indigo-600 h-screen py-8 px-12">
-          CTA - Contact Me
-        </section>
+        {/* Contact Section - Small */}
+        <ContactSectionSmall />
       </main>
 
       {/* Footer */}
