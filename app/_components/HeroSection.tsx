@@ -10,11 +10,60 @@ export const HeroSection = () => {
       <h1 className="text-4xl lg:text-5xl ">My name is <b className="text-rose-800">Migo</b>.</h1>
       <p className="text-justify w-full text-gray-700 dark:text-gray-400">I am an up and coming software engineering with a passion for building human-first digital solutions, collaboration and sharing of technical knowledge and experience, and a willingness to learn and adapt to what is necessary. </p>
       <div className="w-full flex flex-row gap-2">
-        <button className="py-2 px-4 flex flex-row gap-2 w-fit bg-rose-800 rounded-lg hover:bg-rose-700 cursor-pointer text-slate-50 items-center">
+        <button
+          className="
+            py-2 px-4
+            flex flex-row gap-2
+            w-fit
+            items-center
+            rounded-lg
+            border border-rose-200 dark:border-rose-900
+            bg-rose-50 dark:bg-rose-950/30
+            text-rose-700 dark:text-rose-300
+            transition-all duration-200
+            cursor-pointer
+            hover:bg-rose-100 dark:hover:bg-rose-950/50
+            hover:border-rose-300 dark:hover:border-rose-800
+          "
+          >
           <Briefcase size={18}/>
           LinkedIn
-        </button>
-        <button className="py-2 px-4 flex flex-row gap-2 w-fit bg-gray-500 rounded-lg hover:bg-gray-400 cursor-pointer text-slate-50 items-center">
+          </button>
+        <button
+          className="
+            group
+            relative
+            overflow-hidden
+            py-2 px-4
+            flex flex-row gap-2
+            w-fit
+            items-center
+            rounded-lg
+            border border-slate-300
+            dark:border-slate-800
+            backdrop-blur-md
+            cursor-pointer
+            text-slate-900
+            dark:text-slate-50
+            transition-transform
+            duration-300
+            hover:scale-[1.02]
+          "
+        >
+          <div className="absolute inset-0 -z-10 bg-radial from-slate-400/25 via-slate-200/20 to-transparent dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent" />
+
+          <div
+            className="
+              absolute inset-0 -z-10
+              bg-radial from-slate-300/40 via-slate-200/10 to-transparent
+              dark:from-slate-400/30 dark:via-slate-300/10 dark:to-transparent
+              opacity-0
+              group-hover:opacity-100
+              transition-opacity
+              duration-300
+            "
+          />
+
           <Mail size={18} />
           Contact
         </button>
@@ -55,12 +104,63 @@ export const HeroSectionSmall = () => {
         I am an up and coming software engineering with a passion for building human-first digital solutions, collaboration and sharing of technical knowledge and experience, and a willingness to learn and adapt to what is necessary.
       </p>
       <div className="flex flex-col gap-2 items-center justify-center">
-        <button className="w-full flex items-center justify-center gap-2 py-2 px-4 bg-rose-800 rounded-lg text-white text-sm hover:bg-rose-700 transition-colors">
+        <button
+          className="
+            w-full
+            flex items-center justify-center
+            gap-2
+            py-2 px-4
+            rounded-lg
+            border border-rose-200 dark:border-rose-900
+            bg-rose-50 dark:bg-rose-950/30
+            text-rose-700 dark:text-rose-300
+            text-sm
+            transition-all duration-200
+            cursor-pointer
+            hover:bg-rose-100 dark:hover:bg-rose-950/50
+            hover:border-rose-300 dark:hover:border-rose-800
+          "
+        >
           <Briefcase size={18} />
           LinkedIn
         </button>
 
-        <button className="w-full flex items-center justify-center gap-2 py-2 px-4 bg-gray-500 rounded-lg text-white text-sm hover:bg-gray-400 transition-colors">
+        <button
+          className="
+            group
+            relative
+            overflow-hidden
+            w-full
+            flex items-center justify-center
+            gap-2
+            py-2 px-4
+            rounded-lg
+            border border-slate-300
+            dark:border-slate-800
+            backdrop-blur-md
+            text-sm
+            cursor-pointer
+            text-slate-900
+            dark:text-slate-50
+            transition-transform
+            duration-300
+            hover:scale-[1.02]
+          "
+        >
+          <div className="absolute inset-0 -z-10 bg-radial from-slate-400/25 via-slate-200/20 to-transparent dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent" />
+
+          <div
+            className="
+              absolute inset-0 -z-10
+              bg-radial from-slate-300/40 via-slate-200/10 to-transparent
+              dark:from-slate-400/30 dark:via-slate-300/10 dark:to-transparent
+              opacity-0
+              group-hover:opacity-100
+              transition-opacity
+              duration-300
+            "
+          />
+
           <Mail size={18} />
           Contact
         </button>

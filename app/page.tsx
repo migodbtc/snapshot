@@ -1,7 +1,7 @@
 "use client"
 
 import { BLOG_POSTS, EXPERIENCE_CONSTS } from "@/lib/constants";
-import { ArrowUpRight, BriefcaseBusinessIcon, Circle, Code, Code2, Eye, FileText, Mail, User, X } from "lucide-react";
+import { ArrowUpRight, Briefcase, BriefcaseBusinessIcon, Circle, Code, Code2, Eye, FileText, Mail, User, X } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import Header from "./_components/header";
@@ -1023,6 +1023,150 @@ const CommuneyeSection = () => {
 }
 
 const CommuneyeSectionSmall = () => {
+  return (
+    <section className="w-full flex flex-col mb-8">
+
+      {/* Header */}
+      <div className="flex flex-col px-6 mb-4 w-full h-fit items-center justify-center mt-12">
+        <h1 className="text-2xl tracking-wider font-bold uppercase text-slate-400">
+          Communeye
+        </h1>
+      </div>
+
+      {/* Body */}
+      <div className="flex flex-col items-center px-6 gap-4">
+
+        {/* Image */}
+        <div className="flex items-center justify-center w-full bg-radial from-slate-500/25 dark:from-slate-50/25 to-transparent to-70%">
+          <div className="relative w-[70%] aspect-square rounded-xl overflow-hidden">
+            <Image
+              src="/images/communeye.png"
+              alt="Communeye Software"
+              className="object-cover object-top"
+              loading="eager"
+              fill
+            />
+          </div>
+        </div>
+
+        {/* Text */}
+        <div className="flex flex-col items-center gap-3 text-center mt-4">
+          <Eye className="w-8 h-8 text-slate-950 dark:text-slate-50" />
+
+          <h1 className="text-lg font-bold tracking-wide">
+            <span className="text-rose-800">Communeye</span> Software
+          </h1>
+
+          <p className="w-full text-justify text-gray-700 dark:text-gray-300 text-sm px-4 mb-4">
+            <b>Communeye Software</b> is a space for showcasing software engineering projects outside of Migo's personal brand. Right now, it functions as a casual, low-pressure sandbox — a place to share both Communeye-branded projects and other content, without a fixed posting schedule.
+          </p>
+          <a
+            href={'https://www.instagram.com/communeye.software/'}
+            className="w-fit text-sm text-slate-700 dark:text-slate-300 cursor-pointer hover:underline flex flex-row items-center"
+          >
+            Follow Communeye Software on Instagram
+            <ArrowUpRight className="w-4 h-4" />
+          </a>
+        </div>
+
+      </div>
+
+    </section>
+  );
+};
+
+// ContactSection: A dedicated section where there is a form with captcha one can use to 
+// email me. I don't know why you would email me. But here we go.
+const ContactButton = ({
+  icon: Icon,
+  label,
+  href,
+}: {
+  icon: React.ElementType;
+  label: string;
+  href?: string;
+}) => {
+  return (
+    <button
+      onClick={() => href && window.open(href, "_blank")}
+      className="
+        group
+        relative
+        overflow-hidden
+        rounded-xl
+        border border-slate-300
+        dark:border-slate-800
+        backdrop-blur-md
+        py-2 px-4
+        flex flex-row gap-2
+        justify-center items-center
+        cursor-pointer
+        text-slate-900
+        dark:text-slate-50
+        transition-transform
+        duration-300
+        hover:scale-[1.02]
+      "
+    >
+      {/* Base glass layer, same as cards */}
+      <div className="absolute inset-0 -z-10 bg-radial from-slate-400/25 via-slate-200/20 to-transparent dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent" />
+
+      {/* Hover shine layer */}
+      <div
+        className="
+          absolute inset-0 -z-10
+          bg-radial from-slate-300/40 via-slate-200/10 to-transparent
+          dark:from-slate-400/30 dark:via-slate-300/10 dark:to-transparent
+          opacity-0
+          group-hover:opacity-100
+          transition-opacity
+          duration-300
+        "
+      />
+
+      <Icon size={18} />
+      {label}
+    </button>
+  );
+};
+
+const ContactForm = () => {
+
+}
+
+const ContactSection = () => {
+  return <section className="flex flex-col w-full h-fit overflow-hidden lg:mx-auto aspect-video  mb-8">
+
+    {/* Body */}
+    <div className="flex flex-row flex-1 w-full h-fill px-8 pb-8 gap-4 align-middle justify-center">
+
+      {/* Left Half */}
+      <div className="w-1/2 bg-transparent flex flex-col items-start justify-center py-2 px-4 lg:py-4 lg:px-6 gap-3">
+        <h1 className="text-6xl tracking-wide text-justify">
+          Got a concern in mind? <b className="text-rose-800">Let's connect!</b>.
+        </h1>
+        <p className="text-lg text-gray-700 dark:text-gray-400 text-justify max-w-lg">
+          I'm always up for a conversation about software engineering, web development, or the industry in general. The form on the right sends a message straight to my email — or if you'd rather reach out directly, I've listed a few social links below.
+        </p>
+        <div className="w-full grid grid-cols-2 griw-rows-auto gap-2">
+          <ContactButton icon={Briefcase} label="Facebook" href="..." />
+          <ContactButton icon={Mail} label="LinkedIn" href="..." />
+          <ContactButton icon={Code2} label="GitHub" href="..." />
+          <ContactButton icon={Code2} label="Communeye IG" href="..." />
+        </div>
+      
+      </div>
+
+      {/* Right Half */}
+      <div className="w-1/2 flex items-center justify-center bg-radial from-slate-500/25 dark:from-slate-50/25 to-transparent to-70%">
+      </div>
+
+    </div>
+
+  </section>
+}
+
+const ContactSectionSmall = () => {
   return 
 }
 
@@ -1302,9 +1446,9 @@ export default function Home() {
         {/* Communeye Section */}
         <CommuneyeSection />
 
-        <section className="w-full bg-indigo-600 aspect-video py-8 px-12">
-          CTA - Contact Me
-        </section>
+        {/* ContactSection */}
+        <ContactSection />
+
       </main>
 
       {/* Main Content - Small */}
@@ -1324,10 +1468,12 @@ export default function Home() {
 
         {/* Experience Section - Small */}
         <ExperienceSectionSmall />
-
         
         {/* Blog Section - Small */}
         <BlogSectionSmall />
+
+        {/* CommuneyeSectionSmall */}
+        <CommuneyeSectionSmall />
 
         <section className="w-full bg-indigo-600 h-screen py-8 px-12">
           CTA - Contact Me
