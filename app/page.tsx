@@ -850,7 +850,7 @@ const BlogCard = ({
       <div className="absolute inset-0 -z-10 bg-radial from-slate-400/25 via-slate-200/20 to-transparent dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent" />
 
       <div className="flex flex-col h-full overflow-y-auto p-4 lg:p-6 gap-2">
-        <h3 className="text-base md:text-xl font-semibold text-justify">
+        <h3 className="text-xl font-semibold text-justify">
           {title}
         </h3>
 
@@ -858,7 +858,9 @@ const BlogCard = ({
           {date}
         </span>
 
-        <p className="md:mt-2 text-justify text-sm md:text-base italic text-slate-700 dark:text-slate-300 lg:text-base">
+        <p className="md:mt-2 text-justify 
+        text-base 
+        italic text-slate-700 dark:text-slate-300 lg:text-base">
           {excerpt.length > 128
             ? `${excerpt.slice(0, 128)}...`
             : excerpt}
@@ -867,7 +869,7 @@ const BlogCard = ({
         <div className="flex flex-1 items-end justify-end">
           <a
             href={href}
-            className="w-fit text-xs lg:text-sm text-slate-700 dark:text-slate-300 cursor-pointer hover:underline flex flex-row items-start"
+            className="w-fit text-md lg:text-md text-slate-700 dark:text-slate-300 cursor-pointer hover:underline flex flex-row items-start"
           >
             Read more
             <ArrowUpRight className="w-3 h-3 lg:w-4 lg:h-4" />
