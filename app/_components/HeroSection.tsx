@@ -12,20 +12,16 @@ export const HeroSection = () => {
       <div className="w-full flex flex-row gap-2">
         <button
           className="
-            py-2 px-4
-            flex flex-row gap-2
             w-fit
-            items-center
+            flex items-center justify-center
+            gap-2
+            py-2 px-4
+            border
             rounded-lg
-            border border-rose-200 dark:border-rose-900
-            bg-rose-50 dark:bg-rose-950/30
-            text-rose-700 dark:text-rose-300
-            transition-all duration-200
             cursor-pointer
-            hover:bg-rose-100 dark:hover:bg-rose-950/50
-            hover:border-rose-300 dark:hover:border-rose-800
+            bg-rose-50 dark:bg-rose-950/30 text-rose-700 dark:text-rose-300 border-rose-200 dark:border-rose-900
           "
-          >
+        >
           <Briefcase size={18}/>
           LinkedIn
           </button>
@@ -106,19 +102,14 @@ export const HeroSectionSmall = () => {
       <div className="flex flex-col gap-2 items-center justify-center">
         <button
           className="
-            w-full
+            w-fit
             flex items-center justify-center
             gap-2
             py-2 px-4
+            border
             rounded-lg
-            border border-rose-200 dark:border-rose-900
-            bg-rose-50 dark:bg-rose-950/30
-            text-rose-700 dark:text-rose-300
-            text-sm
-            transition-all duration-200
             cursor-pointer
-            hover:bg-rose-100 dark:hover:bg-rose-950/50
-            hover:border-rose-300 dark:hover:border-rose-800
+            bg-rose-50 dark:bg-rose-950/30 text-rose-700 dark:text-rose-300 border-rose-200 dark:border-rose-900
           "
         >
           <Briefcase size={18} />
