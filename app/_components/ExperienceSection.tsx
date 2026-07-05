@@ -109,7 +109,7 @@ export const ExperienceSection = () => {
       </div>
 
       {/* Selected Experience - Large */}
-      <div className="hidden lg:block flex-1">
+      <div className="hidden lg:block flex-1 ">
         <div
           className="
             flex h-full overflow-hidden
@@ -117,6 +117,7 @@ export const ExperienceSection = () => {
             border border-slate-300
             dark:border-slate-800
             py-4
+            px-4
           "
         >
           {/* Experience Details */}
@@ -182,7 +183,7 @@ export const ExperienceSection = () => {
             <div>
               <ul
                 className="
-                  h-52
+                  h-84
                   overflow-y-auto
                   space-y-3
 
@@ -335,7 +336,7 @@ export const ExperienceSection = () => {
           >
             <div
               className="
-                w-full
+                w-[75%]
                 aspect-video
                 rounded-xl
                 relative

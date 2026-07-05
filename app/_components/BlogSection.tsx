@@ -45,7 +45,7 @@ const BlogCard = ({
       <div className="absolute inset-0 -z-10 bg-radial from-slate-400/25 via-slate-200/20 to-transparent dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent" />
 
       <div className="flex flex-col h-full overflow-y-auto p-4 lg:p-6 gap-2">
-        <h3 className="text-2xl md:text-2xl lg:text-xl font-semibold text-justify">
+        <h3 className="text-lg md:text-2xl lg:text-xl font-semibold text-justify">
           {title}
         </h3>
 
@@ -58,7 +58,7 @@ const BlogCard = ({
         flex-1
         overflow-hidden
         md:mt-2 text-justify 
-        text-lg md:text-lg lg:text-base 
+        text-sm md:text-lg lg:text-base 
         italic text-slate-700 dark:text-slate-300
         ">
           {excerpt + "..."}

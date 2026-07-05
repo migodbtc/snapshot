@@ -18,7 +18,7 @@ export const ABOUT_ME_INFO: {
   {
     icon: BookOpen,
     title: "Currently Studying",
-    value: "Terraform",
+    value: "Intro to Networking",
   },
   {
     icon: Coffee,
@@ -33,7 +33,7 @@ export const ABOUT_ME_INFO: {
   {
     icon: Target,
     title: "Goals",
-    value: "Secure First Job",
+    value: "Max out life stats",
   },
 ];
 
