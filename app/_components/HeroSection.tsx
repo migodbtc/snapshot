@@ -13,13 +13,20 @@ export const HeroSection = () => {
         <button
           className="
             w-fit
+            h-fill
             flex items-center justify-center
             gap-2
             py-2 px-4
-            border
             rounded-lg
+            bg-rose-800
+            hover:bg-rose-700
+            disabled:opacity-60
+            disabled:cursor-not-allowed
+            text-slate-50
+            text-sm
+            font-semibold
             cursor-pointer
-            bg-rose-50 dark:bg-rose-950/30 text-rose-700 dark:text-rose-300 border-rose-200 dark:border-rose-900
+            transition-colors
           "
         >
           <Briefcase size={18}/>
@@ -106,10 +113,16 @@ export const HeroSectionSmall = () => {
             flex items-center justify-center
             gap-2
             py-2 px-4
-            border
             rounded-lg
+            bg-rose-800
+            hover:bg-rose-700
+            disabled:opacity-60
+            disabled:cursor-not-allowed
+            text-slate-50
+            text-sm
+            font-semibold
             cursor-pointer
-            bg-rose-50 dark:bg-rose-950/30 text-rose-700 dark:text-rose-300 border-rose-200 dark:border-rose-900
+            transition-colors
           "
         >
           <Briefcase size={18} />

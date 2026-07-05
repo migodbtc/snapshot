@@ -25,7 +25,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${geistMono.variable} h-full antialiased`}
+      className={`
+        ${inter.variable} ${geistMono.variable} 
+        h-full antialiased
+        scrollbar-track-slate-50 dark:scrollbar-track-slate-950
+        scrollbar-thumb-slate-300 dark:scrollbar-thumb-slate-700
+      `}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
