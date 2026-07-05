@@ -15,13 +15,14 @@ const AppLayout = (
   return (
     <div className="
         flex flex-col flex-1 
+        min-h-screen
         items-center
         bg-slate-50 dark:bg-slate-950
     ">
         {/* Header */}
         <AppHeader />
 
-        <div className='min-h-screen w-full flex justify-center'>
+        <div className='w-full h-auto flex justify-center text-slate-950 dark:text-slate-50'>
             {children}
         </div>
 
