@@ -1,4 +1,7 @@
-import { Code2, MapPin, GraduationCap, User, Braces, Lightbulb, CheckCircle } from "lucide-react";
+"use client"
+
+import { Code2, MapPin, GraduationCap, User, Braces, Lightbulb, CheckCircle, X } from "lucide-react";
+import { useState } from "react";
 
 const SELECTION_GRID_CONSTS = [
   { label: "How I Started", image: "/images/about_stock_images/stock_1.jpg" },
@@ -55,6 +58,8 @@ const SelectionCard = ({ label, image, onClick }: SelectionCardProps) => {
 };
 
 export default function AboutPage() {
+  const [selectionModalOpen, setSelectionModalOpen] = useState<boolean>(false);
+  
   return (
     <main className="w-full h-fit min-h-[90vh] flex flex-col items-center">
 
@@ -235,6 +240,79 @@ export default function AboutPage() {
             ))}
         </div>
       </section>
+      <div
+        className={`
+          fixed inset-0 z-50
+          flex items-center justify-center
+
+          bg-black/50
+          backdrop-blur-xs
+
+          transition-opacity duration-300
+
+          ${
+            selectionModalOpen
+              ? "opacity-100 pointer-events-auto"
+              : "opacity-0 pointer-events-none"
+          }
+        `}
+        onClick={() => setSelectionModalOpen(false)}
+      >
+        <div
+          onClick={(e) => e.stopPropagation()}
+          className={`
+            relative overflow-hidden
+
+            w-[90%]
+            max-w-2xl
+
+            rounded-xl
+            border border-slate-300
+            dark:border-slate-800
+
+            backdrop-blur-md
+            bg-slate-50
+            dark:bg-slate-950/70
+
+            p-6
+
+            transition-all duration-300
+
+            ${
+              selectionModalOpen
+                ? "scale-100 opacity-100"
+                : "scale-95 opacity-0"
+            }
+          `}
+        >
+          <div className="absolute inset-0 -z-10 bg-radial from-slate-400/50 via-slate-200/20 to-transparent dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent" />
+
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-xl font-bold">
+              Technologies Used
+            </h3>
+
+            <button
+              onClick={() => setSelectionModalOpen(false)}
+              className="
+                text-sm
+                hover:text-slate-700
+                dark:hover:text-slate-300
+                cursor-pointer
+                text-slate-900
+                dark:text-slate-100
+                flex flex-row items-center align-middle
+              "
+            >
+              <X />
+            </button>
+          </div>
+
+          <div className="flex flex-wrap gap-2">
+            Zayah
+          </div>
+        </div>
+      </div>
     </main>
   );
 }
