@@ -3,13 +3,36 @@
 import { Code2, MapPin, GraduationCap, User, Braces, Lightbulb, CheckCircle, X } from "lucide-react";
 import { useState } from "react";
 
-const SELECTION_GRID_CONSTS = [
-  { label: "How I Started", image: "/images/about_stock_images/stock_1.jpg" },
-  { label: "Career Aspirations", image: "/images/about_stock_images/stock_2.jpg" },
-  { label: "Thesis Experience", image: "/images/about_stock_images/stock_3.jpg" },
-  { label: "Favorite Foods", image: "/images/about_stock_images/stock_4.jpg" },
-  { label: "Hobbies & Pasttimes", image: "/images/about_stock_images/stock_5.jpg" },
-  { label: "Industry Inspirations", image: "/images/about_stock_images/stock_6.jpg" },
+type SelectionGridData = {
+  label: string, 
+  image: string
+}
+
+const SELECTION_GRID_CONSTS: SelectionGridData[] = [
+  { 
+    label: "How I Started", 
+    image: "/images/about_stock_images/stock_1.jpg",  
+  },
+  { 
+    label: "Career Aspirations", 
+    image: "/images/about_stock_images/stock_2.jpg" 
+  },
+  { 
+    label: "Thesis Experience", 
+    image: "/images/about_stock_images/stock_3.jpg" 
+  },
+  { 
+    label: "Favorite Foods", 
+    image: "/images/about_stock_images/stock_4.jpg" 
+  },
+  { 
+    label: "Hobbies & Pasttimes", 
+    image: "/images/about_stock_images/stock_5.jpg" 
+  },
+  { 
+    label: "Industry Inspirations", 
+    image: "/images/about_stock_images/stock_6.jpg" 
+  },
 ];
 
 // SelectionCard: Helper component for the selection grid
@@ -59,6 +82,7 @@ const SelectionCard = ({ label, image, onClick }: SelectionCardProps) => {
 
 export default function AboutPage() {
   const [selectionModalOpen, setSelectionModalOpen] = useState<boolean>(false);
+  const [currentSelection, setCurrentSelection] = useState<SelectionGridData | null>(null);
   
   return (
     <main className="w-full h-fit min-h-[90vh] flex flex-col items-center">
@@ -236,10 +260,16 @@ export default function AboutPage() {
                 key={card.label}
                 label={card.label}
                 image={card.image}
+                onClick={() => {
+                  setSelectionModalOpen(true);
+                  setCurrentSelection(card);
+                }}
                 />
             ))}
         </div>
       </section>
+
+      {/* Selection Modal */}
       <div
         className={`
           fixed inset-0 z-50
@@ -286,14 +316,16 @@ export default function AboutPage() {
           `}
         >
           <div className="absolute inset-0 -z-10 bg-radial from-slate-400/50 via-slate-200/20 to-transparent dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent" />
-
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-xl font-bold">
-              Technologies Used
+              Shit was clicked man
             </h3>
 
             <button
-              onClick={() => setSelectionModalOpen(false)}
+              onClick={() => {
+                setSelectionModalOpen(false);
+                setCurrentSelection(null);
+              }}
               className="
                 text-sm
                 hover:text-slate-700
@@ -309,7 +341,7 @@ export default function AboutPage() {
           </div>
 
           <div className="flex flex-wrap gap-2">
-            Zayah
+            You clicked, what, {currentSelection?.label}?
           </div>
         </div>
       </div>
