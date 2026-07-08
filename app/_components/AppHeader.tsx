@@ -11,21 +11,31 @@ import {
   Mail,
   Menu,
   X,
+  Home,
 } from "lucide-react";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const NAV_LINKS = [
-  { label: "About", icon: User },
-  { label: "Skills", icon: Braces },
-  { label: "Education", icon: GraduationCap },
-  { label: "Experience", icon: Briefcase },
-  { label: "Blog", icon: BookOpen },
-  { label: "Communeye", icon: Eye },
-  { label: "Contact", icon: Mail },
+  { label: "Home", icon: Home, href: "/" },
+  { label: "About", icon: User, href: "/about" },
+  { label: "Skills", icon: Braces, href: "/skills" },
+  { label: "Education", icon: GraduationCap, href: "/education" },
+  { label: "Experience", icon: Briefcase, href: "/experience" },
+  { label: "Blog", icon: BookOpen, href: "/blog" },
+  { label: "Communeye", icon: Eye, href: "/communeye" },
+  { label: "Contact", icon: Mail, href: "/contact" },
 ];
 
 export default function AppHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const router = useRouter();
+
+  // navigation handler
+  const handleNavigate = (href: string) => {
+    setIsMenuOpen(false);
+    router.push(href);
+  };
 
   return (
     <div className="flex flex-row px-4 sm:px-8 py-4 w-full text-rose-800">
@@ -120,11 +130,11 @@ export default function AppHeader() {
 
           {/* Nav Links - Portrait (sm) : single column stacked */}
           <div className="flex flex-col lg:hidden gap-1">
-            {NAV_LINKS.map(({ label, icon: Icon }) => (
-              <a
+            {NAV_LINKS.map(({ label, icon: Icon, href }) => (
+              <button
                 key={label}
-                href="/"
-                onClick={() => setIsMenuOpen(false)}
+                type="button"
+                onClick={() => handleNavigate(href)}
                 className="
                   flex items-center gap-3
                   px-3 py-3
@@ -142,17 +152,17 @@ export default function AppHeader() {
               >
                 <Icon size={18} />
                 {label}
-              </a>
+              </button>
             ))}
           </div>
 
           {/* Nav Links - Landscape (lg) : grid layout */}
           <div className="hidden lg:grid grid-cols-2 gap-2">
-            {NAV_LINKS.map(({ label, icon: Icon }) => (
-              <a
+            {NAV_LINKS.map(({ label, icon: Icon, href }) => (
+              <button
                 key={label}
-                href="/"
-                onClick={() => setIsMenuOpen(false)}
+                type="button"
+                onClick={() => handleNavigate(href)}
                 className="
                   flex items-center gap-3
                   px-4 py-3
@@ -170,7 +180,7 @@ export default function AppHeader() {
               >
                 <Icon size={18} />
                 {label}
-              </a>
+              </button>
             ))}
           </div>
         </div>

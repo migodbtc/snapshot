@@ -1,5 +1,6 @@
 import { ABOUT_ME_INFO } from "@/lib/constants"
-import { LucideIcon, User } from "lucide-react"
+import { ArrowUpRight, LucideIcon, User } from "lucide-react"
+import { useRouter } from "next/navigation";
 
 // AboutMeCard: A dedicated subcomponent for the rendering of the about me cards for both desktop and mobile
 type AboutMeCardProps = {
@@ -33,6 +34,8 @@ export function AboutMeCard({
 
 // AboutSection: Dedicated section for a small summary of myself
 export const AboutSection = () => {
+  const router = useRouter();
+
   return <section className="w-full aspect-video flex flex-col pb-12">
     <div className="flex flex-col px-6 py-4 w-full h-fit items-center justify-center gap-3 ">
       <h1 className="text-2xl lg:text-4xl tracking-wider font-bold uppercase text-slate-400">About Me</h1>
@@ -49,6 +52,7 @@ export const AboutSection = () => {
         <p className="w-full text-justify text-gray-700 dark:text-gray-300 text-xs md:text-sm lg:text-base">
           Migo first started programming by developing simple web pages on his laptop. Raw HTML, CSS, with little JavaScript. Now, Migo primarily uses both <b>TypeScript</b> and <b>Python</b>, along with a consortium of languages, frameworks, and technologies such as GitHub, Docker, AWS, Nextjs, Supabase, and more.
         </p>
+        <span className="w-full text-sm lg:text-md text-slate-700 dark:text-slate-300 cursor-pointer  flex flex-row items-start gap-1">Learn more about Migo by visiting the<span className="flex flex-row hover:underline text-rose-700" onClick={() => {router.push('/about')}}>About Page here <ArrowUpRight className="w-3 h-3 lg:w-4 lg:h-4 " /></span></span>
       </div>
       <div className="flex-1 flex items-center justify-center bg-radial from-slate-500/25 dark:from-slate-50/25 to-transparent to-70%">
         <div className="w-full h-full grid grid-cols-2 gap-4 m-auto">

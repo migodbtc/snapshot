@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "MIGO - Software Engineer",
-  description: "This is the official portfolio of Miguel Justin Bunda.",
+  title: "Miguel Justin | Portfolio",
+  description: "Miguel Justin Bunda’s portfolio website, showcasing selected web projects, technical skills, professional experience, and contact information.",
 };
 
 export default function RootLayout({
