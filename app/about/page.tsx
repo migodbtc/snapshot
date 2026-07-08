@@ -1,41 +1,10 @@
 "use client"
 
-import { Code2, MapPin, GraduationCap, User, Braces, Lightbulb, CheckCircle, X } from "lucide-react";
+import { SELECTION_GRID_CONSTS } from "@/lib/constants";
+import { X, CheckCircle, MapPin, GraduationCap, User, Braces, Lightbulb, Heart, MessageCircle, Repeat2, Share2 } from "lucide-react";
 import { useState } from "react";
 
-type SelectionGridData = {
-  label: string, 
-  image: string
-}
-
-const SELECTION_GRID_CONSTS: SelectionGridData[] = [
-  { 
-    label: "How I Started", 
-    image: "/images/about_stock_images/stock_1.jpg",  
-  },
-  { 
-    label: "Career Aspirations", 
-    image: "/images/about_stock_images/stock_2.jpg" 
-  },
-  { 
-    label: "Thesis Experience", 
-    image: "/images/about_stock_images/stock_3.jpg" 
-  },
-  { 
-    label: "Favorite Foods", 
-    image: "/images/about_stock_images/stock_4.jpg" 
-  },
-  { 
-    label: "Hobbies & Pasttimes", 
-    image: "/images/about_stock_images/stock_5.jpg" 
-  },
-  { 
-    label: "Industry Inspirations", 
-    image: "/images/about_stock_images/stock_6.jpg" 
-  },
-];
-
-// SelectionCard: Helper component for the selection grid
+// SelectionCard: Helper component for the selection grid to display about me cards
 type SelectionCardProps = {
   label: string;
   image: string;
@@ -80,9 +49,146 @@ const SelectionCard = ({ label, image, onClick }: SelectionCardProps) => {
   );
 };
 
+// SelectionCardModal: Modal that pops up on selection card click
+type SelectionCardModalProps = {
+  selectionModalOpen: boolean;
+  currentSelection: number;
+  setSelectionModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setCurrentSelection: React.Dispatch<React.SetStateAction<number>>;
+};
+
+const SelectionCardModal = ({
+  selectionModalOpen,
+  currentSelection,
+  setSelectionModalOpen,
+  setCurrentSelection,
+}: SelectionCardModalProps) => {
+
+  const modalContent = 
+    currentSelection != -1 
+      ? SELECTION_GRID_CONSTS[currentSelection]
+      : null; 
+
+  const mockHandle = <b className="font-semibold text-rose-700 dark:text-rose-500">@miguel.justin</b>
+
+  return (
+    <div
+      className={`
+        fixed inset-0 z-50
+        flex items-center justify-center
+        bg-black/50
+        backdrop-blur-xs
+        transition-opacity duration-300
+        ${
+          selectionModalOpen
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        }
+      `}
+      onClick={() => {
+        setSelectionModalOpen(false);
+        setCurrentSelection(-1);
+      }}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className={`
+          relative overflow-hidden
+
+          w-[90%]
+          max-w-2xl
+
+          rounded-xl
+          border border-slate-300
+          dark:border-slate-800
+
+          backdrop-blur-md
+          bg-slate-50
+          dark:bg-slate-950/70
+
+          p-6
+
+          transition-all duration-300
+
+          ${
+            selectionModalOpen
+              ? "scale-100 opacity-100"
+              : "scale-95 opacity-0"
+          }
+        `}
+      >
+        <div className="absolute inset-0 -z-10 bg-radial from-slate-400/50 via-slate-200/20 to-transparent dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent" />
+
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-2xl font-bold">{modalContent && modalContent.label}</h2>
+
+          <button
+            onClick={() => {
+              setSelectionModalOpen(false);
+              setCurrentSelection(-1);
+            }}
+            className="cursor-pointer"
+          >
+            <X />
+          </button>
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <div
+            className="
+              relative w-full
+              select-none cursor-pointer
+              transition-transform duration-300
+              aspect-5/2
+            "
+          >
+            {/* Placeholder Image */}
+            {modalContent &&
+              <img
+                src={modalContent ? modalContent.image : "https://placehold.co/1000x400/1f2937/e5e7eb?text=Loading"}
+                alt={modalContent ? modalContent.label : "Empty image"}
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+            }
+          </div>
+
+          {/* Social Media Hotbar Design */}
+          <div className="mt-2 w-full flex flex-row justify-between
+            h-fit text-lg items-center align-center">
+              <div className="flex items-center align-center justify-center">
+                <Heart />
+              </div>
+              <div className="flex items-center align-center justify-center">
+                <MessageCircle />
+              </div>
+              <div className="flex items-center align-center justify-center">
+                <Repeat2 />
+              </div>
+              <div className="flex items-center align-center justify-center">
+                <Share2 />
+              </div>
+          </div>
+
+          {/* Body */}
+          <p className="my-2 text-justify">{mockHandle} {modalContent && modalContent.description}</p>
+
+          {/* Footer */}
+          <div className="w-full border-t 
+          border-slate-300 dark:border-slate-800 
+          pt-2 text-sm text-gray-500 
+          flex flex-row justify-between">
+            <span className="w-fit italic">Posted on July 7, 2026 at 4:10 PM PST</span>
+            {modalContent && <span>Credit: {modalContent && modalContent.credit}</span>}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export default function AboutPage() {
-  const [selectionModalOpen, setSelectionModalOpen] = useState<boolean>(false);
-  const [currentSelection, setCurrentSelection] = useState<SelectionGridData | null>(null);
+  const [selectionModalOpen, setSelectionModalOpen] = useState(false);
+  const [currentSelection, setCurrentSelection] = useState<number>(-1);
   
   return (
     <main className="w-full h-fit min-h-[90vh] flex flex-col items-center">
@@ -255,96 +361,27 @@ export default function AboutPage() {
 
         {/* Selection Grid */}
         <div className="w-full h-full grid grid-cols-3 gap-4">
-            {SELECTION_GRID_CONSTS.map((card) => (
-                <SelectionCard
-                key={card.label}
-                label={card.label}
-                image={card.image}
-                onClick={() => {
-                  setSelectionModalOpen(true);
-                  setCurrentSelection(card);
-                }}
-                />
-            ))}
+        {SELECTION_GRID_CONSTS.map((card) => (
+            <SelectionCard
+              key={card.id}
+              label={card.label}
+              image={card.image}
+              onClick={() => {
+                setCurrentSelection(card.id);
+                setSelectionModalOpen(true);
+              }}
+            />
+          ))}
         </div>
       </section>
 
       {/* Selection Modal */}
-      <div
-        className={`
-          fixed inset-0 z-50
-          flex items-center justify-center
-
-          bg-black/50
-          backdrop-blur-xs
-
-          transition-opacity duration-300
-
-          ${
-            selectionModalOpen
-              ? "opacity-100 pointer-events-auto"
-              : "opacity-0 pointer-events-none"
-          }
-        `}
-        onClick={() => setSelectionModalOpen(false)}
-      >
-        <div
-          onClick={(e) => e.stopPropagation()}
-          className={`
-            relative overflow-hidden
-
-            w-[90%]
-            max-w-2xl
-
-            rounded-xl
-            border border-slate-300
-            dark:border-slate-800
-
-            backdrop-blur-md
-            bg-slate-50
-            dark:bg-slate-950/70
-
-            p-6
-
-            transition-all duration-300
-
-            ${
-              selectionModalOpen
-                ? "scale-100 opacity-100"
-                : "scale-95 opacity-0"
-            }
-          `}
-        >
-          <div className="absolute inset-0 -z-10 bg-radial from-slate-400/50 via-slate-200/20 to-transparent dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent" />
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-xl font-bold">
-              Shit was clicked man
-            </h3>
-
-            <button
-              onClick={() => {
-                setSelectionModalOpen(false);
-                setCurrentSelection(null);
-              }}
-              className="
-                text-sm
-                hover:text-slate-700
-                dark:hover:text-slate-300
-                cursor-pointer
-                text-slate-900
-                dark:text-slate-100
-                flex flex-row items-center align-middle
-              "
-            >
-              <X />
-            </button>
-          </div>
-
-          <div className="flex flex-wrap gap-2">
-            You clicked, what, {currentSelection?.label}?
-          </div>
-        </div>
-      </div>
+     <SelectionCardModal
+        selectionModalOpen={selectionModalOpen}
+        currentSelection={currentSelection}
+        setSelectionModalOpen={setSelectionModalOpen}
+        setCurrentSelection={setCurrentSelection}
+      />
     </main>
   );
 }

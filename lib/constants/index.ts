@@ -1,5 +1,13 @@
 import { LucideIcon, MapPin, School, BookOpen, Coffee, Dumbbell, Target, LanguagesIcon, Atom, FileCode2, Wind, Database, GitBranch, Braces, Cpu, Server, Code2, FlaskConical, Globe, Zap, Boxes, Container, Terminal, Workflow, Cloud } from "lucide-react";
 
+type SelectionGridData = {
+  id: number, 
+  label: string,
+  image: string,
+  credit: string,
+  description: string,
+}
+
 export const ABOUT_ME_INFO: {
   icon: LucideIcon;
   title: string;
@@ -329,5 +337,50 @@ export const BLOG_POSTS = [
     date: "06-20-2026, 4:45 PM",
     excerpt:
       "This summary is also AI-generated and serves only as a placeholder until I replace it with my own writing. The central idea is a reflection on how easy it has become to move too quickly in a world increasingly assisted by artificial intelligence. Modern tools can accelerate research, learning, development, communication, and content creation to an unprecedented degree. While this can be incredibly empowering, it also introduces the temptation to prioritize speed over understanding. The future article may discuss the importance of slowing down intentionally, spending more time thinking through problems independently, questioning assumptions, developing original perspectives, and allowing genuine learning to occur before reaching for automated assistance. As someone working within technology, I find this tension particularly interesting because the same tools that increase productivity can also reduce opportunities for deep practice if used carelessly. The article will likely explore how artificial intelligence can be integrated into personal growth without allowing it to replace the deliberate effort that builds competence, judgment, and long-term expertise.",
+  },
+];
+
+export const SELECTION_GRID_CONSTS: SelectionGridData[] = [
+  {
+    id: 0,
+    label: "How I Started",
+    image: "/images/about_stock_images/computer-santiago-vargas.jpg",
+    credit: "Santiago Vargas | Pinterest",
+    description: "My earliest memory of software engineering didn't come from an interest in SWE itself, but from discovering, in the final year of elementary school (Grade 6), that HTML and CSS could be used to build websites. I remember making absurdly simple sites and realizing, for the first time, that I had the option to pursue something in the software space - even without knowing where that decision would eventually lead me.",
+  },
+  {
+    id: 1,
+    label: "Career Aspirations",
+    image: "/images/about_stock_images/career-aspirations-fortenu.jpg",
+    credit: "@fortenu | Pinterest",
+    description: "I've spent months, sometimes years, thinking through my career aspirations: what type of software engineer I want to become, what I want to build, and how to grow as both a technical and communicable person. Right now, though, I've landed on something simpler - I want to be in a role where I can provide as much value and contribution as possible, regardless of the title, responsibility, or form that role takes.",
+  },
+  {
+    id: 2,
+    label: "Thesis Experience",
+    image: "/images/about_stock_images/thesis-horatioloveyou.jpg",
+    credit: "@horatioloveyou | Pinterest",
+    description: "My thesis experience - Capstone Project 1 and 2, or IT401 and IT402 - was instrumental to my growth as a software engineer. Despite the odds feeling stacked against us, my team and I built Apollo, a fire emergency reporting, monitoring, and response system. It let users capture photo or video reports sent to fire stations within a minute, displayed live reports on a map for civilians and responders, and included ML-based verification, approval notifications, and both web and mobile apps.",
+  },
+  {
+    id: 3,
+    label: "Favorite Drinks",
+    image: "/images/about_stock_images/coffee-super-junior.jpg",
+    credit: "super junior | Pinterest",
+    description: "I don't drink much alcohol, but I make up for it with just about everything else - shakes, coffee, milk tea, fruit juices, sodas, and pretty much any beverage that exists. I have a particular soft spot for Vietnamese coffee, as shown on my home page, along with mango graham shakes from local businesses and fruit salad drinks. And, of course, plenty of water to keep up with the rest of the habit.",
+  },
+  {
+    id: 4,
+    label: "Hobbies & Pastimes",
+    image: "/images/about_stock_images/calisthenics_inumaki_calist.jpg",
+    credit: "@inumaki_calist | Pinterest",
+    description: "Outside of project development and career growth, I try to balance things out with hobbies that have nothing to do with either - weightlifting, calisthenics, running, cooking, and traveling, whether alone or with others, plus spending time with my family, partner, and friends. I have plenty of goals tied to these too, like getting fitter and faster, and reaching certain places alongside certain people who matter to me.",
+  },
+  {
+    id: 5,
+    label: "Industry Inspirations",
+    image: "/images/about_stock_images/public_speaking_gabriel.jpg",
+    credit: "Gabriel | Pinterest",
+    description: "There are plenty of great software engineers, locally and internationally, who've dedicated themselves to their craft. I've drawn inspiration from names like Bryl Lim, Mitchell Hashimoto, Gergely Orosz, and Kelsey Hightower. Just as important, though, has been Mr. Ferdinand Hassan Flojo - a mentor figure who pushed me hard, especially during my second and third years of college, and shaped how I approach this field.",
   },
 ];
