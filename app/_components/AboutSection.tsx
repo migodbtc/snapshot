@@ -73,6 +73,8 @@ export const AboutSection = () => {
 }
 
 export const AboutSectionSmall = () => {
+  const router = useRouter();
+  
   return <section className="w-full aspect-video flex flex-col pb-4">
     <div className="flex flex-col px-6 w-full h-fit items-center justify-center gap-3 ">
       <h1 className="text-2xl lg:text-4xl tracking-wider font-bold uppercase text-slate-400">About Me</h1>
@@ -89,6 +91,7 @@ export const AboutSectionSmall = () => {
         <p className="w-full text-justify text-gray-700 dark:text-gray-300 text-xs md:text-sm lg:text-base">
           Migo first started programming by developing simple web pages on his laptop. Raw HTML, CSS, with little JavaScript. Now, Migo primarily uses both <b>TypeScript</b> and <b>Python</b>, along with a consortium of languages, frameworks, and technologies such as GitHub, Docker, AWS, Nextjs, Supabase, and more.
         </p>
+        <span className="w-full text-sm lg:text-md text-slate-700 dark:text-slate-300 cursor-pointer  flex flex-row items-start gap-1">Learn more about Migo by visiting the<span className="flex flex-row hover:underline text-rose-700" onClick={() => {router.push('/about')}}>About Page here <ArrowUpRight className="w-3 h-3 lg:w-4 lg:h-4 " /></span></span>
       </div>
 
       <div className="mx-4 flex gap-3 overflow-x-auto pb-2">
