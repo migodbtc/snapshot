@@ -16,7 +16,7 @@ const SelectionCard = ({ label, image, onClick }: SelectionCardProps) => {
     <button
       onClick={onClick}
       className="
-        relative w-full aspect-3/4 rounded-xl overflow-hidden
+        relative w-full aspect-1/2 md:aspect-3/4 rounded-xl overflow-hidden
         select-none cursor-pointer
         transition-transform duration-300
         hover:scale-[1.03]
@@ -40,7 +40,7 @@ const SelectionCard = ({ label, image, onClick }: SelectionCardProps) => {
           from-zinc-900/90
           to-transparent to-60%
         ">
-          <h2 className="text-white text-3xl font-bold text-center">
+          <h2 className="text-white text-xl md:text-3xl font-bold text-center">
             {label}
           </h2>
         </div>
@@ -176,9 +176,9 @@ const SelectionCardModal = ({
           <div className="w-full border-t 
           border-slate-300 dark:border-slate-800 
           pt-2 text-sm text-gray-500 
-          flex flex-row justify-between">
+          flex flex-row justify-between gap-4">
             <span className="w-fit italic">Posted on July 7, 2026 at 4:10 PM PST</span>
-            {modalContent && <span>Credit: {modalContent && modalContent.credit}</span>}
+            {modalContent && <span className="text-right">Credit: {modalContent && modalContent.credit}</span>}
           </div>
         </div>
       </div>
@@ -186,6 +186,7 @@ const SelectionCardModal = ({
   );
 };
 
+// AboutPage: Main page component to display the full content regarding 'About Me' feature
 export default function AboutPage() {
   const [selectionModalOpen, setSelectionModalOpen] = useState(false);
   const [currentSelection, setCurrentSelection] = useState<number>(-1);
@@ -195,29 +196,320 @@ export default function AboutPage() {
 
       {/* Mobile layout: sm and below */}
       <section className="
+        flex-1
+        sm:flex
+        md:hidden flex-col
         w-full
-        flex flex-1 md:hidden 
-        flex-col 
-        gap-2 p-4
-        bg-amber-500
+        pb-16 px-4">
 
+        {/* Info Card/Row */}
+        <div className="
+            flex flex-row
+            items-center
+            w-full h-fit
         ">
-        <h1>Mobile layout</h1>
-        <img src="/photo.jpg" className="w-full" />
-        <p>Stacked content...</p>
+            
+            {/* Avatar */}
+            <div className="
+                flex items-center justify-center
+                w-28 shrink-0
+            ">
+                <div className="
+                    h-24
+                    aspect-square 
+                    rounded-full
+                    overflow-hidden
+                    border-4
+                    border-rose-800
+                ">
+                    <img
+                      src="/images/hero_picture.jpg"
+                      alt="Miguel Justin Bunda"
+                      className="w-full h-full object-cover rounded-full"
+                    />
+                </div>
+            </div>
+
+            {/* Information */}
+            <div className="
+                flex-1 
+                flex flex-col pl-4
+            ">
+                
+                {/* Name Row */}
+                <div className="
+                    w-full h-1/3
+                    flex
+                    items-center
+                    gap-2
+                    text-lg uppercase font-semibold
+                    mt-2
+                ">
+                    <span>Miguel Justin Bunda</span>
+                    <CheckCircle size={14} className="text-rose-800 dark:text-rose-500" />
+                </div>
+
+                {/* Subinfo Row */}
+                <div className="
+                    w-full flex-1 mt-2
+                    grid grid-cols-2 grid-rows-2 gap-2
+                ">
+                    {/* Subinfo 1 */}
+                    <div className="
+                        w-full h-full
+                        flex flex-col 
+                    ">
+                        <span className="text-base font-bold">Mandaluyong</span>
+                        <span className="flex items-center gap-1 text-sm text-gray-500">
+                          <MapPin size={14} />
+                          Location
+                        </span>
+                    </div>
+                    {/* Subinfo 2 */}
+                    <div className="
+                        w-full h-full
+                        flex flex-col 
+                    ">
+                        <span className="text-base font-bold">BSIT</span>
+                        <span className="flex items-center gap-1 text-sm text-gray-500">
+                          <GraduationCap size={14} />
+                          Course
+                        </span>
+                    </div>
+                    {/* Subinfo 3 */}
+                    <div className="
+                        w-full h-full
+                        flex flex-col 
+                    ">
+                        <span className="text-base font-bold">Male</span>
+                        <span className="flex items-center gap-1 text-sm text-gray-500">
+                          <User size={14} />
+                          Gender
+                        </span>
+                    </div>
+                    {/* Subinfo 4 */}
+                    <div className="
+                        w-full h-full
+                        flex flex-col 
+                    ">
+                        <span className="text-base font-bold">Python</span>
+                        <span className="flex items-center gap-1 text-sm text-gray-500">
+                          <Braces size={14} />
+                          First Language
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {/* Major Card Row */}
+        <div className="
+            flex flex-row
+            w-full h-24 
+            my-4
+        "> 
+            <div className="
+                relative
+                overflow-hidden
+                w-full h-full 
+                flex flex-col 
+                items-start justify-center
+                rounded-lg 
+                border border-slate-300 dark:border-slate-800
+                backdrop-blur-md
+                py-6 px-4
+                
+            ">
+                {/* Glass base layer */}
+                <div className="absolute inset-0 -z-10 bg-radial from-slate-500/40 via-slate-400/20 to-transparent dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent" />
+
+                <span className="
+                    w-full h-fit
+                    flex items-center gap-1
+                    uppercase 
+                    text-gray-500
+                    font-semibold
+                    text-sm
+                    mb-1
+                ">
+                  <Lightbulb size={16} />
+                  Helpful Tip
+                </span>
+                <span className="w-full h-fit text-sm">The cards below are interactable! Click on them and a modal will pop up.</span>
+            </div>
+        </div>
+
+        {/* Selection Grid */}
+        <div className="w-full h-full grid grid-cols-3 gap-1">
+        {SELECTION_GRID_CONSTS.map((card) => (
+            <SelectionCard
+              key={card.id}
+              label={card.label}
+              image={card.image}
+              onClick={() => {
+                setCurrentSelection(card.id);
+                setSelectionModalOpen(true);
+              }}
+            />
+          ))}
+        </div>
       </section>
 
       {/* Tablet layout: md only */}
       <section className="
-        flex-1 hidden 
-        md:flex lg:hidden 
-        gap-4 p-6 
-        bg-rose-500
+        flex-1
+        hidden
+        md:flex 
+        lg:hidden flex-col
+        w-2xl
+        pb-16">
 
-        w-3xl
+        {/* Info Card/Row */}
+        <div className="
+            flex flex-row
+            w-full h-36
         ">
-        <img src="/photo.jpg" className="w-1/3" />
-        <p className="w-2/3">Two-column-ish content...</p>
+            
+            {/* Avatar */}
+            <div className="
+                relative
+                h-full
+                aspect-square 
+                rounded-full
+                overflow-hidden
+                border-4
+                border-rose-800
+            ">
+                <img
+                  src="/images/hero_picture.jpg"
+                  alt="Miguel Justin Bunda"
+                  className="w-full h-full object-cover rounded-full"
+                />
+            </div>
+
+            {/* Information */}
+            <div className="
+                flex-1 
+                flex flex-col pl-8
+            ">
+                
+                {/* Name Row */}
+                <div className="
+                    w-full h-1/3
+                    flex
+                    items-center
+                    gap-2
+                    text-lg uppercase font-semibold
+                    mt-2
+                ">
+                    <span>Miguel Justin Bunda</span>
+                    <CheckCircle size={14} className="text-rose-800 dark:text-rose-500" />
+                </div>
+
+                {/* Subinfo Row */}
+                <div className="
+                    w-full flex-1
+                    grid grid-cols-4 gap-2
+                ">
+                    {/* Subinfo 1 */}
+                    <div className="
+                        w-full h-full
+                        flex flex-col 
+                    ">
+                        <span className="text-base font-bold">Mandaluyong</span>
+                        <span className="flex items-center gap-1 text-sm text-gray-500">
+                          <MapPin size={14} />
+                          Location
+                        </span>
+                    </div>
+                    {/* Subinfo 2 */}
+                    <div className="
+                        w-full h-full
+                        flex flex-col 
+                    ">
+                        <span className="text-base font-bold">BSIT</span>
+                        <span className="flex items-center gap-1 text-sm text-gray-500">
+                          <GraduationCap size={14} />
+                          Course
+                        </span>
+                    </div>
+                    {/* Subinfo 3 */}
+                    <div className="
+                        w-full h-full
+                        flex flex-col 
+                    ">
+                        <span className="text-base font-bold">Male</span>
+                        <span className="flex items-center gap-1 text-sm text-gray-500">
+                          <User size={14} />
+                          Gender
+                        </span>
+                    </div>
+                    {/* Subinfo 4 */}
+                    <div className="
+                        w-full h-full
+                        flex flex-col 
+                    ">
+                        <span className="text-base font-bold">Python</span>
+                        <span className="flex items-center gap-1 text-sm text-gray-500">
+                          <Braces size={14} />
+                          First Language
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {/* Major Card Row */}
+        <div className="
+            flex flex-row
+            w-full h-24 
+            my-4
+        "> 
+            <div className="
+                relative
+                overflow-hidden
+                w-full h-full 
+                flex flex-col 
+                items-start justify-center
+                rounded-lg 
+                border border-slate-300 dark:border-slate-800
+                backdrop-blur-md
+                py-6 px-4
+                
+            ">
+                {/* Glass base layer */}
+                <div className="absolute inset-0 -z-10 bg-radial from-slate-500/40 via-slate-400/20 to-transparent dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent" />
+
+                <span className="
+                    w-full h-fit
+                    flex items-center gap-1
+                    uppercase 
+                    text-gray-500
+                    font-semibold
+                    text-sm
+                    mb-1
+                ">
+                  <Lightbulb size={16} />
+                  Helpful Tip
+                </span>
+                <span className="w-full h-fit text-sm">The cards below are interactable! Click on them and a modal will pop up.</span>
+            </div>
+        </div>
+
+        {/* Selection Grid */}
+        <div className="w-full h-full grid grid-cols-3 gap-2">
+        {SELECTION_GRID_CONSTS.map((card) => (
+            <SelectionCard
+              key={card.id}
+              label={card.label}
+              image={card.image}
+              onClick={() => {
+                setCurrentSelection(card.id);
+                setSelectionModalOpen(true);
+              }}
+            />
+          ))}
+        </div>
       </section>
 
       {/* Desktop layout: lg and up */}
@@ -264,6 +556,7 @@ export default function AboutPage() {
                     items-center
                     gap-2
                     text-lg uppercase font-semibold
+                    mt-2
                 ">
                     <span>Miguel Justin Bunda</span>
                     <CheckCircle size={14} className="text-rose-800 dark:text-rose-500" />
@@ -271,7 +564,7 @@ export default function AboutPage() {
 
                 {/* Subinfo Row */}
                 <div className="
-                    w-full flex-1 mt-4
+                    w-full flex-1
                     grid grid-cols-4 gap-2
                 ">
                     {/* Subinfo 1 */}
