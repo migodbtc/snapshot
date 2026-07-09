@@ -24,6 +24,7 @@ export default function EducationPage() {
         px-8 md:px-0
         pb-16 md:pb-8 lg:pb-16
         ">
+            {/* Return to Home Option */}
             <div className='text-sm italic text-gray-400 dark:text-gray-600 my-2 flex flex-row gap-2 items-center hover:underline hover:cursor-pointer uppercase' onClick={() => {router.push("/")}}>
                 <ArrowLeft size={16}/>
                 <span>Return to Home</span>

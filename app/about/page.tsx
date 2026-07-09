@@ -1,7 +1,8 @@
 "use client"
 
 import { SELECTION_GRID_CONSTS } from "@/lib/constants";
-import { X, CheckCircle, MapPin, GraduationCap, User, Braces, Lightbulb, Heart, MessageCircle, Repeat2, Share2 } from "lucide-react";
+import { X, CheckCircle, MapPin, GraduationCap, User, Braces, Lightbulb, Heart, MessageCircle, Repeat2, Share2, ArrowLeft } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 // SelectionCard: Helper component for the selection grid to display about me cards
@@ -190,6 +191,7 @@ const SelectionCardModal = ({
 export default function AboutPage() {
   const [selectionModalOpen, setSelectionModalOpen] = useState(false);
   const [currentSelection, setCurrentSelection] = useState<number>(-1);
+  const router = useRouter()
   
   return (
     <main className="w-full h-fit min-h-[90vh] flex flex-col items-center">
@@ -201,6 +203,11 @@ export default function AboutPage() {
         md:hidden flex-col
         w-full
         pb-16 px-4">
+        {/* Return to Home Option */}
+        <div className='text-sm italic text-gray-500 my-4 flex flex-row gap-2 items-center hover:underline hover:cursor-pointer uppercase' onClick={() => {router.push("/")}}>
+            <ArrowLeft size={16}/>
+            <span>Return to Home</span>
+        </div>
 
         {/* Info Card/Row */}
         <div className="
@@ -363,6 +370,11 @@ export default function AboutPage() {
         lg:hidden flex-col
         w-2xl
         pb-16">
+        {/* Return to Home Option */}
+        <div className='text-sm italic text-gray-500 my-4 flex flex-row gap-2 items-center hover:underline hover:cursor-pointer uppercase' onClick={() => {router.push("/")}}>
+            <ArrowLeft size={16}/>
+            <span>Return to Home</span>
+        </div>
 
         {/* Info Card/Row */}
         <div className="
@@ -519,6 +531,11 @@ export default function AboutPage() {
         lg:flex flex-col
         w-4xl
         pb-16">
+        {/* Return to Home Option */}
+        <div className='text-sm italic text-gray-500 my-4 flex flex-row gap-2 items-center hover:underline hover:cursor-pointer uppercase' onClick={() => {router.push("/")}}>
+            <ArrowLeft size={16}/>
+            <span>Return to Home</span>
+        </div>
 
         {/* Info Card/Row */}
         <div className="

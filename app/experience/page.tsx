@@ -1,15 +1,18 @@
 "use client"
-import { Briefcase, Building, Building2, Circle, Laptop, Pencil, User, UserCheck2 } from 'lucide-react'
+import { ArrowLeft, Briefcase, Building, Building2, Circle, Laptop, Pencil, User, UserCheck2 } from 'lucide-react'
 import { TimelinePoint } from '../_components/ExperienceSection'
 import { useState } from 'react';
 import { EXPERIENCE_CONSTS } from '@/lib/constants/experience';
 import Image from 'next/image'
+import { useRouter } from 'next/navigation';
 
 export default function ExperiencePage() {
     const [selectedExperience, setSelectedExperience] =
         useState(EXPERIENCE_CONSTS[0]);
     const visibleTechnologies =
         selectedExperience.technologies
+
+    const router = useRouter()
     
     return <main className="w-full h-fit flex flex-col items-center pb-8">
 
@@ -20,6 +23,12 @@ export default function ExperiencePage() {
         px-8 md:px-0
         pb-16 md:pb-8 lg:pb-16
         ">
+            {/* Return to Home Option */}
+            <div className='text-sm italic text-gray-400 dark:text-gray-600 my-2 flex flex-row gap-2 items-center hover:underline hover:cursor-pointer uppercase' onClick={() => {router.push("/")}}>
+                <ArrowLeft size={16}/>
+                <span>Return to Home</span>
+            </div>
+            
             {/* Page Header */}
             <div className="flex flex-col px-6 w-full h-fit items-center justify-center gap-3">
                 <h1 className="text-3xl tracking-wider font-bold uppercase mb-2 flex flex-row items-center gap-2">

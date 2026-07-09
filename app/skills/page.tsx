@@ -2,12 +2,14 @@
 
 import { skillData, sourceMeta } from "@/lib/constants/skills";
 import { SkillCategory } from "@/lib/types/skills";
-import { Blocks, BookOpen, Braces, Brain, Briefcase, Clock, Cloud, Code2, GraduationCap, LucideIcon, Star, Wrench } from "lucide-react";
+import { ArrowLeft, Blocks, BookOpen, Braces, Brain, Briefcase, Clock, Cloud, Code2, GraduationCap, LucideIcon, Star, Wrench } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function SkillsPage() {
     const [selectedCategory, setSelectedCategory] =
         useState<SkillCategory>("languages");
+    const router = useRouter();
 
     const getButtonClass = (category: SkillCategory) =>
     `w-fit flex-none py-2 px-4 rounded-lg border flex items-center justify-center transition-all duration-300 ease-out cursor-pointer select-none ${
@@ -70,6 +72,12 @@ export default function SkillsPage() {
         px-8 md:px-0
         pb-16 md:pb-8 lg:pb-16
         ">
+            {/* Return to Home Option */}
+            <div className='text-sm italic text-gray-400 dark:text-gray-600 my-2 flex flex-row gap-2 items-center hover:underline hover:cursor-pointer uppercase' onClick={() => {router.push("/")}}>
+                <ArrowLeft size={16}/>
+                <span>Return to Home</span>
+            </div>
+            
             {/* Page Header */}
             <div className="flex flex-col px-6 w-full h-fit items-center justify-center gap-3">
                 <h1 className="text-3xl tracking-wider font-bold uppercase mb-2 flex flex-row items-center gap-2">
