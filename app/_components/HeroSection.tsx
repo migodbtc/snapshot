@@ -79,6 +79,7 @@ export const HeroSection = () => {
           alt="Miguel Justin Bunda"
           className="object-cover object-top"
           loading="eager"
+          sizes="(max-width: 1024px) 100vw, 40vw"
           fill
         />
       </div>
@@ -100,6 +101,7 @@ export const HeroSectionSmall = () => {
           src="/images/hero_picture.jpg"
           alt="Miguel Justin Bunda"
           fill
+          sizes="256px"
           className="object-cover object-top"
         />
       </div>

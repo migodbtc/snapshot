@@ -1,6 +1,7 @@
 // SkillsSection: The dedicated section for the skills where there are subpages for the display depending
 
 import { LANGUAGE_CONSTS, FRAMEWORK_CONSTS, TOOL_CONSTS, PLATFORM_CONSTS } from "@/lib/constants";
+import { SkillCategory } from "@/lib/types/skills";
 import { Braces, Blocks, Wrench, Cloud, ArrowUpRight, LucideIcon } from "lucide-react";
 import { useState } from "react";
 
@@ -50,12 +51,6 @@ export const TechnologyCard = ({
 };
 
 // on the selected skill (i.e. languages is the default)
-type SkillCategory =
-  | "languages"
-  | "frameworks"
-  | "tools"
-  | "platforms";
-
 export const SkillsSection = () => {
   const [selectedCategory, setSelectedCategory] =
     useState<SkillCategory>("languages");

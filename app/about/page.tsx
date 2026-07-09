@@ -170,7 +170,7 @@ const SelectionCardModal = ({
           </div>
 
           {/* Body */}
-          <p className="my-2 text-justify">{mockHandle} {modalContent && modalContent.description}</p>
+          <p className="my-2 text-justify sm:text-sm md:text-base">{mockHandle} {modalContent && modalContent.description}</p>
 
           {/* Footer */}
           <div className="w-full border-t 

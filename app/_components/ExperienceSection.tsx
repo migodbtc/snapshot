@@ -247,6 +247,7 @@ export const ExperienceSection = () => {
                 fill
                 className="object-cover object-top"
                 loading="eager"
+                sizes="(max-width: 1024px) 75vw, 50vw"
               />
             </div>
           </div>
@@ -350,6 +351,7 @@ export const ExperienceSection = () => {
                 fill
                 className="object-cover object-top"
                 loading="eager"
+                sizes="100vw"
               />
             </div>
           </div>

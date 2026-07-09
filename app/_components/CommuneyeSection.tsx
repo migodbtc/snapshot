@@ -26,6 +26,7 @@ export const CommuneyeSection = () => {
             alt="Communeye Software"
             className="object-cover object-top"
             loading="eager"
+            sizes="(max-width: 1024px) 100vw, 40vw"
             fill
           />
         </div>
@@ -77,6 +78,7 @@ export const CommuneyeSectionSmall = () => {
               alt="Communeye Software"
               className="object-cover object-top"
               loading="eager"
+              sizes="70vw"
               fill
             />
           </div>
