@@ -288,35 +288,6 @@ export const EDUCATION_CONSTS = {
   },
 }
 
-export const EXPERIENCE_CONSTS = [
-  {
-    role: "Backend Development Intern",
-    company_name: "Rakso Creative Technologies",
-    shortened_date: "Jan 2026 to Apr 2026",
-    start_date: "January 2026",
-    finish_date: "April 2026",
-    technologies: [
-      "PHP",
-      "MySQL",
-      "Reactjs",
-      "TailwindCSS",
-      "Microsoft Azure",
-      "Laravel",
-      "TypeScript",
-      "Git",
-      "GitHub"
-    ],
-    achievements: [
-      "Operated under the 'CRM Development' Department as a Backend Developer & 'Azure Deployment' Department as a Cloud Developer",
-      "Learned and applied technologies such as Laravel (PHP), Tailwind, React (TypeScript), and more for the development of the CRM application",
-      "Developed Deter Analytics (see Projects) under the objective of learning about the Cloud and DevOps technologies and tools such as Microsoft Azure, IaC through Bicep, GitHub Workflows & Actions, Azure CLI, and more",
-      "Created design documentation and contributed to the architecture of the CRM application, such as making the user flowchart and database schema",
-      "Contributed to database refactoring, ORM scaffolding, API/route handling, backend-frontend-integration, etc.",
-      "Researched and developed Qualisync (see Projects) as part of a separate objective in order to improve technical expertise in disciplines such as QA, Automation, DevOps, Containerization/Virtualization, etc.",
-    ]
-  }
-]
-
 export const BLOG_POSTS = [
   {
     title: "Dealing with Career Unknowns Post-Graduation",

@@ -27,6 +27,7 @@ export const skillData: Record<SkillCategory, Skill[]> = {
         {
             name: "Python",
             icon: Binary,
+            preferred: true,
             timeSpent: "4 yrs",
             description: "Applied in backend services, automation scripts, and ML-driven projects.",
             sources: ["school", "self-study"],

@@ -1,10 +1,10 @@
 // ExperienceSection: The section containing all the experience I have professionally.
 // Not much to put considering I just graduated and finished a 3-month internship so, unfortunate.
 
-import { EXPERIENCE_CONSTS } from "@/lib/constants";
 import { Circle, X } from "lucide-react";
 import { useState } from "react";
 import Image from 'next/image';
+import { EXPERIENCE_CONSTS } from "@/lib/constants/experience";
 
 // TimelinePoint: Dedicated subcomponent to show different points in time for my journey
 type TimelinePointProps = {
@@ -14,7 +14,7 @@ type TimelinePointProps = {
   onClick?: () => void;
 };
 
-const TimelinePoint = ({
+export const TimelinePoint = ({
   role,
   date,
   position = "bottom",
