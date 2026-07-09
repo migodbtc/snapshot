@@ -1,16 +1,16 @@
 // EducationSection: Dedicated section for previewing education. Design is a split type with 
 
-import { EDUCATION_CONSTS } from "@/lib/constants";
+import { EDUCATION_CONSTS } from "@/lib/constants/education";
 import { School, ArrowUpRight, Medal } from "lucide-react";
 import { useState } from "react";
 
 // card on the left and timeline on the right.
-type EducationKey = keyof typeof EDUCATION_CONSTS;
+export type EducationKey = keyof typeof EDUCATION_CONSTS;
 
 export const EducationSection = () => {
   const [selectedInstitution, setSelectedInstitution] =
     useState<EducationKey>("college");
-  const preview = (({ college, shs, hs2 }) => ({ college, shs, hs2 }))(EDUCATION_CONSTS);
+  const preview = (({ college }) => ({ college }))(EDUCATION_CONSTS);
   const selected = EDUCATION_CONSTS[selectedInstitution];
 
   return (
@@ -23,10 +23,10 @@ export const EducationSection = () => {
 
       <div className="flex flex-row w-full h-144 items-start justify-center gap-2 pb-4 text-center mx-auto lg:max-w-6xl px-8 text-xs lg:text-base ">
 
-        <div className="flex-1 h-full">
+        <div className="flex flex-1 h-full pb-12">
           <div className="flex-1 text-left">
-            <div className="mx-auto max-w-7xl px-6 ">
-              <div className="ml-4 space-y-8 lg:space-y-12 border-l border-zinc-800 pt-8">
+            <div className="flex flex-1 mx-auto max-w-7xl px-6 ">
+              <div className="flex-1 h-full ml-4 space-y-12 lg:space-y-12 border-l border-zinc-800 py-[45%]">
                 {Object.entries(preview).map(([key, education]) => (
                   <button
                     key={key}
@@ -66,7 +66,7 @@ export const EducationSection = () => {
                   // onClick={() => setSelectedInstitution("hs2")}
                   className="rounded-xl cursor-pointer"
                 >
-                  <div className="relative pl-10 h-48 lg:h-32">
+                  <div className="relative pl-10 h-fit">
                     <div
                       className={`absolute -left-1.25 top-2 size-2.5 rounded-full ${
                         false
@@ -86,6 +86,7 @@ export const EducationSection = () => {
 
         <div className="flex-1 h-120 px-2 lg:px-4">
           <div className="w-full h-fit max-h-fill relative overflow-hidden rounded-xl border border-slate-300 dark:border-slate-800 backdrop-blur-md pt-0 overflow-y-auto [scrollbar:thin] [scrollbar-color:#52525b_transparent] [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-slate-600 hover:[&::-webkit-scrollbar-thumb]:bg-slate-500">
+
             <div className="absolute inset-0 -z-10 bg-radial from-slate-400/25 via-slate-200/20 to-transparent dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent" />
             <div className="flex flex-col h-full overflow-y-auto px-6 py-8 lg:px-8 gap-2">
               <span className="rounded-xl bg-rose-500 px-2 py-1 text-sm font-semibold text-slate-50 dark:bg-rose-800 w-fit">
@@ -128,7 +129,7 @@ export const EducationSectionSmall = () => {
   const [selectedInstitution, setSelectedInstitution] =
   useState<EducationKey | null>(null);
   const preview =
-    (({ college, shs, hs2 }) => ({ college, shs, hs2 }))(EDUCATION_CONSTS);
+    (({ college }) => ({ college }))(EDUCATION_CONSTS);
   const selected =
     selectedInstitution
       ? EDUCATION_CONSTS[selectedInstitution]
@@ -144,11 +145,11 @@ export const EducationSectionSmall = () => {
 
     {/* Timeline */}
     <div className="mx-auto w-full max-w-2xl px-6">
-      <div className="ml-4 border-l border-zinc-800 pt-8 space-y-8">
+      <div className="ml-4 border-l border-zinc-800 py-32 space-y-12">
         {Object.entries(preview).map(([key, education]) => (
           <button
             key={key}
-            onClick={() =>
+            onClick={() => 
               setSelectedInstitution(key as EducationKey)
             }
             className="w-full text-left cursor-pointer group"
@@ -163,20 +164,20 @@ export const EducationSectionSmall = () => {
                 transition-colors
               "/>
 
-              <span className="block text-xs text-zinc-500 font-mono mb-1">
+              <span className="block text-sm text-zinc-500 font-mono mb-1">
                 {education.date_range}
               </span>
 
-              <h4 className="flex items-center gap-2 text-sm font-medium">
+              <h4 className="flex items-center gap-2 text-lg font-medium">
                 <School />
                 {education.school_name}
               </h4>
 
-              <p className="text-xs text-zinc-500 my-1">
+              <p className="text-md text-zinc-500 my-1">
                 {education.subtitle}
               </p>
 
-              <p className="flex items-center gap-1 text-sm text-zinc-400 hover:underline">
+              <p className="flex items-center gap-1 text-md text-zinc-400 hover:underline">
                 View
                 <ArrowUpRight size={16}/>
               </p>
@@ -188,7 +189,7 @@ export const EducationSectionSmall = () => {
           // onClick={() => setSelectedInstitution("hs2")}
           className="rounded-xl cursor-pointer"
         >
-          <div className="relative pl-10 h-24">
+          <div className="relative pl-10 h-fit">
             <div
               className={`absolute -left-1.25 top-2 size-2.5 rounded-full ${
                 false

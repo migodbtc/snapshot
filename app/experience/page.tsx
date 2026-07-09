@@ -17,7 +17,7 @@ export default function ExperiencePage() {
         <section className="
         flex-1 flex flex-col
         w-full md:w-2xl lg:w-4xl
-        px-4 md:px-0
+        px-8 md:px-0
         pb-16 md:pb-8 lg:pb-16
         ">
             {/* Page Header */}
@@ -34,7 +34,7 @@ export default function ExperiencePage() {
             </p>
 
             {/* Timeline Component */}
-            <div className="relative h-24 lg:h-36 flex items-center mb-8">
+            <div className="relative h-fit pt-4 pb-12 flex items-center mb-8">
 
                 {/* Line */}
                 <div className="absolute h-px bg-rose-300 dark:bg-rose-950 w-full" />
@@ -54,7 +54,7 @@ export default function ExperiencePage() {
             </div>
 
             {/* Selection Component */}
-            <div className="flex-1 px-4">
+            <div className="flex-1">
                 
                 {/* Image Gallery. */}
                 <div
@@ -172,9 +172,10 @@ export default function ExperiencePage() {
                         </p>
                     </div>
 
+                    {/* Tooltip */}
                     <span className='text-sm italic text-gray-500'>Scroll to navigate achievements!</span>
 
-                    {/* Achievements -- */}
+                    {/* Achievements */}
                     <div className='mt-2'>
                         <ul
                             className="
