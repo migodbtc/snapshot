@@ -35,9 +35,6 @@ export default function Home() {
         {/* Blog Section */}
         <BlogSection />
 
-        {/* Communeye Section */}
-        <CommuneyeSection />
-
         {/* ContactSection */}
         <ContactSection />
 
@@ -63,9 +60,6 @@ export default function Home() {
         
         {/* Blog Section - Small */}
         <BlogSectionSmall />
-
-        {/* Communeye Section - Small */}
-        <CommuneyeSectionSmall />
 
         {/* Contact Section - Small */}
         <ContactSectionSmall />

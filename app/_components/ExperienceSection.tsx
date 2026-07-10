@@ -109,7 +109,7 @@ export const ExperienceSection = () => {
       </div>
 
       {/* Selected Experience - Large */}
-      <div className="hidden lg:block flex-1 ">
+      <div className="hidden lg:block flex-1 mx-12 ">
         <div
           className="
             flex h-full overflow-hidden
