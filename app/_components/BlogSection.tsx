@@ -2,6 +2,7 @@
 
 import { BLOG_POSTS } from "@/lib/constants";
 import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 
 // I.e. if I earned a new certification, etc
 type BlogCardProps = {
@@ -132,10 +133,10 @@ export const BlogSection = () => {
     {/* Footer/Hyperlink */}
     <div className="w-full mb-8 text-center text-base text-gray-800/90 dark:text-slate-50/90">
       Read all of my other blog posts{" "}
-      <a className="inline-flex items-start text-rose-800 dark:text-rose-500 hover:underline cursor-pointer">
+      <Link href="/blog" className="inline-flex items-start text-rose-800 dark:text-rose-500 hover:underline cursor-pointer">
         using this link right here
         <ArrowUpRight className="h-4 w-4 mt-0.5 -translate-y-0.5" />
-      </a>
+      </Link>
     </div>
     
   </section>
@@ -171,10 +172,10 @@ export const BlogSectionSmall = () => {
       {/* Footer */}
       <div className="mt-12 text-center text-sm text-gray-800/90 dark:text-slate-50/90">
         Read all of my other blog posts{" "}
-        <a className="inline-flex items-start text-rose-800 dark:text-rose-500 hover:underline cursor-pointer">
+        <Link href="/blog" className="inline-flex items-start text-rose-800 dark:text-rose-500 hover:underline cursor-pointer">
           using this link right here
           <ArrowUpRight className="h-4 w-4 mt-0.5 -translate-y-0.5" />
-        </a>
+        </Link>
       </div>
 
     </section>

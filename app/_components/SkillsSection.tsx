@@ -3,6 +3,7 @@
 import { LANGUAGE_CONSTS, FRAMEWORK_CONSTS, TOOL_CONSTS, PLATFORM_CONSTS } from "@/lib/constants";
 import { SkillCategory } from "@/lib/types/skills";
 import { Braces, Blocks, Wrench, Cloud, ArrowUpRight, LucideIcon } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
 
 // TechnologyCard: A unified card in order to deal with languages, frameworks, tools, and platforms.
@@ -189,10 +190,10 @@ export const SkillsSection = () => {
 
           <div className="w-full text-center text-base text-gray-800/90 dark:text-slate-50/90">
             Want to know more about what I can offer?{" "}
-            <a className="inline-flex items-start text-rose-800 dark:text-rose-500 hover:underline cursor-pointer">
+            <Link href="/skills" className="inline-flex items-start text-rose-800 dark:text-rose-500 hover:underline cursor-pointer">
               Head to the skills page here.
               <ArrowUpRight className="h-4 w-4 mt-0.5 -translate-y-0.5" />
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -369,10 +370,10 @@ export const SkillSectionSmall = () => {
 
           <div className="w-full text-center text-base text-gray-700/90 dark:text-slate-50/90">
             Want to know more about what I can offer?{" "}
-            <a className="inline-flex items-start text-rose-800 dark:text-rose-500 hover:underline cursor-pointer">
+            <Link href="/skills" className="inline-flex items-start text-rose-800 dark:text-rose-500 hover:underline cursor-pointer">
               Head to the skills page here.
               <ArrowUpRight className="h-4 w-4 mt-0.5 -translate-y-0.5" />
-            </a>
+            </Link>
           </div>
         </div>
       </div>

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Briefcase, Mail } from 'lucide-react';
 import Image from 'next/image';
 
@@ -32,7 +33,8 @@ export const HeroSection = () => {
           <Briefcase size={18}/>
           LinkedIn
           </button>
-        <button
+        <Link
+          href="/contact"
           className="
             group
             relative
@@ -69,7 +71,7 @@ export const HeroSection = () => {
 
           <Mail size={18} />
           Contact
-        </button>
+        </Link>
       </div>
     </div>
     <div className="flex flex-1 h-full items-center justify-center bg-radial from-rose-800 dark:from-slate-50/25 to-transparent to-70%">
@@ -131,7 +133,8 @@ export const HeroSectionSmall = () => {
           LinkedIn
         </button>
 
-        <button
+        <Link
+          href="/contact"
           className="
             group
             relative
@@ -169,7 +172,7 @@ export const HeroSectionSmall = () => {
 
           <Mail size={18} />
           Contact
-        </button>
+        </Link>
       </div>
     </div>
   </section>

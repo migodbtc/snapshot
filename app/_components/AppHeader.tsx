@@ -89,8 +89,8 @@ export default function AppHeader() {
             border border-slate-300
             dark:border-slate-800
             backdrop-blur-md
-            bg-slate-50/90
-            dark:bg-slate-950/70
+            bg-slate-50
+            dark:bg-slate-950
             p-6 lg:p-8
             transition-all duration-300
             ${

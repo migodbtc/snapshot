@@ -11,6 +11,7 @@ import {
   Newspaper,
   Eye,
 } from "lucide-react";
+import Link from "next/link";
 
 // Footer: The footer to be used throughout the website.
 export const AppFooter = () => {
@@ -59,40 +60,40 @@ export const AppFooter = () => {
             Navigation
           </h3>
 
-          <a className="flex items-center gap-2 hover:underline cursor-pointer">
+          <Link href="/about" className="flex items-center gap-2 hover:underline cursor-pointer">
             <User size={16} />
             About
-          </a>
+          </Link>
 
-          <a className="flex items-center gap-2 hover:underline cursor-pointer">
+          <Link href="/skills" className="flex items-center gap-2 hover:underline cursor-pointer">
             <Braces size={16} />
             Skills
-          </a>
+          </Link>
 
-          <a className="flex items-center gap-2 hover:underline cursor-pointer">
+          <Link href="/education" className="flex items-center gap-2 hover:underline cursor-pointer">
             <GraduationCap size={16} />
             Education
-          </a>
+          </Link>
 
-          <a className="flex items-center gap-2 hover:underline cursor-pointer">
+          <Link href="/experience" className="flex items-center gap-2 hover:underline cursor-pointer">
             <Briefcase size={16} />
             Experience
-          </a>
+          </Link>
 
-          <a className="flex items-center gap-2 hover:underline cursor-pointer">
+          <Link href="/blog" className="flex items-center gap-2 hover:underline cursor-pointer">
             <Newspaper size={16} />
             Blog
-          </a>
+          </Link>
 
-          <a className="flex items-center gap-2 hover:underline cursor-pointer">
+          <Link href="/communeye" className="flex items-center gap-2 hover:underline cursor-pointer">
             <Eye size={16} />
             Communeye
-          </a>
+          </Link>
 
-          <a className="flex items-center gap-2 hover:underline cursor-pointer">
+          <Link href="/contact" className="flex items-center gap-2 hover:underline cursor-pointer">
             <Mail size={16} />
             Contact
-          </a>
+          </Link>
         </div>
 
         {/* External Links */}
@@ -156,40 +157,40 @@ export const AppFooter = () => {
               Navigation
             </h3>
 
-            <a className="flex items-center gap-2 hover:underline cursor-pointer text-sm">
+            <Link href="/about" className="flex items-center gap-2 hover:underline cursor-pointer text-sm">
               <User size={14} />
               About
-            </a>
+            </Link>
 
-            <a className="flex items-center gap-2 hover:underline cursor-pointer text-sm">
+            <Link href="/skills" className="flex items-center gap-2 hover:underline cursor-pointer text-sm">
               <Braces size={14} />
               Skills
-            </a>
+            </Link>
 
-            <a className="flex items-center gap-2 hover:underline cursor-pointer text-sm">
+            <Link href="/education" className="flex items-center gap-2 hover:underline cursor-pointer text-sm">
               <GraduationCap size={14} />
               Education
-            </a>
+            </Link>
 
-            <a className="flex items-center gap-2 hover:underline cursor-pointer text-sm">
+            <Link href="/experience" className="flex items-center gap-2 hover:underline cursor-pointer text-sm">
               <Briefcase size={14} />
               Experience
-            </a>
+            </Link>
 
-            <a className="flex items-center gap-2 hover:underline cursor-pointer text-sm">
+            <Link href="/blog" className="flex items-center gap-2 hover:underline cursor-pointer text-sm">
               <Newspaper size={14} />
               Blog
-            </a>
+            </Link>
 
-            <a className="flex items-center gap-2 hover:underline cursor-pointer text-sm">
+            <Link href="/communeye" className="flex items-center gap-2 hover:underline cursor-pointer text-sm">
               <Eye size={14} />
               Communeye
-            </a>
+            </Link>
 
-            <a className="flex items-center gap-2 hover:underline cursor-pointer text-sm">
+            <Link href="/contact" className="flex items-center gap-2 hover:underline cursor-pointer text-sm">
               <Mail size={14} />
               Contact
-            </a>
+            </Link>
           </div>
 
           {/* External Links */}
