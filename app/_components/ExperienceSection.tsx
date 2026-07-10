@@ -103,7 +103,7 @@ export const ExperienceSection = () => {
 
       {/* Header */}
       <div className="flex flex-col px-6 mb-4 w-full h-fit items-center justify-center gap-3 mt-12">
-        <h1 className="text-2xl lg:text-4xl tracking-wider font-bold uppercase text-slate-400">
+        <h1 className="text-2xl lg:text-4xl tracking-wider font-bold uppercase text-slate-600 dark:text-slate-400">
           Experience
         </h1>
       </div>
@@ -535,7 +535,7 @@ export const ExperienceSectionSmall = () => {
 
       {/* Header */}
       <div className="flex flex-col px-6 w-full h-fit items-center justify-center gap-3 mt-12">
-        <h1 className="text-2xl lg:text-4xl tracking-wider font-bold uppercase text-slate-400">
+        <h1 className="text-2xl lg:text-4xl tracking-wider font-bold uppercase text-slate-600 dark:text-slate-400">
           Experience
         </h1>
       </div>

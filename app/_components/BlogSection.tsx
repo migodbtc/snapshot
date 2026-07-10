@@ -95,7 +95,7 @@ export const BlogSection = () => {
 
     {/* Header */}
     <div className="flex flex-col px-6 mb-4 w-full h-fit items-center justify-center mt-12">
-      <h1 className="text-2xl lg:text-4xl tracking-wider font-bold uppercase text-slate-400">
+      <h1 className="text-2xl lg:text-4xl tracking-wider font-bold uppercase text-slate-600 dark:text-slate-400">
         Blog
       </h1>
     </div>
@@ -147,7 +147,7 @@ export const BlogSectionSmall = () => {
       
       {/* Header */}
       <div className="flex flex-col items-center justify-center mt-12 mb-6">
-        <h1 className="text-2xl tracking-wider font-bold uppercase text-slate-400">
+        <h1 className="text-2xl lg:text-4xl tracking-wider font-bold uppercase text-slate-600 dark:text-slate-400">
           Blog
         </h1>
       </div>

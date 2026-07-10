@@ -1,319 +1,82 @@
-// ContactSection: A dedicated section where there is a form with captcha one can use to 
+// ContactSection
 
-import { Send, Briefcase, Mail, Code2 } from "lucide-react";
-import { useState } from "react";
+import { Send, Briefcase, Mail, Code2, ArrowRight, MessageCircleQuestion } from "lucide-react";
+import { useRouter } from "next/navigation";
 
-// email me. I don't know why you would email me. But here we go.
-const ContactButton = ({
-  icon: Icon,
-  label,
-  href,
-}: {
-  icon: React.ElementType;
-  label: string;
-  href?: string;
-}) => {
+export const ContactSection = () => {
+  const router = useRouter();
+
   return (
-    <button
-      onClick={() => href && window.open(href, "_blank")}
-      className="
-        text-xs lg:text-sm
-        group
-        relative
-        overflow-hidden
-        rounded-xl
-        border border-slate-300
-        dark:border-slate-800
-        backdrop-blur-md
-        py-2 px-4
-        flex flex-row gap-2
-        justify-center items-center
-        cursor-pointer
-        text-slate-900
-        dark:text-slate-50
-        transition-transform
-        duration-300
-        hover:scale-[1.02]
-      "
-    >
-      {/* Base glass layer, same as cards */}
-      <div className="absolute inset-0 -z-10 bg-radial from-slate-400/25 via-slate-200/20 to-transparent dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent" />
+    <section className="min-h-[60vh] md:min-h-[70vh] lg:min-h-[75vh] flex flex-col w-full h-fit overflow-hidden mb-16 md:mb-20 lg:mb-24 px-4 md:px-6 lg:px-8">
 
-      {/* Hover shine layer */}
+      {/* Header */}
+      <div className="flex flex-col px-6 mb-4 w-full h-fit items-center justify-center gap-3 mt-8 md:mt-10 lg:mt-12">
+        <h1 className="text-2xl lg:text-4xl tracking-wider font-bold uppercase text-slate-600 dark:text-slate-400">
+          Contact
+        </h1>
+      </div>
+
+      {/* CTA Card */}
       <div
         className="
-          absolute inset-0 -z-10
-          bg-radial from-slate-300/40 via-slate-200/10 to-transparent
-          dark:from-slate-400/30 dark:via-slate-300/10 dark:to-transparent
-          opacity-0
-          group-hover:opacity-100
-          transition-opacity
-          duration-300
-        "
-      />
-
-      <Icon size={18} />
-      {label}
-    </button>
-  );
-};
-
-const ContactForm = () => {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
-  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFormData((prev) => ({ ...prev, [e.target.id]: e.target.value }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus("sending");
-
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-
-      if (!res.ok) throw new Error("Failed to send");
-      setStatus("success");
-      setFormData({ name: "", email: "", message: "" });
-    } catch {
-      setStatus("error");
-    }
-  };
-
-  return (
-    <form
-      onSubmit={handleSubmit}
-      className="
-        group
-        relative
-        overflow-hidden
-        w-full
-        rounded-xl
-        border border-slate-300
-        dark:border-slate-800
-        backdrop-blur-md
-        p-4 md:p-6
-        flex flex-col
-        gap-2
-      "
-    >
-
-      {/* Glass base layer (Commented because background already has a gradient)
-      <div className="absolute inset-0 -z-10 bg-radial from-slate-400/25 via-slate-200/20 to-transparent dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent" /> */}
-
-      {/* Name */}
-      <div className="flex flex-col gap-1">
-        <label
-          htmlFor="name"
-          className="text-xs lg:text-sm text-slate-700 dark:text-slate-300"
-        >
-          Name
-        </label>
-        <input
-          id="name"
-          type="text"
-          value={formData.name}
-          onChange={handleChange}
-          placeholder="Juan Dela Cruz"
-          required
-          className="
-            rounded-lg
-            border border-slate-300
-            dark:border-slate-700
-            bg-slate-50/50
-            dark:bg-slate-900/50
-            px-3 py-2
-            text-sm
-            text-slate-900
-            dark:text-slate-50
-            placeholder:text-slate-400
-            dark:placeholder:text-slate-500
-            focus:outline-none
-            focus:border-rose-400
-            dark:focus:border-rose-700
-            transition-colors
-          "
-        />
-      </div>
-
-      {/* Email */}
-      <div className="flex flex-col gap-1">
-        <label
-          htmlFor="email"
-          className="text-xs lg:text-sm text-slate-700 dark:text-slate-300"
-        >
-          Email
-        </label>
-        <input
-          id="email"
-          type="email"
-          value={formData.email}
-          onChange={handleChange}
-          placeholder="juan@example.com"
-          required
-          className="
-            rounded-lg
-            border border-slate-300
-            dark:border-slate-700
-            bg-slate-50/50
-            dark:bg-slate-900/50
-            px-3 py-2
-            text-sm
-            text-slate-900
-            dark:text-slate-50
-            placeholder:text-slate-400
-            dark:placeholder:text-slate-500
-            focus:outline-none
-            focus:border-rose-400
-            dark:focus:border-rose-700
-            transition-colors
-          "
-        />
-      </div>
-
-      {/* Message */}
-      <div className="flex flex-col gap-1">
-        <label
-          htmlFor="message"
-          className="text-xs lg:text-sm text-slate-700 dark:text-slate-300"
-        >
-          Message
-        </label>
-        <textarea
-          id="message"
-          rows={4}
-          value={formData.message}
-          onChange={handleChange}
-          placeholder="What's on your mind?"
-          required
-          className="
-            rounded-lg
-            border border-slate-300
-            dark:border-slate-700
-            bg-slate-50/50
-            dark:bg-slate-900/50
-            px-3 py-2
-            text-sm
-            text-slate-900
-            dark:text-slate-50
-            placeholder:text-slate-400
-            dark:placeholder:text-slate-500
-            focus:outline-none
-            focus:border-rose-400
-            dark:focus:border-rose-700
-            transition-colors
-            resize-none
-          "
-        />
-      </div>
-
-      {/* Submit */}
-      <button
-        type="submit"
-        disabled={status === "sending"}
-        className="
-          mt-2
-          py-2 px-4
-          rounded-lg
-          bg-rose-800
-          hover:bg-rose-700
-          disabled:opacity-60
-          disabled:cursor-not-allowed
-          text-slate-50
-          text-sm
-          font-semibold
-          cursor-pointer
-          transition-colors
-          uppercase
-          flex
-          items-center
-          gap-2
+          relative
+          w-full max-w-md md:max-w-xl lg:max-w-2xl mx-auto
+          h-fit lg:aspect-video
+          overflow-hidden
+          rounded-xl
+          border border-slate-300
+          dark:border-slate-800
+          backdrop-blur-md
+          bg-slate-50/50
+          dark:bg-slate-950/30
+          p-6 md:p-7 lg:p-8
+          py-6 md:pt-8 lg:py-10
+          flex flex-col items-center
+          gap-3 md:gap-4
+          text-center
+          my-auto
           justify-center
         "
       >
-        <Send />
-        {status === "sending" ? "Sending..." : "Send Message"}
-      </button>
+        <div className="absolute inset-0 -z-10 bg-radial from-slate-300/40 via-slate-200/20 to-transparent dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent" />
 
-      {/* Status messages */}
-      {status === "success" && (
-        <p className="text-xs lg:text-sm text-rose-700 dark:text-rose-300">
-          Message sent! I'll get back to you soon.
-        </p>
-      )}
+        <MessageCircleQuestion size={28} className="md:hidden text-rose-800" />
+        <MessageCircleQuestion size={32} className="hidden md:block lg:hidden text-rose-800" />
+        <MessageCircleQuestion size={36} className="hidden lg:block text-rose-800" />
 
-      {status === "error" && (
-        <p className="text-xs lg:text-sm text-slate-700 dark:text-slate-300">
-          Something went wrong — please try again. (P.S. The form isn't working for now since I haven't scaffolded the endpoint ++ other stuff haha)
-        </p>
-      )}
-    </form>
-  );
-};
-
-export const ContactSection = () => {
-  return <section className="flex flex-col w-full h-fit overflow-hidden lg:mx-auto aspect-video  mb-8">
-
-    {/* Body */}
-    <div className="flex flex-row flex-1 w-full h-fill px-8 pb-8 gap-4 align-middle justify-center">
-
-      {/* Left Half */}
-      <div className="w-1/2 bg-transparent flex flex-col items-start justify-center py-2 px-4 lg:py-4 lg:px-6 gap-3">
-        <h1 className="text-2xl lg:text-4xl tracking-wide text-justify">
+        <h2 className="text-xl md:text-2xl lg:text-3xl tracking-wide">
           Got a concern in mind? <b className="text-rose-800">Let's connect!</b>
-        </h1>
-        <p className="text-md lg:text-lg text-gray-700 dark:text-gray-400 text-justify max-w-lg">
-          I'm always up for a conversation about software engineering, web development, or the industry in general. The form on the right sends a message straight to my email — or if you'd rather reach out directly, I've listed a few social links below.
+        </h2>
+
+        <p className="text-sm md:text-base text-gray-700 dark:text-gray-400 text-justify">
+          I'm always up for a conversation about software engineering, web development, or the industry in general. Send me a message directly, or reach out through one of the links below.
         </p>
-        <div className="w-full grid grid-cols-2 griw-rows-auto gap-2">
-          <ContactButton icon={Briefcase} label="Facebook" href="..." />
-          <ContactButton icon={Mail} label="LinkedIn" href="..." />
-          <ContactButton icon={Code2} label="GitHub" href="..." />
-          <ContactButton icon={Code2} label="Communeye IG" href="..." />
-        </div>
-      
-      </div>
 
-      {/* Right Half */}
-      <div className="w-1/2 flex items-center justify-center bg-radial from-slate-500/25 dark:from-slate-50/25 to-transparent to-70%">
-        <ContactForm />
-      </div>
-
-    </div>
-
-  </section>
-}
-
-export const ContactSectionSmall = () => {
-  return (
-    <section className="flex flex-col w-full h-fit overflow-hidden mb-8 px-8 mt-16">
-
-      {/* Text Block */}
-      <div className="w-full bg-transparent flex flex-col items-center justify-center py-4 gap-3 text-center">
-        <h1 className="text-2xl tracking-wide text-justify">
-          Got a concern in mind? <b className="text-rose-800">Let's connect!</b>
-        </h1>
-        <p className="text-sm text-gray-700 dark:text-gray-400 text-justify max-w-lg">
-          I'm always up for a conversation about software engineering, web development, or the industry in general. The form below sends a message straight to my email — or if you'd rather reach out directly, I've listed a few social links below.
-        </p>
-        <div className="w-full grid grid-cols-2 grid-rows-auto gap-2">
-          <ContactButton icon={Briefcase} label="Facebook" href="..." />
-          <ContactButton icon={Mail} label="LinkedIn" href="..." />
-          <ContactButton icon={Code2} label="GitHub" href="..." />
-          <ContactButton icon={Code2} label="Communeye IG" href="..." />
-        </div>
-      </div>
-
-      {/* Form */}
-      <div className="w-full flex items-center justify-center bg-radial from-slate-500/25 dark:from-slate-50/25 to-transparent to-70%">
-        <ContactForm />
+        {/* CTA Button — routes to full contact form */}
+        <button
+          onClick={() => router.push('/contact')}
+          className="
+            mt-2 md:mt-3 lg:mt-4
+            flex items-center gap-2 md:gap-2.5 lg:gap-3
+            rounded-xl
+            bg-rose-800
+            hover:bg-rose-700
+            transition-colors
+            cursor-pointer
+            px-4 py-2 md:px-6 md:py-3 lg:px-8 lg:py-4
+            text-sm md:text-base lg:text-lg
+            font-semibold
+            text-slate-50
+          "
+        >
+          <Send size={18} className="md:hidden" />
+          <Send size={20} className="hidden md:block lg:hidden" />
+          <Send size={22} className="hidden lg:block" />
+          Send a Message
+          <ArrowRight size={18} className="md:hidden" />
+          <ArrowRight size={20} className="hidden md:block lg:hidden" />
+          <ArrowRight size={22} className="hidden lg:block" />
+        </button>
       </div>
 
     </section>

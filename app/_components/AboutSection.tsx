@@ -38,7 +38,7 @@ export const AboutSection = () => {
 
   return <section className="w-full aspect-video flex flex-col pb-12">
     <div className="flex flex-col px-6 py-4 w-full h-fit items-center justify-center gap-3 ">
-      <h1 className="text-2xl lg:text-4xl tracking-wider font-bold uppercase text-slate-400">About Me</h1>
+      <h1 className="text-2xl lg:text-4xl tracking-wider font-bold uppercase text-slate-600 dark:text-slate-400">About Me</h1>
     </div>
     <div className="flex flex-1 w-full h-fill px-8 pb-8 gap-4 align-middle justify-center">
       <div className="flex-1 bg-transparent flex flex-col items-center py-2 px-4 lg:py-4 lg:px-6 gap-3">
@@ -77,7 +77,7 @@ export const AboutSectionSmall = () => {
   
   return <section className="w-full aspect-video flex flex-col pb-4">
     <div className="flex flex-col px-6 w-full h-fit items-center justify-center gap-3 ">
-      <h1 className="text-2xl lg:text-4xl tracking-wider font-bold uppercase text-slate-400">About Me</h1>
+      <h1 className="text-2xl lg:text-4xl tracking-wider font-bold uppercase text-slate-600 dark:text-slate-400">About Me</h1>
     </div>
     <div className="flex flex-col flex-1 w-full h-fill px-8 pb-8 gap-4 align-middle justify-center">
       <div className="flex-1 bg-transparent flex flex-col items-center py-2 px-4 lg:py-4 lg:px-6 gap-3">

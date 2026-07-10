@@ -6,7 +6,7 @@ import { SkillsSection, SkillSectionSmall } from "./_components/SkillsSection";
 import { CommuneyeSection, CommuneyeSectionSmall } from "./_components/CommuneyeSection";
 import { BlogSection, BlogSectionSmall } from "./_components/BlogSection";
 import { ExperienceSection, ExperienceSectionSmall } from "./_components/ExperienceSection";
-import { ContactSection, ContactSectionSmall } from "./_components/ContactSection";
+import { ContactSection } from "./_components/ContactSection";
 import AppLayout from "./_layouts/AppLayout";
 
 // Home: the default component to be exported, contains the entirety of the home page.
@@ -62,7 +62,7 @@ export default function Home() {
         <BlogSectionSmall />
 
         {/* Contact Section - Small */}
-        <ContactSectionSmall />
+        <ContactSection />
       </main>
     </AppLayout>
   );
