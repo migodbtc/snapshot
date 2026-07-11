@@ -107,7 +107,12 @@ export const BlogSection = () => {
       <div className="hidden lg:flex flex-1 gap-4 py-4 items-center justify-center mb-12">
         {/* Dynamic Rendering */}
         {BLOG_POSTS.map((post) => (
-          <BlogCard key={post.title} {...post} className="w-2/7" />
+          <BlogCard
+            key={post.title}
+            date={post.datetime}
+            {...post}
+            className="w-2/7"
+          />
         ))}
       </div>
 
@@ -115,7 +120,12 @@ export const BlogSection = () => {
       <div className="hidden sm:flex lg:hidden flex-1 gap-4 py-4 px-8 items-center justify-center mb-12">
         <div className="hidden sm:flex lg:hidden gap-4 py-4 px-8 justify-center mb-12">
           {BLOG_POSTS.slice(0, 2).map((post) => (
-            <BlogCard key={post.title} {...post} className="flex-1" />
+            <BlogCard
+              key={post.title}
+              date={post.datetime}
+              {...post}
+              className="flex-1"
+            />
           ))}
         </div>
       </div>
@@ -150,6 +160,7 @@ export const BlogSectionSmall = () => {
         {BLOG_POSTS.map((post) => (
           <BlogCard
             key={post.title}
+            date={post.datetime}
             {...post}
             className="
               w-80
