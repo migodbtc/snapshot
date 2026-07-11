@@ -55,7 +55,7 @@ export default function SkillsPage() {
     "absolute inset-0 -z-10 bg-radial from-slate-300/40 via-slate-200/20 to-transparent dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent";
 
   const iconWrapClass =
-    "aspect-square h-1/3 flex-none rounded-xl bg-slate-200 dark:bg-slate-900 flex items-center justify-center";
+    "aspect-square h-fit p-4 flex-none rounded-xl bg-slate-200 dark:bg-slate-900 flex items-center justify-center";
 
   const iconClass = "text-slate-500 dark:text-slate-200";
 
