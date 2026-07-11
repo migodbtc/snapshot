@@ -1,6 +1,6 @@
 // BlogSection: The section to contain blog posts regarding my professional career or progress
 
-import { BLOG_POSTS } from "@/lib/constants";
+import { BLOG_POSTS } from "@/lib/constants/blog";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 
@@ -55,13 +55,15 @@ const BlogCard = ({
         </span>
 
         {/* Paragraph Content */}
-        <p className="
+        <p
+          className="
         flex-1
         overflow-hidden
         md:mt-2 text-justify 
         text-sm md:text-lg lg:text-base 
         italic text-slate-700 dark:text-slate-300
-        ">
+        "
+        >
           {excerpt + "..."}
         </p>
 
@@ -92,60 +94,50 @@ const BlogCard = ({
 };
 
 export const BlogSection = () => {
-  return <section className="flex flex-col w-full h-fit overflow-hidden lg:mx-auto ">
+  return (
+    <section className="flex flex-col w-full h-fit overflow-hidden lg:mx-auto ">
+      {/* Header */}
+      <div className="flex flex-col px-6 mb-4 w-full h-fit items-center justify-center mt-12">
+        <h1 className="text-2xl lg:text-4xl tracking-wider font-bold uppercase text-slate-600 dark:text-slate-400">
+          Blog
+        </h1>
+      </div>
 
-    {/* Header */}
-    <div className="flex flex-col px-6 mb-4 w-full h-fit items-center justify-center mt-12">
-      <h1 className="text-2xl lg:text-4xl tracking-wider font-bold uppercase text-slate-600 dark:text-slate-400">
-        Blog
-      </h1>
-    </div>
-
-    {/* Body */}
-    <div className="hidden lg:flex flex-1 gap-4 py-4 items-center justify-center mb-12">
-      
-      {/* Dynamic Rendering */}
-      {BLOG_POSTS.map((post) => (
-        <BlogCard
-          key={post.title}
-          {...post}
-          className="w-2/7"
-        />
-      ))}
-
-    </div>
-
-    {/* Body - Medium/Tablet Resolutions */}
-    <div className="hidden sm:flex lg:hidden flex-1 gap-4 py-4 px-8 items-center justify-center mb-12">
-      
-      <div className="hidden sm:flex lg:hidden gap-4 py-4 px-8 justify-center mb-12">
-        {BLOG_POSTS.slice(0, 2).map((post) => (
-          <BlogCard
-            key={post.title}
-            {...post}
-            className="flex-1"
-          />
+      {/* Body */}
+      <div className="hidden lg:flex flex-1 gap-4 py-4 items-center justify-center mb-12">
+        {/* Dynamic Rendering */}
+        {BLOG_POSTS.map((post) => (
+          <BlogCard key={post.title} {...post} className="w-2/7" />
         ))}
       </div>
 
-    </div>
+      {/* Body - Medium/Tablet Resolutions */}
+      <div className="hidden sm:flex lg:hidden flex-1 gap-4 py-4 px-8 items-center justify-center mb-12">
+        <div className="hidden sm:flex lg:hidden gap-4 py-4 px-8 justify-center mb-12">
+          {BLOG_POSTS.slice(0, 2).map((post) => (
+            <BlogCard key={post.title} {...post} className="flex-1" />
+          ))}
+        </div>
+      </div>
 
-    {/* Footer/Hyperlink */}
-    <div className="w-full mb-8 text-center text-base text-gray-800/90 dark:text-slate-50/90">
-      Read all of my other blog posts{" "}
-      <Link href="/blog" className="inline-flex items-start text-rose-800 dark:text-rose-500 hover:underline cursor-pointer">
-        using this link right here
-        <ArrowUpRight className="h-4 w-4 mt-0.5 -translate-y-0.5" />
-      </Link>
-    </div>
-    
-  </section>
-}
+      {/* Footer/Hyperlink */}
+      <div className="w-full mb-8 text-center text-base text-gray-800/90 dark:text-slate-50/90">
+        Read all of my other blog posts{" "}
+        <Link
+          href="/blog"
+          className="inline-flex items-start text-rose-800 dark:text-rose-500 hover:underline cursor-pointer"
+        >
+          using this link right here
+          <ArrowUpRight className="h-4 w-4 mt-0.5 -translate-y-0.5" />
+        </Link>
+      </div>
+    </section>
+  );
+};
 
 export const BlogSectionSmall = () => {
   return (
     <section className="flex flex-col h-fit overflow-hidden mx-4 mb-8">
-      
       {/* Header */}
       <div className="flex flex-col items-center justify-center mt-12 mb-6">
         <h1 className="text-2xl lg:text-4xl tracking-wider font-bold uppercase text-slate-600 dark:text-slate-400">
@@ -172,12 +164,14 @@ export const BlogSectionSmall = () => {
       {/* Footer */}
       <div className="mt-12 text-center text-sm text-gray-800/90 dark:text-slate-50/90">
         Read all of my other blog posts{" "}
-        <Link href="/blog" className="inline-flex items-start text-rose-800 dark:text-rose-500 hover:underline cursor-pointer">
+        <Link
+          href="/blog"
+          className="inline-flex items-start text-rose-800 dark:text-rose-500 hover:underline cursor-pointer"
+        >
           using this link right here
           <ArrowUpRight className="h-4 w-4 mt-0.5 -translate-y-0.5" />
         </Link>
       </div>
-
     </section>
   );
 };
