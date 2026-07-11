@@ -1,10 +1,11 @@
 // ExperienceSection: The section containing all the experience I have professionally.
 // Not much to put considering I just graduated and finished a 3-month internship so, unfortunate.
 
-import { Circle, X } from "lucide-react";
+import { ArrowUpRight, Circle, X } from "lucide-react";
 import { useState } from "react";
-import Image from 'next/image';
+import Image from "next/image";
 import { EXPERIENCE_CONSTS } from "@/lib/constants/experience";
+import Link from "next/link";
 
 // TimelinePoint: Dedicated subcomponent to show different points in time for my journey
 type TimelinePointProps = {
@@ -18,7 +19,7 @@ export const TimelinePoint = ({
   role,
   date,
   position = "bottom",
-  onClick
+  onClick,
 }: TimelinePointProps) => {
   const isTop = position === "top";
 
@@ -35,9 +36,7 @@ export const TimelinePoint = ({
             text-center
           "
         >
-          <p className="text-sm lg:text-base font-semibold">
-            {role}
-          </p>
+          <p className="text-sm lg:text-base font-semibold">{role}</p>
 
           <p className="text-xs lg:text-sm text-gray-500 dark:text-gray-400 italic">
             ({date})
@@ -72,9 +71,7 @@ export const TimelinePoint = ({
             text-center
           "
         >
-          <p className="text-sm lg:text-base font-semibold">
-            {role}
-          </p>
+          <p className="text-sm lg:text-base font-semibold">{role}</p>
 
           <p className="text-xs lg:text-sm text-gray-500 dark:text-gray-400 italic">
             ({date})
@@ -86,21 +83,18 @@ export const TimelinePoint = ({
 };
 
 export const ExperienceSection = () => {
-  const [selectedExperience, setSelectedExperience] =
-    useState(EXPERIENCE_CONSTS[0]);
+  const [selectedExperience, setSelectedExperience] = useState(
+    EXPERIENCE_CONSTS[0],
+  );
 
-  const [isTechModalOpen, setIsTechModalOpen] =
-    useState(false);
+  const [isTechModalOpen, setIsTechModalOpen] = useState(false);
 
-  const visibleTechnologies =
-    selectedExperience.technologies.slice(0, 5);
+  const visibleTechnologies = selectedExperience.technologies.slice(0, 5);
 
-  const hiddenTechnologies =
-    selectedExperience.technologies.slice(5);
-  
+  const hiddenTechnologies = selectedExperience.technologies.slice(5);
+
   return (
     <section className="flex flex-col h-fit overflow-hidden mx-8 lg:mx-auto">
-
       {/* Header */}
       <div className="flex flex-col px-6 mb-4 w-full h-fit items-center justify-center gap-3 mt-12">
         <h1 className="text-2xl lg:text-4xl tracking-wider font-bold uppercase text-slate-600 dark:text-slate-400">
@@ -129,7 +123,8 @@ export const ExperienceSection = () => {
                 </h2>
 
                 <p className="text-sm italic text-slate-500 text-right">
-                  {selectedExperience.start_date} - {selectedExperience.finish_date}
+                  {selectedExperience.start_date} -{" "}
+                  {selectedExperience.finish_date}
                 </p>
               </div>
 
@@ -213,7 +208,8 @@ export const ExperienceSection = () => {
                       text-justify
                     "
                   >
-                    <Circle className="w-4 h-4 mt-2" /> <p className=" flex-1 mx-2">{item}</p>
+                    <Circle className="w-4 h-4 mt-2" />{" "}
+                    <p className=" flex-1 mx-2">{item}</p>
                   </li>
                 ))}
               </ul>
@@ -273,7 +269,8 @@ export const ExperienceSection = () => {
                 </h2>
 
                 <p className="text-sm italic text-slate-500 text-right">
-                  {selectedExperience.start_date} - {selectedExperience.finish_date}
+                  {selectedExperience.start_date} -{" "}
+                  {selectedExperience.finish_date}
                 </p>
               </div>
 
@@ -324,7 +321,7 @@ export const ExperienceSection = () => {
               </div>
             </div>
             <div
-            className="
+              className="
               w-full
               pb-4 pt-2
               flex
@@ -334,9 +331,9 @@ export const ExperienceSection = () => {
               dark:from-slate-300/20 dark:to-transparent
               to-75%
             "
-          >
-            <div
-              className="
+            >
+              <div
+                className="
                 w-[75%]
                 aspect-video
                 rounded-xl
@@ -344,17 +341,17 @@ export const ExperienceSection = () => {
                 overflow-hidden
                 
               "
-            >
-              <Image
-                src="/images/rakso_migo.jpg"
-                alt="Miguel Justin at the Rakso CT Office Logo"
-                fill
-                className="object-cover object-top"
-                loading="eager"
-                sizes="100vw"
-              />
+              >
+                <Image
+                  src="/images/rakso_migo.jpg"
+                  alt="Miguel Justin at the Rakso CT Office Logo"
+                  fill
+                  className="object-cover object-top"
+                  loading="eager"
+                  sizes="100vw"
+                />
+              </div>
             </div>
-          </div>
 
             <div>
               <ul
@@ -389,7 +386,8 @@ export const ExperienceSection = () => {
                       text-justify
                     "
                   >
-                    <Circle className="w-4 h-4 mt-2" /> <p className=" flex-1 mx-2">{item}</p>
+                    <Circle className="w-4 h-4 mt-2" />{" "}
+                    <p className=" flex-1 mx-2">{item}</p>
                   </li>
                 ))}
               </ul>
@@ -400,26 +398,35 @@ export const ExperienceSection = () => {
 
       {/* Timeline */}
       <div className="relative h-36 flex items-center mb-8">
-
         {/* Line */}
         <div className="absolute h-px bg-rose-300 dark:bg-rose-950 w-full" />
 
         {/* Points */}
         <div className="relative z-10 flex w-[60%] mx-auto justify-center">
-
-          {
-            EXPERIENCE_CONSTS.map((exp) => {
-              return <TimelinePoint
+          {EXPERIENCE_CONSTS.map((exp) => {
+            return (
+              <TimelinePoint
                 key={exp.role}
                 role={exp.role}
                 date={exp.shortened_date}
                 position="bottom"
                 onClick={() => setSelectedExperience(exp)}
               />
-            })
-          }
-
+            );
+          })}
         </div>
+      </div>
+
+      {/* Redirect to /experience */}
+      <div className="w-full text-center text-base text-gray-700/90 dark:text-slate-50/90">
+        More details regarding my experience{" "}
+        <Link
+          href="/experience"
+          className="inline-flex items-start text-rose-800 dark:text-rose-500 hover:underline cursor-pointer"
+        >
+          at the dedicated page here
+          <ArrowUpRight className="h-4 w-4 mt-0.5 -translate-y-0.5" />
+        </Link>
       </div>
 
       {/* Technologies Modal */}
@@ -461,19 +468,13 @@ export const ExperienceSection = () => {
 
             transition-all duration-300
 
-            ${
-              isTechModalOpen
-                ? "scale-100 opacity-100"
-                : "scale-95 opacity-0"
-            }
+            ${isTechModalOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"}
           `}
         >
           <div className="absolute inset-0 -z-10 bg-radial from-slate-400/50 via-slate-200/20 to-transparent dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent" />
 
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-xl font-bold">
-              Technologies Used
-            </h3>
+            <h3 className="text-xl font-bold">Technologies Used</h3>
 
             <button
               onClick={() => setIsTechModalOpen(false)}
@@ -518,21 +519,18 @@ export const ExperienceSection = () => {
 };
 
 export const ExperienceSectionSmall = () => {
-  const [selectedExperience, setSelectedExperience] =
-    useState(EXPERIENCE_CONSTS[0]);
+  const [selectedExperience, setSelectedExperience] = useState(
+    EXPERIENCE_CONSTS[0],
+  );
 
-  const [isTechModalOpen, setIsTechModalOpen] =
-    useState(false);
+  const [isTechModalOpen, setIsTechModalOpen] = useState(false);
 
-  const visibleTechnologies =
-    selectedExperience.technologies.slice(0, 5);
+  const visibleTechnologies = selectedExperience.technologies.slice(0, 5);
 
-  const hiddenTechnologies =
-    selectedExperience.technologies.slice(5);
+  const hiddenTechnologies = selectedExperience.technologies.slice(5);
 
   return (
     <section className="flex flex-col h-fit overflow-hidden mx-4 lg:mx-auto mb-8">
-
       {/* Header */}
       <div className="flex flex-col px-6 w-full h-fit items-center justify-center gap-3 mt-12">
         <h1 className="text-2xl lg:text-4xl tracking-wider font-bold uppercase text-slate-600 dark:text-slate-400">
@@ -542,30 +540,27 @@ export const ExperienceSectionSmall = () => {
 
       {/* Timeline */}
       <div className="relative h-24 flex items-center mb-8">
-
         {/* Line */}
         <div className="absolute h-px bg-rose-300 dark:bg-rose-950 w-full" />
 
         {/* Points */}
         <div className="relative z-10 flex w-[60%] mx-auto justify-center text-xs">
-
-          {
-            EXPERIENCE_CONSTS.map((exp) => {
-              return <TimelinePoint
+          {EXPERIENCE_CONSTS.map((exp) => {
+            return (
+              <TimelinePoint
                 key={exp.role}
                 role={exp.role}
                 date={exp.shortened_date}
                 position="bottom"
                 onClick={() => setSelectedExperience(exp)}
               />
-            })
-          }
-
+            );
+          })}
         </div>
       </div>
 
       {/* Selected Experience */}
-      <div className="flex-1">
+      <div className="flex-1 mb-8">
         <div
           className="
             flex h-full overflow-hidden
@@ -583,7 +578,8 @@ export const ExperienceSectionSmall = () => {
                 </h2>
 
                 <p className="text-xs italic text-slate-500 text-right">
-                  {selectedExperience.start_date} - {selectedExperience.finish_date}
+                  {selectedExperience.start_date} -{" "}
+                  {selectedExperience.finish_date}
                 </p>
               </div>
 
@@ -634,7 +630,7 @@ export const ExperienceSectionSmall = () => {
               </div>
             </div>
             <div
-            className="
+              className="
               w-full
               pb-4 pt-2
               flex
@@ -644,9 +640,9 @@ export const ExperienceSectionSmall = () => {
               dark:from-slate-300/20 dark:to-transparent
               to-75%
             "
-          >
-            <div
-              className="
+            >
+              <div
+                className="
                 w-full
                 aspect-video
                 rounded-xl
@@ -654,16 +650,16 @@ export const ExperienceSectionSmall = () => {
                 overflow-hidden
                 
               "
-            >
-              <Image
-                src="/images/rakso_migo.jpg"
-                alt="Miguel Justin at the Rakso CT Office Logo"
-                fill
-                className="object-cover object-top"
-                loading="eager"
-              />
+              >
+                <Image
+                  src="/images/rakso_migo.jpg"
+                  alt="Miguel Justin at the Rakso CT Office Logo"
+                  fill
+                  className="object-cover object-top"
+                  loading="eager"
+                />
+              </div>
             </div>
-          </div>
 
             <div>
               <ul
@@ -698,13 +694,26 @@ export const ExperienceSectionSmall = () => {
                       text-justify
                     "
                   >
-                    <Circle className="w-4 h-4 mt-2" /> <p className=" flex-1 mx-2">{item}</p>
+                    <Circle className="w-4 h-4 mt-2" />{" "}
+                    <p className=" flex-1 mx-2">{item}</p>
                   </li>
                 ))}
               </ul>
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Redirect to /experience */}
+      <div className="w-full text-center text-base text-gray-700/90 dark:text-slate-50/90">
+        More details regarding my experience{" "}
+        <Link
+          href="/experience"
+          className="inline-flex items-start text-rose-800 dark:text-rose-500 hover:underline cursor-pointer"
+        >
+          at the dedicated page here
+          <ArrowUpRight className="h-4 w-4 mt-0.5 -translate-y-0.5" />
+        </Link>
       </div>
 
       {/* Technologies Modal */}
@@ -746,19 +755,13 @@ export const ExperienceSectionSmall = () => {
 
             transition-all duration-300
 
-            ${
-              isTechModalOpen
-                ? "scale-100 opacity-100"
-                : "scale-95 opacity-0"
-            }
+            ${isTechModalOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"}
           `}
         >
           <div className="absolute inset-0 -z-10 bg-radial from-slate-400/50 via-slate-200/20 to-transparent dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent" />
 
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-xl font-bold">
-              Technologies Used
-            </h3>
+            <h3 className="text-xl font-bold">Technologies Used</h3>
 
             <button
               onClick={() => setIsTechModalOpen(false)}
