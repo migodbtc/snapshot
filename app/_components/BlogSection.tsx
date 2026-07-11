@@ -6,6 +6,7 @@ import Link from "next/link";
 
 // I.e. if I earned a new certification, etc
 type BlogCardProps = {
+  id: number;
   title: string;
   date: string;
   excerpt: string;
@@ -14,6 +15,7 @@ type BlogCardProps = {
 };
 
 const BlogCard = ({
+  id,
   title,
   date,
   excerpt,
@@ -46,9 +48,7 @@ const BlogCard = ({
       <div className="absolute inset-0 -z-10 bg-radial from-slate-400/25 via-slate-200/20 to-transparent dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent" />
 
       <div className="flex flex-col h-full overflow-y-auto p-4 lg:p-6 gap-2">
-        <h3 className="text-lg md:text-2xl lg:text-xl font-semibold text-justify">
-          {title}
-        </h3>
+        <h3 className="text-lg font-semibold text-justify">{title}</h3>
 
         <span className="rounded-xl bg-rose-800 px-2 py-1 text-xs font-semibold text-slate-50 w-fit">
           {date}
@@ -60,7 +60,7 @@ const BlogCard = ({
         flex-1
         overflow-hidden
         md:mt-2 text-justify 
-        text-sm md:text-lg lg:text-base 
+        text-base
         italic text-slate-700 dark:text-slate-300
         "
         >
@@ -81,7 +81,7 @@ const BlogCard = ({
 
         <div className="flex h-fit items-end justify-end pt-4">
           <a
-            href={href}
+            href={"/blog/" + (id - 1)}
             className="w-fit text-sm lg:text-md text-slate-700 dark:text-slate-300 cursor-pointer hover:underline flex flex-row items-start"
           >
             Read more
@@ -118,16 +118,14 @@ export const BlogSection = () => {
 
       {/* Body - Medium/Tablet Resolutions */}
       <div className="hidden sm:flex lg:hidden flex-1 gap-4 py-4 px-8 items-center justify-center mb-12">
-        <div className="hidden sm:flex lg:hidden gap-4 py-4 px-8 justify-center mb-12">
-          {BLOG_POSTS.slice(0, 2).map((post) => (
-            <BlogCard
-              key={post.title}
-              date={post.datetime}
-              {...post}
-              className="flex-1"
-            />
-          ))}
-        </div>
+        {BLOG_POSTS.slice(0, 2).map((post) => (
+          <BlogCard
+            key={post.title}
+            date={post.datetime}
+            {...post}
+            className="flex-1"
+          />
+        ))}
       </div>
 
       {/* Footer/Hyperlink */}

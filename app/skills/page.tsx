@@ -49,7 +49,7 @@ export default function SkillsPage() {
 
   // Subsection Card Classes
   const cardClass =
-    "relative sm:h-fit md:min-h-48 overflow-hidden flex flex-row gap-4 p-4 pb-4 rounded-xl border border-slate-300 dark:border-slate-800 backdrop-blur-md text-slate-700 dark:text-slate-300 text-sm";
+    "relative sm:h-fit md:min-h-48 overflow-hidden flex flex-row gap-4 p-4 rounded-xl border border-slate-300 dark:border-slate-800 backdrop-blur-md text-slate-700 dark:text-slate-300 text-sm";
 
   const cardGlowClass =
     "absolute inset-0 -z-10 bg-radial from-slate-300/40 via-slate-200/20 to-transparent dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent";
@@ -74,7 +74,7 @@ export default function SkillsPage() {
   const descriptionClass =
     "text-justify w-full text-gray-700 dark:text-gray-400 text-md";
 
-  const sourceRowClass = "flex flex-row flex-wrap gap-2";
+  const sourceRowClass = "flex flex-row flex-wrap gap-2 h-fit pb-4";
 
   const mutedBadgeClass =
     "flex items-center gap-1 py-1 px-2 rounded-xl border border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-400 text-xs";
@@ -120,12 +120,12 @@ export default function SkillsPage() {
         </p>
 
         {/* Skill Navigation Dock */}
-        <div className="flex flex-row w-full h-fit items-start justify-center gap-2 md:gap-4 pb-4 text-center text-sm md:text-md lg:text-lg">
+        <div className="flex flex-row w-full h-fit items-start justify-center gap-2 pb-4 text-center text-xs md:text-base">
           <button
             onClick={() => setSelectedCategory("languages")}
             className={getButtonClass("languages")}
           >
-            <Braces size={22} />
+            <Braces size={16} />
             <span className={getSpanClass("languages")}>Languages</span>
           </button>
 
@@ -133,7 +133,7 @@ export default function SkillsPage() {
             onClick={() => setSelectedCategory("frameworks")}
             className={getButtonClass("frameworks")}
           >
-            <Blocks size={22} />
+            <Blocks size={16} />
             <span className={getSpanClass("frameworks")}>Frameworks</span>
           </button>
 
@@ -141,7 +141,7 @@ export default function SkillsPage() {
             onClick={() => setSelectedCategory("tools")}
             className={getButtonClass("tools")}
           >
-            <Wrench size={22} />
+            <Wrench size={16} />
             <span className={getSpanClass("tools")}>Tools</span>
           </button>
 
@@ -149,7 +149,7 @@ export default function SkillsPage() {
             onClick={() => setSelectedCategory("platforms")}
             className={getButtonClass("platforms")}
           >
-            <Cloud size={22} />
+            <Cloud size={16} />
             <span className={getSpanClass("platforms")}>Platforms</span>
           </button>
         </div>
