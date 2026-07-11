@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const NAV_LINKS = [
   { label: "Home", icon: Home, href: "/" },
@@ -39,16 +40,29 @@ export default function AppHeader() {
 
   return (
     <div className="flex flex-row px-4 sm:px-8 py-4 w-full text-rose-800">
-
       {/* Header Title & Logo */}
       <div className="flex-1 my-auto">
-        <span className="font-bold text-lg sm:text-xl uppercase tracking-wide flex flex-row gap-2">
-          <span className="text-slate-950 dark:text-slate-50">MIGUEL</span>
-          <span className="text-slate-950 dark:text-slate-50 text-lg sm:text-xl">
-            <Code2 />
+        <div className="flex flex-col select-none">
+          <span className="font-bold text-xl uppercase tracking-wide flex flex-row gap-1">
+            <span className="text-slate-950 dark:text-slate-50 text-lg sm:text-xl">
+              <Image
+                src="/images/favicons/favicon-32x32.png"
+                alt="Site Icon"
+                width={28}
+                height={28}
+              />
+            </span>
+            <span className="text-slate-950 dark:text-slate-50 flex flex-row ">
+              SNAP<div className="text-rose-800">SHOT</div>
+            </span>
+            <span className="flex h-fill items-end text-sm text-slate-500">
+              BY MIGO
+            </span>
           </span>
-          <span>JUSTIN</span>
-        </span>
+          <span className="text-xs text-gray-700 dark:text-gray-400 uppercase tracking-wide font-semibold">
+            A Career-focused Website
+          </span>
+        </div>
       </div>
 
       {/* Hamburger Trigger (All Resolutions) */}
@@ -93,22 +107,22 @@ export default function AppHeader() {
             dark:bg-slate-950
             p-6 lg:p-8
             transition-all duration-300
-            ${
-              isMenuOpen
-                ? "scale-100 opacity-100"
-                : "scale-95 opacity-0"
-            }
+            ${isMenuOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"}
           `}
         >
           {/* Glass base layer */}
-          <div className="absolute inset-0 -z-10 bg-radial 
+          <div
+            className="absolute inset-0 -z-10 bg-radial 
           from-slate-500/20 via-slate-100 to-transparent 
-          dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent" />
+          dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent"
+          />
 
           {/* Modal Header */}
           <div className="flex items-center justify-between mb-2">
             <span className="font-bold text-lg uppercase tracking-wide flex flex-row gap-2 items-center">
-              <span className="text-slate-950 dark:text-slate-50">NAVIGATION</span>
+              <span className="text-slate-950 dark:text-slate-50">
+                NAVIGATION
+              </span>
             </span>
 
             <button
@@ -185,7 +199,6 @@ export default function AppHeader() {
           </div>
         </div>
       </div>
-
     </div>
   );
 }

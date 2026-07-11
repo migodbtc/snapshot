@@ -12,6 +12,7 @@ import {
   Eye,
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 // Footer: The footer to be used throughout the website.
 export const AppFooter = () => {
@@ -31,26 +32,34 @@ export const AppFooter = () => {
     >
       {/* Upper Layout - Medium/Large */}
       <div className="hidden sm:grid w-full lg:w-[90%] lg:mx-auto grid-cols-3 gap-8 py-4">
-
         {/* Branding */}
         <div className="flex flex-col gap-3">
-          <span className="font-bold text-xl uppercase tracking-wide flex flex-row gap-2 items-center">
-            <span className="text-slate-950 dark:text-slate-50">
-              MIGUEL
+          <div className="flex flex-col select-none">
+            <span className="font-bold text-xl uppercase tracking-wide flex flex-row gap-1">
+              <span className="text-slate-950 dark:text-slate-50 text-lg sm:text-xl">
+                <Image
+                  src="/images/favicons/favicon-32x32.png"
+                  alt="Site Icon"
+                  width={28}
+                  height={28}
+                />
+              </span>
+              <span className="text-slate-950 dark:text-slate-50 flex flex-row ">
+                SNAP<div className="text-rose-800">SHOT</div>
+              </span>
+              <span className="flex h-fill items-end text-sm text-slate-500">
+                BY MIGO
+              </span>
             </span>
-
-            <Code2
-              className="text-slate-950 dark:text-slate-50"
-            />
-
-            <span className="text-rose-800 dark:text-rose-500">
-              JUSTIN
+            <span className="text-xs text-gray-700 dark:text-gray-400 uppercase tracking-wide font-semibold">
+              A Career-focused Website
             </span>
-          </span>
+          </div>
 
           <p className="text-base text-slate-600 dark:text-slate-400 max-w-xs text-justify">
-            Information Technology graduate focused on application
-            development, software engineering, and continuous learning.
+            The personal portfolio of Miguel Justin Bunda — a software engineer
+            documenting his journey through building software, exploring
+            technology, and growing within the industry.
           </p>
         </div>
 
@@ -60,37 +69,58 @@ export const AppFooter = () => {
             Navigation
           </h3>
 
-          <Link href="/about" className="flex items-center gap-2 hover:underline cursor-pointer">
+          <Link
+            href="/about"
+            className="flex items-center gap-2 hover:underline cursor-pointer"
+          >
             <User size={16} />
             About
           </Link>
 
-          <Link href="/skills" className="flex items-center gap-2 hover:underline cursor-pointer">
+          <Link
+            href="/skills"
+            className="flex items-center gap-2 hover:underline cursor-pointer"
+          >
             <Braces size={16} />
             Skills
           </Link>
 
-          <Link href="/education" className="flex items-center gap-2 hover:underline cursor-pointer">
+          <Link
+            href="/education"
+            className="flex items-center gap-2 hover:underline cursor-pointer"
+          >
             <GraduationCap size={16} />
             Education
           </Link>
 
-          <Link href="/experience" className="flex items-center gap-2 hover:underline cursor-pointer">
+          <Link
+            href="/experience"
+            className="flex items-center gap-2 hover:underline cursor-pointer"
+          >
             <Briefcase size={16} />
             Experience
           </Link>
 
-          <Link href="/blog" className="flex items-center gap-2 hover:underline cursor-pointer">
+          <Link
+            href="/blog"
+            className="flex items-center gap-2 hover:underline cursor-pointer"
+          >
             <Newspaper size={16} />
             Blog
           </Link>
 
-          <Link href="/communeye" className="flex items-center gap-2 hover:underline cursor-pointer">
+          <Link
+            href="/communeye"
+            className="flex items-center gap-2 hover:underline cursor-pointer"
+          >
             <Eye size={16} />
             Communeye
           </Link>
 
-          <Link href="/contact" className="flex items-center gap-2 hover:underline cursor-pointer">
+          <Link
+            href="/contact"
+            className="flex items-center gap-2 hover:underline cursor-pointer"
+          >
             <Mail size={16} />
             Contact
           </Link>
@@ -126,68 +156,96 @@ export const AppFooter = () => {
 
       {/* Upper Layout - Small */}
       <div className="grid sm:hidden gap-6 py-4">
-
         {/* Branding */}
         <div className="flex flex-col gap-3">
-          <span className="font-bold text-2xl uppercase tracking-wide flex flex-row gap-2 items-center justify-center">
-            <span className="text-slate-950 dark:text-slate-50">
-              MIGUEL
+          <div className="flex flex-col select-none mx-auto">
+            <span className="font-bold text-xl uppercase tracking-wide flex flex-row gap-1">
+              <span className="text-slate-950 dark:text-slate-50 text-lg sm:text-xl">
+                <Image
+                  src="/images/favicons/favicon-32x32.png"
+                  alt="Site Icon"
+                  width={28}
+                  height={28}
+                />
+              </span>
+              <span className="text-slate-950 dark:text-slate-50 flex flex-row ">
+                SNAP<div className="text-rose-800">SHOT</div>
+              </span>
+              <span className="flex h-fill items-end text-sm text-slate-500">
+                BY MIGO
+              </span>
             </span>
-
-            <Code2
-              className="text-slate-950 dark:text-slate-50"
-            />
-
-            <span className="text-rose-800 dark:text-rose-500">
-              JUSTIN
+            <span className="w-fill text-center text-xs text-gray-700 dark:text-gray-400 uppercase tracking-wide font-semibold">
+              A Career-focused Website
             </span>
-          </span>
+          </div>
 
-          <p className="text-xs text-center text-slate-600 dark:text-slate-400">
-            Information Technology graduate focused on application
-            development and software engineering.
+          <p className="text-base text-center text-slate-600 dark:text-slate-400">
+            The personal portfolio of Miguel Justin Bunda — a software engineer
+            documenting his journey through building software, exploring
+            technology, and growing within the industry.
           </p>
         </div>
 
         <div className="grid grid-cols-2 gap-6">
-
           {/* Navigation */}
           <div className="flex flex-col gap-2">
             <h3 className="font-bold uppercase tracking-wide text-sm">
               Navigation
             </h3>
 
-            <Link href="/about" className="flex items-center gap-2 hover:underline cursor-pointer text-sm">
+            <Link
+              href="/about"
+              className="flex items-center gap-2 hover:underline cursor-pointer text-sm"
+            >
               <User size={14} />
               About
             </Link>
 
-            <Link href="/skills" className="flex items-center gap-2 hover:underline cursor-pointer text-sm">
+            <Link
+              href="/skills"
+              className="flex items-center gap-2 hover:underline cursor-pointer text-sm"
+            >
               <Braces size={14} />
               Skills
             </Link>
 
-            <Link href="/education" className="flex items-center gap-2 hover:underline cursor-pointer text-sm">
+            <Link
+              href="/education"
+              className="flex items-center gap-2 hover:underline cursor-pointer text-sm"
+            >
               <GraduationCap size={14} />
               Education
             </Link>
 
-            <Link href="/experience" className="flex items-center gap-2 hover:underline cursor-pointer text-sm">
+            <Link
+              href="/experience"
+              className="flex items-center gap-2 hover:underline cursor-pointer text-sm"
+            >
               <Briefcase size={14} />
               Experience
             </Link>
 
-            <Link href="/blog" className="flex items-center gap-2 hover:underline cursor-pointer text-sm">
+            <Link
+              href="/blog"
+              className="flex items-center gap-2 hover:underline cursor-pointer text-sm"
+            >
               <Newspaper size={14} />
               Blog
             </Link>
 
-            <Link href="/communeye" className="flex items-center gap-2 hover:underline cursor-pointer text-sm">
+            <Link
+              href="/communeye"
+              className="flex items-center gap-2 hover:underline cursor-pointer text-sm"
+            >
               <Eye size={14} />
               Communeye
             </Link>
 
-            <Link href="/contact" className="flex items-center gap-2 hover:underline cursor-pointer text-sm">
+            <Link
+              href="/contact"
+              className="flex items-center gap-2 hover:underline cursor-pointer text-sm"
+            >
               <Mail size={14} />
               Contact
             </Link>
@@ -195,9 +253,7 @@ export const AppFooter = () => {
 
           {/* External Links */}
           <div className="flex flex-col gap-2">
-            <h3 className="font-bold uppercase tracking-wide text-sm">
-              Links
-            </h3>
+            <h3 className="font-bold uppercase tracking-wide text-sm">Links</h3>
 
             <a className="flex items-center gap-2 hover:underline cursor-pointer text-sm">
               <Code size={14} />
