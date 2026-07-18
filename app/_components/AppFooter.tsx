@@ -20,16 +20,17 @@ export const AppFooter = () => {
   return (
     <footer
       className="
-        flex flex-col
-        px-8 md:px-8 
-        py-6
-        w-full
-        bg-slate-100
-        dark:bg-slate-950
-        border-t
-        border-slate-300
-        dark:border-slate-800
-      "
+    relative z-30
+    flex flex-col
+    px-8 md:px-8 
+    py-6
+    w-full
+    bg-slate-100
+    dark:bg-slate-950
+    border-t
+    border-slate-300
+    dark:border-slate-800
+  "
     >
       {/* Upper Layout - Medium/Large */}
       <div className="hidden sm:grid w-full lg:w-[90%] lg:mx-auto grid-cols-3 gap-8 py-4">

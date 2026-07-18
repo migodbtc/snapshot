@@ -14,7 +14,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Miguel Justin | Portfolio",
-  description: "Miguel Justin Bunda’s portfolio website, showcasing selected web projects, technical skills, professional experience, and contact information.",
+  description:
+    "Miguel Justin Bunda’s portfolio website, showcasing selected web projects, technical skills, professional experience, and contact information.",
 };
 
 export default function RootLayout({

@@ -42,7 +42,7 @@ export default function AppHeader() {
   };
 
   return (
-    <div className="flex flex-row px-4 sm:px-8 py-4 w-full text-rose-800">
+    <div className="relative z-30 flex flex-row px-4 sm:px-8 py-4 w-full text-rose-800">
       {/* Header Title & Logo */}
       <Link href="/" className="flex-1 my-auto cursor-pointer">
         <div className="flex flex-col select-none">
