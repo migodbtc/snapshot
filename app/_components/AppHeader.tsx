@@ -12,6 +12,7 @@ import {
   Menu,
   X,
   Home,
+  Laptop,
 } from "lucide-react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -23,6 +24,7 @@ const NAV_LINKS = [
   { label: "Skills", icon: Braces, href: "/skills" },
   { label: "Education", icon: GraduationCap, href: "/education" },
   { label: "Experience", icon: Briefcase, href: "/experience" },
+  { label: "Projects", icon: Laptop, href: "/projects" },
   { label: "Blog", icon: BookOpen, href: "/blog" },
   { label: "Communeye", icon: Eye, href: "/communeye" },
   { label: "Contact", icon: Mail, href: "/contact" },

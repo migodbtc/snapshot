@@ -10,6 +10,7 @@ import {
   Briefcase,
   Newspaper,
   Eye,
+  Laptop,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -99,6 +100,14 @@ export const AppFooter = () => {
           >
             <Briefcase size={16} />
             Experience
+          </Link>
+
+          <Link
+            href="/projects"
+            className="flex items-center gap-2 hover:underline cursor-pointer"
+          >
+            <Laptop size={16} />
+            Projects
           </Link>
 
           <Link
@@ -224,6 +233,14 @@ export const AppFooter = () => {
             >
               <Briefcase size={14} />
               Experience
+            </Link>
+
+            <Link
+              href="/projects"
+              className="flex items-center gap-2 hover:underline cursor-pointer text-sm"
+            >
+              <Laptop size={14} />
+              Projects
             </Link>
 
             <Link

@@ -89,9 +89,9 @@ export const ExperienceSection = () => {
 
   const [isTechModalOpen, setIsTechModalOpen] = useState(false);
 
-  const visibleTechnologies = selectedExperience.technologies.slice(0, 5);
+  const visibleTechnologies = selectedExperience.technologies.slice(0, 3);
 
-  const hiddenTechnologies = selectedExperience.technologies.slice(5);
+  const hiddenTechnologies = selectedExperience.technologies.slice(3);
 
   return (
     <section className="flex flex-col h-fit overflow-hidden mx-8 lg:mx-auto">
@@ -525,9 +525,9 @@ export const ExperienceSectionSmall = () => {
 
   const [isTechModalOpen, setIsTechModalOpen] = useState(false);
 
-  const visibleTechnologies = selectedExperience.technologies.slice(0, 5);
+  const visibleTechnologies = selectedExperience.technologies.slice(0, 3);
 
-  const hiddenTechnologies = selectedExperience.technologies.slice(5);
+  const hiddenTechnologies = selectedExperience.technologies.slice(3);
 
   return (
     <section className="flex flex-col h-fit overflow-hidden mx-4 lg:mx-auto mb-8">
