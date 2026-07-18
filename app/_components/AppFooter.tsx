@@ -35,7 +35,7 @@ export const AppFooter = () => {
       <div className="hidden sm:grid w-full lg:w-[90%] lg:mx-auto grid-cols-3 gap-8 py-4">
         {/* Branding */}
         <div className="flex flex-col gap-3">
-          <div className="flex flex-col select-none">
+          <Link href="/" className="flex flex-col select-none cursor-pointer">
             <span className="font-bold text-xl uppercase tracking-wide flex flex-row gap-1">
               <span className="text-slate-950 dark:text-slate-50 text-lg sm:text-xl">
                 <Image
@@ -45,7 +45,7 @@ export const AppFooter = () => {
                   height={28}
                 />
               </span>
-              <span className="text-slate-950 dark:text-slate-50 flex flex-row ">
+              <span className="text-slate-950 dark:text-slate-50 flex flex-row">
                 SNAP<div className="text-rose-800">SHOT</div>
               </span>
               <span className="flex h-fill items-end text-sm text-slate-500">
@@ -55,7 +55,7 @@ export const AppFooter = () => {
             <span className="text-xs text-gray-700 dark:text-gray-400 uppercase tracking-wide font-semibold">
               A Career-focused Website
             </span>
-          </div>
+          </Link>
 
           <p className="text-base text-slate-600 dark:text-slate-400 max-w-xs text-justify">
             The personal portfolio of Miguel Justin Bunda — a software engineer
@@ -167,7 +167,10 @@ export const AppFooter = () => {
       <div className="grid sm:hidden gap-6 py-4">
         {/* Branding */}
         <div className="flex flex-col gap-3">
-          <div className="flex flex-col select-none mx-auto">
+          <Link
+            href="/"
+            className="flex flex-col select-none mx-auto cursor-pointer"
+          >
             <span className="font-bold text-xl uppercase tracking-wide flex flex-row gap-1">
               <span className="text-slate-950 dark:text-slate-50 text-lg sm:text-xl">
                 <Image
@@ -177,7 +180,7 @@ export const AppFooter = () => {
                   height={28}
                 />
               </span>
-              <span className="text-slate-950 dark:text-slate-50 flex flex-row ">
+              <span className="text-slate-950 dark:text-slate-50 flex flex-row">
                 SNAP<div className="text-rose-800">SHOT</div>
               </span>
               <span className="flex h-fill items-end text-sm text-slate-500">
@@ -187,7 +190,7 @@ export const AppFooter = () => {
             <span className="w-fill text-center text-xs text-gray-700 dark:text-gray-400 uppercase tracking-wide font-semibold">
               A Career-focused Website
             </span>
-          </div>
+          </Link>
 
           <p className="text-base text-center text-slate-600 dark:text-slate-400">
             The personal portfolio of Miguel Justin Bunda — a software engineer

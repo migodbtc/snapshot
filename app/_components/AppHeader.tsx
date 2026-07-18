@@ -17,6 +17,7 @@ import {
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
 
 const NAV_LINKS = [
   { label: "Home", icon: Home, href: "/" },
@@ -43,7 +44,7 @@ export default function AppHeader() {
   return (
     <div className="flex flex-row px-4 sm:px-8 py-4 w-full text-rose-800">
       {/* Header Title & Logo */}
-      <div className="flex-1 my-auto">
+      <Link href="/" className="flex-1 my-auto cursor-pointer">
         <div className="flex flex-col select-none">
           <span className="font-bold text-xl uppercase tracking-wide flex flex-row gap-1">
             <span className="text-slate-950 dark:text-slate-50 text-lg sm:text-xl">
@@ -54,7 +55,7 @@ export default function AppHeader() {
                 height={28}
               />
             </span>
-            <span className="text-slate-950 dark:text-slate-50 flex flex-row ">
+            <span className="text-slate-950 dark:text-slate-50 flex flex-row">
               SNAP<div className="text-rose-800">SHOT</div>
             </span>
             <span className="flex h-fill items-end text-sm text-slate-500">
@@ -65,7 +66,7 @@ export default function AppHeader() {
             A Career-focused Website
           </span>
         </div>
-      </div>
+      </Link>
 
       {/* Hamburger Trigger (All Resolutions) */}
       <div className="flex justify-end">

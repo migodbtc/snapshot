@@ -398,7 +398,7 @@ export default function ProjectsSection() {
       const matchesYear =
         !yearFilter || project.startDate.startsWith(yearFilter);
       return matchesSearch && matchesSkill && matchesYear;
-    });
+    }).sort((a, b) => b.startDate.localeCompare(a.startDate));
   }, [searchQuery, skillFilter, yearFilter]);
 
   return (
