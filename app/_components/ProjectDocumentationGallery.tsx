@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 
 type GalleryView = "landscape" | "portrait";
 
@@ -34,10 +35,16 @@ export function ProjectDocumentationGallery({
   );
   const [visible, setVisible] = useState(true);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [mounted, setMounted] = useState(false);
 
   const activePictures =
     view === "landscape" ? landscapePictures : portraitPictures;
   const isModalOpen = activeIndex !== null;
+
+  // Portals need a browser document to attach to — guard for SSR
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Fade transition when switching between landscape / portrait
   useEffect(() => {
@@ -91,6 +98,136 @@ export function ProjectDocumentationGallery({
         ? null
         : (prev - 1 + activePictures.length) % activePictures.length,
     );
+
+  const modal = (
+    <div
+      className={`
+        fixed inset-0 z-50
+        flex items-center justify-center
+        bg-black/50
+        backdrop-blur-sm
+        transition-opacity duration-300
+        ${isModalOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}
+      `}
+      onClick={() => setActiveIndex(null)}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className={`
+          relative overflow-hidden
+          w-[90%]
+          max-w-3xl lg:max-w-5xl
+          rounded-xl
+          border border-slate-300
+          dark:border-slate-800
+          backdrop-blur-md
+          bg-slate-50
+          dark:bg-slate-950
+          p-4 sm:p-6
+          transition-all duration-300
+          ${isModalOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"}
+        `}
+      >
+        {/* Glass base layer */}
+        <div
+          className="absolute inset-0 -z-10 bg-radial 
+        from-slate-500/20 via-slate-100 to-transparent 
+        dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent"
+        />
+
+        {/* Modal Header */}
+        <div className="flex items-center justify-between mb-4">
+          <span className="font-bold text-sm uppercase tracking-wide flex flex-row gap-2 items-center text-slate-950 dark:text-slate-50">
+            <Camera size={16} className="text-rose-800" />
+            {activeIndex !== null
+              ? `${activeIndex + 1} / ${activePictures.length}`
+              : ""}
+          </span>
+
+          <button
+            onClick={() => setActiveIndex(null)}
+            className="
+              p-1.5
+              text-slate-700 dark:text-slate-300
+              hover:text-rose-800 dark:hover:text-rose-500
+              hover:bg-rose-50 dark:hover:bg-rose-950/30
+              rounded-md
+              transition-colors
+              cursor-pointer
+            "
+            aria-label="Close image preview"
+          >
+            <X size={20} />
+          </button>
+        </div>
+
+        {/* Image + nav arrows */}
+        {activePicture && (
+          <div className="relative w-full flex items-center justify-center">
+            {activePictures.length > 1 && (
+              <button
+                onClick={goPrev}
+                className="
+                  absolute left-0 z-10
+                  p-2 rounded-full
+                  bg-slate-50/80 dark:bg-slate-950/80
+                  border border-slate-300 dark:border-slate-800
+                  text-slate-700 dark:text-slate-300
+                  hover:text-rose-800 dark:hover:text-rose-500
+                  hover:border-rose-300 dark:hover:border-rose-800
+                  cursor-pointer
+                  transition-colors
+                "
+                aria-label="Previous image"
+              >
+                <ChevronLeft size={20} />
+              </button>
+            )}
+
+            <div
+              className={`
+                relative w-full rounded-lg overflow-hidden
+                bg-slate-200 dark:bg-slate-900
+                ${
+                  activePicture.orientation === "landscape"
+                    ? "aspect-video"
+                    : "aspect-[3/4] max-w-sm mx-auto"
+                }
+              `}
+            >
+              <Image
+                src={activePicture.imageRef}
+                alt=""
+                fill
+                className="object-contain"
+                sizes="90vw"
+              />
+            </div>
+
+            {activePictures.length > 1 && (
+              <button
+                onClick={goNext}
+                className="
+                  absolute right-0 z-10
+                  p-2 rounded-full
+                  bg-slate-50/80 dark:bg-slate-950/80
+                  border border-slate-300 dark:border-slate-800
+                  text-slate-700 dark:text-slate-300
+                  hover:text-rose-800 dark:hover:text-rose-500
+                  hover:border-rose-300 dark:hover:border-rose-800
+                  cursor-pointer
+                  transition-colors
+                "
+                aria-label="Next image"
+              >
+                <ChevronRight size={20} />
+              </button>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  );
 
   return (
     <div className="w-full flex flex-col gap-4">
@@ -162,134 +299,8 @@ export function ProjectDocumentationGallery({
         ))}
       </div>
 
-      {/* Lightbox modal — same glass/blur aesthetic as AppHeader nav modal */}
-      <div
-        className={`
-          fixed inset-0 z-50
-          flex items-center justify-center
-          bg-black/50
-          backdrop-blur-sm
-          transition-opacity duration-300
-          ${isModalOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}
-        `}
-        onClick={() => setActiveIndex(null)}
-      >
-        <div
-          onClick={(e) => e.stopPropagation()}
-          className={`
-            relative overflow-hidden
-            w-[90%]
-            max-w-3xl lg:max-w-5xl
-            rounded-xl
-            border border-slate-300
-            dark:border-slate-800
-            backdrop-blur-md
-            bg-slate-50
-            dark:bg-slate-950
-            p-4 sm:p-6
-            transition-all duration-300
-            ${isModalOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"}
-          `}
-        >
-          {/* Glass base layer */}
-          <div
-            className="absolute inset-0 -z-10 bg-radial 
-          from-slate-500/20 via-slate-100 to-transparent 
-          dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent"
-          />
-
-          {/* Modal Header */}
-          <div className="flex items-center justify-between mb-4">
-            <span className="font-bold text-sm uppercase tracking-wide flex flex-row gap-2 items-center text-slate-950 dark:text-slate-50">
-              <Camera size={16} className="text-rose-800" />
-              {activeIndex !== null
-                ? `${activeIndex + 1} / ${activePictures.length}`
-                : ""}
-            </span>
-
-            <button
-              onClick={() => setActiveIndex(null)}
-              className="
-                p-1.5
-                text-slate-700 dark:text-slate-300
-                hover:text-rose-800 dark:hover:text-rose-500
-                hover:bg-rose-50 dark:hover:bg-rose-950/30
-                rounded-md
-                transition-colors
-                cursor-pointer
-              "
-              aria-label="Close image preview"
-            >
-              <X size={20} />
-            </button>
-          </div>
-
-          {/* Image + nav arrows */}
-          {activePicture && (
-            <div className="relative w-full flex items-center justify-center">
-              {activePictures.length > 1 && (
-                <button
-                  onClick={goPrev}
-                  className="
-          absolute left-0 z-10
-          p-2 rounded-full
-          bg-slate-50/80 dark:bg-slate-950/80
-          border border-slate-300 dark:border-slate-800
-          text-slate-700 dark:text-slate-300
-          hover:text-rose-800 dark:hover:text-rose-500
-          hover:border-rose-300 dark:hover:border-rose-800
-          cursor-pointer
-          transition-colors
-        "
-                  aria-label="Previous image"
-                >
-                  <ChevronLeft size={20} />
-                </button>
-              )}
-
-              <div
-                className={`
-        relative w-full rounded-lg overflow-hidden
-        bg-slate-200 dark:bg-slate-900
-        ${
-          activePicture.orientation === "landscape"
-            ? "aspect-video"
-            : "aspect-[3/4] max-w-sm mx-auto"
-        }
-      `}
-              >
-                <Image
-                  src={activePicture.imageRef}
-                  alt=""
-                  fill
-                  className="object-contain"
-                  sizes="90vw"
-                />
-              </div>
-
-              {activePictures.length > 1 && (
-                <button
-                  onClick={goNext}
-                  className="
-          absolute right-0 z-10
-          p-2 rounded-full
-          bg-slate-50/80 dark:bg-slate-950/80
-          border border-slate-300 dark:border-slate-800
-          text-slate-700 dark:text-slate-300
-          hover:text-rose-800 dark:hover:text-rose-500
-          hover:border-rose-300 dark:hover:border-rose-800
-          cursor-pointer
-          transition-colors
-        "
-                  aria-label="Next image"
-                >
-                  <ChevronRight size={20} />
-                </button>
-              )}
-            </div>
-          )}
-        </div>
-      </div>
+      {/* Portal the modal to document.body to escape any ancestor stacking contexts */}
+      {mounted && createPortal(modal, document.body)}
     </div>
   );
 }

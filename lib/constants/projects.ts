@@ -20,7 +20,7 @@ export type Project = {
 export const PROJECT_INDEX: Project[] = [
   {
     projectId: 1,
-    projectName: "ARCHiVER: Digital Accession Record System",
+    projectName: "ARCHiVER",
     startDate: "2024-04",
     endDate: "2024-06",
     currentlyWorking: false,
@@ -87,7 +87,7 @@ export const PROJECT_INDEX: Project[] = [
   },
   {
     projectId: 2,
-    projectName: "Cerebral: Local Password Manager",
+    projectName: "Cerebral",
     startDate: "2024-06",
     endDate: "2024-12",
     currentlyWorking: false,
@@ -138,7 +138,7 @@ export const PROJECT_INDEX: Project[] = [
   },
   {
     projectId: 3,
-    projectName: "Midas Financial Tracker",
+    projectName: "Midas",
     startDate: "2024-11",
     endDate: "2025-03",
     currentlyWorking: false,
@@ -203,7 +203,7 @@ export const PROJECT_INDEX: Project[] = [
   },
   {
     projectId: 4,
-    projectName: "Bosledger: Accounting & Registrar System",
+    projectName: "Bosledger",
     startDate: "2025-09",
     endDate: "2025-10",
     currentlyWorking: false,
@@ -266,7 +266,7 @@ export const PROJECT_INDEX: Project[] = [
   },
   {
     projectId: 5,
-    projectName: "Apollo: Cross-Platform Fire Emergency Response System",
+    projectName: "Apollo",
     startDate: "2025-01",
     endDate: "2025-11",
     currentlyWorking: false,
@@ -504,7 +504,7 @@ export const PROJECT_INDEX: Project[] = [
     ],
     description:
       "A casual personal project modeled after current clinic web systems, using mostly mock data. Includes JWT authorization via cookies with flask-jwt-token and role-based access control. Tailwind CSS was used to build a proper landing page and dashboard layout, alongside developing Next.js proficiency with client-side rendering for pages and server-side rendering for requests to the Flask API. Involved building a custom Flask server architecture using blueprints, monkeypatch-based automated testing, auth middleware, data encryption/decryption, and a controller object inspired by Laravel 17. The database schema experimented with separating user authentication from user details and integrating audit logs within server operations, inspired by Supabase. Discontinued due to burnout, academic/career changes, and a desire to build beyond CRUD web applications.",
-    note: "",
+    note: "Estarossa was an incomplete project, born out of the curiosity of what happens if I expand my interest in Supabase-integrated development, along with practicing my capabilities in Next.js & Tailwind CSS. There, I said it, around this time I still did not learn my lesson from the burnouts originating way back to the three Flask-based projects I have.\n\nI had efforted on the  landing page way more than the actual features of the application, to which I had regretted. It was my first time for many things: actually using Nextjs better, color and design theory with Tailwind CSS, row-level security, authentication, and overall experimenting. The idea of the project was that it would serve as a clinic management system for the school's clinic (which was an area not covered deliberately by the Protocampus Development Group).\n\nEnded up burning out in the project, but I carry the skills with me to be used in the next projects. Especially since Nextjs has been used several times after along with Tailwind CSS and PostgreSQL/Supabase.",
     associatedWith: [],
   },
   {
@@ -582,7 +582,7 @@ export const PROJECT_INDEX: Project[] = [
     ],
     description:
       "A full-stack DevOps and QA automation platform built to explore manual and automated QA, version control practices, development standards, virtualization, orchestration, cloud, and configuration management. Centered on Fuchsia ATMS, a fictional apartment-tenant management application with a Next.js frontend, Flask API backend, JWT authentication, and a normalized MySQL database. Used script-based linting and formatting (Black, Flake8, ESLint, Prettier) via pyproject.toml and package.json, with Pytest and Flask Test Client for API testing and Vitest for UI component/integration testing. Integrated Taskfile.yml to batch shell commands across root and service levels, and orchestrated custom Docker images per service via docker-compose.yml, including a dedicated MySQL image. Incorporated AI agent-based development using AGENTS.md and structured prompts in VS Code Copilot. Version-controlled with GitHub, including branching and workflows.",
-    note: "",
+    note: "Qualisync was one of those projects which was started before my internship or on-the-job training. It wasn't like I had a finish line; I simply knew that I had technologies and modern industry concepts I wanted to try such as DevOps, quality assurance (and testing automation), containerization and orchestration, as well as configuration management in my own POV as a student.\n\nI would like to call this project a success on its own. At the end of the day, the success criterion was to be able to apply my knowledge to explore other areas of the software development life cycle other than development. It was also my first time decorating a README.md for a GitHub repository, and my first time to combine multiple technologies into one architecture that was not taught or mandated by the school (aside from React and Node, where I also self-taught).\n\nI ended up spending a lot of time in this project whenever I did not have anything to do in my internship... which was a lot of time considering that early on our agile sprint, a design document bottleneck was formed from our supervisor or our stand-in product owner. Once the design documents were approved though, it was easy for me to transition into building the custom-fit internal CRM tool, effectively making me lose time for Qualisync which led to its eventual wrap-up. ",
     associatedWith: [],
   },
   {
@@ -718,7 +718,7 @@ export const PROJECT_INDEX: Project[] = [
     ],
     description:
       "A cloud-native Laravel analytics application and CI/CD deployment pipeline built for data automation and analytics, using a monolithic Laravel backend with a React/Inertia frontend, spanning PHP, TypeScript/React, Vite, Tailwind CSS, and Bicep Infrastructure as Code. Features a containerized architecture with multi-stage Docker builds, Docker Compose orchestration, Nginx reverse proxying, PHP-FPM, and Supervisor process management. Built an automated GitHub Actions CI/CD pipeline for Docker image builds, Azure Container Registry pushes, and continuous deployment to Azure App Service. Provisioned enterprise-grade Azure infrastructure via Bicep IaC, including App Service, Container Registry, MySQL Flexible Server, Redis Cache, Virtual Networks, and private DNS, following GitOps practices. Includes a mock analytics dashboard with statistics, paginated/filterable user tables, data cleaning utilities (department normalization, duplicate detection), and license management with upgrade recommendations. Used Composer for PHP dependencies and pnpm with workspace configuration for a monorepo frontend, plus environment-based config management, GitHub Secrets for secret injection, and container-startup database migrations.",
-    note: "",
+    note: "Deter was the second project I had done in my internship aside from Qualisync, which was birthed of an idea as a bet with a classmate of mine who I share the internship with.\n\nHe had given me a copy of an old dataset concerning ~1600 rows of data. I challenged him on who will be able to make a data analytics dashboard faster with certain features and operations (cleaning, license check, user identification, etc). His medium was primarily Microsoft Excel, while mine was a classic Laravel monolith. I had lost the bet since it was clearly that it was easier to clean in Microsoft Excel and do other operations, but I was able to complete the web application on a respectable timeframe.\n\nAdditionally, Deter wasn't just composed of a monolithic Laravel application: it was also a cloud-native infrastructure project, with CI/CD using GitHub Actions and Docker imaging and containerization. I used Azure Bicep which was my first Infrastructure-as-Code/Domain-specific Language, and configured the environment so that my local GitHub repository could connect thru my Azure resource group using credentials in my secrets management.\n\nRunning my first CI/CD pipeline successfully to the cloud has been a magical experience for me, especially since Qualisync had really bad CI/CD and I couldn't maximize it properly since I hadn't deployed Qualisync. But with the project, I learned how to use CI/CD properly with GitHub Actions and Microsoft Azure. Sure, there were probably other ways to simplify the process, but I was ecstatic to see steps within my pipeline work incrementally. ",
     associatedWith: [],
   },
   {
@@ -804,7 +804,7 @@ export const PROJECT_INDEX: Project[] = [
     ],
     description:
       "A simulated case-study ERP system built around a mock talent agency, Meridian Nexus Group Ltd, with business requirements based on real-life data and research, solved by a fictional ERP solution called Polaris Engine. Built as a full-stack web engine on Next.js App Router with React 19, combining server-rendered routes, client UI, and API handlers in one codebase. Used Supabase (PostgreSQL, Auth, Storage) with server-side SSR clients for secure session handling. Designed a role-aware security model using PostgreSQL RLS policies across guest, talent, client, ops, finance, admin, and superadmin roles for least-privilege data access. Modeled a domain-first relational schema (profiles, talents, clients, contracts, vaults, vault files, feedback) with enums, constraints, and timestamps for data integrity, and automated lifecycle workflows via database triggers such as auto-creating contract vaults on finalization. Centralized auth flow through Next.js API routes and middleware-based route protection, with a CI/CD-ready stack via GitHub workflows and Vercel deployment hooks. Development became increasingly difficult as a solo developer working with PostgreSQL and Next.js's App Router structure, compounded by repeated Supabase rate limiting that blocked access to the app even in development, and growing friction switching between development and deployment environments.",
-    note: "",
+    note: "Meridian Nexus was an ambitious project, a full-on mock simulation of composed of three components: a simulated client (Meridian Nexus Group Ltd), a solo software engineer (me), and the product itself (Polaris Engine). As ambitious as that project was, it was the straw that broke the camel's back: I was completely messed up by scope creep, and it affected not only me but also the Communeye brand which was supposed to ship content based on the progress of Project Meridian Nexus or PMN.\n\nThis was when I learned I needed to slow down and actually plan things better. Admittedly, artificial intelligence inflated my own pride and confidence in learning technologies as efficient as possible without stopping to think on the reward gained and the core rationale of learning itself. I kept on building and building, empowered by modern LLM tooling, not knowing that the gap of what I could be building and what I pragmatically can achieve in a certain timeframe has been getting worse and worse. My head was pulled out of the clouds, and I was deprecating in some skills I had been building up for years at this point because of LLM abuse. I needed to take a step back in order to assess where I wanted to go as a developer, and how I can repair my relationship with properly learning, adapting, and applying my own knowledge as a software engineer.\n\nOn the more technical side, PMN had a web application as the product, but it also had a pipeline for development to production - an infrastructure built with Vercel, Supabase, and GitHub Actions runner. It was my first project where I had two Supabase environments which I actively used for both development and production, which helped in my overarching decoupling on how to properly work between environments (even as a single person).\n\nI am still quite proud of the progress of this system, and remains to me both an achievement to be proud of and a scar to remember.",
     associatedWith: [],
   },
   {
@@ -997,7 +997,7 @@ export const PROJECT_INDEX: Project[] = [
     ],
     description:
       "The official web portfolio of Miguel Justin Bunda, showcasing his work, experience, education, and personal reflections on the tech industry — clean and minimal by design, but built with intention. Built with TypeScript, Next.js, Tailwind CSS, and Lucide Icons, hosted on Vercel at migueljustin.vercel.app. Features a scrollable landing page with rich visuals and interactive components, with select sections expanding into dedicated subpages, each with its own distinct design. Fully responsive across web, tablet, and mobile, with light and dark mode that automatically adapts to device settings. Includes direct links to GitHub, LinkedIn, and other contact channels.",
-    note: "",
+    note: "I wonder what this project looks like?\n\nIn a serious note, this project wasn't supposed to be a long project but I ended up being passionate about this project for 3 weeks and running. Right now, I am writing this at midnight when I should be asleep simply because I wanted to ship the projects feature as soon as possible... and because it was genuinely fun for me to see this project come to life.\n\nI had a dream during my second year that I wanted to make a personal website and deploy it somehow, even if I had no idea how deployment even worked back then. Now, I am making my dream come to life before I open myself up to better opportunities. As I make this project, I am at a point in my life as a software engineer where I am able to just go with the flow wherever life takes me. I have no idea what type of SWE I would be: quality assurance, networking, cloud, DevOps, backend... who knows?\n\nBut at the very least, I am able to build something that my second year self wanted: A website which I can call my own. As you can tell, this is a simple, monolithic personal portfolio regarding my professional career. No APIs, no databases (yet), no cloud-native architecture, no system design, no polyglot programming, just a simple Next.js app with Tailwind CSS and Lucide icons deployed via Vercel (with a little bit of Sentry for observability, but I don't use it often if I am to be honest).\n\nI named this Snapshot because initially, it had no name. I just planned this as an untitled personal portfolio project, I did not expect I would be able to make something this refined - the result of years worth of academic and non-academic building, with an even better grasp in the future as I continue to grow. But if you have read up until this part of the website, I do hope my website leaves an effect on you, because this website is poured with genuine effort and interest in the industry applied into each line of code.",
     associatedWith: [],
   },
 ];
