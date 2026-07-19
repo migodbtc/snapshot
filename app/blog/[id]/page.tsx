@@ -17,11 +17,11 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
-type BlogPostPage = {
+type BlogPostPageProps = {
   params: Promise<{ id: string }>;
 };
 
-export default async function BlogPostPage({ params }: BlogPostPage) {
+export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { id } = await params;
   const idn = Number(id);
   const selectedPost = BLOG_POSTS[Number(id)];

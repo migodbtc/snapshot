@@ -51,7 +51,7 @@ const BlogCard = ({
         <h3 className="text-lg font-semibold text-justify">{title}</h3>
 
         <span className="rounded-xl bg-rose-800 px-2 py-1 text-xs font-semibold text-slate-50 w-fit">
-          {date}
+          {new Date(date).toDateString()}
         </span>
 
         {/* Paragraph Content */}
@@ -95,7 +95,7 @@ const BlogCard = ({
 
 export const BlogSection = () => {
   return (
-    <section className="flex flex-col w-full h-fit overflow-hidden lg:mx-auto ">
+    <section className="flex flex-col w-full h-fit overflow-hidden lg:mx-auto md:my-24">
       {/* Header */}
       <div className="flex flex-col px-6 mb-4 w-full h-fit items-center justify-center mt-12">
         <h1 className="text-2xl lg:text-4xl tracking-wider font-bold uppercase text-slate-600 dark:text-slate-400">

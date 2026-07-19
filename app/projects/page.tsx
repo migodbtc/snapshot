@@ -313,14 +313,27 @@ const ProjectSearchBar = ({
 const ProjectSnippetCard = ({ project }: { project: Project }) => {
   const visibleSkills = project.skills.slice(0, 3);
   const remainingCount = project.skills.length - visibleSkills.length;
+  const router = useRouter();
+
+  const thumbnailPicture = project.imageRefs.find((p) => p.thumbnail);
 
   return (
     <div className="relative w-full overflow-hidden flex flex-col rounded-xl border border-slate-300 dark:border-slate-800 backdrop-blur-md text-slate-700 dark:text-slate-300 text-sm transition hover:scale-105 cursor-pointer">
       {/* Glow */}
       <div className="absolute inset-0 -z-10 bg-radial from-slate-300/40 via-slate-200/20 to-transparent dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent" />
 
-      {/* Image header — placeholder solid block for now */}
-      <div className="relative w-full h-32 flex-none bg-slate-200 dark:bg-slate-900" />
+      {/* Image header */}
+      <div className="relative w-full h-32 flex-none bg-slate-200 dark:bg-slate-900">
+        {thumbnailPicture && (
+          <Image
+            src={thumbnailPicture.imageRef}
+            alt={`${project.projectName} thumbnail`}
+            fill
+            className="object-cover"
+            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+          />
+        )}
+      </div>
 
       {/* Content column */}
       <div className="flex flex-col flex-1 min-w-0 gap-2 justify-between p-4">
@@ -360,7 +373,7 @@ const ProjectSnippetCard = ({ project }: { project: Project }) => {
 
         {/* View more link */}
         <Link
-          href={`/projects/${encodeURIComponent(project.projectName)}`}
+          href={`/projects/${project.projectId}`}
           className="select-none flex items-center gap-1 text-xs font-semibold uppercase text-gray-500 hover:underline w-fit"
         >
           View more about this project
