@@ -17,16 +17,16 @@ export const ContactSection = () => {
   const router = useRouter();
 
   return (
-    <section className="min-h-[60vh] md:min-h-[70vh] lg:min-h-[75vh] flex flex-col w-full h-fit overflow-hidden mb-16 md:mb-20 lg:mb-24 px-4 md:px-6 lg:px-8">
-      <div className="flex-1 flex flex-col lg:flex-row gap-4 px-8 lg:px-0">
+    <section className="min-h-[60vh] md:min-h-[70vh] lg:min-h-[75vh] flex flex-col w-full h-fit overflow-hidden mb-16 md:mb-20 lg:mb-24 px-4 md:px-6 lg:px-8 mt-16 lg:mt-0">
+      <div className="flex-1 flex flex-col items-center lg:items-stretch lg:flex-row gap-4 px-8 lg:px-0">
         <div className="min-h-96 lg:flex-1 flex flex-col items-center lg:items-start justify-center gap-2 lg:gap-3">
-          <span className="text-lg lg:text-xl">
+          <span className="text-lg lg:text-xl text-center lg:text-left">
             Got a concern you want to discuss?
           </span>
-          <h1 className="font-semibold text-3xl lg:text-4xl text-rose-800">
+          <h1 className="font-semibold text-4xl text-rose-800 w-full text-center lg:text-left">
             Let's have a conversation!
           </h1>
-          <p className="text-justify w-md md:w-2xl lg:w-full text-gray-700 dark:text-gray-400 text-lg">
+          <p className="text-justify md:w-2xl lg:w-full text-gray-700 dark:text-gray-400 text-lg">
             Interested in my professional career or in similar topics? This
             website has a dedicated section for leaving a message, with my
             socials also included within the website. Click to button below to
@@ -38,7 +38,7 @@ export const ContactSection = () => {
             w-fit
             h-fill
             flex items-center justify-center
-            text-lg
+            text-sm lg:text-lg
             gap-4 mt-4
             py-3 px-5
             rounded-xl
@@ -57,7 +57,7 @@ export const ContactSection = () => {
             </button>
           </div>
         </div>
-        <div className="w-md md:w-2xl mx-auto lg:flex-1 flex items-center justify-center relative min-h-120">
+        <div className="w-full max-w-sm md:max-w-2xl lg:mx-auto lg:w-auto lg:flex-1 flex items-center justify-center relative min-h-120">
           {/* glow — bigger than the image, sits behind it */}
           <div
             className="absolute -inset-8 rounded-xl bg-radial 
@@ -67,9 +67,9 @@ export const ContactSection = () => {
           dark:to-transparent blur-xl
           "
           />
-          <div className="relative w-[60%] md:w-[40%] lg:w-[60%] aspect-3/4">
+          <div className="relative w-[60%] md:w-xl lg:w-[60%] aspect-3/4">
             {/* image — on top, clips its own corners */}
-            <div className="relative w-full h-full rounded-xl overflow-hidden animate-spin [animation-duration:30s]">
+            <div className="relative w-full h-full rounded-xl overflow-hidden">
               <Image
                 src="/images/polaroid.jpg"
                 alt="Polaroid"
