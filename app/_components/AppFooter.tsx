@@ -138,27 +138,41 @@ export const AppFooter = () => {
 
         {/* External Links */}
         <div className="flex flex-col gap-2">
-          <h3 className="font-bold uppercase tracking-wide text-slate-900 dark:text-slate-100">
-            External Links
-          </h3>
+          <h3 className="font-bold uppercase tracking-wide text-sm">Links</h3>
 
-          <a className="flex items-center gap-2 hover:underline cursor-pointer">
-            <Code size={16} />
+          <a
+            className="flex items-center gap-2 hover:underline cursor-pointer text-sm"
+            target="_blank"
+            href="https://www.github.com/migodbtc"
+          >
+            <Code size={14} />
             GitHub
           </a>
 
-          <a className="flex items-center gap-2 hover:underline cursor-pointer">
-            <BriefcaseBusinessIcon size={16} />
+          <a
+            className="flex items-center gap-2 hover:underline cursor-pointer text-sm"
+            target="_blank"
+            href="https://www.linkedin.com/in/migueljustin"
+          >
+            <BriefcaseBusinessIcon size={14} />
             LinkedIn
           </a>
 
-          <a className="flex items-center gap-2 hover:underline cursor-pointer">
-            <FileText size={16} />
+          <a
+            className="flex items-center gap-2 hover:underline cursor-pointer text-sm"
+            href="https://drive.google.com/file/d/1FneKVe1A4jso6aTLsWh6M8xKUowwf5OY/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FileText size={14} />
             Resume
           </a>
 
-          <a className="flex items-center gap-2 hover:underline cursor-pointer">
-            <Mail size={16} />
+          <a
+            className="flex items-center gap-2 hover:underline cursor-pointer text-sm"
+            href="mailto:migueljustin.bunda@gmail.com?subject=Inquiry%20via%20migueljustin.vercel.app"
+          >
+            <Mail size={14} />
             Email
           </a>
         </div>
@@ -276,22 +290,38 @@ export const AppFooter = () => {
           <div className="flex flex-col gap-2">
             <h3 className="font-bold uppercase tracking-wide text-sm">Links</h3>
 
-            <a className="flex items-center gap-2 hover:underline cursor-pointer text-sm">
+            <a
+              className="flex items-center gap-2 hover:underline cursor-pointer text-sm"
+              target="_blank"
+              href="https://www.github.com/migodbtc"
+            >
               <Code size={14} />
               GitHub
             </a>
 
-            <a className="flex items-center gap-2 hover:underline cursor-pointer text-sm">
+            <a
+              className="flex items-center gap-2 hover:underline cursor-pointer text-sm"
+              target="_blank"
+              href="https://www.linkedin.com/in/migueljustin"
+            >
               <BriefcaseBusinessIcon size={14} />
               LinkedIn
             </a>
 
-            <a className="flex items-center gap-2 hover:underline cursor-pointer text-sm">
+            <a
+              className="flex items-center gap-2 hover:underline cursor-pointer text-sm"
+              href="https://drive.google.com/file/d/1FneKVe1A4jso6aTLsWh6M8xKUowwf5OY/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FileText size={14} />
               Resume
             </a>
 
-            <a className="flex items-center gap-2 hover:underline cursor-pointer text-sm">
+            <a
+              className="flex items-center gap-2 hover:underline cursor-pointer text-sm"
+              href="mailto:migueljustin.bunda@gmail.com?subject=Inquiry%20via%20migueljustin.vercel.app"
+            >
               <Mail size={14} />
               Email
             </a>

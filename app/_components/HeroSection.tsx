@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { Briefcase, Mail } from "lucide-react";
+import { ArrowRight, Briefcase, Mail } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 // HeroSection: Dedicated section for the hero part of the portfolio.
 // Includes laptop/mobile/tablet responsive layouts.
@@ -21,8 +22,9 @@ export const HeroSection = () => {
           is necessary.{" "}
         </p>
         <div className="w-full flex flex-row gap-2">
-          <button
-            className="
+          <a href="https://www.linkedin.com/in/migueljustin" target="_blank">
+            <button
+              className="
             w-fit
             h-fill
             flex items-center justify-center
@@ -39,10 +41,12 @@ export const HeroSection = () => {
             cursor-pointer
             transition-colors
           "
-          >
-            <Briefcase size={18} />
-            LinkedIn
-          </button>
+            >
+              <Briefcase size={18} />
+              Chat Me on Linkedin!
+              <ArrowRight size={18} />
+            </button>
+          </a>
           <Link
             href="/contact"
             className="
@@ -124,8 +128,9 @@ export const HeroSectionSmall = () => {
           is necessary.
         </p>
         <div className="flex flex-col gap-2 items-center justify-center">
-          <button
-            className="
+          <a href="https://www.linkedin.com/in/migueljustin" target="_blank">
+            <button
+              className="
             w-full
             flex items-center justify-center
             gap-2
@@ -141,10 +146,12 @@ export const HeroSectionSmall = () => {
             cursor-pointer
             transition-colors
           "
-          >
-            <Briefcase size={18} />
-            LinkedIn
-          </button>
+            >
+              <Briefcase size={18} />
+              Chat Me on LinkedIn!
+              <ArrowRight size={18} />
+            </button>
+          </a>
 
           <Link
             href="/contact"
