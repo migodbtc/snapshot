@@ -94,6 +94,12 @@ const BlogCard = ({
 };
 
 export const BlogSection = () => {
+  const latest = BLOG_POSTS.sort((a, b) =>
+    Math.abs(new Date(a.datetime).getTime() - new Date(b.datetime).getTime()),
+  )
+    .slice(-3)
+    .toReversed();
+
   return (
     <section className="flex flex-col w-full h-fit overflow-hidden lg:mx-auto md:my-24">
       {/* Header */}
@@ -106,7 +112,7 @@ export const BlogSection = () => {
       {/* Body */}
       <div className="hidden lg:flex flex-1 gap-4 py-4 items-center justify-center mb-12">
         {/* Dynamic Rendering */}
-        {BLOG_POSTS.map((post) => (
+        {latest.map((post) => (
           <BlogCard
             key={post.title}
             date={post.datetime}
@@ -118,7 +124,7 @@ export const BlogSection = () => {
 
       {/* Body - Medium/Tablet Resolutions */}
       <div className="hidden sm:flex lg:hidden flex-1 gap-4 py-4 px-8 items-center justify-center mb-12">
-        {BLOG_POSTS.slice(0, 2).map((post) => (
+        {latest.slice(0, 2).map((post) => (
           <BlogCard
             key={post.title}
             date={post.datetime}

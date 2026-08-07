@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "deploy:prod": "pnpm dlx vercel --prod"
   },
   "dependencies": {
     "@marsidev/react-turnstile": "^1.5.3",
