@@ -141,7 +141,7 @@ export default async function SingleProjectPage({
               className="text-sm italic text-gray-600 dark:text-gray-500 font-semibold my-2 flex flex-row gap-2 items-center hover:underline hover:cursor-pointer uppercase"
             >
               <ArrowLeft size={16} />
-              <span>Read Previous Post</span>
+              <span>Read Previous Project</span>
             </Link>
           )}
 
@@ -150,7 +150,7 @@ export default async function SingleProjectPage({
               href={`/projects/${idn + 1}`}
               className="text-sm italic text-gray-600 dark:text-gray-500 font-semibold my-2 flex flex-row gap-2 items-center hover:underline hover:cursor-pointer uppercase text-right justify-end"
             >
-              <span>Read Next Post</span>
+              <span>Read Next Project</span>
               <ArrowRight size={16} />
             </Link>
           )}

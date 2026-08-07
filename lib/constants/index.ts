@@ -52,7 +52,7 @@ export const ABOUT_ME_INFO: {
   {
     icon: BookOpen,
     title: "Currently Studying",
-    value: "Intro to Networking",
+    value: "QA Automation",
   },
   {
     icon: Coffee,
@@ -66,8 +66,8 @@ export const ABOUT_ME_INFO: {
   },
   {
     icon: Target,
-    title: "Goals",
-    value: "Max out life stats",
+    title: "Yearly Goal",
+    value: "First Job",
   },
 ];
 

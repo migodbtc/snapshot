@@ -3,8 +3,11 @@ import dedent from "dedent";
 export enum BlogPostTopic {
   Reflection = "Reflection",
   Industry = "Industry",
+  Technical = "Technical",
+  Career = "Career",
+  Opinion = "Opinion",
+  Learning = "Learning",
 }
-
 export type BlogPost = {
   id: number;
   title: string;
@@ -15,6 +18,7 @@ export type BlogPost = {
 };
 
 export const BLOG_POSTS: BlogPost[] = [
+  // Dealing with Career Unknowns Post-Graduation
   {
     id: 1,
     title: "Dealing with Career Unknowns Post-Graduation",
@@ -38,6 +42,7 @@ export const BLOG_POSTS: BlogPost[] = [
       `,
   },
 
+  // Looking at 'What Works' as Someone Who Looked at 'What's Hyped'
   {
     id: 2,
     title:
@@ -74,6 +79,7 @@ export const BLOG_POSTS: BlogPost[] = [
     `,
   },
 
+  // Learning to Slow Down in the Age of Artificial Intelligence
   {
     id: 3,
     title: "Learning to Slow Down in the Age of Artificial Intelligence",
@@ -113,5 +119,33 @@ export const BLOG_POSTS: BlogPost[] = [
 
       I genuinely enjoy working with AI. I built a Retrieval-Augmented Generation project because I was fascinated by how these systems work, from document ingestion to retrieval and response generation. My appreciation for AI has only grown over time. If there's one lesson I'd want others to take from my experience, it's this: don't lose confidence in your own ability to think, create, and solve problems. Let AI strengthen your craftsmanship—not replace it.
       `,
+  },
+
+  // Job Market in the Big 2026
+  {
+    id: 4,
+    title: "Job Market in the Big 2026",
+    datetime: "2026-08-08T23:32:00+08:00",
+    topic: BlogPostTopic.Career,
+    read_time: "5 min read",
+    excerpt: dedent`
+    Writing this at 11 in the evening, completely drained from mass applying, talking with people in my circle about career, planning for next week, and trying to keep up with everything else in life.
+
+    There is a storm in the Philippines right now, so my day-to-day has been limited. Maybe that is part of why I have been feeling more effective lately. Maybe it is also why I have been feeling more tired.
+
+    Still, I think it is a privilege that I have been able to focus on finding the right job and searching for an offer that could set me up for the next few months, or maybe even the next few years. I do not know yet, and that uncertainty is part of the weight I have been carrying.
+
+    A lot of the people around me are thinking about their first job too, and I include myself in that. What has helped me lately is learning to let some things go and accept that not everything is under my control. Worry still shows up, especially when I think about batchmates who already got hired, but I have also been trying to stay grounded in the progress I can make every day.
+
+    What this season has taught me is that I am in a very unusual position. I am competing in a market full of fresh graduates, unemployed professionals, and already working people trying to move forward. The standards have changed too. It is no longer just about being able to code. It is about adapting, collaborating, deploying, building a portfolio, and proving that you can work in a real environment.
+
+    I am aware that I do not come from a big-name university, I do not have industry connections to lean on, and I do not have much of a public reputation yet. That can feel discouraging, but I am not writing this to ask for pity. I am writing it because I know the cards I was dealt, and I am trying to play them as honestly and as well as I can.
+
+    For me, that usually means leaning on the technical foundation I built over the past four years and learning how to present myself better as a professional. It may not always feel impressive in the moment, but I trust that consistency will matter more than noise in the long run.
+
+    I do not need to be the most successful software engineer overnight. I just need to keep moving forward, keep learning, and keep showing up. In time, my record will speak for itself.
+
+    For now, I will keep my head down, stay in my lane, and keep going. To every job seeker out there, I hope we find our first break sooner than expected.
+  `,
   },
 ];
