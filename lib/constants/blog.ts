@@ -148,4 +148,44 @@ export const BLOG_POSTS: BlogPost[] = [
     For now, I will keep my head down, stay in my lane, and keep going. To every job seeker out there, I hope we find our first break sooner than expected.
   `,
   },
+
+  // The Line Was Never Straight
+  {
+    id: 5,
+    title: "The Skewed Linearity of My Software Engineering Progression",
+    datetime: "2026-08-09T16:38:00+08:00",
+    topic: BlogPostTopic.Reflection,
+    read_time: "6 min read",
+    excerpt: dedent`
+      A few months ago, I believed in a straight line.
+
+      Study hard. Ace the classes. Apply everywhere. Land a job. That was the whole model. In my head, the pitch practically wrote itself: who wouldn't hire someone who just graduated with a high GWA, a Latin honor, a project portfolio, a GitHub, a LinkedIn ready to be clicked through?
+
+      For many, that sounds too naive and some could say my head's in the clouds; I'd cringe too, reading it back — but I don't think there was any way to revert it except by living it.
+
+      Eventually that 'straight line' of a career progression broke fast. Not dramatically, just steadily — the way most disillusionment happens, in small accumulating data points rather than one blow.
+
+      Some of it I saw coming, because my batchmates had already named it: the industry oversaturated, entry-level bars set absurdly high, external hiring feeling like a coin dropped into an ocean while internal hiring quietly does the real work, and the specific exhaustion of being unemployed for months with no clear feedback loop telling you what you're doing wrong. I agreed with most of it, even more now as I have matured.
+
+      What I hadn't accounted for was the internal weather that comes with it — the two questions that started showing up on loop during the search: How do I manage my well-being through something this uncertain? How do I even know I'm doing the right things?
+
+      I don't have answers to either that would be a 100% complete. That being said, the more I continue on with uncertainty, the more I learned about letting go of anxiety and ruthlessly keep going without overboarding or overloading myself. It's certainly not a perfect system with ideal processes, but it's something that has returns. Returns which have gotten me a few things on the calendar for the next week.
+
+      Somewhere in that stretch, the more useful realization arrived — not about the job market, but about myself: I know what I have, and I know what I don't. And a fair amount of what I do have — the portfolio, the habits, the vocabulary to even talk about this industry — isn't purely my own effort. It's downstream of the people and environment I happened to land in, which came with their own advantages and their own blind spots.
+
+      That's the part my college-era hubris couldn't see. The straight-line model assumes a level field. It isn't one. Leverage exists, and it accrues to some people almost by default while others stay completely blind to it. If there's a goal underneath all of this, it's to stop being the latter and start becoming the former — not by chasing salary and titles harder, but by actually learning, adapting, connecting, staying in the room long enough to understand how the room works.
+
+      Here's the part I still can't fully explain, even to myself: none of this has made me want out.
+
+      I read Designing Data-Intensive Applications and Google's SRE handbook not because someone assigned them, but because I wanted to understand the shape of the profession from the inside — even books I haven't technically finished still sharpen how I see the field. I take notes on engineering culture in the US, in Europe, and at home, trying to triangulate what's actually true versus what's just loudly repeated.
+
+      What keeps pulling me back is a belief that software isn't only the thing tech companies sell — it's a process multiplier for almost everything else. Automation, better data, sharper analytics, applied to sectors where software isn't the product but the quiet infrastructure underneath one. I think that's what I was actually chasing when I told myself I wanted a straight-line career: not the job itself, but the scale of what the tool can do once you understand it well enough to point it at something that matters.
+
+      I'm aware I'm writing this at a point where everything could still fall apart in a few weeks — that's not false modesty, it's just the actual state of things. But I've noticed I have more endurance for that uncertainty than I did a year ago, and more clarity about why I'm willing to sit in it. This is one of the few things I'm genuinely comfortable suffering for.
+
+      That said, I'm trying not to let it be the only thing I'm building. I'm still recovering from a motorcycle accident, and getting my body moving again — walking more, eating better, rebuilding basic fitness — has ended up teaching me the same lesson the job search is: progress that isn't linear isn't the same as progress that isn't happening.
+
+      Maybe next time I write one of these, it'll be from the other side of an offer letter. Until then — the line was never straight. I'm just getting better at walking it anyway.
+    `,
+  },
 ];
