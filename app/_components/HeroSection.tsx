@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 // Includes laptop/mobile/tablet responsive layouts.
 export const HeroSection = () => {
   return (
-    <section className="w-full aspect-video flex flex-row mb-8">
+    <section className="w-full aspect-video flex flex-row mb-8 max-w-5xl mx-auto">
       <div className="flex flex-1 flex-col px-6 h-full items-start justify-center gap-3">
         <span className="text-sm lg:text-base text-gray-500">
           Welcome to my professional website
@@ -128,7 +128,11 @@ export const HeroSectionSmall = () => {
           is necessary.
         </p>
         <div className="flex flex-col gap-2 items-center justify-center">
-          <a href="https://www.linkedin.com/in/migueljustin" target="_blank">
+          <a
+            href="https://www.linkedin.com/in/migueljustin"
+            target="_blank"
+            className="w-full"
+          >
             <button
               className="
             w-full

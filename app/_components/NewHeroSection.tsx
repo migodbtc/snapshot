@@ -1,0 +1,331 @@
+import Link from "next/link";
+import {
+  ArrowRight,
+  Briefcase,
+  Mail,
+  ChevronDown,
+  Menu,
+  X,
+} from "lucide-react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { NAV_LINKS } from "./AppHeader";
+
+// NewHeroSection: Hero Section Version 2.0
+export const NewHeroSection = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const router = useRouter();
+
+  // navigation handler
+  const handleNavigate = (href: string) => {
+    setIsMenuOpen(false);
+    router.push(href);
+  };
+
+  return (
+    <section
+      className="
+    relative
+    flex flex-col 
+    w-full h-dvh 
+    overflow-hidden 
+    mx-auto text-center"
+    >
+      {/* Background image layer — grayscaled */}
+      <div
+        className="
+        absolute inset-0
+        bg-[url('/newheroimage.jpg')] bg-cover bg-top
+        grayscale
+        backdrop-blur-2xl
+        "
+      ></div>
+
+      {/* Tint overlay */}
+      <div className="absolute inset-0 bg-slate-50/45 dark:bg-slate-950/45"></div>
+
+      {/* Foreground layer — NOT grayscaled */}
+      <div
+        className="
+        absolute inset-0
+        bg-[url('/newheroimage_layer.png')]
+        bg-cover bg-top
+        "
+      ></div>
+
+      {/* Gradient overlay — direction flips per breakpoint */}
+      <div
+        className="
+        absolute inset-0
+        bg-linear-to-b from-transparent dark:to-black/85
+        lg:bg-linear-to-l lg:from-transparent to-slate-50/75 dark:lg:to-black/85
+        to-45% lg:to-100%
+        "
+      ></div>
+
+      {/* Header Content */}
+      <div className="absolute inset-0 z-40 w-full h-full py-4 px-8 text-white text-left pointer-events-none">
+        <div className="w-full py-4 flex flex-row justify-between pointer-events-auto">
+          <Link href="/" className="flex-1 my-auto cursor-pointer">
+            <div className="flex flex-col select-none">
+              <span className="font-bold text-xl uppercase tracking-wide flex flex-row gap-1">
+                <span className="text-slate-950 dark:text-slate-50 text-lg sm:text-xl">
+                  <Image
+                    src="/images/favicons/favicon-32x32.png"
+                    alt="Site Icon"
+                    width={28}
+                    height={28}
+                  />
+                </span>
+                <span className="text-slate-950 dark:text-slate-50 flex flex-row">
+                  SNAP<div className="text-rose-800">SHOT</div>
+                </span>
+                <span className="flex h-fill items-end text-sm text-slate-500">
+                  BY MIGO
+                </span>
+              </span>
+              <span className="text-xs text-gray-700 dark:text-gray-400  uppercase tracking-wide font-semibold">
+                A Career-focused Website
+              </span>
+            </div>
+          </Link>
+          {/* Hamburger Trigger (All Resolutions) */}
+          <div className="flex justify-end">
+            <button
+              type="button"
+              onClick={() => setIsMenuOpen(true)}
+              className="p-2 text-rose-800 dark:text-slate-50 hover:bg-gray-100/25 dark:hover:bg-gray-800/25 rounded-md transition-colors cursor-pointer"
+              aria-label="Open navigation menu"
+            >
+              <Menu size={24} />
+            </button>
+          </div>
+
+          {/* Glass Navigation Modal */}
+          <div
+            className={`
+          fixed inset-0 z-50
+          flex items-center justify-center
+          bg-black/50
+          backdrop-blur-sm
+          transition-opacity duration-300
+          ${
+            isMenuOpen
+              ? "opacity-100 pointer-events-auto"
+              : "opacity-0 pointer-events-none"
+          }
+        `}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            <div
+              onClick={(e) => e.stopPropagation()}
+              className={`
+            relative overflow-hidden
+            w-[90%]
+            max-w-md lg:max-w-2xl
+            rounded-xl
+            border border-slate-300
+            dark:border-slate-800
+            backdrop-blur-md
+            bg-slate-50
+            dark:bg-slate-950
+            p-6 lg:p-8
+            transition-all duration-300
+            ${isMenuOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"}
+          `}
+            >
+              {/* Glass base layer */}
+              <div
+                className="absolute inset-0 -z-10 bg-radial 
+          from-slate-500/20 via-slate-100 to-transparent 
+          dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent"
+              />
+
+              {/* Modal Header */}
+              <div className="flex items-center justify-between mb-2">
+                <span className="font-bold text-lg uppercase tracking-wide flex flex-row gap-2 items-center">
+                  <span className="text-slate-950 dark:text-slate-50">
+                    NAVIGATION
+                  </span>
+                </span>
+
+                <button
+                  onClick={() => setIsMenuOpen(false)}
+                  className="
+                p-1.5
+                text-slate-700 dark:text-slate-300
+                hover:text-rose-800 dark:hover:text-rose-500
+                hover:bg-rose-50 dark:hover:bg-rose-950/30
+                rounded-md
+                transition-colors
+                cursor-pointer
+              "
+                  aria-label="Close navigation menu"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+
+              {/* Nav Links - Portrait (sm) : single column stacked */}
+              <div className="flex flex-col lg:hidden gap-1">
+                {NAV_LINKS.map(({ label, icon: Icon, href }) => (
+                  <button
+                    key={label}
+                    type="button"
+                    onClick={() => handleNavigate(href)}
+                    className="
+                  flex items-center gap-3
+                  px-3 py-3
+                  rounded-lg
+                  border border-slate-300 dark:border-slate-800
+                  text-slate-800 dark:text-slate-200
+                  hover:bg-rose-50 dark:hover:bg-rose-950/30
+                  hover:text-rose-800 dark:hover:text-rose-300
+                  hover:border-rose-300 dark:hover:border-rose-800
+                  cursor-pointer
+                  transition-colors
+                  uppercase
+                  text-sm
+                "
+                  >
+                    <Icon size={18} />
+                    {label}
+                  </button>
+                ))}
+              </div>
+
+              {/* Nav Links - Landscape (lg) : grid layout */}
+              <div className="hidden lg:grid grid-cols-2 gap-2">
+                {NAV_LINKS.map(({ label, icon: Icon, href }) => (
+                  <button
+                    key={label}
+                    type="button"
+                    onClick={() => handleNavigate(href)}
+                    className="
+                  flex items-center gap-3
+                  px-4 py-3
+                  rounded-lg
+                  border border-slate-400/40 dark:border-slate-800
+                  text-slate-800 dark:text-slate-200
+                  hover:bg-rose-50 dark:hover:bg-rose-950/30
+                  hover:text-rose-800 dark:hover:text-rose-300
+                  hover:border-rose-300 dark:hover:border-rose-800
+                  cursor-pointer
+                  transition-colors
+                  uppercase
+                  text-sm
+                "
+                  >
+                    <Icon size={18} />
+                    {label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Content layer */}
+      <div
+        className="
+        relative z-30
+        h-full w-full max-w-5xl
+        mx-auto
+        flex flex-col items-center justify-end pb-20 px-6 text-center
+        lg:grid lg:grid-cols-2 lg:pb-0 lg:text-left
+        "
+      >
+        {/* Column 1: intro + CTAs */}
+        <div className="flex flex-col h-full items-center justify-end pb-4 gap-3 lg:items-start lg:justify-center lg:pb-0">
+          {/* Logo — shown above the title on mobile/tablet only */}
+          <div className="flex flex-col items-center gap-0.5">
+            <span className="font-bold text-2xl uppercase tracking-wide flex flex-row gap-1.5 items-center">
+              <Image
+                src="/images/favicons/favicon-32x32.png"
+                alt="Site Icon"
+                width={48}
+                height={48}
+              />
+            </span>
+          </div>
+
+          <h1 className="text-3xl font-medium lg:font-normal lg:text-4xl text-slate-900 dark:text-slate-50">
+            Hi! My name is <b className="text-rose-700">Migo</b>.
+          </h1>
+          <p className="text-base text-gray-700 drop-shadow-2xl drop-shadow-slate-100 lg:text-gray-800 dark:text-gray-300 lg:text-justify">
+            I am an up and coming software engineering with a passion for
+            building human-first digital solutions, collaboration and sharing of
+            technical knowledge and experience, and a willingness to learn and
+            adapt to what is necessary.
+          </p>
+          {/* Buttons: stacked on mobile/tablet, row on large */}
+          <div className="w-full flex flex-col gap-3 items-center lg:flex-row lg:gap-4">
+            <a
+              href="https://www.linkedin.com/in/migueljustin"
+              target="_blank"
+              className="w-full sm:w-full md:w-64 lg:w-full"
+            >
+              <button
+                className="
+      w-full
+      flex items-center justify-center
+      lg:flex-2
+      gap-2
+      py-2 px-4
+      rounded-lg
+      bg-rose-800
+      hover:bg-rose-700
+      hover:scale-105
+      disabled:opacity-60
+      disabled:cursor-not-allowed
+      text-slate-50
+      text-md
+      font-semibold
+      cursor-pointer
+      transition-all
+      duration-300
+    "
+              >
+                <Briefcase size={18} />
+                Chat Me on LinkedIn!
+                <ArrowRight size={18} />
+              </button>
+            </a>
+            <Link
+              href="/contact"
+              className="
+      w-full sm:w-full md:w-64 lg:w-full
+      lg:flex-1
+      py-2 px-8
+      flex flex-row gap-2
+      items-center justify-center
+      rounded-lg
+      bg-slate-50
+      hover:bg-slate-200
+      hover:scale-105
+      cursor-pointer
+      text-slate-900
+      font-semibold
+      transition-all
+      duration-300
+    "
+            >
+              <Mail size={18} />
+              Contact
+            </Link>
+          </div>
+        </div>
+
+        {/* Column 2: empty, reserved for the layered picture behind (lg only) */}
+        <div className="hidden lg:block"></div>
+      </div>
+
+      {/* Scroll indicator */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 animate-bounce">
+        <ChevronDown size={32} className="text-slate-50" />
+      </div>
+    </section>
+  );
+};

@@ -1,11 +1,9 @@
-import AppLayout from "../_layouts/AppLayout"
+import AppLayout from "../_layouts/AppLayout";
 
 type ContactLayoutProps = {
-    children: React.ReactNode
-}
+  children: React.ReactNode;
+};
 
 export default function ContactLayout({ children }: ContactLayoutProps) {
-    return <AppLayout>
-        {children}
-    </AppLayout>
+  return <AppLayout headerless>{children}</AppLayout>;
 }

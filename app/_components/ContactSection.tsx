@@ -17,7 +17,7 @@ export const ContactSection = () => {
   const router = useRouter();
 
   return (
-    <section className="min-h-[60vh] md:min-h-[70vh] lg:min-h-[75vh] flex flex-col w-full h-fit overflow-hidden mb-16 md:mb-20 lg:mb-24 px-4 md:px-6 lg:px-8 mt-16 lg:mt-0">
+    <section className="min-h-[60vh] md:min-h-[70vh] lg:min-h-[75vh] flex flex-col w-full h-fit overflow-hidden mb-16 md:mb-20 lg:mb-24 mt-16 lg:mt-0 max-w-5xl mx-auto">
       <div className="flex-1 flex flex-col items-center lg:items-stretch lg:flex-row gap-4 px-8 lg:px-0">
         <div className="min-h-96 lg:flex-1 flex flex-col items-center lg:items-start justify-center gap-2 lg:gap-3">
           <span className="text-lg lg:text-xl text-center lg:text-left">

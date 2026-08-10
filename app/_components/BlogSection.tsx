@@ -25,7 +25,7 @@ const BlogCard = ({
   return (
     <div
       className={`
-        aspect-square
+        h-84
         relative
         overflow-hidden
         rounded-xl
@@ -101,7 +101,7 @@ export const BlogSection = () => {
     .toReversed();
 
   return (
-    <section className="flex flex-col w-full h-fit overflow-hidden lg:mx-auto md:my-24">
+    <section className="flex flex-col w-full h-fit overflow-hidden max-w-5xl mx-auto md:my-24">
       {/* Header */}
       <div className="flex flex-col px-6 mb-4 w-full h-fit items-center justify-center mt-12">
         <h1 className="text-2xl lg:text-4xl tracking-wider font-bold uppercase text-slate-600 dark:text-slate-400">
@@ -117,7 +117,7 @@ export const BlogSection = () => {
             key={post.title}
             date={post.datetime}
             {...post}
-            className="w-2/7"
+            className="flex-1"
           />
         ))}
       </div>

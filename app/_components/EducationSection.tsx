@@ -1,7 +1,14 @@
-// EducationSection: Dedicated section for previewing education. Design is a split type with 
+// EducationSection: Dedicated section for previewing education. Design is a split type with
 
 import { EDUCATION_CONSTS } from "@/lib/constants/education";
-import { School, ArrowUpRight, Medal, School2, ArrowRight, Router } from "lucide-react";
+import {
+  School,
+  ArrowUpRight,
+  Medal,
+  School2,
+  ArrowRight,
+  Router,
+} from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -17,7 +24,7 @@ export const EducationSection = () => {
   const router = useRouter();
 
   return (
-    <section className="flex flex-col w-full overflow-hidden min-h-144 align-middle justify-center px-8">
+    <section className="flex flex-col w-full overflow-hidden min-h-144 align-middle justify-center max-w-5xl mx-auto">
       {/* Header */}
       <div className="flex flex-col px-6 mb-4 w-full h-fit items-center justify-center gap-3">
         <h1 className="text-2xl lg:text-4xl tracking-wider font-bold uppercase text-slate-600 dark:text-slate-400">
@@ -28,9 +35,10 @@ export const EducationSection = () => {
       {/* Preview Card Layout*/}
       <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-4 mt-4">
         {Object.entries(preview).map(([key, education]) => {
-          return <div
-            key={key}
-            className="
+          return (
+            <div
+              key={key}
+              className="
               relative
               md:h-fit lg:aspect-4/3
               overflow-hidden
@@ -44,24 +52,27 @@ export const EducationSection = () => {
               flex flex-col justify-center
               gap-2
             "
-          >
-            <div className="absolute inset-0 -z-10 bg-radial from-slate-300/40 via-slate-200/20 to-transparent dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent" />
+            >
+              <div className="absolute inset-0 -z-10 bg-radial from-slate-300/40 via-slate-200/20 to-transparent dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent" />
 
-            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 flex flex-row gap-2 items-center">
-              <School2 size={22} className="text-rose-800"/>
-              {education.school_name}
-            </h3>
-            <span className="bg-rose-800 rounded-xl px-2 py-0.5 text-xs font-semibold w-fit text-slate-50">{education.badge_content}</span>
-            <p className="text-base text-gray-700 dark:text-gray-400 flex-1 overflow-hidden text-justify">
-              {education.personal_description}
-            </p>
-          </div>
+              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 flex flex-row gap-2 items-center">
+                <School2 size={22} className="text-rose-800" />
+                {education.school_name}
+              </h3>
+              <span className="bg-rose-800 rounded-xl px-2 py-0.5 text-xs font-semibold w-fit text-slate-50">
+                {education.badge_content}
+              </span>
+              <p className="text-base text-gray-700 dark:text-gray-400 flex-1 overflow-hidden text-justify">
+                {education.personal_description}
+              </p>
+            </div>
+          );
         })}
 
         {/* Card 3 — "View More" */}
         <div
           onClick={() => {
-            router.push('/education')
+            router.push("/education");
           }}
           className="
             relative
@@ -98,11 +109,11 @@ export const EducationSection = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
 export const EducationSectionSmall = () => {
-  const preview = (({ college, shs }) => ({ college, shs  }))(EDUCATION_CONSTS);
+  const preview = (({ college, shs }) => ({ college, shs }))(EDUCATION_CONSTS);
   const router = useRouter();
 
   return (
@@ -117,9 +128,10 @@ export const EducationSectionSmall = () => {
       {/* Preview Card Layout — single column, sm-first */}
       <div className="w-full grid grid-cols-1 gap-4 mt-4">
         {Object.entries(preview).map(([key, education]) => {
-          return <div
-            key={key}
-            className="
+          return (
+            <div
+              key={key}
+              className="
               relative
               h-fit
               overflow-hidden
@@ -133,24 +145,27 @@ export const EducationSectionSmall = () => {
               flex flex-col justify-center
               gap-2
             "
-          >
-            <div className="absolute inset-0 -z-10 bg-radial from-slate-300/40 via-slate-200/20 to-transparent dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent" />
+            >
+              <div className="absolute inset-0 -z-10 bg-radial from-slate-300/40 via-slate-200/20 to-transparent dark:from-slate-500/20 dark:via-slate-400/5 dark:to-transparent" />
 
-            <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 flex flex-row gap-2 items-center">
-              <School2 size={22} className="text-rose-800"/>
-              {education.school_name}
-            </h3>
-            <span className="bg-rose-800 rounded-xl px-2 py-0.5 text-xs font-semibold w-fit text-slate-50">{education.badge_content}</span>
-            <p className="text-base text-gray-700 dark:text-gray-400 flex-1 overflow-hidden text-justify">
-              {education.personal_description}
-            </p>
-          </div>
+              <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100 flex flex-row gap-2 items-center">
+                <School2 size={22} className="text-rose-800" />
+                {education.school_name}
+              </h3>
+              <span className="bg-rose-800 rounded-xl px-2 py-0.5 text-xs font-semibold w-fit text-slate-50">
+                {education.badge_content}
+              </span>
+              <p className="text-base text-gray-700 dark:text-gray-400 flex-1 overflow-hidden text-justify">
+                {education.personal_description}
+              </p>
+            </div>
+          );
         })}
 
         {/* "View More" card */}
         <div
           onClick={() => {
-            router.push('/education')
+            router.push("/education");
           }}
           className="
             relative
@@ -187,5 +202,5 @@ export const EducationSectionSmall = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};

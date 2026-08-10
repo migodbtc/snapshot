@@ -19,7 +19,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 
-const NAV_LINKS = [
+export const NAV_LINKS = [
   { label: "Home", icon: Home, href: "/" },
   { label: "About", icon: User, href: "/about" },
   { label: "Skills", icon: Braces, href: "/skills" },
