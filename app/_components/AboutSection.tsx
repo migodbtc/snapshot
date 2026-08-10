@@ -35,7 +35,7 @@ export function AboutMeCard({
 // AboutSection: Dedicated section for a small summary of myself
 export const AboutSection = () => {
   return (
-    <section className="w-full aspect-video flex flex-col py-12 max-w-5xl mx-auto ">
+    <section className="w-full flex flex-col py-12 max-w-xl lg:max-w-5xl mx-auto ">
       <div className="flex flex-col px-6 py-4 w-full h-fit items-center justify-center gap-3 ">
         <h1 className="text-2xl lg:text-4xl tracking-wider font-bold uppercase text-slate-600 dark:text-slate-400">
           About Me
@@ -95,7 +95,7 @@ export const AboutSection = () => {
 
 export const AboutSectionSmall = () => {
   return (
-    <section className="w-full aspect-video flex flex-col pb-4 pt-12">
+    <section className="w-full flex flex-col pb-4 pt-12">
       <div className="flex flex-col px-6 w-full h-fit items-center justify-center gap-3 ">
         <h1 className="text-2xl lg:text-4xl tracking-wider font-bold uppercase text-slate-600 dark:text-slate-400">
           About Me

@@ -94,7 +94,7 @@ export const ExperienceSection = () => {
   const hiddenTechnologies = selectedExperience.technologies.slice(3);
 
   return (
-    <section className="flex flex-col h-fit overflow-hidden max-w-5xl mx-auto ">
+    <section className="flex flex-col h-fit overflow-hidden max-w-xl lg:max-w-5xl mx-auto ">
       {/* Header */}
       <div className="flex flex-col px-6 mb-4 w-full h-fit items-center justify-center gap-3 mt-12">
         <h1 className="text-2xl lg:text-4xl tracking-wider font-bold uppercase text-slate-600 dark:text-slate-400">

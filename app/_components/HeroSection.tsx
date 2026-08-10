@@ -121,7 +121,7 @@ export const HeroSectionSmall = () => {
             className="object-cover object-top"
           />
         </div>
-        <p className="text-sm text-gray-700 dark:text-gray-400 text-justify max-w-lg">
+        <p className="text-sm text-gray-700 dark:text-gray-400 text-justify max-w-sm lg:max-w-lg ">
           I am an up and coming software engineering with a passion for building
           human-first digital solutions, collaboration and sharing of technical
           knowledge and experience, and a willingness to learn and adapt to what

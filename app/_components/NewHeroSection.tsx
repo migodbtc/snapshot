@@ -238,7 +238,7 @@ export const NewHeroSection = () => {
         "
       >
         {/* Column 1: intro + CTAs */}
-        <div className="flex flex-col h-full items-center justify-end pb-4 gap-3 lg:items-start lg:justify-center lg:pb-0">
+        <div className="flex flex-col h-full items-center justify-end pb-4 gap-3 md:justify-center md:pb-0 lg:items-start lg:justify-center lg:pb-0">
           {/* Logo — shown above the title on mobile/tablet only */}
           <div className="flex flex-col items-center gap-0.5">
             <span className="font-bold text-2xl uppercase tracking-wide flex flex-row gap-1.5 items-center">
@@ -254,7 +254,7 @@ export const NewHeroSection = () => {
           <h1 className="text-3xl font-medium lg:font-normal lg:text-4xl text-slate-900 dark:text-slate-50">
             Hi! My name is <b className="text-rose-700">Migo</b>.
           </h1>
-          <p className="text-base text-gray-700 drop-shadow-2xl drop-shadow-slate-100 lg:text-gray-800 dark:text-gray-300 lg:text-justify">
+          <p className="text-base text-gray-700 max-w-lg drop-shadow-slate-100 lg:text-gray-800 dark:text-gray-300 lg:text-justify">
             I am an up and coming software engineering with a passion for
             building human-first digital solutions, collaboration and sharing of
             technical knowledge and experience, and a willingness to learn and

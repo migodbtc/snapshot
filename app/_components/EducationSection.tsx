@@ -24,7 +24,7 @@ export const EducationSection = () => {
   const router = useRouter();
 
   return (
-    <section className="flex flex-col w-full overflow-hidden min-h-144 align-middle justify-center max-w-5xl mx-auto">
+    <section className="flex flex-col w-full overflow-hidden min-h-144 align-middle justify-center max-w-xl lg:max-w-5xl mx-auto">
       {/* Header */}
       <div className="flex flex-col px-6 mb-4 w-full h-fit items-center justify-center gap-3">
         <h1 className="text-2xl lg:text-4xl tracking-wider font-bold uppercase text-slate-600 dark:text-slate-400">

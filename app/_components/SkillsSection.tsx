@@ -77,7 +77,7 @@ export const SkillsSection = () => {
     } `;
 
   return (
-    <section className="flex flex-col w-full py-12 max-w-5xl mx-auto">
+    <section className="flex flex-col w-full py-12 max-w-xl lg:max-w-5xl mx-auto">
       <div className="flex flex-col px-6 py-4 w-full h-fit items-center justify-center gap-3">
         <h1 className="text-2xl lg:text-4xl tracking-wider font-bold uppercase text-slate-600 dark:text-slate-400">
           Skills
