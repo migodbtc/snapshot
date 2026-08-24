@@ -52,12 +52,12 @@ export const ABOUT_ME_INFO: {
   {
     icon: BookOpen,
     title: "Currently Studying",
-    value: "QA Automation",
+    value: "AIF-CO1",
   },
   {
     icon: Coffee,
     title: "Favorite Coffee",
-    value: "Vietnamese Coffee",
+    value: "Ca Phe Sua Da",
   },
   {
     icon: Dumbbell,
@@ -66,7 +66,7 @@ export const ABOUT_ME_INFO: {
   },
   {
     icon: Target,
-    title: "Yearly Goal",
+    title: "Career Goal",
     value: "First Job",
   },
 ];

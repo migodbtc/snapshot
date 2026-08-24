@@ -20,7 +20,7 @@ export const AppFooter = () => {
   return (
     <footer
       className="
-    relative z-30
+    relative z-0
     flex flex-col
     px-8 md:px-8 
     py-6

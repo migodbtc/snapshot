@@ -22,10 +22,14 @@ export const HeroSection = () => {
           is necessary.{" "}
         </p>
         <div className="w-full flex flex-row gap-2">
-          <a href="https://www.linkedin.com/in/migueljustin" target="_blank">
+          <a
+            href="https://www.linkedin.com/in/migueljustin"
+            target="_blank"
+            className="w-full sm:w-56 md:w-64 lg:w-72"
+          >
             <button
               className="
-            w-fit
+            w-full
             h-fill
             flex items-center justify-center
             gap-2
@@ -55,7 +59,7 @@ export const HeroSection = () => {
             overflow-hidden
             py-2 px-4
             flex flex-row gap-2
-            w-fit
+            w-full sm:w-56 md:w-64 lg:w-72
             items-center
             rounded-lg
             border border-slate-300
@@ -131,7 +135,7 @@ export const HeroSectionSmall = () => {
           <a
             href="https://www.linkedin.com/in/migueljustin"
             target="_blank"
-            className="w-full"
+            className="w-full sm:w-72 md:w-80 lg:w-88"
           >
             <button
               className="
@@ -163,7 +167,7 @@ export const HeroSectionSmall = () => {
             group
             relative
             overflow-hidden
-            w-full
+            w-full sm:w-72 md:w-80 lg:w-88
             flex items-center justify-center
             gap-2
             py-2 px-4

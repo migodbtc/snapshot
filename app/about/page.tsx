@@ -14,6 +14,7 @@ import {
   Repeat2,
   Share2,
   ArrowLeft,
+  Briefcase,
 } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
@@ -242,6 +243,14 @@ export default function AboutPage() {
           <span>Return to Home</span>
         </Link>
 
+        {/* Page Header */}
+        <div className="flex flex-col px-6 w-full h-fit items-center justify-center gap-3">
+          <h1 className="text-3xl tracking-wider font-bold uppercase mb-2 flex flex-row items-center gap-2">
+            <Briefcase className="text-3xl text-rose-800" size={32} />
+            About
+          </h1>
+        </div>
+
         {/* Info Card/Row */}
         <div
           className="
@@ -444,6 +453,14 @@ export default function AboutPage() {
           <span>Return to Home</span>
         </Link>
 
+        {/* Page Header */}
+        <div className="flex flex-col px-6 w-full h-fit items-center justify-center gap-3 mb-2">
+          <h1 className="text-3xl tracking-wider font-bold uppercase mb-2 flex flex-row items-center gap-2">
+            <Briefcase className="text-3xl text-rose-800" size={32} />
+            About
+          </h1>
+        </div>
+
         {/* Info Card/Row */}
         <div
           className="
@@ -637,6 +654,14 @@ export default function AboutPage() {
           <ArrowLeft size={16} />
           <span>Return to Home</span>
         </Link>
+
+        {/* Page Header */}
+        <div className="flex flex-col px-6 w-full h-fit items-center justify-center gap-3 mb-2">
+          <h1 className="text-3xl tracking-wider font-bold uppercase mb-2 flex flex-row items-center gap-2">
+            <Briefcase className="text-3xl text-rose-800" size={32} />
+            About
+          </h1>
+        </div>
 
         {/* Info Card/Row */}
         <div
