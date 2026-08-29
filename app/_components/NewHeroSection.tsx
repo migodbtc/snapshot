@@ -227,66 +227,52 @@ export const NewHeroSection = () => {
         </div>
       </div>
 
-      {/* Content layer */}
-      <div
-        className="
-        relative z-30
-        h-full w-full max-w-5xl
-        mx-auto
-        flex flex-col items-center justify-end pb-20 px-6 text-center
-        lg:grid lg:grid-cols-2 lg:pb-0 lg:text-left
-        "
-      >
-        {/* Column 1: intro + CTAs */}
-        <div className="flex flex-col h-full items-center justify-end pb-4 gap-3 md:justify-center md:pb-0 lg:items-start lg:justify-center lg:pb-0">
-          {/* Logo — shown above the title on mobile/tablet only */}
-          <div className="flex flex-col items-center gap-0.5">
-            <span className="font-bold text-2xl uppercase tracking-wide flex flex-row gap-1.5 items-center">
-              <Image
-                src="/images/favicons/favicon-32x32.png"
-                alt="Site Icon"
-                width={48}
-                height={48}
-              />
-            </span>
-          </div>
+      {/* Content layer — always centered */}
+      <div className="relative z-30 h-full w-full flex flex-col items-center justify-center px-6 text-center">
+        <div className="flex flex-col items-center gap-3 sm:gap-4 md:gap-5 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-xl xl:max-w-2xl">
+          {/* Logo icon */}
+          <Image
+            src="/images/favicons/favicon-32x32.png"
+            alt="Site Icon"
+            width={40}
+            height={40}
+            className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16"
+          />
 
-          <h1 className="text-3xl font-medium lg:font-normal lg:text-4xl text-slate-900 dark:text-slate-50">
+          {/* Heading */}
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-medium text-slate-900 dark:text-slate-50 leading-tight">
             Hi! My name is <b className="text-rose-700">Migo</b>.
           </h1>
-          <p className="text-base text-gray-700 max-w-lg drop-shadow-slate-100 lg:text-gray-800 dark:text-gray-300 lg:text-justify">
-            I am an up and coming software engineering with a passion for
-            building human-first digital solutions, collaboration and sharing of
+
+          {/* Subtext */}
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 dark:text-gray-300 leading-relaxed">
+            I am an up and coming software engineer with a passion for building
+            human-first digital solutions, collaboration and sharing of
             technical knowledge and experience, and a willingness to learn and
             adapt to what is necessary.
           </p>
-          {/* Buttons: stacked on mobile/tablet, row on large */}
-          <div className="w-full flex flex-col gap-3 items-center lg:flex-row lg:gap-4">
+
+          {/* Buttons */}
+          <div className="flex flex-col sm:flex-row gap-3 w-full justify-center mt-1">
             <a
               href="https://www.linkedin.com/in/migueljustin"
               target="_blank"
-              className="w-full sm:w-full md:w-64 lg:w-full"
+              className="w-full sm:w-auto"
             >
               <button
                 className="
-      w-full
-      flex items-center justify-center
-      lg:flex-2
-      gap-2
-      py-2 px-4
-      rounded-lg
-      bg-rose-800
-      hover:bg-rose-700
-      hover:scale-105
-      disabled:opacity-60
-      disabled:cursor-not-allowed
-      text-slate-50
-      text-md
-      font-semibold
-      cursor-pointer
-      transition-all
-      duration-300
-    "
+                  w-full sm:w-52 md:w-60 lg:w-64
+                  flex items-center justify-center gap-2
+                  py-2.5 px-4
+                  rounded-lg
+                  bg-rose-800 hover:bg-rose-700 hover:scale-105
+                  disabled:opacity-60 disabled:cursor-not-allowed
+                  text-slate-50
+                  text-sm md:text-base
+                  font-semibold
+                  cursor-pointer
+                  transition-all duration-300
+                "
               >
                 <Briefcase size={18} />
                 Chat Me on LinkedIn!
@@ -296,30 +282,23 @@ export const NewHeroSection = () => {
             <Link
               href="/contact"
               className="
-      w-full sm:w-full md:w-64 lg:w-full
-      lg:flex-1
-      py-2 px-8
-      flex flex-row gap-2
-      items-center justify-center
-      rounded-lg
-      bg-slate-50
-      hover:bg-slate-200
-      hover:scale-105
-      cursor-pointer
-      text-slate-900
-      font-semibold
-      transition-all
-      duration-300
-    "
+                w-full sm:w-36 md:w-40 lg:w-44
+                flex flex-row gap-2 items-center justify-center
+                py-2.5 px-6
+                rounded-lg
+                bg-slate-50 hover:bg-slate-200 hover:scale-105
+                cursor-pointer
+                text-slate-900
+                text-sm md:text-base
+                font-semibold
+                transition-all duration-300
+              "
             >
               <Mail size={18} />
               Contact
             </Link>
           </div>
         </div>
-
-        {/* Column 2: empty, reserved for the layered picture behind (lg only) */}
-        <div className="hidden lg:block"></div>
       </div>
 
       {/* Scroll indicator */}

@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-import { EducationKey } from "../_components/EducationSection";
+import { EducationKey } from "../_components/SectionsV1/EducationSection";
 import { useRouter } from "next/navigation";
 
 export default function EducationPage() {

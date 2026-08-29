@@ -10,7 +10,7 @@ import {
   User,
   UserCheck2,
 } from "lucide-react";
-import { TimelinePoint } from "../_components/ExperienceSection";
+import { TimelinePoint } from "../_components/SectionsV1/ExperienceSection";
 import { useState } from "react";
 import { EXPERIENCE_CONSTS } from "@/lib/constants/experience";
 import Image from "next/image";
