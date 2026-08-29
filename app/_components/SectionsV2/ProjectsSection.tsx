@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 import { PROJECT_INDEX } from "@/lib/constants/projects";
 
 // ── Config ────────────────────────────────────────────────────────────────────
@@ -122,7 +123,13 @@ export const ProjectsSection = () => {
   return (
     <section className="w-full h-auto px-6 py-16 max-w-5xl mx-auto">
       {/* ── Section header ───────────────────────────────────────────── */}
-      <div className="flex flex-row gap-2 items-center mb-8">
+      <motion.div
+        initial={{ opacity: 0, x: -50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ margin: "-50px" }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="flex flex-row gap-2 items-center mb-8"
+      >
         <span
           className="
             w-fit px-3 py-1 rounded-xl
@@ -135,18 +142,32 @@ export const ProjectsSection = () => {
         <p className="text-sm text-slate-500 dark:text-slate-400">
           A selection of my most significant work
         </p>
-      </div>
+      </motion.div>
 
       {/* ── Card grid ────────────────────────────────────────────────────── */}
       {/* 1-col on mobile, 2-col on sm, 3-col on lg */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {FEATURED.map((project, i) => (
-          <ProjectCard key={project.projectId} project={project} index={i} />
+          <motion.div
+            key={project.projectId}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ margin: "-50px" }}
+            transition={{ duration: 0.6, delay: i * 0.2, ease: "easeOut" }}
+          >
+            <ProjectCard project={project} index={i} />
+          </motion.div>
         ))}
       </div>
 
       {/* ── See all link ─────────────────────────────────────────────────── */}
-      <div className="flex justify-end mt-8">
+      <motion.div
+        initial={{ opacity: 0, x: 50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ margin: "-50px" }}
+        transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+        className="flex justify-end mt-8"
+      >
         <Link
           href="/projects"
           className="text-sm italic text-gray-600 dark:text-gray-500 font-semibold flex flex-row gap-2 items-center hover:underline cursor-pointer uppercase"
@@ -154,7 +175,7 @@ export const ProjectsSection = () => {
           <span>See All Projects</span>
           <ArrowRight size={16} />
         </Link>
-      </div>
+      </motion.div>
     </section>
   );
 };

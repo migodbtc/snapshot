@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { GraduationCap, Trophy, MapPin, Target } from "lucide-react";
+import { motion } from "framer-motion";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -95,7 +96,13 @@ export const AboutSection = () => {
     <section className="w-full h-auto px-6 py-16 max-w-5xl mx-auto flex items-center">
       <div className="flex flex-col md:flex-row md:items-center gap-10 md:gap-12">
         {/* Left Column */}
-        <div className="flex flex-col gap-4 md:flex-1">
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ margin: "-50px" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="flex flex-col gap-4 md:flex-1"
+        >
           {/* Badge */}
           <span
             className="
@@ -142,12 +149,20 @@ export const AboutSection = () => {
             </Link>{" "}
             where you can see what I have written over time. Happy scrolling!
           </p>
-        </div>
+        </motion.div>
 
         {/* Right Column — 2x2 on md+, 1x4 on mobile */}
         <div className="grid grid-cols-1 gap-4 md:flex-1">
-          {STAT_CARDS.map((card) => (
-            <GlassStatCard key={card.subtext} {...card} />
+          {STAT_CARDS.map((card, i) => (
+            <motion.div
+              key={card.subtext}
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ margin: "-50px" }}
+              transition={{ duration: 0.5, delay: i * 0.15, ease: "easeOut" }}
+            >
+              <GlassStatCard {...card} />
+            </motion.div>
           ))}
         </div>
       </div>

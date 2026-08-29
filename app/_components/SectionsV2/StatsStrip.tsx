@@ -1,4 +1,5 @@
 import { GraduationCap, Trophy, Briefcase, Code2 } from "lucide-react";
+import { motion } from "framer-motion";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -80,7 +81,7 @@ const StatSegment = ({
 export const StatsStrip = () => {
   return (
     <div className="w-full">
-      <div className="max-w-5xl mx-auto py-4">
+      <div className="max-w-5xl mx-auto p-4">
         {/* ── Mobile: 2x2 grid with inner-only borders ────────────────────────────── */}
         <div className="grid grid-cols-2 md:hidden">
           {STATS.map((item, i) => (
@@ -88,21 +89,37 @@ export const StatsStrip = () => {
               key={item.label}
               className={[
                 // right border on left-column items (0, 2)
-                i % 2 === 0 ? "border-r border-slate-200 dark:border-slate-800" : "",
+                i % 2 === 0
+                  ? "border-r border-slate-200 dark:border-slate-800"
+                  : "",
                 // bottom border on top-row items (0, 1)
                 i < 2 ? "border-b border-slate-200 dark:border-slate-800" : "",
               ].join(" ")}
             >
-              <StatSegment {...item} />
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ margin: "-50px" }}
+                transition={{ duration: 0.5, delay: i * 0.1, ease: "easeOut" }}
+              >
+                <StatSegment {...item} />
+              </motion.div>
             </div>
           ))}
         </div>
 
         {/* ── md+: horizontal strip ────────────────────────────────────────── */}
         <div className="hidden md:flex divide-x divide-slate-200 dark:divide-slate-800">
-          {STATS.map((item) => (
+          {STATS.map((item, i) => (
             <div key={item.label} className="flex-1">
-              <StatSegment {...item} />
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ margin: "-50px" }}
+                transition={{ duration: 0.5, delay: i * 0.1, ease: "easeOut" }}
+              >
+                <StatSegment {...item} />
+              </motion.div>
             </div>
           ))}
         </div>

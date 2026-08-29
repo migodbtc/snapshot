@@ -9,13 +9,19 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { NAV_LINKS } from "./AppHeader";
 
 // NewHeroSection: Hero Section Version 2.0
 export const NewHeroSection = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter();
+
+  // Scroll animations
+  const { scrollY } = useScroll();
+  const fadeOpacity = useTransform(scrollY, [0, 400], [1, 0]);
+  const fadeY = useTransform(scrollY, [0, 400], [0, 100]);
 
   // navigation handler
   const handleNavigate = (href: string) => {
@@ -227,8 +233,14 @@ export const NewHeroSection = () => {
         </div>
       </div>
 
-      {/* Content layer — always centered */}
-      <div className="relative z-30 h-full w-full flex flex-col items-center justify-center px-6 text-center">
+      {/* Content layer — always centered with Framer Motion animations */}
+      <motion.div
+        style={{ opacity: fadeOpacity, y: fadeY }}
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="relative z-30 h-full w-full flex flex-col items-center justify-center px-6 text-center"
+      >
         <div className="flex flex-col items-center gap-3 sm:gap-4 md:gap-5 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-xl xl:max-w-2xl">
           {/* Logo icon */}
           <Image
@@ -299,7 +311,7 @@ export const NewHeroSection = () => {
             </Link>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Scroll indicator */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 animate-bounce">
