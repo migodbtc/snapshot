@@ -65,18 +65,17 @@ const GlassStatCard = ({
     {/* Icon — top right */}
     <div className="flex justify-end">
       <Icon
-        size={22}
-        className="text-rose-800 dark:text-rose-500"
+        className="text-rose-800 dark:text-rose-500 w-5 h-5 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7"
         strokeWidth={1.75}
       />
     </div>
 
     {/* Text — bottom left */}
     <div className="flex flex-col gap-0.5 mt-auto">
-      <span className="text-sm text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wide">
+      <span className="text-xs sm:text-xs md:text-sm text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wide">
         {subtext}
       </span>
-      <span className="text-base font-bold text-slate-900 dark:text-slate-100 leading-snug">
+      <span className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-slate-900 dark:text-slate-100 leading-snug">
         {mainText}
       </span>
     </div>

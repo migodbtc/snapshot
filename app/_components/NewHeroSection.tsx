@@ -54,13 +54,13 @@ export const NewHeroSection = () => {
         "
       ></div>
 
-      {/* Gradient overlay — direction flips per breakpoint */}
+      {/* Gradient overlay — direction flips at xl (1280px+) to avoid iPad Pro portrait bug */}
       <div
         className="
         absolute inset-0
         bg-linear-to-b from-transparent dark:to-black/85
-        lg:bg-linear-to-l lg:from-transparent to-slate-50/75 dark:lg:to-black/85
-        to-45% lg:to-100%
+        xl:bg-linear-to-l xl:from-transparent to-slate-50/75 dark:xl:to-black/85
+        to-45% xl:to-100%
         "
       ></div>
 
@@ -240,12 +240,12 @@ export const NewHeroSection = () => {
           />
 
           {/* Heading */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-medium text-slate-900 dark:text-slate-50 leading-tight">
-            Hi! My name is <b className="text-rose-700">Migo</b>.
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-medium text-slate-900 dark:text-slate-50 leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.45)]">
+            Hi! My name is <b className="text-rose-700 drop-shadow-[0_2px_8px_rgba(159,18,57,0.6)]">Migo</b>.
           </h1>
 
           {/* Subtext */}
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 dark:text-gray-300 leading-relaxed">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-900 dark:text-slate-100 leading-relaxed drop-shadow-[0_2px_16px_rgba(0,0,0,0.8)]">
             I am an up and coming software engineer with a passion for building
             human-first digital solutions, collaboration and sharing of
             technical knowledge and experience, and a willingness to learn and
