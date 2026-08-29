@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 
@@ -13,9 +13,35 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://migueljustin.vercel.app"),
   title: "Miguel Justin | Portfolio",
   description:
-    "Miguel Justin Bunda’s portfolio website, showcasing selected web projects, technical skills, professional experience, and contact information.",
+    "Software engineer portfolio for Miguel Justin Bunda, featuring selected projects, technical skills, experience, and contact information.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Miguel Justin | Portfolio",
+    description:
+      "Software engineer portfolio for Miguel Justin Bunda, featuring selected projects, technical skills, experience, and contact information.",
+    url: "https://migueljustin.vercel.app",
+    siteName: "Miguel Justin | Portfolio",
+    images: [
+      {
+        url: "/images/hero_picture.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Miguel Justin portfolio preview",
+      },
+    ],
+    type: "website",
+  },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#ffffff",
 };
 
 export default function RootLayout({
