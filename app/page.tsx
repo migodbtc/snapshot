@@ -5,6 +5,8 @@ import { AboutSection } from "./_components/SectionsV2/AboutSection";
 import { StatsStrip } from "./_components/SectionsV2/StatsStrip";
 import { ProjectsSection } from "./_components/SectionsV2/ProjectsSection";
 import { FaqSection } from "./_components/SectionsV2/FaqSection";
+import { BlogPreviewSection } from "./_components/SectionsV2/BlogPreviewSection";
+import { ReferencesSection } from "./_components/SectionsV2/ReferencesSection";
 import { ContactSection } from "./_components/SectionsV2/ContactSection";
 
 // Home: the default component to be exported, contains the entirety of the home page.
@@ -17,6 +19,8 @@ export default function Home() {
         <StatsStrip />
         <ProjectsSection />
         <FaqSection />
+        <BlogPreviewSection />
+        <ReferencesSection />
         <ContactSection />
       </main>
     </AppLayout>

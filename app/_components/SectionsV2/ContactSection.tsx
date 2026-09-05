@@ -1,87 +1,84 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, Briefcase, Code, Mail, Send } from "lucide-react";
+
+// ── Data ──────────────────────────────────────────────────────────────────────
+
+const QUICK_LINKS = [
+  {
+    label: "Email",
+    href: "mailto:miguel.bunda@gmail.com",
+    icon: Mail,
+    external: false,
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/miguel-bunda-938810283/",
+    icon: Briefcase,
+    external: true,
+  },
+  {
+    label: "GitHub",
+    href: "https://github.com/migodbtc",
+    icon: Code,
+    external: true,
+  },
+];
 
 // ── ContactSection ─────────────────────────────────────────────────────────────
 
 export const ContactSection = () => {
-  const quickLinks = [
-    {
-      label: "Email",
-      href: "mailto:miguel.bunda@gmail.com",
-      icon: Mail,
-      external: false,
-    },
-    {
-      label: "LinkedIn",
-      href: "https://www.linkedin.com/in/miguel-bunda-938810283/",
-      icon: Briefcase,
-      external: true,
-    },
-    {
-      label: "GitHub",
-      href: "https://github.com/migodbtc",
-      icon: Code,
-      external: true,
-    },
-  ];
-
   return (
-    <section className="w-full h-auto px-6 py-20 md:py-28 max-w-5xl mx-auto overflow-hidden">
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ margin: "-50px" }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className="mx-auto max-w-3xl"
-      >
-        <div className="flex flex-col items-center text-center">
-          <motion.span
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ margin: "-50px" }}
-            transition={{ duration: 0.38, delay: 0.05, ease: "easeOut" }}
-            className="mb-3 w-fit rounded-xl bg-rose-800 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.22em] text-white select-none sm:text-[11px]"
+    <section className="w-full h-auto px-6 py-16 md:py-24 max-w-5xl mx-auto">
+      <div className="flex flex-col md:flex-row md:items-stretch gap-10 md:gap-12">
+        {/* ── Left Column: CTA content ─────────────────────────────────── */}
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ margin: "-50px" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="flex flex-col items-center text-center md:items-start md:text-left gap-5 md:flex-1"
+        >
+          {/* Badge */}
+          <span
+            className="
+              w-fit px-3 py-1 rounded-xl
+              bg-rose-800 text-white
+              text-xs font-bold tracking-widest uppercase select-none
+            "
           >
             Contact
-          </motion.span>
+          </span>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 22 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ margin: "-50px" }}
-            transition={{ duration: 0.45, delay: 0.14, ease: "easeOut" }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-medium text-slate-900 dark:text-slate-50 leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.45)]"
-          >
-            Let’s create
+          {/* Headline */}
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-medium text-slate-900 dark:text-slate-50 leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.45)]">
+            Let's create
             <span className="block text-rose-800 dark:text-rose-500">
               something memorable.
             </span>
-          </motion.h2>
+          </h2>
 
-          <motion.p
-            initial={{ opacity: 0, y: 22 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ margin: "-50px" }}
-            transition={{ duration: 0.45, delay: 0.22, ease: "easeOut" }}
-            className="mt-4 max-w-2xl text-sm leading-relaxed text-slate-600 dark:text-slate-400 sm:text-base md:text-lg"
-          >
+          {/* Description */}
+          <p className="text-sm sm:text-base md:text-lg leading-relaxed text-slate-600 dark:text-slate-400 max-w-lg">
             Whether you need a polished product, a fresh idea, or a reliable
-            collaborator, I’d love to hear what you’re building.
-          </motion.p>
+            collaborator, I'd love to hear what you're building.
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ margin: "-50px" }}
-            transition={{ duration: 0.42, delay: 0.32, ease: "easeOut" }}
-            className="mt-7 mb-4 flex flex-wrap items-center justify-center gap-3 sm:gap-4"
-          >
+          {/* Primary + secondary buttons */}
+          <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 pt-1">
             <a
               href="mailto:miguel.bunda@gmail.com"
-              className="group inline-flex items-center gap-2.5 rounded-xl bg-rose-800 px-6 py-3.5 text-[11px] font-bold uppercase tracking-[0.12em] text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-rose-700 hover:shadow-lg hover:shadow-rose-900/20 sm:px-7 sm:py-4 sm:text-xs md:px-8 md:py-4.5"
+              className="
+                group inline-flex items-center gap-2.5
+                rounded-xl bg-rose-800 px-6 py-3.5
+                text-[11px] sm:text-xs font-bold uppercase tracking-[0.12em] text-white
+                transition-all duration-300
+                hover:-translate-y-0.5 hover:bg-rose-700
+                hover:shadow-lg hover:shadow-rose-900/20
+              "
             >
               <Send
                 size={17}
@@ -92,67 +89,83 @@ export const ContactSection = () => {
 
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2.5 rounded-xl border border-slate-300 bg-white/80 px-6 py-3.5 text-[11px] font-bold uppercase tracking-[0.12em] text-slate-700 transition-all duration-300 hover:border-slate-400 hover:bg-slate-100 hover:text-slate-900 dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-200 dark:hover:border-slate-600 dark:hover:bg-slate-800 dark:hover:text-slate-50 sm:px-7 sm:py-4 sm:text-xs md:px-8 md:py-4.5"
+              className="
+                inline-flex items-center gap-2.5
+                rounded-xl border border-slate-300 dark:border-slate-700
+                bg-white/80 dark:bg-slate-900/80
+                px-6 py-3.5
+                text-[11px] sm:text-xs font-bold uppercase tracking-[0.12em]
+                text-slate-700 dark:text-slate-200
+                transition-all duration-300
+                hover:border-slate-400 dark:hover:border-slate-600
+                hover:bg-slate-100 dark:hover:bg-slate-800
+                hover:text-slate-900 dark:hover:text-slate-50
+              "
             >
               Contact page
               <ArrowRight size={16} />
             </Link>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ margin: "-50px" }}
-            transition={{ duration: 0.42, delay: 0.46, ease: "easeOut" }}
-            className="w-full max-w-2xl"
-          >
-            <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2.5">
-              {quickLinks.map(
-                ({ label, href, icon: Icon, external }, index) => {
-                  const sharedClassName =
-                    "group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-xl px-3 py-2 text-[10px] font-semibold tracking-[0.12em] uppercase text-slate-600 transition-all duration-300 hover:-translate-y-0.5 hover:border-slate-300 hover:text-slate-900 dark:border-slate-800 dark:text-slate-300 dark:hover:border-slate-700 dark:hover:text-slate-100 sm:px-3.5 sm:py-2.5 sm:text-[11px] md:text-xs";
+          {/* Quick links row — separated by thin vertical dividers */}
+          <div className="flex items-center justify-center md:justify-start divide-x divide-slate-200 dark:divide-slate-800 pt-2">
+            {QUICK_LINKS.map(({ label, href, icon: Icon, external }) => {
+              const cls =
+                "group inline-flex items-center gap-2 px-4 first:pl-0 last:pr-0 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-500 hover:text-rose-800 dark:hover:text-rose-500 transition-colors";
 
-                  const item = external ? (
-                    <a
-                      key={label}
-                      href={href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={sharedClassName}
-                    >
-                      <span className="flex w-7 items-center justify-center rounded-md text-slate-600 transition-colors group-hover:text-rose-800 dark:text-slate-300 dark:group-hover:text-rose-500 sm:w-8">
-                        <Icon size={15} />
-                      </span>
-                      {label}
-                    </a>
-                  ) : (
-                    <Link key={label} href={href} className={sharedClassName}>
-                      <span className="flex w-7 items-center justify-center rounded-md text-slate-600 transition-colors group-hover:text-rose-800 dark:text-slate-300 dark:group-hover:text-rose-500 sm:w-8">
-                        <Icon size={15} />
-                      </span>
-                      {label}
-                    </Link>
-                  );
+              return external ? (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={cls}
+                >
+                  <Icon size={14} />
+                  {label}
+                </a>
+              ) : (
+                <a key={label} href={href} className={cls}>
+                  <Icon size={14} />
+                  {label}
+                </a>
+              );
+            })}
+          </div>
+        </motion.div>
 
-                  return (
-                    <div
-                      key={label}
-                      className="flex items-center justify-center gap-1.5 sm:gap-2.5"
-                    >
-                      {item}
-                      {index < quickLinks.length - 1 && (
-                        <span className="text-[10px] leading-none text-slate-400 dark:text-slate-500">
-                          •
-                        </span>
-                      )}
-                    </div>
-                  );
-                },
-              )}
-            </div>
-          </motion.div>
-        </div>
-      </motion.div>
+        {/* ── Right Column: Image with glow ─────────────────────────────── */}
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ margin: "-50px" }}
+          transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
+          className="md:flex-1 flex items-center justify-center relative"
+        >
+          {/* Ambient glow behind image */}
+          <div
+            className="
+              absolute -inset-6 rounded-2xl
+              bg-radial from-rose-400/20 via-slate-300/15 to-transparent
+              dark:from-rose-500/15 dark:via-slate-500/10 dark:to-transparent
+              blur-2xl
+            "
+          />
+
+          {/* Image container — aspect-4/3 on mobile, stretches to left col height on md+ */}
+          <div className="relative w-full aspect-4/3 md:aspect-auto md:h-full min-h-48 rounded-xl overflow-hidden">
+            <Image
+              src="/images/apollo-demo.jpg"
+              alt="Apollo project demo"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+            {/* Bottom gradient bleed into page background */}
+            <div className="absolute inset-0 bg-linear-to-t from-white/60 dark:from-slate-950/60 via-transparent to-transparent" />
+          </div>
+        </motion.div>
+      </div>
     </section>
   );
 };
