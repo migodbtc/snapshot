@@ -13,6 +13,7 @@ import {
   X,
   Home,
   Laptop,
+  Sparkles,
 } from "lucide-react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -29,6 +30,7 @@ export const NAV_LINKS = [
   { label: "Blog", icon: BookOpen, href: "/blog" },
   { label: "Communeye", icon: Eye, href: "/communeye" },
   { label: "Contact", icon: Mail, href: "/contact" },
+  { label: "Try v2 (Bento)", icon: Sparkles, href: "/v2" },
 ];
 
 export default function AppHeader() {
@@ -68,8 +70,16 @@ export default function AppHeader() {
         </div>
       </Link>
 
-      {/* Hamburger Trigger (All Resolutions) */}
-      <div className="flex justify-end">
+      {/* Right controls: Try v2 pill + Hamburger Trigger */}
+      <div className="flex items-center gap-2.5 justify-end">
+        <Link
+          href="/v2"
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-gradient-to-r from-rose-800 to-indigo-700 hover:from-rose-700 hover:to-indigo-600 text-white shadow-md transition-all hover:scale-105"
+          title="Explore alternate v2 Bento Grid redesign"
+        >
+          <Sparkles className="w-3.5 h-3.5" />
+          <span>Try v2</span>
+        </Link>
         <button
           type="button"
           onClick={() => setIsMenuOpen(true)}
