@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, Fragment } from "react";
+import { useState, useEffect, Fragment } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -9,6 +9,8 @@ import {
   GraduationCap,
   Trophy,
   Award,
+  Calendar,
+  X,
 } from "lucide-react";
 import {
   SiTypescript,
@@ -78,9 +80,9 @@ const aboutFyiCards = [
     icon: Trophy,
   },
   {
-    label: "Certification",
-    title: "AWS Certified AI Practitioner",
-    icon: Award,
+    label: "Began Career",
+    title: "2022",
+    icon: Calendar,
   },
 ];
 
@@ -169,6 +171,119 @@ const skillSections = [
   },
 ];
 
+// Blog items for the rotating carousel gallery (real posts + symbolic empty placeholders)
+const blogCarouselItems = [
+  {
+    id: 5,
+    tag: "REFLECTION",
+    title: "The Skewed Linearity of My Software Engineering Progression",
+    meta: "6 min read · 2026",
+    image: "/images/about_stock_images/stock_1.jpg",
+    href: "/blog/5",
+    isPlaceholder: false,
+  },
+  {
+    id: 4,
+    tag: "CAREER",
+    title: "Job Market in the Big 2026",
+    meta: "5 min read · 2026",
+    image: "/images/about_stock_images/stock_2.jpg",
+    href: "/blog/4",
+    isPlaceholder: false,
+  },
+  {
+    id: 3,
+    tag: "AI & CRAFT",
+    title: "Learning to Slow Down in the Age of Artificial Intelligence",
+    meta: "5 min read · 2026",
+    image: "/images/about_stock_images/stock_3.jpg",
+    href: "/blog/3",
+    isPlaceholder: false,
+  },
+  {
+    id: 2,
+    tag: "INDUSTRY",
+    title: "Looking at 'What Works' as Someone Who Looked at 'What's Hyped'",
+    meta: "4 min read · 2026",
+    image: "/images/about_stock_images/stock_4.jpg",
+    href: "/blog/2",
+    isPlaceholder: false,
+  },
+  {
+    id: 1,
+    tag: "ACADEMICS",
+    title: "Dealing with Career Unknowns Post-Graduation",
+    meta: "4 min read · 2026",
+    image: "/images/about_stock_images/stock_5.jpg",
+    href: "/blog/1",
+    isPlaceholder: false,
+  },
+  {
+    id: "empty-1",
+    tag: "UPCOMING",
+    title: "—",
+    meta: "Draft in progress",
+    image: null,
+    href: "/blog",
+    isPlaceholder: true,
+  },
+  {
+    id: "empty-2",
+    tag: "UPCOMING",
+    title: "—",
+    meta: "Draft in progress",
+    image: null,
+    href: "/blog",
+    isPlaceholder: true,
+  },
+  {
+    id: "empty-3",
+    tag: "UPCOMING",
+    title: "—",
+    meta: "Draft in progress",
+    image: null,
+    href: "/blog",
+    isPlaceholder: true,
+  },
+];
+
+// Testimonies data for the 2-row squares layout
+const testimoniesData = [
+  {
+    id: 1,
+    title: "Technical Leadership & Client Communication",
+    quote:
+      "I worked alongside Miguel on a cybersecurity audit project at Don Bosco Technical College, where he stepped up as team lead to direct an interview with the department head. He created a transcript, documented findings, that we used to evaluate security vulnerabilities. His client-facing communication and initiative during discovery assessments kept our audit thorough and grounded in real operational needs. Miguel is a dependable leader who maintains high standards across both technical deliverables and team coordination.",
+    author: "Lance Kennedy Nafarrete",
+    organization: "Fresh Graduate Data Analyst",
+    isPlaceholder: false,
+  },
+  {
+    id: 2,
+    title: "—",
+    quote: "—",
+    author: "—",
+    organization: "Pending Endorsement",
+    isPlaceholder: true,
+  },
+  {
+    id: 3,
+    title: "—",
+    quote: "—",
+    author: "—",
+    organization: "Pending Endorsement",
+    isPlaceholder: true,
+  },
+  {
+    id: 4,
+    title: "—",
+    quote: "—",
+    author: "—",
+    organization: "Pending Endorsement",
+    isPlaceholder: true,
+  },
+];
+
 // Sort projects from latest to oldest
 const sortedProjects = [...PROJECT_INDEX].sort((a, b) => {
   const dateDiff = b.startDate.localeCompare(a.startDate);
@@ -194,6 +309,27 @@ export default function V2HomePage() {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number>(0);
   const [hoveredProjectId, setHoveredProjectId] = useState<number | null>(null);
   const [hoveredFyiIndex, setHoveredFyiIndex] = useState<number | null>(null);
+  const [activeTestimony, setActiveTestimony] = useState<
+    (typeof testimoniesData)[0] | null
+  >(null);
+
+  // Lock body scroll and close on Escape when testimony modal is open
+  useEffect(() => {
+    if (!activeTestimony) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setActiveTestimony(null);
+      }
+    };
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [activeTestimony]);
 
   // Scroll animations matching main page hero
   const { scrollY } = useScroll();
@@ -347,16 +483,179 @@ export default function V2HomePage() {
         </motion.div>
       </section>
 
+      {/* 3. About Me Section: Gallery Row + Split About Me Layout */}
+      <section
+        id="about"
+        className="relative w-full min-h-screen py-24 sm:py-32 px-8 md:px-12 bg-neutral-950 flex flex-col justify-start "
+      >
+        {/* Minimal Text-based Divider with scroll-up and fade-in */}
+        {/* <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ margin: "-20px", once: false }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="w-full flex items-center justify-between gap-3 sm:gap-6 font-mono text-xs sm:text-sm tracking-wider uppercase select-none py-12 mb-10 sm:mb-14 overflow-x-auto no-scrollbar"
+        >
+          {aboutDividerPhrases.map((phrase, idx) => (
+            <Fragment key={phrase}>
+              <motion.span
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ margin: "-20px", once: false }}
+                transition={{
+                  duration: 0.45,
+                  delay: idx * 0.07,
+                  ease: "easeOut",
+                }}
+                className={`shrink-0 hover:text-slate-200 transition-colors ${
+                  phrase.includes("Valedictorian")
+                    ? "font-bold text-slate-300"
+                    : "font-semibold text-slate-400"
+                }`}
+              >
+                {phrase}
+              </motion.span>
+              {idx < aboutDividerPhrases.length - 1 && (
+                <motion.span
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ margin: "-20px", once: false }}
+                  transition={{
+                    duration: 0.35,
+                    delay: idx * 0.07 + 0.04,
+                    ease: "easeOut",
+                  }}
+                  className="text-slate-600 shrink-0 select-none"
+                >
+                  |
+                </motion.span>
+              )}
+            </Fragment>
+          ))}
+        </motion.div> */}
+
+        {/* Row 2: Split Layout (Title + Description + 3 FYI cards on Left, Placeholder Picture occupying most of the right) */}
+        <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-14 lg:gap-16 xl:gap-20 items-stretch">
+          {/* Left Column: Title + Short Description + 3 FYI Cards at the very bottom */}
+
+          <div className="lg:col-span-5 flex flex-col justify-between min-h-[460px] sm:min-h-[480px]">
+            {/* Top: Reduced Title + Reduced Description */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ margin: "-50px", once: true }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="w-full mb-8 sm:mb-12"
+            >
+              <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white">
+                About <span className="text-rose-600">Me</span>
+              </h2>
+            </motion.div>
+            <div className="flex flex-col">
+              <motion.p
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ margin: "-30px", once: true }}
+                transition={{ duration: 0.6, delay: 0.12, ease: "easeOut" }}
+                className="text-sm sm:text-md text-slate-300 font-normal leading-relaxed text-justify mb-8 sm:mb-10"
+              >
+                Hello all! Welcome to my personal website. As you can tell, I am
+                a software engineer who has graduated BS Information Technology
+                from Don Bosco Technical College. I have passion for not only
+                building and understanding systems and applications, but also
+                understanding the different parts of the software development
+                lifecycle especially at an age where AI can augment different
+                parts of it. I focus on shipping effective, reliable code while
+                maintaining readability and reducing technical debt as much as
+                possible. Furthermore, I try to keep an open mind on
+                understanding others' viewpoints and knowledge with their own
+                professional experience - together we can lift each other up and
+                continue to build human-focused digital solutions.
+              </motion.p>
+            </div>
+
+            {/* Bottom: 3 FYI Cards with focus interaction and scroll-up entrance */}
+            <div className="flex flex-wrap-reverse gap-3 items-start justify-start pt-4">
+              {aboutFyiCards.map(({ label, title, icon: Icon }, i) => {
+                const isCardHovered = hoveredFyiIndex === i;
+                const hasAnyCardHovered = hoveredFyiIndex !== null;
+
+                return (
+                  <motion.div
+                    key={label}
+                    initial={{ opacity: 0, y: 35 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ margin: "-30px", once: true }}
+                    transition={{
+                      duration: 0.5,
+                      delay: 0.15 + i * 0.1,
+                      ease: "easeOut",
+                    }}
+                    onMouseEnter={() => setHoveredFyiIndex(i)}
+                    onMouseLeave={() => setHoveredFyiIndex(null)}
+                    className={`w-full sm:w-[185px] xl:w-[195px] h-[105px] p-4 rounded-2xl backdrop-blur-xl transition-all duration-300 cursor-default select-none flex flex-col justify-between ${
+                      isCardHovered
+                        ? "bg-slate-900/40 border border-rose-500/40 shadow-[0_0_20px_rgba(244,63,94,0.18)] scale-[1.03] opacity-100"
+                        : hasAnyCardHovered
+                          ? "bg-slate-900/10 border border-transparent opacity-50"
+                          : "bg-slate-900/15 border border-white/5 opacity-100 hover:scale-[1.02]"
+                    }`}
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400">
+                        {label}
+                      </span>
+                      <Icon
+                        className={`w-4 h-4 shrink-0 transition-colors ${
+                          isCardHovered ? "text-rose-400" : "text-rose-500/80"
+                        }`}
+                      />
+                    </div>
+                    <div>
+                      <h3 className="text-xs sm:text-sm font-semibold text-white leading-snug">
+                        {title}
+                      </h3>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Right Column: Placeholder Picture anchored to the right side with scroll-up and fade-in */}
+          <motion.div
+            initial={{ opacity: 0, y: 55, scale: 0.98 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ margin: "-40px", once: true }}
+            transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
+            className="lg:col-span-6 lg:col-start-7 w-full flex items-center justify-center"
+          >
+            <div className="relative w-full aspect-[16/10] md:aspect-auto lg:h-full lg:min-h-[500px] rounded-2xl overflow-hidden bg-neutral-900 border border-white/5 shadow-2xl group">
+              <Image
+                src="/images/hero_picture.jpg"
+                alt="About Miguel Justin"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover object-top grayscale contrast-105 group-hover:scale-[1.02] transition-all duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent pointer-events-none" />
+
+              <div className="absolute bottom-6 sm:bottom-8 left-6 sm:left-8 z-10 flex flex-col text-left pointer-events-auto"></div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* 2. Built Projects Section: 3/9 Split with Timeline Mini-Column & Gallery */}
       <section
         id="projects"
-        className="relative w-full min-h-screen pt-16 py-8 sm:pt-24 sm:pb-16 px-8 md:px-12 bg-neutral-950 flex flex-col justify-start"
+        className="relative w-full min-h-screen py-16 sm:py-24 px-8 md:px-12 bg-neutral-950 flex flex-col justify-start"
       >
         {/* Header: Large text that says Built Projects with scroll-up and fade-in */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ margin: "-50px", once: false }}
+          viewport={{ margin: "-50px", once: true }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="w-full mb-8 sm:mb-12"
         >
@@ -383,7 +682,7 @@ export default function V2HomePage() {
                   key={proj.projectId}
                   initial={{ opacity: 0, y: 25 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ margin: "-20px", once: false }}
+                  viewport={{ margin: "-20px", once: true }}
                   transition={{
                     duration: 0.45,
                     delay: Math.min(idx * 0.04, 0.3),
@@ -451,7 +750,7 @@ export default function V2HomePage() {
             <motion.div
               initial={{ opacity: 0, y: 50, scale: 0.98 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ margin: "-40px", once: false }}
+              viewport={{ margin: "-40px", once: true }}
               transition={{ duration: 0.65, delay: 0.1, ease: "easeOut" }}
               className="relative flex-1 aspect-[16/10] md:aspect-auto md:min-h-[480px] lg:min-h-[520px] rounded-2xl overflow-hidden bg-neutral-900 border border-white/5 shadow-2xl"
             >
@@ -530,7 +829,7 @@ export default function V2HomePage() {
                       y: 0,
                       scale: 1,
                     }}
-                    viewport={{ margin: "-30px", once: false }}
+                    viewport={{ margin: "-30px", once: true }}
                     transition={{
                       duration: 0.45,
                       delay: idx * 0.08,
@@ -566,171 +865,10 @@ export default function V2HomePage() {
         </div>
       </section>
 
-      {/* 3. About Me Section: Gallery Row + Split About Me Layout */}
-      <section
-        id="about"
-        className="relative w-full min-h-screen py-24 sm:py-32 px-8 md:px-12 bg-neutral-950 flex flex-col justify-start "
-      >
-        {/* Minimal Text-based Divider with scroll-up and fade-in */}
-        {/* <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ margin: "-20px", once: false }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="w-full flex items-center justify-between gap-3 sm:gap-6 font-mono text-xs sm:text-sm tracking-wider uppercase select-none py-12 mb-10 sm:mb-14 overflow-x-auto no-scrollbar"
-        >
-          {aboutDividerPhrases.map((phrase, idx) => (
-            <Fragment key={phrase}>
-              <motion.span
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ margin: "-20px", once: false }}
-                transition={{
-                  duration: 0.45,
-                  delay: idx * 0.07,
-                  ease: "easeOut",
-                }}
-                className={`shrink-0 hover:text-slate-200 transition-colors ${
-                  phrase.includes("Valedictorian")
-                    ? "font-bold text-slate-300"
-                    : "font-semibold text-slate-400"
-                }`}
-              >
-                {phrase}
-              </motion.span>
-              {idx < aboutDividerPhrases.length - 1 && (
-                <motion.span
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ margin: "-20px", once: false }}
-                  transition={{
-                    duration: 0.35,
-                    delay: idx * 0.07 + 0.04,
-                    ease: "easeOut",
-                  }}
-                  className="text-slate-600 shrink-0 select-none"
-                >
-                  |
-                </motion.span>
-              )}
-            </Fragment>
-          ))}
-        </motion.div> */}
-
-        {/* Row 2: Split Layout (Title + Description + 3 FYI cards on Left, Placeholder Picture occupying most of the right) */}
-        <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-14 lg:gap-16 xl:gap-20 items-stretch">
-          {/* Left Column: Title + Short Description + 3 FYI Cards at the very bottom */}
-
-          <div className="lg:col-span-4 flex flex-col justify-between min-h-[460px] sm:min-h-[480px]">
-            {/* Top: Reduced Title + Reduced Description */}
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ margin: "-50px", once: false }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="w-full mb-8 sm:mb-12"
-            >
-              <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white">
-                About <span className="text-rose-600">Me</span>
-              </h2>
-            </motion.div>
-            <div className="flex flex-col">
-              <motion.p
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ margin: "-30px", once: false }}
-                transition={{ duration: 0.6, delay: 0.12, ease: "easeOut" }}
-                className="text-xs sm:text-sm text-slate-300 font-normal leading-relaxed text-justify mb-8 sm:mb-10"
-              >
-                I am a software engineer, AWS Certified AI Practitioner, and BS
-                Information Technology graduate from Don Bosco Technical
-                College, graduating as Batch Valedictorian and Magna Cum Laude
-                with a GWA of 1.26/1.00. I focus on architecting resilient
-                full-stack applications, modular cloud infrastructure, and
-                human-centered web systems. From delivering core CRM backend
-                pipelines during my internship at Rakso Creative Technologies to
-                engineering cloud-native IaC architectures and AI/RAG
-                integrations, I turn complex problems into elegant,
-                production-ready solutions.
-              </motion.p>
-            </div>
-
-            {/* Bottom: 3 FYI Cards with focus interaction and scroll-up entrance */}
-            <div className="flex flex-wrap-reverse gap-3 items-start justify-start pt-4">
-              {aboutFyiCards.map(({ label, title, icon: Icon }, i) => {
-                const isCardHovered = hoveredFyiIndex === i;
-                const hasAnyCardHovered = hoveredFyiIndex !== null;
-
-                return (
-                  <motion.div
-                    key={label}
-                    initial={{ opacity: 0, y: 35 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ margin: "-30px", once: false }}
-                    transition={{
-                      duration: 0.5,
-                      delay: 0.15 + i * 0.1,
-                      ease: "easeOut",
-                    }}
-                    onMouseEnter={() => setHoveredFyiIndex(i)}
-                    onMouseLeave={() => setHoveredFyiIndex(null)}
-                    className={`w-full sm:w-[185px] xl:w-[195px] h-[105px] p-4 rounded-2xl backdrop-blur-xl transition-all duration-300 cursor-default select-none flex flex-col justify-between ${
-                      isCardHovered
-                        ? "bg-slate-900/40 border border-rose-500/40 shadow-[0_0_20px_rgba(244,63,94,0.18)] scale-[1.03] opacity-100"
-                        : hasAnyCardHovered
-                          ? "bg-slate-900/10 border border-transparent opacity-50"
-                          : "bg-slate-900/15 border border-white/5 opacity-100 hover:scale-[1.02]"
-                    }`}
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400">
-                        {label}
-                      </span>
-                      <Icon
-                        className={`w-4 h-4 shrink-0 transition-colors ${
-                          isCardHovered ? "text-rose-400" : "text-rose-500/80"
-                        }`}
-                      />
-                    </div>
-                    <div>
-                      <h3 className="text-xs sm:text-sm font-semibold text-white leading-snug">
-                        {title}
-                      </h3>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Right Column: Placeholder Picture anchored to the right side with scroll-up and fade-in */}
-          <motion.div
-            initial={{ opacity: 0, y: 55, scale: 0.98 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ margin: "-40px", once: false }}
-            transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
-            className="lg:col-span-6 lg:col-start-7 w-full flex items-center justify-center"
-          >
-            <div className="relative w-full aspect-[16/10] md:aspect-auto lg:h-full lg:min-h-[500px] rounded-2xl overflow-hidden bg-neutral-900 border border-white/5 shadow-2xl group">
-              {/* <Image
-                src="/images/about_stock_images/stock_6.jpg"
-                alt="About Miguel Justin"
-                fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover object-center grayscale contrast-105 group-hover:scale-[1.02] transition-all duration-700"
-              /> */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent pointer-events-none" />
-
-              <div className="absolute bottom-6 sm:bottom-8 left-6 sm:left-8 z-10 flex flex-col text-left pointer-events-auto"></div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
       {/* 4. Skills Section: Minimal Architectural Layout */}
       <section
         id="skills"
-        className="relative w-full min-h-screen pb-24 sm:pb-32 px-8 md:px-12 bg-neutral-950 flex flex-col justify-start"
+        className="relative w-full min-h-screen py-16 sm:py-24 px-8 md:px-12 bg-neutral-950 flex flex-col justify-start"
       >
         <div id="stack" className="absolute -top-24" />
 
@@ -738,7 +876,7 @@ export default function V2HomePage() {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ margin: "-50px", once: false }}
+          viewport={{ margin: "-50px", once: true }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="w-full flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-16 sm:mb-20 pt-12 sm:pt-16"
         >
@@ -748,8 +886,9 @@ export default function V2HomePage() {
             </h2>
           </div>
           <p className="text-sm sm:text-base text-slate-400 font-normal leading-relaxed md:text-right max-w-sm sm:max-w-md">
-            Every architecture is engineered with clarity, system integrity, and
-            deliberate performance.
+            Skills & capabilities earned and honed through conceptual
+            understanding and practical building - whether attained through
+            academic studies or tech-driven curiosity.
           </p>
         </motion.div>
 
@@ -760,7 +899,7 @@ export default function V2HomePage() {
               key={sec.index}
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              viewport={{ margin: "-40px", once: false }}
+              viewport={{ margin: "-40px", once: true }}
               transition={{
                 duration: 0.4,
                 delay: idx * 0.06,
@@ -772,7 +911,7 @@ export default function V2HomePage() {
               <motion.div
                 initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ margin: "-40px", once: false }}
+                viewport={{ margin: "-40px", once: true }}
                 transition={{
                   duration: 0.45,
                   delay: idx * 0.06 + 0.04,
@@ -790,7 +929,7 @@ export default function V2HomePage() {
                 <motion.h3
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ margin: "-40px", once: false }}
+                  viewport={{ margin: "-40px", once: true }}
                   transition={{
                     duration: 0.5,
                     delay: idx * 0.06 + 0.08,
@@ -803,7 +942,7 @@ export default function V2HomePage() {
                 <motion.p
                   initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ margin: "-40px", once: false }}
+                  viewport={{ margin: "-40px", once: true }}
                   transition={{
                     duration: 0.5,
                     delay: idx * 0.06 + 0.12,
@@ -824,7 +963,7 @@ export default function V2HomePage() {
                       key={name}
                       initial={{ opacity: 0, y: 14 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ margin: "-40px", once: false }}
+                      viewport={{ margin: "-40px", once: true }}
                       transition={{
                         duration: 0.35,
                         delay: idx * 0.06 + 0.16 + bIdx * 0.025,
@@ -846,6 +985,333 @@ export default function V2HomePage() {
           ))}
         </div>
       </section>
+
+      {/* 5. Blog Section: Rotating Gallery Carousel */}
+      <section
+        id="blog"
+        className="relative w-full py-24 sm:py-32 px-8 md:px-12 bg-neutral-950 flex flex-col justify-start overflow-hidden"
+      >
+        {/* Top Header Row */}
+        <div className="w-full flex flex-col mb-12 sm:mb-16">
+          {/* Headline + Read All Link */}
+          <div className="w-full flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <motion.h2
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ margin: "-30px", once: true }}
+              transition={{ duration: 0.55, delay: 0.05, ease: "easeOut" }}
+              className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.08] max-w-3xl"
+            >
+              Personal reflections and thoughts from my experiences in{" "}
+              <span className="text-rose-600">software engineering</span>.
+            </motion.h2>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ margin: "-30px", once: true }}
+              transition={{ duration: 0.5, delay: 0.12, ease: "easeOut" }}
+            >
+              <Link
+                href="/blog"
+                className="group inline-flex items-center gap-2 text-sm sm:text-base font-semibold text-slate-300 hover:text-white transition-colors cursor-pointer shrink-0 pb-1"
+              >
+                <span>Read all posts</span>
+                <ArrowUpRight className="w-4 h-4 text-rose-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
+              </Link>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Rotating Carousel Track with Entrance Animation */}
+        <motion.div
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ margin: "-30px", once: true }}
+          transition={{ duration: 0.65, delay: 0.15, ease: "easeOut" }}
+          className="-mx-8 md:-mx-12 relative overflow-hidden blog-carousel-container py-4"
+        >
+          {/* Subtle gradient vignette on left and right edges */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-12 sm:w-28 bg-gradient-to-r from-neutral-950 via-neutral-950/80 to-transparent z-20" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-12 sm:w-28 bg-gradient-to-l from-neutral-950 via-neutral-950/80 to-transparent z-20" />
+
+          {/* Marquee Track: Duplicated list for seamless infinite loop */}
+          <div className="blog-carousel-track flex items-center gap-5 sm:gap-6 w-max pl-8 md:pl-12">
+            {[...blogCarouselItems, ...blogCarouselItems].map((post, idx) => (
+              <Link
+                key={`${post.id}-${idx}`}
+                href={post.href}
+                className="group relative w-[280px] sm:w-[320px] md:w-[350px] h-[400px] sm:h-[440px] rounded-3xl overflow-hidden shrink-0 border border-white/10 hover:border-white/25 shadow-2xl shadow-black/60 hover:shadow-black/90 transition-all duration-300 hover:scale-[1.02] bg-neutral-900 cursor-pointer block"
+              >
+                {/* Visual Background: Image or Dark Placeholder */}
+                {post.image ? (
+                  <div className="absolute inset-0">
+                    <Image
+                      src={post.image}
+                      alt={post.title}
+                      fill
+                      sizes="(max-width: 768px) 280px, 350px"
+                      className="object-cover object-center grayscale contrast-105 group-hover:scale-105 group-hover:grayscale-0 transition-all duration-700 brightness-90"
+                    />
+                  </div>
+                ) : (
+                  <div className="absolute inset-0 bg-neutral-900 flex flex-col justify-between p-6">
+                    {/* Minimal geometric background pattern for placeholder drafts */}
+                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(244,63,94,0.06),transparent_70%)]" />
+                    <div className="absolute top-6 right-6 font-mono text-[10px] text-slate-600 uppercase tracking-widest select-none">
+                      [ — ]
+                    </div>
+                  </div>
+                )}
+
+                {/* Dark Vignette Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent pointer-events-none" />
+
+                {/* Bottom Content: Category Tag, Title, and Meta */}
+                <div className="absolute bottom-0 inset-x-0 p-6 sm:p-7 flex flex-col justify-end text-left z-10 pointer-events-auto">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[11px] sm:text-xs font-mono font-bold uppercase tracking-wider text-rose-500">
+                      {post.tag}
+                    </span>
+                    <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:text-slate-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200" />
+                  </div>
+                  <h3 className="text-lg sm:text-xl font-bold text-slate-200 leading-snug mt-2 line-clamp-2 group-hover:text-white transition-colors duration-200">
+                    {post.title}
+                  </h3>
+                  <div className="flex items-center gap-2 mt-2.5 font-mono text-xs text-slate-400">
+                    <span>{post.meta}</span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Carousel Animation Styles with Smooth Pause on Hover */}
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+            @keyframes blogMarquee {
+              0% {
+                transform: translate3d(0, 0, 0);
+              }
+              100% {
+                transform: translate3d(-50%, 0, 0);
+              }
+            }
+            .blog-carousel-track {
+              display: flex;
+              width: max-content;
+              animation: blogMarquee 50s linear infinite;
+              will-change: transform;
+            }
+            .blog-carousel-container:hover .blog-carousel-track {
+              animation-play-state: paused;
+            }
+          `,
+          }}
+        />
+      </section>
+
+      {/* 6. Testimonies Section: 2 Rows of Squares inspired by reference layout */}
+      <section
+        id="testimonies"
+        className="relative w-full min-h-screen py-24 sm:py-32 px-8 md:px-12 bg-neutral-950 flex flex-col justify-start"
+      >
+        <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-12 lg:gap-16 items-start">
+          {/* Left Column: Title + Description anchored cleanly (sticky on desktop) */}
+          <div className="lg:col-span-4 xl:col-span-4 flex flex-col justify-start lg:sticky lg:top-28">
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.08] mb-6"
+            >
+              Peer <span className="text-rose-600">Testimonies</span>
+            </motion.h2>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+              className="text-sm sm:text-base text-slate-400 font-normal leading-relaxed text-justify"
+            >
+              Perspectives from engineering leads, academic mentors, and
+              collaborators on technical craftsmanship, reliability, and work
+              ethic throughout my academic and professional journey.
+            </motion.p>
+          </div>
+
+          {/* Right Column: 2 Rows of Squares (2x2 Grid) */}
+          <div className="lg:col-span-8 xl:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
+            {testimoniesData.map((item, idx) => {
+              const isClickable = !item.isPlaceholder;
+
+              return (
+                <motion.div
+                  key={item.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.15 }}
+                  transition={{
+                    duration: 0.5,
+                    delay: idx * 0.08,
+                    ease: "easeOut",
+                  }}
+                  onClick={() => {
+                    if (isClickable) setActiveTestimony(item);
+                  }}
+                  className={`group relative aspect-4/3 w-full rounded-3xl p-7 sm:p-8 flex flex-col justify-center shadow-2xl select-none transition-[border-color,background-color,box-shadow,transform] duration-300 ${
+                    isClickable
+                      ? "bg-neutral-900 border border-white/10 hover:border-white/25 hover:scale-[1.02] shadow-black/60 cursor-pointer"
+                      : "bg-neutral-900/40 border border-white/5 shadow-black/30 opacity-40 cursor-default"
+                  }`}
+                >
+                  {/* Top: Card Title & Index Number */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 14 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.15 }}
+                    transition={{
+                      duration: 0.45,
+                      delay: idx * 0.08 + 0.05,
+                      ease: "easeOut",
+                    }}
+                    className="w-full flex items-center justify-between"
+                  >
+                    <h3
+                      className={`pb-4 text-lg sm:text-xl font-bold tracking-tight transition-colors ${
+                        isClickable
+                          ? "text-white group-hover:text-rose-600"
+                          : "text-slate-500"
+                      }`}
+                    >
+                      {item.title}
+                    </h3>
+                    <span className="font-mono text-xs text-slate-600">
+                      0{item.id}
+                    </span>
+                  </motion.div>
+
+                  {/* Bottom: Quote Text & Attribution */}
+                  <div className="flex flex-col gap-3">
+                    <motion.p
+                      initial={{ opacity: 0, y: 12 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, amount: 0.15 }}
+                      transition={{
+                        duration: 0.45,
+                        delay: idx * 0.08 + 0.1,
+                        ease: "easeOut",
+                      }}
+                      className={`text-xs sm:text-sm font-normal leading-relaxed line-clamp-4 ${
+                        isClickable
+                          ? "text-slate-300 text-justify"
+                          : "text-slate-600"
+                      }`}
+                    >
+                      {item.isPlaceholder ? "—" : `“${item.quote}”`}
+                    </motion.p>
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, amount: 0.15 }}
+                      transition={{
+                        duration: 0.45,
+                        delay: idx * 0.08 + 0.15,
+                        ease: "easeOut",
+                      }}
+                      className="pt-2 border-t border-white/5 flex items-center justify-between"
+                    >
+                      <div className="flex flex-col">
+                        <span
+                          className={`text-xs font-semibold tracking-wide ${
+                            isClickable ? "text-white" : "text-slate-500"
+                          }`}
+                        >
+                          {item.author}
+                        </span>
+                        <span className="text-[11px] font-mono text-slate-500">
+                          {item.organization}
+                        </span>
+                      </div>
+                      {isClickable && (
+                        <span className="text-[11px] font-mono text-rose-500 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                          Expand ↗
+                        </span>
+                      )}
+                    </motion.div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimony Detail Modal */}
+      <AnimatePresence>
+        {activeTestimony && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-10">
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={() => setActiveTestimony(null)}
+              className="absolute inset-0 bg-black/80 backdrop-blur-md"
+            />
+
+            {/* Modal Card */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded-3xl bg-neutral-900 border border-white/15 p-6 sm:p-8 md:p-10 shadow-2xl shadow-black flex flex-col gap-6 z-10"
+            >
+              {/* Top Header */}
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex flex-col gap-1">
+                  <span className="font-mono text-xs text-rose-500 uppercase tracking-wider">
+                    0{activeTestimony.id}
+                  </span>
+                  <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+                    {activeTestimony.title}
+                  </h3>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setActiveTestimony(null)}
+                  className="rounded-full p-2 text-slate-400 hover:text-white hover:bg-white/10 transition-colors shrink-0 cursor-pointer"
+                  aria-label="Close modal"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Full Quote */}
+              <div className="text-sm sm:text-base text-slate-200 font-normal leading-relaxed text-justify py-5">
+                &ldquo;{activeTestimony.quote}&rdquo;
+              </div>
+
+              {/* Attribution */}
+              <div className="flex flex-col">
+                <span className="text-sm font-semibold text-white tracking-wide">
+                  {activeTestimony.author}
+                </span>
+                <span className="text-xs font-mono text-slate-400">
+                  {activeTestimony.organization}
+                </span>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </main>
   );
 }
