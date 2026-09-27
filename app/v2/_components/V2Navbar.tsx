@@ -2,36 +2,25 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import {
-  Home,
-  Laptop,
-  Briefcase,
-  Braces,
-  User,
-  Mail,
-  Menu,
-  X,
-  ArrowUpRight,
-} from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Home, BookOpen, Menu, X, ArrowUpRight } from "lucide-react";
 
 export function V2Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   const navLinks = [
-    { label: "Overview", href: "#overview", icon: Home },
-    { label: "Projects", href: "#projects", icon: Laptop },
-    { label: "Experience", href: "#experience", icon: Briefcase },
-    { label: "Stack", href: "#stack", icon: Braces },
-    { label: "About", href: "#about", icon: User },
-    { label: "Contact", href: "#contact", icon: Mail },
+    { label: "Landing", href: "/v2/landing", icon: Home },
+    { label: "Blog", href: "/v2/blog", icon: BookOpen },
   ];
 
   return (
     <header className="relative z-30 w-full flex justify-center bg-transparent">
       <nav className="relative w-full flex items-center justify-between px-4 md:px-8 pt-4 h-[10dvh]">
         {/* Left: Ported Logo + Title from original Snapshot design */}
-        <a
-          href="#overview"
+        <Link
+          href="/v2/landing"
           className="flex items-center group cursor-pointer select-none"
         >
           {/* Site Favicon Icon */}
@@ -65,31 +54,44 @@ export function V2Navbar() {
               </span>
             </div>
           </div>
-        </a>
+        </Link>
 
-        {/* Center: Desktop Navigation Links (Absolute Centered in Resolution, No Glass, Tighter Spacing, Darker Text, Color + Scale Hover) */}
-        <div className="absolute left-1/2 -translate-x-1/2 hidden md:flex items-center gap-1 sm:gap-2">
-          {navLinks.map(({ label, href, icon: Icon }) => (
-            <a
-              key={label}
-              href={href}
-              className="group inline-flex items-center gap-1.5 px-2.5 py-1 text-sm font-medium text-slate-500 hover:text-slate-300 hover:scale-105 transition-all duration-200 ease-out select-none"
-            >
-              <Icon className="w-4 h-4 text-slate-500 group-hover:text-slate-300 transition-colors duration-200 shrink-0" />
-              <span>{label}</span>
-            </a>
-          ))}
+        {/* Center: Desktop Navigation Links (Landing & Blog) */}
+        <div className="absolute left-1/2 -translate-x-1/2 hidden md:flex items-center gap-1.5 sm:gap-2">
+          {navLinks.map(({ label, href, icon: Icon }) => {
+            const isActive =
+              pathname === href || (href !== "/v2/landing" && pathname?.startsWith(href));
+
+            return (
+              <Link
+                key={label}
+                href={href}
+                className={`group inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ease-out select-none ${
+                  isActive
+                    ? "text-white bg-white/10 font-semibold"
+                    : "text-slate-400 hover:text-slate-200 hover:scale-105"
+                }`}
+              >
+                <Icon
+                  className={`w-4 h-4 transition-colors duration-200 shrink-0 ${
+                    isActive ? "text-rose-500" : "text-slate-500 group-hover:text-slate-300"
+                  }`}
+                />
+                <span>{label}</span>
+              </Link>
+            );
+          })}
         </div>
 
-        {/* Right: CTA Action: Let's Connect button with signature red */}
+        {/* Right: CTA Action: Let's Connect button */}
         <div className="hidden sm:flex items-center">
-          <a
-            href="#contact"
+          <Link
+            href="/v2/landing#contact"
             className="flex items-center gap-1.5 font-semibold text-white bg-rose-800 hover:bg-rose-700 rounded-full shadow-[0_0_20px_rgba(159,18,57,0.35)] transition-all hover:scale-[1.02] text-xs sm:text-sm px-5 py-2.5"
           >
             <span>Let&apos;s Connect</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
-          </a>
+          </Link>
         </div>
 
         {/* Mobile menu trigger */}
@@ -112,26 +114,39 @@ export function V2Navbar() {
       {mobileMenuOpen && (
         <div className="absolute top-full left-4 right-4 z-50 bg-[#0d121c]/95 border border-white/10 rounded-2xl p-5 shadow-2xl flex flex-col gap-3 md:hidden">
           <div className="flex flex-col gap-1 pb-3 border-b border-white/10">
-            {navLinks.map(({ label, href, icon: Icon }) => (
-              <a
-                key={label}
-                href={href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="group flex items-center gap-2 text-sm font-medium text-slate-400 hover:text-white hover:scale-105 transition-all duration-200 py-2 px-2"
-              >
-                <Icon className="w-4 h-4 text-slate-400 group-hover:text-white transition-colors duration-200" />
-                <span>{label}</span>
-              </a>
-            ))}
+            {navLinks.map(({ label, href, icon: Icon }) => {
+              const isActive =
+                pathname === href || (href !== "/v2/landing" && pathname?.startsWith(href));
+
+              return (
+                <Link
+                  key={label}
+                  href={href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`group flex items-center gap-2.5 text-sm font-medium transition-all duration-200 py-2.5 px-3 rounded-xl ${
+                    isActive
+                      ? "text-white bg-white/10 font-semibold"
+                      : "text-slate-400 hover:text-white hover:bg-white/5"
+                  }`}
+                >
+                  <Icon
+                    className={`w-4 h-4 transition-colors duration-200 ${
+                      isActive ? "text-rose-500" : "text-slate-400 group-hover:text-white"
+                    }`}
+                  />
+                  <span>{label}</span>
+                </Link>
+              );
+            })}
           </div>
           <div className="flex items-center justify-end pt-2">
-            <a
-              href="#contact"
+            <Link
+              href="/v2/landing#contact"
               onClick={() => setMobileMenuOpen(false)}
               className="text-xs font-semibold text-white bg-rose-800 hover:bg-rose-700 px-4 py-2 rounded-full shadow-md transition-colors"
             >
               Let&apos;s Connect
-            </a>
+            </Link>
           </div>
         </div>
       )}
