@@ -31,15 +31,15 @@ export function SkillRow({ section, index }: SkillRowProps) {
           delay: index * 0.06 + 0.04,
           ease: "easeOut",
         }}
-        className="md:col-span-1 lg:col-span-2"
+        className="md:col-span-2 lg:col-span-2 shrink-0"
       >
-        <span className="font-mono text-xs sm:text-sm text-slate-500 group-hover:text-rose-600 transition-colors tracking-wider select-none">
+        <span className="font-mono text-xs sm:text-sm text-slate-500 group-hover:text-rose-600 transition-colors tracking-wider select-none whitespace-nowrap inline-block">
           [ {section.index} ]
         </span>
       </motion.div>
 
       {/* Middle: Title & Tagline */}
-      <div className="md:col-span-6 lg:col-span-5 flex flex-col">
+      <div className="md:col-span-5 lg:col-span-5 flex flex-col">
         <motion.h3
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

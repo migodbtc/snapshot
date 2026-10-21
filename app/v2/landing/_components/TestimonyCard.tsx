@@ -25,7 +25,7 @@ export function TestimonyCard({ item, index, onSelect }: TestimonyCardProps) {
       onClick={() => {
         if (isClickable) onSelect();
       }}
-      className={`group relative aspect-4/3 w-full rounded-3xl p-7 sm:p-8 flex flex-col justify-center shadow-2xl select-none transition-[border-color,background-color,box-shadow,transform] duration-300 ${
+      className={`group relative aspect-auto sm:aspect-4/3 w-full rounded-2xl sm:rounded-3xl p-5 sm:p-7 lg:p-8 flex flex-col justify-between shadow-2xl select-none transition-[border-color,background-color,box-shadow,transform] duration-300 ${
         isClickable
           ? "bg-neutral-900 border border-white/10 hover:border-white/25 hover:scale-[1.02] shadow-black/60 cursor-pointer"
           : "bg-neutral-900/40 border border-white/5 shadow-black/30 opacity-40 cursor-default"
@@ -44,7 +44,7 @@ export function TestimonyCard({ item, index, onSelect }: TestimonyCardProps) {
         className="w-full flex items-center justify-between"
       >
         <h3
-          className={`pb-4 text-lg sm:text-xl font-bold tracking-tight transition-colors ${
+          className={`pb-1.5 sm:pb-3 text-base sm:text-xl font-bold tracking-tight transition-colors ${
             isClickable
               ? "text-white group-hover:text-rose-600"
               : "text-slate-500"
@@ -56,7 +56,7 @@ export function TestimonyCard({ item, index, onSelect }: TestimonyCardProps) {
       </motion.div>
 
       {/* Bottom: Quote Text & Attribution */}
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-3.5 sm:gap-3">
         <motion.p
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -66,7 +66,7 @@ export function TestimonyCard({ item, index, onSelect }: TestimonyCardProps) {
             delay: index * 0.08 + 0.1,
             ease: "easeOut",
           }}
-          className={`text-xs sm:text-sm font-normal leading-relaxed line-clamp-4 ${
+          className={`text-sm sm:text-[15px] font-normal leading-relaxed line-clamp-4 ${
             isClickable ? "text-slate-300 text-justify" : "text-slate-600"
           }`}
         >

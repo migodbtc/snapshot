@@ -13,6 +13,7 @@ import {
 import { BlogSidebarItem } from "./_components/BlogSidebarItem";
 import { BlogReaderContent } from "./_components/BlogReaderContent";
 import { BlogInspectorCard } from "./_components/BlogInspectorCard";
+import { BlogMobileAccordion } from "./_components/BlogMobileAccordion";
 
 function BlogPageContent() {
   const searchParams = useSearchParams();
@@ -61,7 +62,7 @@ function BlogPageContent() {
   };
 
   return (
-    <main className="relative flex flex-col items-center w-full min-h-screen bg-neutral-950">
+    <main className="relative flex flex-col items-center w-full min-h-screen bg-neutral-950 overflow-x-hidden">
       {/* Top Navbar Header */}
       <div className="relative z-20 w-full">
         <V2Navbar />
@@ -88,8 +89,8 @@ function BlogPageContent() {
 
         {/* ROW 2: 3 / 9 Grid Split (Sidebar + Reader/Inspector) */}
         <div className="w-full min-h-screen grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-          {/* Lesser Column (3 cols): Dashboard Sidebar List */}
-          <div className="lg:col-span-3 flex flex-col gap-6 max-h-[680px] overflow-y-auto pr-2 sm:sticky sm:top-28">
+          {/* Lesser Column (3 cols): Desktop Dashboard Sidebar List (hidden on mobile/tablet) */}
+          <div className="hidden lg:flex lg:col-span-3 flex-col gap-6 max-h-[680px] overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden pr-2 lg:sticky lg:top-28">
             {/* Information Section */}
             <div className="flex flex-col gap-2.5">
               <div className="text-[11px] font-mono uppercase tracking-wider text-slate-500 pb-1 select-none">
@@ -131,6 +132,17 @@ function BlogPageContent() {
 
           {/* Bigger Column (9 cols): Divided into Reader (Left) + Inspector (Right) */}
           <div className="lg:col-span-9 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+            {/* Mobile / Tablet Accordion Dropdown (Non-sticky, in-flow) */}
+            <div className="col-span-1 lg:hidden w-full">
+              <BlogMobileAccordion
+                activePost={activePost}
+                introPost={INTRO_POST}
+                posts={SORTED_BLOG_POSTS}
+                selectedId={selectedId}
+                onSelect={handleSelect}
+              />
+            </div>
+
             {/* Left Inner Column: Full Blog Post Reader */}
             <div
               className={`w-full min-h-[500px] transition-all duration-300 ${

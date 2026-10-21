@@ -80,9 +80,6 @@ export function ProjectTimelineItem({
         }`}
       >
         <span>{project.projectName}</span>
-        {isSelected && (
-          <span className="w-1.5 h-1.5 rounded-full bg-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.9)] shrink-0" />
-        )}
       </button>
     </motion.div>
   );

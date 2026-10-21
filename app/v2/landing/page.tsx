@@ -1,11 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
   ArrowRight,
   ArrowUpRight,
+  ChevronLeft,
+  ChevronRight,
   Home,
   User,
   Laptop,
@@ -16,10 +18,14 @@ import {
 } from "lucide-react";
 import { SiGithub } from "react-icons/si";
 import { FaLinkedin } from "react-icons/fa6";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import { V2Navbar } from "../_components/V2Navbar";
 import {
-  aboutFyiCards,
   skillSections,
   blogCarouselItems,
   testimoniesData,
@@ -29,7 +35,6 @@ import {
   type TestimonyItem,
 } from "./constants";
 import { HeroSectionCard } from "./_components/HeroSectionCard";
-import { AboutFyiCard } from "./_components/AboutFyiCard";
 import { ProjectTimelineItem } from "./_components/ProjectTimelineItem";
 import { ProjectThumbnailButton } from "./_components/ProjectThumbnailButton";
 import { SkillRow } from "./_components/SkillRow";
@@ -44,10 +49,60 @@ export default function V2HomePage() {
   );
   const [selectedImageIndex, setSelectedImageIndex] = useState<number>(0);
   const [hoveredProjectId, setHoveredProjectId] = useState<number | null>(null);
-  const [hoveredFyiIndex, setHoveredFyiIndex] = useState<number | null>(null);
-  const [activeTestimony, setActiveTestimony] = useState<TestimonyItem | null>(null);
+  const [activeTestimony, setActiveTestimony] = useState<TestimonyItem | null>(
+    null,
+  );
   const [newsletterEmail, setNewsletterEmail] = useState("");
   const [newsletterSubmitted, setNewsletterSubmitted] = useState(false);
+
+  const currentProjectIndex = sortedProjects.findIndex(
+    (p) => p.projectId === selectedProjectId,
+  );
+
+  const handleNextProject = () => {
+    if (currentProjectIndex < sortedProjects.length - 1) {
+      setSelectedProjectId(sortedProjects[currentProjectIndex + 1].projectId);
+      setSelectedImageIndex(0);
+    }
+  };
+
+  const handlePrevProject = () => {
+    if (currentProjectIndex > 0) {
+      setSelectedProjectId(sortedProjects[currentProjectIndex - 1].projectId);
+      setSelectedImageIndex(0);
+    }
+  };
+
+  const activeProjectButtonRef = useRef<HTMLButtonElement | null>(null);
+  const desktopTimelineRef = useRef<HTMLDivElement | null>(null);
+  const activeDesktopItemRef = useRef<HTMLDivElement | null>(null);
+
+  // Autofocus/center on the current project in the mobile/tablet row
+  useEffect(() => {
+    if (activeProjectButtonRef.current) {
+      activeProjectButtonRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "center",
+      });
+    }
+  }, [selectedProjectId]);
+
+  // Dynamic refocus: vertically center the active project in the columnar timeline
+  useEffect(() => {
+    const container = desktopTimelineRef.current;
+    const item = activeDesktopItemRef.current;
+    if (container && item) {
+      const itemTop = item.offsetTop;
+      const itemHeight = item.offsetHeight;
+      const containerHeight = container.clientHeight;
+      const targetScroll = itemTop - containerHeight / 2 + itemHeight / 2;
+      container.scrollTo({
+        top: Math.max(0, targetScroll),
+        behavior: "smooth",
+      });
+    }
+  }, [selectedProjectId]);
 
   const handleNewsletterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -98,7 +153,7 @@ export default function V2HomePage() {
       {/* 1. Hero Section with Background Image & Overlay Content */}
       <section
         id="overview"
-        className="relative w-full h-[90dvh] lg:h-screen overflow-hidden bg-neutral-950 flex flex-col justify-between"
+        className="relative w-full min-h-[90dvh] lg:min-h-screen overflow-hidden bg-neutral-950 flex flex-col justify-between"
       >
         {/* Background Image Layer */}
         <div className="absolute inset-0 z-0">
@@ -176,9 +231,9 @@ export default function V2HomePage() {
               </motion.div>
             </div>
 
-            {/* Right Side: Exactly 3 uniform borderless section cards */}
+            {/* Right Side: Exactly 3 uniform section cards in a fluid grid */}
             <div className="lg:col-span-5 flex flex-col justify-end w-full">
-              <div className="flex flex-wrap-reverse gap-3 items-end justify-start lg:justify-end">
+              <div className="grid grid-cols-3 gap-2 sm:gap-3 w-full items-end">
                 {sectionCards.map((card, i) => (
                   <HeroSectionCard key={card.title} card={card} index={i} />
                 ))}
@@ -194,57 +249,40 @@ export default function V2HomePage() {
         className="relative w-full min-h-screen py-24 sm:py-32 px-8 md:px-12 bg-neutral-950 flex flex-col justify-start"
       >
         <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-14 lg:gap-16 xl:gap-20 items-stretch">
-          {/* Left Column: Title + Short Description + 3 FYI Cards at the very bottom */}
-          <div className="lg:col-span-5 flex flex-col justify-between min-h-[460px] sm:min-h-[480px]">
+          {/* Left Column: Title + Description */}
+          <div className="lg:col-span-5 flex flex-col justify-start">
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ margin: "-50px", once: true }}
               transition={{ duration: 0.6, ease: "easeOut" }}
-              className="w-full mb-8 sm:mb-12"
+              className="w-full mb-6 sm:mb-8"
             >
               <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white">
                 About <span className="text-rose-600">Me</span>
               </h2>
             </motion.div>
 
-            <div className="flex flex-col">
-              <motion.p
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ margin: "-30px", once: true }}
-                transition={{ duration: 0.6, delay: 0.12, ease: "easeOut" }}
-                className="text-sm sm:text-md text-slate-300 font-normal leading-relaxed text-justify mb-8 sm:mb-10"
-              >
-                Hello all! Welcome to my personal website. As you can tell, I am
-                a software engineer who has graduated BS Information Technology
-                from Don Bosco Technical College. I have passion for not only
-                building and understanding systems and applications, but also
-                understanding the different parts of the software development
-                lifecycle especially at an age where AI can augment different
-                parts of it. I focus on shipping effective, reliable code while
-                maintaining readability and reducing technical debt as much as
-                possible. Furthermore, I try to keep an open mind on
-                understanding others&apos; viewpoints and knowledge with their own
-                professional experience - together we can lift each other up and
-                continue to build human-focused digital solutions.
-              </motion.p>
-            </div>
-
-            {/* Bottom: 3 FYI Cards with focus interaction and scroll-up entrance */}
-            <div className="flex flex-wrap-reverse gap-3 items-start justify-start pt-4">
-              {aboutFyiCards.map((card, i) => (
-                <AboutFyiCard
-                  key={card.label}
-                  card={card}
-                  index={i}
-                  isHovered={hoveredFyiIndex === i}
-                  hasAnyHovered={hoveredFyiIndex !== null}
-                  onHover={() => setHoveredFyiIndex(i)}
-                  onLeave={() => setHoveredFyiIndex(null)}
-                />
-              ))}
-            </div>
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ margin: "-30px", once: true }}
+              transition={{ duration: 0.6, delay: 0.12, ease: "easeOut" }}
+              className="text-base sm:text-lg lg:text-[17px] xl:text-lg text-slate-300 font-normal leading-relaxed text-justify"
+            >
+              Hello all! Welcome to my personal website. As you can tell, I am
+              a software engineer who has graduated BS Information Technology
+              from Don Bosco Technical College. I have passion for not only
+              building and understanding systems and applications, but also
+              understanding the different parts of the software development
+              lifecycle especially at an age where AI can augment different
+              parts of it. I focus on shipping effective, reliable code while
+              maintaining readability and reducing technical debt as much as
+              possible. Furthermore, I try to keep an open mind on
+              understanding others&apos; viewpoints and knowledge with their
+              own professional experience - together we can lift each other up
+              and continue to build human-focused digital solutions.
+            </motion.p>
           </div>
 
           {/* Right Column: Profile Picture anchored to the right side */}
@@ -287,26 +325,104 @@ export default function V2HomePage() {
         </motion.div>
 
         <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-          {/* Smaller Column (3 cols): Project Names Timeline */}
-          <div className="lg:col-span-3 flex flex-col gap-3.5 max-h-[620px] overflow-y-auto pr-2">
-            {sortedProjects.map((proj, idx) => (
-              <ProjectTimelineItem
-                key={proj.projectId}
-                project={proj}
-                index={idx}
-                isSelected={proj.projectId === currentProject.projectId}
-                isHovered={hoveredProjectId === proj.projectId}
-                hasAnyHover={hoveredProjectId !== null}
-                isLatestOfYear={latestProjectIdsByYear.has(proj.projectId)}
-                year={proj.startDate ? proj.startDate.slice(0, 4) : ""}
-                onSelect={() => {
-                  setSelectedProjectId(proj.projectId);
-                  setSelectedImageIndex(0);
-                }}
-                onHover={() => setHoveredProjectId(proj.projectId)}
-                onLeave={() => setHoveredProjectId(null)}
-              />
-            ))}
+          {/* Mobile & Tablet Row-Based Project Navigator with Flanking Chevrons (lg:hidden) */}
+          <div className="lg:hidden w-full flex items-center gap-1.5 sm:gap-2">
+            {/* Left Chevron */}
+            <button
+              type="button"
+              onClick={handlePrevProject}
+              disabled={currentProjectIndex === 0}
+              className="p-2 rounded-xl bg-neutral-900/80 border border-white/5 text-slate-400 hover:text-white disabled:opacity-20 disabled:cursor-not-allowed transition-colors shrink-0 cursor-pointer"
+              aria-label="Previous project"
+            >
+              <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+            </button>
+
+            {/* Horizontal Project Strip without Scrollbar */}
+            <div className="flex items-center gap-2 overflow-x-hidden [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden py-1 w-full scroll-smooth">
+              {sortedProjects.map((proj, idx) => {
+                const isSelected = proj.projectId === currentProject.projectId;
+                const isLatest = latestProjectIdsByYear.has(proj.projectId);
+                const yr = proj.startDate ? proj.startDate.slice(0, 4) : "";
+                return (
+                  <button
+                    key={proj.projectId}
+                    ref={isSelected ? activeProjectButtonRef : null}
+                    type="button"
+                    onClick={() => {
+                      setSelectedProjectId(proj.projectId);
+                      setSelectedImageIndex(0);
+                    }}
+                    className={`shrink-0 px-3.5 py-2 rounded-xl text-xs transition-all flex items-center gap-2 border cursor-pointer select-none ${
+                      isSelected
+                        ? "bg-rose-950/40 border-rose-500 text-white font-semibold shadow-sm"
+                        : "bg-neutral-900/80 border-white/5 text-slate-400 hover:text-slate-200 hover:border-white/20"
+                    }`}
+                  >
+                    {isLatest && (
+                      <span
+                        className={`font-mono text-[11px] ${
+                          isSelected
+                            ? "text-rose-400 font-bold"
+                            : "text-slate-500"
+                        }`}
+                      >
+                        {yr}
+                      </span>
+                    )}
+                    <span className="truncate max-w-[150px] sm:max-w-[200px]">
+                      {proj.projectName}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Right Chevron */}
+            <button
+              type="button"
+              onClick={handleNextProject}
+              disabled={currentProjectIndex === sortedProjects.length - 1}
+              className="p-2 rounded-xl bg-neutral-900/80 border border-white/5 text-slate-400 hover:text-white disabled:opacity-20 disabled:cursor-not-allowed transition-colors shrink-0 cursor-pointer"
+              aria-label="Next project"
+            >
+              <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
+            </button>
+          </div>
+
+          {/* Desktop Dynamic Columnar Timeline (hidden on mobile/tablet, shown on lg+) */}
+          <div className="hidden lg:flex lg:col-span-3 flex-col">
+            <div
+              ref={desktopTimelineRef}
+              className="flex flex-col gap-3.5 max-h-[460px] lg:max-h-[500px] overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden pr-2 scroll-smooth"
+            >
+              {sortedProjects.map((proj, idx) => (
+                <div
+                  key={proj.projectId}
+                  ref={
+                    proj.projectId === selectedProjectId
+                      ? activeDesktopItemRef
+                      : null
+                  }
+                >
+                  <ProjectTimelineItem
+                    project={proj}
+                    index={idx}
+                    isSelected={proj.projectId === currentProject.projectId}
+                    isHovered={hoveredProjectId === proj.projectId}
+                    hasAnyHover={hoveredProjectId !== null}
+                    isLatestOfYear={latestProjectIdsByYear.has(proj.projectId)}
+                    year={proj.startDate ? proj.startDate.slice(0, 4) : ""}
+                    onSelect={() => {
+                      setSelectedProjectId(proj.projectId);
+                      setSelectedImageIndex(0);
+                    }}
+                    onHover={() => setHoveredProjectId(proj.projectId)}
+                    onLeave={() => setHoveredProjectId(null)}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Bigger Column (9 cols): Gallery style rendering with Main Image + 4 Supporting Thumbnails */}
@@ -436,27 +552,48 @@ export default function V2HomePage() {
         className="relative w-full py-24 sm:py-32 px-8 md:px-12 bg-neutral-950 flex flex-col justify-start overflow-hidden"
       >
         <div className="w-full flex flex-col mb-12 sm:mb-16">
-          <div className="w-full flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <motion.h2
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ margin: "-30px", once: true }}
-              transition={{ duration: 0.55, delay: 0.05, ease: "easeOut" }}
-              className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.08] max-w-3xl"
-            >
-              Personal reflections and thoughts from my experiences in{" "}
-              <span className="text-rose-600">software engineering</span>.
-            </motion.h2>
+          <div className="w-full flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+            <div className="flex flex-col gap-4 sm:gap-5 max-w-3xl">
+              <motion.h2
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ margin: "-30px", once: true }}
+                transition={{ duration: 0.55, delay: 0.05, ease: "easeOut" }}
+                className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.08]"
+              >
+                Personal reflections and thoughts from my experiences in{" "}
+                <span className="text-rose-600">software engineering</span>.
+              </motion.h2>
 
+              {/* Tablet & Mobile button placed below the header */}
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ margin: "-30px", once: true }}
+                transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
+                className="flex lg:hidden"
+              >
+                <Link
+                  href="/blog"
+                  className="group inline-flex items-center gap-2 text-sm sm:text-base font-semibold text-slate-300 hover:text-white transition-colors cursor-pointer shrink-0 whitespace-nowrap"
+                >
+                  <span>Read all posts</span>
+                  <ArrowUpRight className="w-4 h-4 text-rose-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
+                </Link>
+              </motion.div>
+            </div>
+
+            {/* Desktop right-aligned button */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ margin: "-30px", once: true }}
               transition={{ duration: 0.5, delay: 0.12, ease: "easeOut" }}
+              className="hidden lg:flex"
             >
               <Link
                 href="/blog"
-                className="group inline-flex items-center gap-2 text-sm sm:text-base font-semibold text-slate-300 hover:text-white transition-colors cursor-pointer shrink-0 pb-1"
+                className="group inline-flex items-center gap-2 text-sm sm:text-base font-semibold text-slate-300 hover:text-white transition-colors cursor-pointer shrink-0 pb-1 whitespace-nowrap"
               >
                 <span>Read all posts</span>
                 <ArrowUpRight className="w-4 h-4 text-rose-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
