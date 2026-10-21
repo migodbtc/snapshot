@@ -7,6 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "content": "node .agents/scripts/content.ts",
+    "agents:status": "node .agents/scripts/status.ts",
+    "agents:sync": "node .agents/scripts/sync-state.ts",
+    "kanban": "node .agents/scripts/kanban.ts",
     "deploy:prod": "pnpm dlx vercel --prod"
   },
   "dependencies": {
@@ -20,7 +25,8 @@
     "next": "16.2.9",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "react-icons": "^5.7.0"
+    "react-icons": "^5.7.0",
+    "zod": "^4.6.5"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

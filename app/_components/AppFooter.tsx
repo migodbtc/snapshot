@@ -167,7 +167,7 @@ const LegalModal = ({ open, onClose }: LegalModalProps) => {
                   5. Disclaimer of Warranties
                 </h3>
                 <p>
-                  Snapshot is provided "as is" without warranties of any kind.
+                  Snapshot is provided &quot;as is&quot; without warranties of any kind.
                   Miguel Justin Bunda makes no warranties, expressed or implied,
                   and hereby disclaims all warranties including, without
                   limitation, implied warranties of merchantability and fitness
@@ -686,6 +686,13 @@ export const AppFooter = () => {
           </button>
 
           <div className="flex-1 flex justify-end gap-6">
+            <Link
+              href="/v2"
+              className="hover:underline cursor-pointer flex items-center gap-1.5 text-rose-700 dark:text-rose-400 font-medium"
+            >
+              Preview V2
+            </Link>
+
             <button
               className="hover:underline cursor-pointer flex items-center gap-1.5"
               onClick={() => setLegalModal("tos")}
@@ -724,6 +731,13 @@ export const AppFooter = () => {
           </button>
 
           <div className="flex gap-4">
+            <Link
+              href="/v2"
+              className="hover:underline cursor-pointer flex items-center gap-1 text-rose-700 dark:text-rose-400 font-medium"
+            >
+              Preview V2
+            </Link>
+
             <button
               className="hover:underline cursor-pointer flex items-center gap-1"
               onClick={() => setLegalModal("tos")}

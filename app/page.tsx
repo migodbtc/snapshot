@@ -1,28 +1,11 @@
-"use client";
-import AppLayout from "./_layouts/AppLayout";
-import { NewHeroSection } from "./_components/NewHeroSection";
-import { AboutSection } from "./_components/SectionsV2/AboutSection";
-import { StatsStrip } from "./_components/SectionsV2/StatsStrip";
-import { ProjectsSection } from "./_components/SectionsV2/ProjectsSection";
-import { FaqSection } from "./_components/SectionsV2/FaqSection";
-import { BlogPreviewSection } from "./_components/SectionsV2/BlogPreviewSection";
-import { ReferencesSection } from "./_components/SectionsV2/ReferencesSection";
-import { ContactSection } from "./_components/SectionsV2/ContactSection";
+import V2HomePage from "./v2/landing/page";
+import { V2Footer } from "./v2/_components/V2Footer";
 
-// Home: the default component to be exported, contains the entirety of the home page.
-export default function Home() {
+export default function RootHomePage() {
   return (
-    <AppLayout>
-      <main className="relative flex flex-1 w-full h-fit flex-col items-center justify-between sm:items-start">
-        <NewHeroSection />
-        <AboutSection />
-        <StatsStrip />
-        <ProjectsSection />
-        <FaqSection />
-        <BlogPreviewSection />
-        <ReferencesSection />
-        <ContactSection />
-      </main>
-    </AppLayout>
+    <>
+      <V2HomePage />
+      <V2Footer />
+    </>
   );
 }

@@ -7,6 +7,11 @@ type AppLayoutProps = {
   headerless?: boolean;
 };
 
+/**
+ * @deprecated Legacy V1 AppLayout
+ * Scheduled for obsolescence once V2 becomes the default root experience.
+ * Active development belongs under `app/v2/`.
+ */
 // Dedicated AppLayout for reusability throughout the other features and stuff
 const AppLayout = ({ children, headerless }: AppLayoutProps) => {
   return (

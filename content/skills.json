@@ -1,0 +1,219 @@
+[
+  {
+    "index": "01",
+    "title": "Programming & Query Languages",
+    "subtitle": "Core languages for type-safe applications, script automation, and database querying.",
+    "description": "Proficient in type-safe full-stack engineering, asynchronous backend services, and structured query optimization across production and prototype environments.",
+    "skills": [
+      {
+        "name": "TypeScript",
+        "iconKey": "SiTypescript",
+        "color": "text-[#3178C6]"
+      },
+      {
+        "name": "JavaScript",
+        "iconKey": "SiJavascript",
+        "color": "text-[#F7DF1E]"
+      },
+      {
+        "name": "Python",
+        "iconKey": "SiPython",
+        "color": "text-[#3776AB]"
+      },
+      {
+        "name": "PostgreSQL",
+        "iconKey": "SiPostgresql",
+        "color": "text-[#4169E1]"
+      },
+      {
+        "name": "MySQL",
+        "iconKey": "SiMysql",
+        "color": "text-[#4479A1]"
+      },
+      {
+        "name": "PHP",
+        "iconKey": "SiPhp",
+        "color": "text-[#777BB4]"
+      },
+      {
+        "name": "Bash",
+        "iconKey": "SiGnubash",
+        "color": "text-[#4EAA25]"
+      },
+      {
+        "name": "HTML5",
+        "iconKey": "SiHtml5",
+        "color": "text-[#E34F26]"
+      },
+      {
+        "name": "CSS",
+        "iconKey": "SiCss",
+        "color": "text-[#1572B6]"
+      },
+      {
+        "name": "YAML",
+        "iconKey": "SiYaml",
+        "color": "text-[#CB171E]"
+      }
+    ]
+  },
+  {
+    "index": "02",
+    "title": "Frameworks & UI Systems",
+    "subtitle": "Modern client-side and server-side frameworks for reactive, accessible web platforms.",
+    "description": "Building high-performance SSR/SSG applications, modular REST APIs, and responsive design systems with deep emphasis on accessibility and developer velocity.",
+    "skills": [
+      {
+        "name": "Next.js",
+        "iconKey": "SiNextdotjs",
+        "color": "text-white"
+      },
+      {
+        "name": "React",
+        "iconKey": "SiReact",
+        "color": "text-[#61DAFB]"
+      },
+      {
+        "name": "React Native",
+        "iconKey": "SiReact",
+        "color": "text-[#61DAFB]"
+      },
+      {
+        "name": "Expo",
+        "iconKey": "SiExpo",
+        "color": "text-white"
+      },
+      {
+        "name": "Inertia.js",
+        "iconKey": "SiInertia",
+        "color": "text-[#9553E9]"
+      },
+      {
+        "name": "Vite",
+        "iconKey": "SiVite",
+        "color": "text-[#646CFF]"
+      },
+      {
+        "name": "FastAPI",
+        "iconKey": "SiFastapi",
+        "color": "text-[#009688]"
+      },
+      {
+        "name": "Flask",
+        "iconKey": "SiFlask",
+        "color": "text-white"
+      },
+      {
+        "name": "Laravel",
+        "iconKey": "SiLaravel",
+        "color": "text-[#FF2D20]"
+      },
+      {
+        "name": "Tailwind CSS",
+        "iconKey": "SiTailwindcss",
+        "color": "text-[#06B6D4]"
+      },
+      {
+        "name": "Bootstrap",
+        "iconKey": "SiBootstrap",
+        "color": "text-[#7952B3]"
+      }
+    ]
+  },
+  {
+    "index": "03",
+    "title": "Cloud, DevOps & Data Platforms",
+    "subtitle": "Infrastructure-as-Code, containerization, automated CI/CD, and scalable database layers.",
+    "description": "Hands-on experience provisioning Azure App Services and container registries via Bicep, deploying AWS compute instances, and configuring least-privilege PostgreSQL RLS.",
+    "skills": [
+      {
+        "name": "Microsoft Azure",
+        "iconKey": "TbBrandAzure",
+        "color": "text-[#0078D4]"
+      },
+      {
+        "name": "AWS (EC2)",
+        "iconKey": "TbBrandAws",
+        "color": "text-[#FF9900]"
+      },
+      {
+        "name": "Docker",
+        "iconKey": "SiDocker",
+        "color": "text-[#2496ED]"
+      },
+      {
+        "name": "Linux",
+        "iconKey": "SiLinux",
+        "color": "text-[#FCC624]"
+      },
+      {
+        "name": "Nginx",
+        "iconKey": "SiNginx",
+        "color": "text-[#009639]"
+      },
+      {
+        "name": "Redis",
+        "iconKey": "SiRedis",
+        "color": "text-[#FF4438]"
+      },
+      {
+        "name": "Supabase",
+        "iconKey": "SiSupabase",
+        "color": "text-[#3ECF8E]"
+      },
+      {
+        "name": "GitHub Actions",
+        "iconKey": "SiGithubactions",
+        "color": "text-[#2088FF]"
+      },
+      {
+        "name": "Vercel",
+        "iconKey": "SiVercel",
+        "color": "text-white"
+      },
+      {
+        "name": "Git",
+        "iconKey": "SiGit",
+        "color": "text-[#F05032]"
+      }
+    ]
+  },
+  {
+    "index": "04",
+    "title": "AI Engineering, Testing & Tools",
+    "subtitle": "Context-aware RAG pipelines, automated test suites, and enterprise auth patterns.",
+    "description": "Certified in foundational and agentic AI concepts on AWS. Experienced architecting vector RAG ingestion pipelines, automated Pytest/Vitest suites, and role-based security.",
+    "skills": [
+      {
+        "name": "Google Gemini",
+        "iconKey": "SiGooglegemini",
+        "color": "text-[#8E75B2]"
+      },
+      {
+        "name": "LangChain",
+        "iconKey": "SiLangchain",
+        "color": "text-[#1C3C3C]"
+      },
+      {
+        "name": "Ollama",
+        "iconKey": "SiOllama",
+        "color": "text-white"
+      },
+      {
+        "name": "TensorFlow",
+        "iconKey": "SiTensorflow",
+        "color": "text-[#FF6F00]"
+      },
+      {
+        "name": "Pytest",
+        "iconKey": "SiPytest",
+        "color": "text-[#0A9EDC]"
+      },
+      {
+        "name": "Vitest",
+        "iconKey": "SiVitest",
+        "color": "text-[#FCC72B]"
+      }
+    ]
+  }
+]

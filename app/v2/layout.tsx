@@ -42,28 +42,6 @@ export default function V2Layout({ children }: { children: React.ReactNode }) {
           "var(--font-v2-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
       }}
     >
-      {/* Scrollbar styling for v2: neutral dark bg and neutral lightish thumb */}
-      <style>{`
-        * {
-          scrollbar-width: thin;
-          scrollbar-color: #737373 #0a0a0a;
-        }
-        ::-webkit-scrollbar {
-          width: 8px;
-          height: 8px;
-        }
-        ::-webkit-scrollbar-track {
-          background: #0a0a0a;
-        }
-        ::-webkit-scrollbar-thumb {
-          background: #525252;
-          border-radius: 9999px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-          background: #737373;
-        }
-      `}</style>
-
       {/* Main Content Area */}
       <div className="relative z-10 flex flex-col min-h-screen">{children}</div>
 

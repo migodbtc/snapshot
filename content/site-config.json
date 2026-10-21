@@ -1,0 +1,58 @@
+{
+  "profile": {
+    "name": "Miguel Justin Bunda",
+    "role": "Software Engineer",
+    "tagline": "Building scalable web platforms, cloud architecture, and technical projects with intention.",
+    "location": "Mandaluyong City, Metro Manila, Philippines",
+    "email": "miguejustin1026@gmail.com",
+    "avatar": "/images/hero_picture.jpg",
+    "statusText": "Open to new opportunities"
+  },
+  "socialLinks": {
+    "github": "https://github.com/migodbtc",
+    "linkedin": "https://www.linkedin.com/in/miguel-justin-bunda",
+    "facebook": "https://facebook.com",
+    "communeye": "https://instagram.com/communeye"
+  },
+  "aboutDividerPhrases": [
+    "Software Engineering",
+    "AWS Certified AI Practitioner",
+    "Valedictorian '26",
+    "Don Bosco Technical College",
+    "Full-Stack Developer"
+  ],
+  "aboutFyiCards": [
+    {
+      "label": "Education",
+      "title": "BS Information Technology",
+      "iconKey": "GraduationCap"
+    },
+    {
+      "label": "Academic Honors",
+      "title": "Valedictorian, Magna Cum Laude",
+      "iconKey": "Trophy"
+    },
+    {
+      "label": "Began Career",
+      "title": "2022",
+      "iconKey": "Calendar"
+    }
+  ],
+  "sectionCards": [
+    {
+      "label": "Selected Works",
+      "title": "Featured Projects",
+      "href": "#projects"
+    },
+    {
+      "label": "Background",
+      "title": "About Me",
+      "href": "#about"
+    },
+    {
+      "label": "Capabilities",
+      "title": "Technical Skills",
+      "href": "#skills"
+    }
+  ]
+}

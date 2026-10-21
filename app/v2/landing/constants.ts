@@ -44,15 +44,12 @@ import { TbBrandAzure, TbBrandAws } from "react-icons/tb";
 import type { IconType } from "react-icons";
 import { PROJECT_INDEX } from "@/lib/constants/projects";
 import { SORTED_BLOG_POSTS } from "@/app/v2/blog/content";
+import siteConfig from "@/content/site-config.json";
+import skillsJson from "@/content/skills.json";
+import testimoniesJson from "@/content/testimonies.json";
 
-// Divider phrases for the About section
-export const aboutDividerPhrases = [
-  "Software Engineering",
-  "AWS Certified AI Practitioner",
-  "Valedictorian '26",
-  "Don Bosco Technical College",
-  "Full-Stack Developer",
-];
+// Divider phrases for the About section (from centralized content/site-config.json)
+export const aboutDividerPhrases: string[] = siteConfig.aboutDividerPhrases;
 
 // 3 FYI cards for About Me (styled like hero cards)
 export interface AboutFyiCardData {
@@ -61,23 +58,17 @@ export interface AboutFyiCardData {
   icon: LucideIcon;
 }
 
-export const aboutFyiCards: AboutFyiCardData[] = [
-  {
-    label: "Education",
-    title: "BS Information Technology",
-    icon: GraduationCap,
-  },
-  {
-    label: "Academic Honors",
-    title: "Valedictorian, Magna Cum Laude",
-    icon: Trophy,
-  },
-  {
-    label: "Began Career",
-    title: "2022",
-    icon: Calendar,
-  },
-];
+const fyiIconMap: Record<string, LucideIcon> = {
+  GraduationCap,
+  Trophy,
+  Calendar,
+};
+
+export const aboutFyiCards: AboutFyiCardData[] = siteConfig.aboutFyiCards.map((card) => ({
+  label: card.label,
+  title: card.title,
+  icon: fyiIconMap[card.iconKey] || Trophy,
+}));
 
 // Detailed Skills structured into 4 architectural rows
 export interface SkillItem {
@@ -94,89 +85,59 @@ export interface SkillSection {
   skills: SkillItem[];
 }
 
-export const skillSections: SkillSection[] = [
-  {
-    index: "01",
-    title: "Programming & Query Languages",
-    subtitle:
-      "Core languages for type-safe applications, script automation, and database querying.",
-    description:
-      "Proficient in type-safe full-stack engineering, asynchronous backend services, and structured query optimization across production and prototype environments.",
-    skills: [
-      { name: "TypeScript", icon: SiTypescript, color: "text-[#3178C6]" },
-      { name: "JavaScript", icon: SiJavascript, color: "text-[#F7DF1E]" },
-      { name: "Python", icon: SiPython, color: "text-[#3776AB]" },
-      { name: "PostgreSQL", icon: SiPostgresql, color: "text-[#4169E1]" },
-      { name: "MySQL", icon: SiMysql, color: "text-[#4479A1]" },
-      { name: "PHP", icon: SiPhp, color: "text-[#777BB4]" },
-      { name: "Bash", icon: SiGnubash, color: "text-[#4EAA25]" },
-      { name: "HTML5", icon: SiHtml5, color: "text-[#E34F26]" },
-      { name: "CSS", icon: SiCss, color: "text-[#1572B6]" },
-      { name: "YAML", icon: SiYaml, color: "text-[#CB171E]" },
-    ],
-  },
-  {
-    index: "02",
-    title: "Frameworks & UI Systems",
-    subtitle:
-      "Modern client-side and server-side frameworks for reactive, accessible web platforms.",
-    description:
-      "Building high-performance SSR/SSG applications, modular REST APIs, and responsive design systems with deep emphasis on accessibility and developer velocity.",
-    skills: [
-      { name: "Next.js", icon: SiNextdotjs, color: "text-white" },
-      { name: "React", icon: SiReact, color: "text-[#61DAFB]" },
-      { name: "React Native", icon: SiReact, color: "text-[#61DAFB]" },
-      { name: "Expo", icon: SiExpo, color: "text-white" },
-      { name: "Inertia.js", icon: SiInertia, color: "text-[#9553E9]" },
-      { name: "Vite", icon: SiVite, color: "text-[#646CFF]" },
-      { name: "FastAPI", icon: SiFastapi, color: "text-[#009688]" },
-      { name: "Flask", icon: SiFlask, color: "text-white" },
-      { name: "Laravel", icon: SiLaravel, color: "text-[#FF2D20]" },
-      { name: "Tailwind CSS", icon: SiTailwindcss, color: "text-[#06B6D4]" },
-      { name: "Bootstrap", icon: SiBootstrap, color: "text-[#7952B3]" },
-    ],
-  },
-  {
-    index: "03",
-    title: "Cloud, DevOps & Data Platforms",
-    subtitle:
-      "Infrastructure-as-Code, containerization, automated CI/CD, and scalable database layers.",
-    description:
-      "Hands-on experience provisioning Azure App Services and container registries via Bicep, deploying AWS compute instances, and configuring least-privilege PostgreSQL RLS.",
-    skills: [
-      { name: "Microsoft Azure", icon: TbBrandAzure, color: "text-[#0078D4]" },
-      { name: "AWS (EC2)", icon: TbBrandAws, color: "text-[#FF9900]" },
-      { name: "Docker", icon: SiDocker, color: "text-[#2496ED]" },
-      { name: "Linux", icon: SiLinux, color: "text-[#FCC624]" },
-      { name: "Nginx", icon: SiNginx, color: "text-[#009639]" },
-      { name: "Redis", icon: SiRedis, color: "text-[#FF4438]" },
-      { name: "Supabase", icon: SiSupabase, color: "text-[#3ECF8E]" },
-      {
-        name: "GitHub Actions",
-        icon: SiGithubactions,
-        color: "text-[#2088FF]",
-      },
-      { name: "Vercel", icon: SiVercel, color: "text-white" },
-      { name: "Git", icon: SiGit, color: "text-[#F05032]" },
-    ],
-  },
-  {
-    index: "04",
-    title: "AI Engineering, Testing & Tools",
-    subtitle:
-      "Context-aware RAG pipelines, automated test suites, and enterprise auth patterns.",
-    description:
-      "Certified in foundational and agentic AI concepts on AWS. Experienced architecting vector RAG ingestion pipelines, automated Pytest/Vitest suites, and role-based security.",
-    skills: [
-      { name: "Google Gemini", icon: SiGooglegemini, color: "text-[#8E75B2]" },
-      { name: "LangChain", icon: SiLangchain, color: "text-[#1C3C3C]" },
-      { name: "Ollama", icon: SiOllama, color: "text-white" },
-      { name: "TensorFlow", icon: SiTensorflow, color: "text-[#FF6F00]" },
-      { name: "Pytest", icon: SiPytest, color: "text-[#0A9EDC]" },
-      { name: "Vitest", icon: SiVitest, color: "text-[#FCC72B]" },
-    ],
-  },
-];
+const iconMap: Record<string, IconType> = {
+  SiTypescript,
+  SiJavascript,
+  SiPython,
+  SiPhp,
+  SiPostgresql,
+  SiMysql,
+  SiGnubash,
+  SiHtml5,
+  SiCss,
+  SiYaml,
+  SiNextdotjs,
+  SiReact,
+  SiExpo,
+  SiVite,
+  SiFlask,
+  SiFastapi,
+  SiLaravel,
+  SiInertia,
+  SiTailwindcss,
+  SiBootstrap,
+  SiDocker,
+  SiLinux,
+  SiNginx,
+  SiRedis,
+  SiGithubactions,
+  SiVercel,
+  SiGit,
+  SiSupabase,
+  SiPytest,
+  SiVitest,
+  SiLangchain,
+  SiTensorflow,
+  SiGooglegemini,
+  SiOllama,
+  TbBrandAzure,
+  TbBrandAws,
+};
+
+export const skillSections: SkillSection[] = (skillsJson as Array<{
+  index: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  skills: Array<{ name: string; iconKey: string; color: string }>;
+}>).map((sec) => ({
+  ...sec,
+  skills: sec.skills.map((s) => ({
+    name: s.name,
+    icon: iconMap[s.iconKey] || SiReact,
+    color: s.color,
+  })),
+}));
 
 // Blog items for the rotating carousel gallery (real posts + symbolic empty placeholders)
 export interface BlogCarouselItem {
@@ -212,7 +173,7 @@ export const blogCarouselItems: BlogCarouselItem[] = [
       title: post.title,
       meta: `${post.read_time} · ${year}`,
       image,
-      href: `/v2/blog?post=${post.id}`,
+      href: `/blog?post=${post.id}`,
       isPlaceholder: false,
     };
   }),
@@ -222,7 +183,7 @@ export const blogCarouselItems: BlogCarouselItem[] = [
     title: "—",
     meta: "Draft in progress",
     image: null,
-    href: "/v2/blog",
+    href: "/blog",
     isPlaceholder: true,
   },
   {
@@ -231,7 +192,7 @@ export const blogCarouselItems: BlogCarouselItem[] = [
     title: "—",
     meta: "Draft in progress",
     image: null,
-    href: "/v2/blog",
+    href: "/blog",
     isPlaceholder: true,
   },
   {
@@ -240,7 +201,7 @@ export const blogCarouselItems: BlogCarouselItem[] = [
     title: "—",
     meta: "Draft in progress",
     image: null,
-    href: "/v2/blog",
+    href: "/blog",
     isPlaceholder: true,
   },
 ];
@@ -255,41 +216,7 @@ export interface TestimonyItem {
   isPlaceholder: boolean;
 }
 
-export const testimoniesData: TestimonyItem[] = [
-  {
-    id: 1,
-    title: "Technical Leadership & Client Communication",
-    quote:
-      "I worked alongside Miguel on a cybersecurity audit project at Don Bosco Technical College, where he stepped up as team lead to direct an interview with the department head. He created a transcript, documented findings, that we used to evaluate security vulnerabilities. His client-facing communication and initiative during discovery assessments kept our audit thorough and grounded in real operational needs. Miguel is a dependable leader who maintains high standards across both technical deliverables and team coordination.",
-    author: "Lance Kennedy Nafarrete",
-    organization: "Fresh Graduate Data Analyst",
-    isPlaceholder: false,
-  },
-  {
-    id: 2,
-    title: "—",
-    quote: "—",
-    author: "—",
-    organization: "Pending Endorsement",
-    isPlaceholder: true,
-  },
-  {
-    id: 3,
-    title: "—",
-    quote: "—",
-    author: "—",
-    organization: "Pending Endorsement",
-    isPlaceholder: true,
-  },
-  {
-    id: 4,
-    title: "—",
-    quote: "—",
-    author: "—",
-    organization: "Pending Endorsement",
-    isPlaceholder: true,
-  },
-];
+export const testimoniesData: TestimonyItem[] = testimoniesJson;
 
 // Sort projects from latest to oldest
 export const sortedProjects = [...PROJECT_INDEX].sort((a, b) => {
@@ -316,20 +243,4 @@ export interface SectionCardData {
   href: string;
 }
 
-export const sectionCards: SectionCardData[] = [
-  {
-    label: "Selected Works",
-    title: "Featured Projects",
-    href: "#projects",
-  },
-  {
-    label: "Background",
-    title: "About Me",
-    href: "#about",
-  },
-  {
-    label: "Capabilities",
-    title: "Technical Skills",
-    href: "#skills",
-  },
-];
+export const sectionCards: SectionCardData[] = siteConfig.sectionCards;

@@ -1,0 +1,25 @@
+{
+  "safety-guard": {
+    "PreToolUse": [
+      {
+        "matcher": "run_command",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node ./scripts/safety-guard.cjs",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  },
+  "quality-gate": {
+    "Stop": [
+      {
+        "type": "command",
+        "command": "powershell -ExecutionPolicy Bypass -File ./scripts/quality-gate.ps1",
+        "timeout": 25
+      }
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+[
+  {
+    "id": "REG-NEXT16-001",
+    "description": "Ensure dynamic route handlers, pages, and server utilities await params, searchParams, cookies(), and headers() in Next.js 16",
+    "prompt_pattern": "Create or modify dynamic route or server helper in app/ or lib/",
+    "expected_invariant": "await params / await searchParams / await cookies() / await headers() before accessing properties",
+    "verified": true
+  },
+  {
+    "id": "REG-NEXT16-002",
+    "description": "Wrap Client Components that call useSearchParams() in a <Suspense> boundary to prevent static build bailouts",
+    "prompt_pattern": "Read URL query parameters via useSearchParams() in app/v2/...",
+    "expected_invariant": "Wrap client consumer component in <Suspense fallback={...}> inside the page export",
+    "verified": true
+  },
+  {
+    "id": "REG-CONTENT-001",
+    "description": "Maintain all portfolio content in the 8 flat JSON files in content/*.json and validate with pnpm content validate",
+    "prompt_pattern": "Add, edit, or reorder projects, blog posts, skills, testimonies, experience, or education",
+    "expected_invariant": "Mutate via pnpm content CLI or edit content/*.json directly, then run pnpm content validate",
+    "verified": true
+  },
+  {
+    "id": "REG-SSR-001",
+    "description": "Never pass non-serializable LucideIcon or react-icons component functions in JSON or across Server-to-Client props",
+    "prompt_pattern": "Add icon fields to content/*.json or pass content items to client components",
+    "expected_invariant": "Store string iconKey in JSON and resolve to icon components via icon maps",
+    "verified": true
+  }
+]

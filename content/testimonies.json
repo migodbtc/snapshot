@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "order": 1,
+    "title": "Technical Leadership & Client Communication",
+    "quote": "I worked alongside Miguel on a cybersecurity audit project at Don Bosco Technical College, where he stepped up as team lead to direct an interview with the department head. He created a transcript, documented findings, that we used to evaluate security vulnerabilities. His client-facing communication and initiative during discovery assessments kept our audit thorough and grounded in real operational needs. Miguel is a dependable leader who maintains high standards across both technical deliverables and team coordination.",
+    "author": "Lance Kennedy Nafarrete",
+    "organization": "Fresh Graduate Data Analyst",
+    "isPlaceholder": false
+  },
+  {
+    "id": 2,
+    "order": 2,
+    "title": "—",
+    "quote": "—",
+    "author": "—",
+    "organization": "Pending Endorsement",
+    "isPlaceholder": true
+  },
+  {
+    "id": 3,
+    "order": 3,
+    "title": "—",
+    "quote": "—",
+    "author": "—",
+    "organization": "Pending Endorsement",
+    "isPlaceholder": true
+  },
+  {
+    "id": 4,
+    "order": 4,
+    "title": "—",
+    "quote": "—",
+    "author": "—",
+    "organization": "Pending Endorsement",
+    "isPlaceholder": true
+  }
+]

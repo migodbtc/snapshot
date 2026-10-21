@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DesignAgentContract",
+  "description": "Briefing input and debriefing output schema for the Snapshot Portfolio DesignAgent (@design-agent) subagent",
+  "type": "object",
+  "definitions": {
+    "BriefingPayload": {
+      "type": "object",
+      "required": ["objective", "target_views"],
+      "properties": {
+        "objective": { "type": "string" },
+        "target_views": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Target UI sections or routes to review (e.g. app/v2/landing, app/v2/blog, app/admin)"
+        },
+        "constraints": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "DebriefingPayload": {
+      "type": "object",
+      "required": ["status", "summary", "design_tokens", "implementation_directives_for_app_agent"],
+      "properties": {
+        "status": { "type": "string", "enum": ["APPROVED", "CONFLICT_DETECTED", "REVISED"] },
+        "summary": { "type": "string" },
+        "design_tokens": { "type": "object" },
+        "implementation_directives_for_app_agent": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  }
+}

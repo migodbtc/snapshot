@@ -225,7 +225,7 @@ export default function V2HomePage() {
                 parts of it. I focus on shipping effective, reliable code while
                 maintaining readability and reducing technical debt as much as
                 possible. Furthermore, I try to keep an open mind on
-                understanding others' viewpoints and knowledge with their own
+                understanding others&apos; viewpoints and knowledge with their own
                 professional experience - together we can lift each other up and
                 continue to build human-focused digital solutions.
               </motion.p>
@@ -455,7 +455,7 @@ export default function V2HomePage() {
               transition={{ duration: 0.5, delay: 0.12, ease: "easeOut" }}
             >
               <Link
-                href="/v2/blog"
+                href="/blog"
                 className="group inline-flex items-center gap-2 text-sm sm:text-base font-semibold text-slate-300 hover:text-white transition-colors cursor-pointer shrink-0 pb-1"
               >
                 <span>Read all posts</span>

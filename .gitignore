@@ -47,3 +47,25 @@ next-env.d.ts
 .env.sentry-build-plugin
 
 docs
+
+# agents & ai cache
+.agents/.agents/
+.agents/state/index.json
+.agents/state/*.cache.json
+.agents/state/*.tmp
+.agents/**/.cache/
+.agents/**/cache/
+.agents/scratch/
+.agents/**/scratch/
+.agents/**/.scratch/
+.agents/**/logs/
+.agents/**/*.log
+.agents/**/temp/
+.agents/**/.temp/
+.agents/**/tmp/
+.agents/**/.tmp/
+.agents/**/transcripts/
+.agents/**/artifacts/
+.agents/**/.artifacts/
+.agents/**/.history/
+.agents/**/.session*/

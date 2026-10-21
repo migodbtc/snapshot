@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ContentAgentContract",
+  "description": "Briefing input and debriefing output schema for the Snapshot Portfolio ContentAgent (@content-agent) subagent",
+  "type": "object",
+  "definitions": {
+    "BriefingPayload": {
+      "type": "object",
+      "required": ["objective", "content_scope"],
+      "properties": {
+        "objective": { "type": "string" },
+        "content_scope": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "projects",
+              "blog",
+              "skills",
+              "testimonies",
+              "experience",
+              "education",
+              "site-config",
+              "about",
+              "schemas",
+              "content-cli"
+            ]
+          },
+          "description": "Target JSON array collections, schemas, or CLI commands"
+        },
+        "target_files": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "DebriefingPayload": {
+      "type": "object",
+      "required": ["status", "summary", "deliverables"],
+      "properties": {
+        "status": { "type": "string", "enum": ["COMPLETED", "BLOCKED", "FAILED"] },
+        "summary": { "type": "string" },
+        "deliverables": { "type": "array" },
+        "notes_for_orchestrator": { "type": "string" }
+      }
+    }
+  }
+}

@@ -25,7 +25,7 @@ export function TestimonyCard({ item, index, onSelect }: TestimonyCardProps) {
       onClick={() => {
         if (isClickable) onSelect();
       }}
-      className={`group relative aspect-4/3 w-full rounded-3xl p-7 sm:p-8 flex flex-col justify-between shadow-2xl select-none transition-[border-color,background-color,box-shadow,transform] duration-300 ${
+      className={`group relative aspect-4/3 w-full rounded-3xl p-7 sm:p-8 flex flex-col justify-center shadow-2xl select-none transition-[border-color,background-color,box-shadow,transform] duration-300 ${
         isClickable
           ? "bg-neutral-900 border border-white/10 hover:border-white/25 hover:scale-[1.02] shadow-black/60 cursor-pointer"
           : "bg-neutral-900/40 border border-white/5 shadow-black/30 opacity-40 cursor-default"

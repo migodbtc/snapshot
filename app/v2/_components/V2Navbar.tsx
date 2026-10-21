@@ -11,8 +11,8 @@ export function V2Navbar() {
   const pathname = usePathname();
 
   const navLinks = [
-    { label: "Landing", href: "/v2/landing", icon: Home },
-    { label: "Blog", href: "/v2/blog", icon: BookOpen },
+    { label: "Landing", href: "/", icon: Home },
+    { label: "Blog", href: "/blog", icon: BookOpen },
   ];
 
   return (
@@ -20,7 +20,7 @@ export function V2Navbar() {
       <nav className="relative w-full flex items-center justify-between px-4 md:px-8 pt-4 h-[10dvh]">
         {/* Left: Ported Logo + Title from original Snapshot design */}
         <Link
-          href="/v2/landing"
+          href="/"
           className="flex items-center group cursor-pointer select-none"
         >
           {/* Site Favicon Icon */}
@@ -60,7 +60,8 @@ export function V2Navbar() {
         <div className="absolute left-1/2 -translate-x-1/2 hidden md:flex items-center gap-1.5 sm:gap-2">
           {navLinks.map(({ label, href, icon: Icon }) => {
             const isActive =
-              pathname === href || (href !== "/v2/landing" && pathname?.startsWith(href));
+              (href === "/" && (pathname === "/" || pathname === "/v2" || pathname === "/v2/landing")) ||
+              (href === "/blog" && (pathname?.startsWith("/blog") || pathname?.startsWith("/v2/blog")));
 
             return (
               <Link
@@ -86,7 +87,7 @@ export function V2Navbar() {
         {/* Right: CTA Action: Let's Connect button */}
         <div className="hidden sm:flex items-center">
           <Link
-            href="/v2/landing#contact"
+            href="/#contact"
             className="flex items-center gap-1.5 font-semibold text-white bg-rose-800 hover:bg-rose-700 rounded-full shadow-[0_0_20px_rgba(159,18,57,0.35)] transition-all hover:scale-[1.02] text-xs sm:text-sm px-5 py-2.5"
           >
             <span>Let&apos;s Connect</span>
@@ -116,7 +117,8 @@ export function V2Navbar() {
           <div className="flex flex-col gap-1 pb-3 border-b border-white/10">
             {navLinks.map(({ label, href, icon: Icon }) => {
               const isActive =
-                pathname === href || (href !== "/v2/landing" && pathname?.startsWith(href));
+                (href === "/" && (pathname === "/" || pathname === "/v2" || pathname === "/v2/landing")) ||
+                (href === "/blog" && (pathname?.startsWith("/blog") || pathname?.startsWith("/v2/blog")));
 
               return (
                 <Link
@@ -141,7 +143,7 @@ export function V2Navbar() {
           </div>
           <div className="flex items-center justify-end pt-2">
             <Link
-              href="/v2/landing#contact"
+              href="/#contact"
               onClick={() => setMobileMenuOpen(false)}
               className="text-xs font-semibold text-white bg-rose-800 hover:bg-rose-700 px-4 py-2 rounded-full shadow-md transition-colors"
             >
