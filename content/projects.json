@@ -1,5 +1,31 @@
 [
   {
+    "projectId": 12,
+    "slug": "engram-ai",
+    "projectName": "Engram AI",
+    "startDate": "2026-09",
+    "endDate": "2026-10",
+    "currentlyWorking": true,
+    "skills": [
+      "Next.js",
+      "TypeScript",
+      "React",
+      "Tailwind CSS",
+      "PostgreSQL",
+      "AWS Bedrock",
+      "AWS (EC2)",
+      "LangChain",
+      "Google Gemini",
+      "Vitest",
+      "Docker",
+      "Git"
+    ],
+    "imageRefs": [],
+    "description": "Engram AI is a document-grounded generative AI platform that synthesizes active-recall quizzes and conversational tutoring from study materials. Built for learners mastering complex theory, Engram bridges passive reading and long-term retention through dynamic, AI-orchestrated spaced retrieval. Architected as a modular-monolith using TypeScript, Next.js 16 (App Router), and React 19 across 10 domains with CQRS server actions and clean service ownership. Features a hybrid provider-agnostic architecture with swappable local and AWS cloud implementations via AWS CDK (PostgreSQL with Drizzle ORM / Aurora, local disk / S3, and in-process Node queues / AWS SQS). Integrates an asynchronous synthesis engine using AWS Bedrock (Claude 3.5/Nova) and LangChain generating 6 polymorphic question types with custom difficulty, an interactive quiz player with real-time grading, automated session persistence in PostgreSQL, and question-level telemetry. Includes a study cockpit with a GitHub-style 48-day activity heatmap, study streaks, and review urgency signals to combat memory decay curves.",
+    "note": "Engineering reflections and retrospective for Engram AI are currently in progress. Notes, architectural takeaways, and lessons learned from the development process will be documented here soon.",
+    "associatedWith": []
+  },
+  {
     "projectId": 11,
     "slug": "snapshot",
     "projectName": "Snapshot",

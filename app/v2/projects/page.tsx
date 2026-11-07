@@ -3,11 +3,9 @@
 import { useState, useMemo, Suspense } from "react";
 import { motion } from "framer-motion";
 import { SlidersHorizontal } from "lucide-react";
-import { useSearchParams } from "next/navigation";
 import { V2Navbar } from "../_components/V2Navbar";
 import { PROJECT_INDEX, type Project } from "@/lib/constants/projects";
 import { ProjectCard } from "./_components/ProjectCard";
-import { ProjectModal } from "./_components/ProjectModal";
 import { ProjectFilterModal } from "./_components/ProjectFilterModal";
 
 function getProjectPlatform(project: Project): "web" | "mobile" | "web&mobile" {
@@ -45,9 +43,6 @@ const AVAILABLE_TECHS = [
 ];
 
 function ProjectsPageContent() {
-  const searchParams = useSearchParams();
-  const targetIdParam = searchParams.get("id") || searchParams.get("project");
-
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
   const [selectedYear, setSelectedYear] = useState<string>("all");
   const [selectedPlatform, setSelectedPlatform] = useState<
@@ -63,26 +58,6 @@ function ProjectsPageContent() {
       return b.projectId - a.projectId;
     });
   }, []);
-
-  const [activeProject, setActiveProject] = useState<Project | null>(() => {
-    if (!targetIdParam) return null;
-    return (
-      sortedProjects.find(
-        (p) => String(p.projectId) === String(targetIdParam),
-      ) || null
-    );
-  });
-  const [prevTargetParam, setPrevTargetParam] = useState(targetIdParam);
-
-  // Sync active project if search param updates without useEffect
-  if (targetIdParam !== prevTargetParam) {
-    setPrevTargetParam(targetIdParam);
-    const found =
-      sortedProjects.find(
-        (p) => String(p.projectId) === String(targetIdParam),
-      ) || null;
-    setActiveProject(found);
-  }
 
   // Dynamically extract distinct years
   const availableYears = useMemo(() => {
@@ -245,7 +220,6 @@ function ProjectsPageContent() {
                   key={project.projectId}
                   project={project}
                   index={idx}
-                  onSelect={() => setActiveProject(project)}
                 />
               ))
             )}
@@ -268,12 +242,6 @@ function ProjectsPageContent() {
         activeFiltersCount={activeFiltersCount}
         onReset={resetFilters}
         totalMatches={filteredProjects.length}
-      />
-
-      {/* Project Detail Modal */}
-      <ProjectModal
-        activeProject={activeProject}
-        onClose={() => setActiveProject(null)}
       />
     </main>
   );

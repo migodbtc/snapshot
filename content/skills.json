@@ -185,6 +185,11 @@
     "description": "Certified in foundational and agentic AI concepts on AWS. Experienced architecting vector RAG ingestion pipelines, automated Pytest/Vitest suites, and role-based security.",
     "skills": [
       {
+        "name": "AWS Bedrock",
+        "iconKey": "TbBrandAws",
+        "color": "text-[#FF9900]"
+      },
+      {
         "name": "Google Gemini",
         "iconKey": "SiGooglegemini",
         "color": "text-[#8E75B2]"

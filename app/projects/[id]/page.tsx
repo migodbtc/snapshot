@@ -1,10 +1,7 @@
-import { redirect } from "next/navigation";
+import ProjectDetailPage, {
+  generateStaticParams,
+  generateMetadata,
+} from "@/app/v2/projects/[id]/page";
 
-export default async function ProjectIdRedirectPage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
-  const { id } = await params;
-  redirect(`/projects?id=${id}`);
-}
+export { generateStaticParams, generateMetadata };
+export default ProjectDetailPage;
