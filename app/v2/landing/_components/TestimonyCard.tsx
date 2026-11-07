@@ -41,10 +41,10 @@ export function TestimonyCard({ item, index, onSelect }: TestimonyCardProps) {
           delay: index * 0.08 + 0.05,
           ease: "easeOut",
         }}
-        className="w-full flex items-center justify-between"
+        className="w-full flex items-start justify-between gap-3 shrink-0"
       >
         <h3
-          className={`pb-1.5 sm:pb-3 text-base sm:text-xl font-bold tracking-tight transition-colors ${
+          className={`text-base sm:text-xl font-bold tracking-tight transition-colors ${
             isClickable
               ? "text-white group-hover:text-rose-600"
               : "text-slate-500"
@@ -52,11 +52,11 @@ export function TestimonyCard({ item, index, onSelect }: TestimonyCardProps) {
         >
           {item.title}
         </h3>
-        <span className="font-mono text-xs text-slate-600">0{item.id}</span>
+        <span className="font-mono text-xs text-slate-600 shrink-0 pt-0.5">0{item.id}</span>
       </motion.div>
 
-      {/* Bottom: Quote Text & Attribution */}
-      <div className="flex flex-col gap-3.5 sm:gap-3">
+      {/* Middle: Quote Text (Centered vertically in higher widths) */}
+      <div className="my-auto py-2 sm:py-3 w-full">
         <motion.p
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -72,36 +72,38 @@ export function TestimonyCard({ item, index, onSelect }: TestimonyCardProps) {
         >
           {item.isPlaceholder ? "—" : `“${item.quote}”`}
         </motion.p>
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{
-            duration: 0.45,
-            delay: index * 0.08 + 0.15,
-            ease: "easeOut",
-          }}
-          className="pt-2 border-t border-white/5 flex items-center justify-between"
-        >
-          <div className="flex flex-col">
-            <span
-              className={`text-xs font-semibold tracking-wide ${
-                isClickable ? "text-white" : "text-slate-500"
-              }`}
-            >
-              {item.author}
-            </span>
-            <span className="text-[11px] font-mono text-slate-500">
-              {item.organization}
-            </span>
-          </div>
-          {isClickable && (
-            <span className="text-[11px] font-mono text-rose-500 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-              Expand ↗
-            </span>
-          )}
-        </motion.div>
       </div>
+
+      {/* Bottom: Attribution */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{
+          duration: 0.45,
+          delay: index * 0.08 + 0.15,
+          ease: "easeOut",
+        }}
+        className="pt-2 border-t border-white/5 flex items-center justify-between shrink-0"
+      >
+        <div className="flex flex-col">
+          <span
+            className={`text-xs font-semibold tracking-wide ${
+              isClickable ? "text-white" : "text-slate-500"
+            }`}
+          >
+            {item.author}
+          </span>
+          <span className="text-[11px] font-mono text-slate-500">
+            {item.organization}
+          </span>
+        </div>
+        {isClickable && (
+          <span className="text-[11px] font-mono text-rose-500 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+            Expand ↗
+          </span>
+        )}
+      </motion.div>
     </motion.div>
   );
 }

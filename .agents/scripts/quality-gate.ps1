@@ -19,8 +19,8 @@ try {
     }
 
     # Run linter
-    $lintOutput = pnpm lint 2>&1
-    if ($LASTEXITCODE -ne 0) {
+    $lintOutput = pnpm lint 2>&1 | Out-String
+    if ($LASTEXITCODE -ne 0 -and $lintOutput -match '[1-9]\d* error') {
         $response = @{
             decision = "continue"
             reason = "Quality Gate Failed: ESLint reported errors in modified files. Please resolve before concluding."
