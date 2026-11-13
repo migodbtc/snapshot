@@ -15,10 +15,6 @@
     "deploy:prod": "pnpm dlx vercel --prod"
   },
   "dependencies": {
-    "@marsidev/react-turnstile": "^1.5.3",
-    "@sentry/nextjs": "^10.78.0",
-    "@supabase/ssr": "^0.12.0",
-    "@supabase/supabase-js": "^2.108.2",
     "dedent": "^1.7.2",
     "framer-motion": "^13.1.1",
     "lucide-react": "^1.21.0",

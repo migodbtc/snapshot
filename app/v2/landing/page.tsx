@@ -106,6 +106,9 @@ export default function V2HomePage() {
   const handleNewsletterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!newsletterEmail) return;
+    if (typeof window !== "undefined") {
+      window.location.href = `mailto:miguejustin1026@gmail.com?subject=Portfolio%20Inquiry&body=Hi%20Miguel,%20reaching%20out%20from%20your%20portfolio.%20My%20email%20is%20${encodeURIComponent(newsletterEmail)}.`;
+    }
     setNewsletterSubmitted(true);
     setTimeout(() => {
       setNewsletterSubmitted(false);

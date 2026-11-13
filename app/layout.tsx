@@ -89,7 +89,15 @@ export default function RootLayout({
             "var(--font-v2-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
         }}
       >
-        {children}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-rose-700 focus:text-white focus:rounded-md focus:shadow-lg focus:outline-none font-mono text-xs"
+        >
+          Skip to main content
+        </a>
+        <div id="main-content" className="flex-1 flex flex-col">
+          {children}
+        </div>
       </body>
     </html>
   );
