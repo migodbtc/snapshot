@@ -423,26 +423,6 @@ export const V2Footer = () => {
               <span>Navigation</span>
             </h3>
 
-            <Link href="/about" className={footerLinkStyle}>
-              <User size={16} className="shrink-0" />
-              About
-            </Link>
-
-            <Link href="/skills" className={footerLinkStyle}>
-              <Braces size={16} className="shrink-0" />
-              Skills
-            </Link>
-
-            <Link href="/education" className={footerLinkStyle}>
-              <GraduationCap size={16} className="shrink-0" />
-              Education
-            </Link>
-
-            <Link href="/experience" className={footerLinkStyle}>
-              <Briefcase size={16} className="shrink-0" />
-              Experience
-            </Link>
-
             <Link href="/projects" className={footerLinkStyle}>
               <Laptop size={16} className="shrink-0" />
               Projects
@@ -456,16 +436,6 @@ export const V2Footer = () => {
             <Link href="/blog" className={footerLinkStyle}>
               <Newspaper size={16} className="shrink-0" />
               Blog
-            </Link>
-
-            <Link href="/communeye" className={footerLinkStyle}>
-              <Eye size={16} className="shrink-0" />
-              Communeye
-            </Link>
-
-            <Link href="/contact" className={footerLinkStyle}>
-              <Mail size={16} className="shrink-0" />
-              Contact
             </Link>
           </motion.div>
 
