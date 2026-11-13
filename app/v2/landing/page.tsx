@@ -10,10 +10,10 @@ import {
   Home,
   User,
   Laptop,
-  Braces,
   BookOpen,
   MessageSquareQuote,
   Mail,
+  Sparkles,
 } from "lucide-react";
 import { SiGithub } from "react-icons/si";
 import { FaLinkedin } from "react-icons/fa6";
@@ -217,13 +217,13 @@ export default function V2HomePage() {
                 transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
                 className="flex flex-wrap items-center gap-3"
               >
-                <a
-                  href="#projects"
+                <Link
+                  href="/projects"
                   className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-rose-800 hover:bg-rose-700 text-white font-semibold text-xs sm:text-sm shadow-[0_0_20px_rgba(159,18,57,0.35)] transition-all hover:scale-[1.02]"
                 >
                   <span>Explore Projects</span>
                   <ArrowUpRight className="w-4 h-4" />
-                </a>
+                </Link>
 
                 <a
                   href="#contact"
@@ -320,11 +320,18 @@ export default function V2HomePage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ margin: "-50px", once: true }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="w-full mb-8 sm:mb-12"
+          className="w-full mb-8 sm:mb-12 flex flex-col sm:flex-row sm:items-end justify-between gap-4"
         >
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white">
             Built <span className="text-rose-600">Projects</span>
           </h2>
+          <Link
+            href="/projects"
+            className="group inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-400 hover:text-white transition-colors cursor-pointer shrink-0 pb-1 w-fit"
+          >
+            <span>View all projects</span>
+            <ArrowUpRight className="w-4 h-4 text-rose-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+          </Link>
         </motion.div>
 
         <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
@@ -543,10 +550,17 @@ export default function V2HomePage() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="w-full flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-16 sm:mb-20 pt-12 sm:pt-16"
         >
-          <div>
+          <div className="flex flex-col gap-2">
             <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white">
               Relevant <span className="text-rose-600">Skills</span>
             </h2>
+            <Link
+              href="/skills"
+              className="group inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-400 hover:text-white transition-colors cursor-pointer w-fit mt-1"
+            >
+              <span>Explore all skills & certifications</span>
+              <ArrowUpRight className="w-4 h-4 text-rose-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </Link>
           </div>
           <p className="text-sm sm:text-base text-slate-400 font-normal leading-relaxed md:text-right max-w-sm sm:max-w-md">
             Skills & capabilities earned and honed through conceptual
@@ -786,27 +800,27 @@ export default function V2HomePage() {
                     <User className="w-3.5 h-3.5 text-slate-400 group-hover:text-rose-500 transition-colors shrink-0" />
                     <span>About</span>
                   </a>
-                  <a
-                    href="#projects"
+                  <Link
+                    href="/projects"
                     className="group inline-flex items-center gap-1.5 hover:text-white transition-colors cursor-pointer"
                   >
                     <Laptop className="w-3.5 h-3.5 text-slate-400 group-hover:text-rose-500 transition-colors shrink-0" />
-                    <span>Work</span>
-                  </a>
-                  <a
-                    href="#stack"
+                    <span>Projects</span>
+                  </Link>
+                  <Link
+                    href="/skills"
                     className="group inline-flex items-center gap-1.5 hover:text-white transition-colors cursor-pointer"
                   >
-                    <Braces className="w-3.5 h-3.5 text-slate-400 group-hover:text-rose-500 transition-colors shrink-0" />
-                    <span>Stack</span>
-                  </a>
-                  <a
-                    href="#blog"
+                    <Sparkles className="w-3.5 h-3.5 text-slate-400 group-hover:text-rose-500 transition-colors shrink-0" />
+                    <span>Skills</span>
+                  </Link>
+                  <Link
+                    href="/blog"
                     className="group inline-flex items-center gap-1.5 hover:text-white transition-colors cursor-pointer"
                   >
                     <BookOpen className="w-3.5 h-3.5 text-slate-400 group-hover:text-rose-500 transition-colors shrink-0" />
                     <span>Blog</span>
-                  </a>
+                  </Link>
                   <a
                     href="#testimonies"
                     className="group inline-flex items-center gap-1.5 hover:text-white transition-colors cursor-pointer"
@@ -851,11 +865,11 @@ export default function V2HomePage() {
                 </span>
                 <div>
                   <a
-                    href="mailto:migueljustin.bunda@gmail.com?subject=Inquiry%20via%20migueljustin.vercel.app"
+                    href="mailto:miguejustin1026@gmail.com?subject=Inquiry%20via%20migueljustin.vercel.app"
                     className="group inline-flex items-center gap-1.5 text-slate-300 hover:text-rose-400 font-mono transition-colors cursor-pointer"
                   >
                     <Mail className="w-3.5 h-3.5 text-slate-400 group-hover:text-rose-400 transition-colors shrink-0" />
-                    <span>migueljustin.bunda@gmail.com</span>
+                    <span>miguejustin1026@gmail.com</span>
                   </a>
                 </div>
               </div>

@@ -274,8 +274,8 @@ export function BlogReaderContent({ post }: BlogReaderContentProps) {
             {post.title}
           </h1>
 
-          {/* Horizontal Accent Line */}
-          <div className="w-16 h-1 rounded-full bg-rose-600" />
+          {/* Divider matching Skills in landing page */}
+          <div className="w-full border-b border-white/10" />
 
           {/* Markdown Content Blocks */}
           <div className="flex flex-col gap-4 pt-2">

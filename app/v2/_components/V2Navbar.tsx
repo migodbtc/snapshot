@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Laptop, BookOpen, Menu, X, ArrowUpRight } from "lucide-react";
+import { Home, Laptop, Sparkles, BookOpen, Menu, X, ArrowUpRight } from "lucide-react";
 
 export function V2Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -13,6 +13,7 @@ export function V2Navbar() {
   const navLinks = [
     { label: "Landing", href: "/", icon: Home },
     { label: "Projects", href: "/projects", icon: Laptop },
+    { label: "Skills", href: "/skills", icon: Sparkles },
     { label: "Blog", href: "/blog", icon: BookOpen },
   ];
 
@@ -63,6 +64,7 @@ export function V2Navbar() {
             const isActive =
               (href === "/" && (pathname === "/" || pathname === "/v2" || pathname === "/v2/landing")) ||
               (href === "/projects" && (pathname?.startsWith("/projects") || pathname?.startsWith("/v2/projects"))) ||
+              (href === "/skills" && (pathname?.startsWith("/skills") || pathname?.startsWith("/v2/skills"))) ||
               (href === "/blog" && (pathname?.startsWith("/blog") || pathname?.startsWith("/v2/blog")));
 
             return (
@@ -121,6 +123,7 @@ export function V2Navbar() {
               const isActive =
                 (href === "/" && (pathname === "/" || pathname === "/v2" || pathname === "/v2/landing")) ||
                 (href === "/projects" && (pathname?.startsWith("/projects") || pathname?.startsWith("/v2/projects"))) ||
+                (href === "/skills" && (pathname?.startsWith("/skills") || pathname?.startsWith("/v2/skills"))) ||
                 (href === "/blog" && (pathname?.startsWith("/blog") || pathname?.startsWith("/v2/blog")));
 
               return (

@@ -12,6 +12,7 @@ import {
   Newspaper,
   Eye,
   Laptop,
+  Sparkles,
   X,
   ScrollText,
   ShieldCheck,
@@ -447,6 +448,11 @@ export const V2Footer = () => {
               Projects
             </Link>
 
+            <Link href="/skills" className={footerLinkStyle}>
+              <Sparkles size={16} className="shrink-0" />
+              Skills
+            </Link>
+
             <Link href="/blog" className={footerLinkStyle}>
               <Newspaper size={16} className="shrink-0" />
               Blog
@@ -595,6 +601,11 @@ export const V2Footer = () => {
               <Link href="/projects" className={`${footerLinkStyle} text-sm`}>
                 <Laptop size={14} className="shrink-0" />
                 Projects
+              </Link>
+
+              <Link href="/skills" className={`${footerLinkStyle} text-sm`}>
+                <Sparkles size={14} className="shrink-0" />
+                Skills
               </Link>
 
               <Link href="/blog" className={`${footerLinkStyle} text-sm`}>

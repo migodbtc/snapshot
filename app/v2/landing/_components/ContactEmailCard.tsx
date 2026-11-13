@@ -47,7 +47,7 @@ export function ContactEmailCard({
             required
             value={email}
             onChange={(e) => onChange(e.target.value)}
-            placeholder="jane@framer.com"
+            placeholder="your.email@domain.com"
             className="w-full bg-transparent text-sm sm:text-base text-white placeholder:text-slate-500 outline-none font-sans"
           />
           <button

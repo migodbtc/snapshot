@@ -3,6 +3,7 @@
 import { useState, useTransition, Suspense } from "react";
 import { motion } from "framer-motion";
 import { useSearchParams } from "next/navigation";
+import { SnapshotLoadingScreen } from "@/app/_components/SnapshotLoadingScreen";
 import { V2Navbar } from "../_components/V2Navbar";
 import {
   ALL_BLOG_ITEMS,
@@ -10,7 +11,7 @@ import {
   SORTED_BLOG_POSTS,
   type BlogItem,
 } from "./constants";
-import { BlogSidebarItem } from "./_components/BlogSidebarItem";
+import { BlogSidebarCard } from "./_components/BlogSidebarCard";
 import { BlogReaderContent } from "./_components/BlogReaderContent";
 import { BlogInspectorCard } from "./_components/BlogInspectorCard";
 import { BlogMobileAccordion } from "./_components/BlogMobileAccordion";
@@ -82,52 +83,25 @@ function BlogPageContent() {
             </h1>
           </div>
           <p className="text-sm sm:text-base text-slate-400 font-normal leading-relaxed md:text-right max-w-sm sm:max-w-md">
-            A place where you can read my perspectives at certain points in
-            time.
+            An online public digital archive for me to write anything in
+            relation to career, software engineer, or my general perspective
+            regarding the software industry.
           </p>
         </motion.div>
 
         {/* ROW 2: 3 / 9 Grid Split (Sidebar + Reader/Inspector) */}
         <div className="w-full min-h-screen grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-          {/* Lesser Column (3 cols): Desktop Dashboard Sidebar List (hidden on mobile/tablet) */}
-          <div className="hidden lg:flex lg:col-span-3 flex-col gap-6 max-h-[680px] overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden pr-2 lg:sticky lg:top-28">
-            {/* Information Section */}
-            <div className="flex flex-col gap-2.5">
-              <div className="text-[11px] font-mono uppercase tracking-wider text-slate-500 pb-1 select-none">
-                Information
-              </div>
-              <BlogSidebarItem
-                key={INTRO_POST.id}
-                item={INTRO_POST}
-                index={0}
-                isSelected={INTRO_POST.id === selectedId}
-                isHovered={hoveredId === INTRO_POST.id}
-                hasAnyHover={hoveredId !== null}
-                onSelect={() => handleSelect(INTRO_POST.id)}
-                onHover={() => setHoveredId(INTRO_POST.id)}
-                onLeave={() => setHoveredId(null)}
-              />
-            </div>
-
-            {/* Entries Section */}
-            <div className="flex flex-col gap-2.5">
-              <div className="text-[11px] font-mono uppercase tracking-wider text-slate-500 pb-1 select-none">
-                Entries
-              </div>
-              {SORTED_BLOG_POSTS.map((item, idx) => (
-                <BlogSidebarItem
-                  key={item.id}
-                  item={item}
-                  index={idx + 1}
-                  isSelected={item.id === selectedId}
-                  isHovered={hoveredId === item.id}
-                  hasAnyHover={hoveredId !== null}
-                  onSelect={() => handleSelect(item.id)}
-                  onHover={() => setHoveredId(item.id)}
-                  onLeave={() => setHoveredId(null)}
-                />
-              ))}
-            </div>
+          {/* Lesser Column (3 cols): Desktop Dashboard Sidebar Card (hidden on mobile/tablet) */}
+          <div className="hidden lg:flex lg:col-span-3 flex-col">
+            <BlogSidebarCard
+              introPost={INTRO_POST}
+              posts={SORTED_BLOG_POSTS}
+              selectedId={selectedId}
+              hoveredId={hoveredId}
+              onSelect={handleSelect}
+              onHover={(id) => setHoveredId(id)}
+              onLeave={() => setHoveredId(null)}
+            />
           </div>
 
           {/* Bigger Column (9 cols): Divided into Reader (Left) + Inspector (Right) */}
@@ -143,12 +117,8 @@ function BlogPageContent() {
               />
             </div>
 
-            {/* Left Inner Column: Full Blog Post Reader */}
-            <div
-              className={`w-full min-h-[500px] transition-all duration-300 ${
-                activePost.isIntro ? "lg:col-span-12" : "lg:col-span-8"
-              }`}
-            >
+            {/* Left Inner Column: Full Blog Post Reader (Bounded width with ChatGPT-style reading margin) */}
+            <div className="w-full min-h-[500px] transition-all duration-300 lg:col-span-8 max-w-3xl">
               <BlogReaderContent post={activePost} />
             </div>
 
@@ -173,13 +143,7 @@ function BlogPageContent() {
 
 export default function V2BlogPage() {
   return (
-    <Suspense
-      fallback={
-        <div className="w-full min-h-screen bg-neutral-950 flex items-center justify-center text-slate-500 font-mono text-sm">
-          Loading Snapshot Blogs...
-        </div>
-      }
-    >
+    <Suspense fallback={<SnapshotLoadingScreen message="Loading Snapshot Blogs..." />}>
       <BlogPageContent />
     </Suspense>
   );

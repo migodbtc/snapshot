@@ -7,7 +7,6 @@ import {
   ChevronLeft,
   ChevronRight,
   Clock,
-  Check,
 } from "lucide-react";
 import type { BlogItem } from "../constants";
 
@@ -98,42 +97,28 @@ export function BlogMobileAccordion({
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className="overflow-hidden flex flex-col pt-3"
           >
-            {/* Information Section */}
-            <div className="py-2.5 flex flex-col gap-2">
-              <h3 className="text-xs sm:text-sm font-bold text-neutral-500 tracking-wider uppercase font-mono px-1">
-                Information
-              </h3>
+            {/* Top Welcome Title (Clean title button, no badge/pulsing dot) */}
+            <div className="py-2 flex flex-col">
               <button
                 type="button"
                 onClick={() => handleSelectPost(introPost.id)}
                 className={`w-full p-2.5 sm:p-3 rounded-xl transition-all flex items-center justify-between text-left cursor-pointer ${
                   selectedId === introPost.id
-                    ? "bg-rose-950/30 border border-rose-500/40 text-white"
-                    : "hover:bg-neutral-900/80 text-slate-300 hover:text-white"
+                    ? "bg-rose-950/40 border border-rose-500/50 text-white font-semibold"
+                    : "hover:bg-neutral-900/80 text-neutral-300 hover:text-white"
                 }`}
               >
-                <div className="flex items-center gap-3 min-w-0">
-                  <span className="text-sm font-medium truncate">
-                    {introPost.title}
-                  </span>
-                </div>
-                {selectedId === introPost.id && (
-                  <Check className="w-4 h-4 text-rose-500 shrink-0" />
-                )}
+                <span className="text-sm sm:text-base font-bold truncate">
+                  {introPost.title}
+                </span>
               </button>
             </div>
 
-            {/* Entries Section */}
-            <div className="py-2.5 flex flex-col gap-2.5">
-              <div className="flex items-center justify-between px-1">
-                <h3 className="text-xs sm:text-sm font-bold text-neutral-500 tracking-wider uppercase font-mono">
-                  Entries
-                </h3>
-                <span className="text-xs font-mono text-slate-500">
-                  Page {currentPage} of {totalPages}
-                </span>
-              </div>
+            {/* Divider matching Skills in landing */}
+            <div className="w-full border-b border-white/10 my-2" />
 
+            {/* Entries Section (Entries header removed) */}
+            <div className="py-1 flex flex-col gap-2">
               {/* Paginated list of latest 5 entries */}
               <div className="flex flex-col gap-1.5">
                 {pagedPosts.map((post) => {
@@ -146,7 +131,7 @@ export function BlogMobileAccordion({
                       className={`w-full p-2.5 sm:p-3 rounded-xl transition-all flex items-center justify-between gap-3 text-left cursor-pointer ${
                         isCurrent
                           ? "bg-rose-950/30 border border-rose-500/40 text-white font-medium"
-                          : "hover:bg-neutral-900/80 text-slate-300 hover:text-white"
+                          : "hover:bg-neutral-900/80 text-neutral-300 hover:text-white"
                       }`}
                     >
                       <div className="flex items-center gap-3 min-w-0">
@@ -154,8 +139,8 @@ export function BlogMobileAccordion({
                           <span className="text-sm truncate font-medium">
                             {post.title}
                           </span>
-                          <div className="flex items-center gap-2 pt-0.5 text-[11px] font-mono text-slate-500">
-                            <span className="text-slate-400">{post.topic}</span>
+                          <div className="flex items-center gap-2 pt-0.5 text-[11px] font-mono text-neutral-500">
+                            <span className="text-neutral-400">{post.topic}</span>
                             <span>·</span>
                             <span className="flex items-center gap-1">
                               <Clock className="w-3 h-3" />
@@ -164,10 +149,6 @@ export function BlogMobileAccordion({
                           </div>
                         </div>
                       </div>
-
-                      {isCurrent && (
-                        <Check className="w-4 h-4 text-rose-500 shrink-0" />
-                      )}
                     </button>
                   );
                 })}
@@ -175,49 +156,53 @@ export function BlogMobileAccordion({
 
               {/* Small Pagination Nav at bottom of accordion */}
               {totalPages > 1 && (
-                <div className="flex items-center justify-between pt-2 border-t border-white/10 px-1 font-mono text-xs text-slate-400">
-                  <button
-                    type="button"
-                    disabled={currentPage === 1}
-                    onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-                    className="p-1.5 px-2 rounded-lg hover:text-white hover:bg-neutral-900 disabled:opacity-30 disabled:cursor-not-allowed transition-colors flex items-center gap-1 cursor-pointer"
-                    aria-label="Previous entries"
-                  >
-                    <ChevronLeft className="w-4 h-4" />
-                    <span>Prev</span>
-                  </button>
+                <div className="flex items-center justify-between pt-2 border-t border-white/10 px-1 font-mono text-xs text-neutral-400">
+                  <span className="text-neutral-400 text-xs">
+                    {currentPage} / {totalPages}
+                  </span>
 
                   <div className="flex items-center gap-1">
-                    {Array.from({ length: totalPages }, (_, i) => i + 1).map(
-                      (pg) => (
-                        <button
-                          key={pg}
-                          type="button"
-                          onClick={() => setCurrentPage(pg)}
-                          className={`w-6 h-6 rounded-md flex items-center justify-center text-xs transition-colors cursor-pointer ${
-                            currentPage === pg
-                              ? "bg-rose-600 text-white font-bold"
-                              : "hover:bg-neutral-900 text-slate-400 hover:text-white"
-                          }`}
-                        >
-                          {pg}
-                        </button>
-                      ),
-                    )}
-                  </div>
+                    <button
+                      type="button"
+                      disabled={currentPage === 1}
+                      onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                      className="p-1 px-1.5 rounded-lg hover:text-white hover:bg-neutral-900 disabled:opacity-30 disabled:cursor-not-allowed transition-colors cursor-pointer"
+                      aria-label="Previous entries"
+                    >
+                      <ChevronLeft className="w-4 h-4" />
+                    </button>
 
-                  <button
-                    type="button"
-                    disabled={currentPage === totalPages}
-                    onClick={() =>
-                      setCurrentPage((p) => Math.min(totalPages, p + 1))
-                    }
-                    className="p-1.5 px-2 rounded-lg hover:text-white hover:bg-neutral-900 disabled:opacity-30 disabled:cursor-not-allowed transition-colors flex items-center gap-1 cursor-pointer"
-                    aria-label="Next entries"
-                  >
-                    <span>Next</span>
-                    <ChevronRight className="w-4 h-4" />
-                  </button>
+                    <div className="flex items-center gap-1">
+                      {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                        (pg) => (
+                          <button
+                            key={pg}
+                            type="button"
+                            onClick={() => setCurrentPage(pg)}
+                            className={`w-5 h-5 rounded-md flex items-center justify-center text-xs transition-colors cursor-pointer ${
+                              currentPage === pg
+                                ? "bg-rose-600 text-white font-bold"
+                                : "hover:bg-neutral-900 text-neutral-400 hover:text-white"
+                            }`}
+                          >
+                            {pg}
+                          </button>
+                        ),
+                      )}
+                    </div>
+
+                    <button
+                      type="button"
+                      disabled={currentPage === totalPages}
+                      onClick={() =>
+                        setCurrentPage((p) => Math.min(totalPages, p + 1))
+                      }
+                      className="p-1 px-1.5 rounded-lg hover:text-white hover:bg-neutral-900 disabled:opacity-30 disabled:cursor-not-allowed transition-colors cursor-pointer"
+                      aria-label="Next entries"
+                    >
+                      <ChevronRight className="w-4 h-4" />
+                    </button>
+                  </div>
                 </div>
               )}
             </div>

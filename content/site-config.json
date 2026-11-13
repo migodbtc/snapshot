@@ -17,6 +17,7 @@
   "aboutDividerPhrases": [
     "Software Engineering",
     "AWS Certified AI Practitioner",
+    "AWS Certified Cloud Practitioner",
     "Valedictorian '26",
     "Don Bosco Technical College",
     "Full-Stack Developer"
@@ -41,18 +42,18 @@
   "sectionCards": [
     {
       "label": "Selected Works",
-      "title": "Featured Projects",
-      "href": "#projects"
-    },
-    {
-      "label": "Background",
-      "title": "About Me",
-      "href": "#about"
+      "title": "Projects",
+      "href": "/projects"
     },
     {
       "label": "Capabilities",
-      "title": "Technical Skills",
-      "href": "#skills"
+      "title": "Skills",
+      "href": "/skills"
+    },
+    {
+      "label": "Perspectives",
+      "title": "Blog",
+      "href": "/blog"
     }
   ]
 }

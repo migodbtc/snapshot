@@ -3,6 +3,7 @@
 import { useState, useMemo, Suspense } from "react";
 import { motion } from "framer-motion";
 import { SlidersHorizontal } from "lucide-react";
+import { SnapshotLoadingScreen } from "@/app/_components/SnapshotLoadingScreen";
 import { V2Navbar } from "../_components/V2Navbar";
 import { PROJECT_INDEX, type Project } from "@/lib/constants/projects";
 import { ProjectCard } from "./_components/ProjectCard";
@@ -251,13 +252,7 @@ function ProjectsPageContent() {
 
 export default function V2ProjectsPage() {
   return (
-    <Suspense
-      fallback={
-        <div className="w-full min-h-screen bg-neutral-950 flex items-center justify-center text-slate-500 font-mono text-sm">
-          Loading Project Collection...
-        </div>
-      }
-    >
+    <Suspense fallback={<SnapshotLoadingScreen message="Loading Project Collection..." />}>
       <ProjectsPageContent />
     </Suspense>
   );
