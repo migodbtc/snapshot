@@ -578,24 +578,9 @@ export const V2Footer = () => {
                 <span>Navigation</span>
               </h3>
 
-              <Link href="/about" className={`${footerLinkStyle} text-sm`}>
-                <User size={14} className="shrink-0" />
-                About
-              </Link>
-
               <Link href="/skills" className={`${footerLinkStyle} text-sm`}>
                 <Braces size={14} className="shrink-0" />
                 Skills
-              </Link>
-
-              <Link href="/education" className={`${footerLinkStyle} text-sm`}>
-                <GraduationCap size={14} className="shrink-0" />
-                Education
-              </Link>
-
-              <Link href="/experience" className={`${footerLinkStyle} text-sm`}>
-                <Briefcase size={14} className="shrink-0" />
-                Experience
               </Link>
 
               <Link href="/projects" className={`${footerLinkStyle} text-sm`}>
@@ -603,24 +588,9 @@ export const V2Footer = () => {
                 Projects
               </Link>
 
-              <Link href="/skills" className={`${footerLinkStyle} text-sm`}>
-                <Sparkles size={14} className="shrink-0" />
-                Skills
-              </Link>
-
               <Link href="/blog" className={`${footerLinkStyle} text-sm`}>
                 <Newspaper size={14} className="shrink-0" />
                 Blog
-              </Link>
-
-              <Link href="/communeye" className={`${footerLinkStyle} text-sm`}>
-                <Eye size={14} className="shrink-0" />
-                Communeye
-              </Link>
-
-              <Link href="/contact" className={`${footerLinkStyle} text-sm`}>
-                <Mail size={14} className="shrink-0" />
-                Contact
               </Link>
             </motion.div>
 
