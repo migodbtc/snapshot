@@ -11,6 +11,30 @@ interface ProjectGalleryViewerProps {
   projectName: string;
 }
 
+function formatImageCaption(path: string): string {
+  const filename = path.split("/").pop()?.replace(/\.[^/.]+$/, "") || "";
+  const customMap: Record<string, string> = {
+    projectIndex: "Study Cockpit & Telemetry",
+    conversation: "Conversational Theory Tutoring",
+    quizzes: "Synthesized Quizzes Catalog",
+    mixedStart: "Spaced Retrieval Session Launch",
+    mixedMultipleChoice: "Multiple Choice Active Recall",
+    mixedMatching: "Polymorphic Matching Quiz",
+    mixedFill: "Fill-in-the-Blank Challenge",
+    mixedResults: "Real-time Telemetry & Grading",
+    mixedHistory: "Attempt Persistence History",
+    records: "Cognitive Mastery Records",
+    auth: "Authentication Portal",
+  };
+
+  if (customMap[filename]) return customMap[filename];
+
+  return filename
+    .replace(/([a-z])([A-Z])/g, "$1 $2")
+    .replace(/[_-]+/g, " ")
+    .replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
 export function ProjectGalleryViewer({
   images,
   projectName,
@@ -114,6 +138,16 @@ export function ProjectGalleryViewer({
                       </div>
                     </motion.div>
                   </AnimatePresence>
+
+                  {/* Floating Caption Pill */}
+                  <div className="pointer-events-none absolute bottom-2.5 left-3 z-30 flex items-center gap-2">
+                    <span className="px-2.5 py-1 rounded-full bg-black/75 backdrop-blur-md border border-white/15 text-[10px] font-mono text-slate-200 shadow-lg">
+                      <span className="text-rose-400 font-bold mr-1.5">
+                        #{String(selectedIndex + 1).padStart(2, "0")}
+                      </span>
+                      {formatImageCaption(currentImage.imageRef)}
+                    </span>
+                  </div>
 
                   {/* Glass Sheen Accent */}
                   <div className="pointer-events-none absolute inset-0 z-20 bg-gradient-to-tr from-transparent via-white/[0.02] to-white/[0.06]" />
@@ -294,6 +328,7 @@ export function ProjectGalleryViewer({
                       key={img.imageRef}
                       type="button"
                       onClick={() => setSelectedIndex(idx)}
+                      title={formatImageCaption(img.imageRef)}
                       className={`group relative ${
                         isPortrait ? "aspect-[9/16]" : "aspect-[16/10]"
                       } w-full rounded-xl overflow-hidden border transition-all duration-150 cursor-pointer bg-neutral-900/80 ${
@@ -301,7 +336,7 @@ export function ProjectGalleryViewer({
                           ? "border-rose-500 ring-2 ring-rose-500/50 shadow-lg shadow-rose-950/40 opacity-100"
                           : "border-white/10 opacity-70 hover:opacity-100 hover:border-white/25 hover:bg-neutral-850"
                       }`}
-                      aria-label={`Select screenshot ${idx + 1}`}
+                      aria-label={`Select screenshot ${idx + 1}: ${formatImageCaption(img.imageRef)}`}
                     >
                       {/* Ambient Blurred Background for Thumbnail */}
                       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -323,6 +358,11 @@ export function ProjectGalleryViewer({
                           className="object-contain rounded-sm"
                         />
                       </div>
+
+                      {/* Mini Index Label */}
+                      <span className="absolute bottom-1.5 left-1.5 z-20 px-1.5 py-0.5 rounded font-mono text-[9px] text-white/80 bg-black/70 backdrop-blur-sm border border-white/10 select-none">
+                        {String(idx + 1).padStart(2, "0")}
+                      </span>
 
                       {/* Active Eye Indicator */}
                       {isSelected && (

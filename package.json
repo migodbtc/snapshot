@@ -16,13 +16,13 @@
   },
   "dependencies": {
     "@marsidev/react-turnstile": "^1.5.3",
-    "@sentry/nextjs": "^10.63.0",
+    "@sentry/nextjs": "^10.78.0",
     "@supabase/ssr": "^0.12.0",
     "@supabase/supabase-js": "^2.108.2",
     "dedent": "^1.7.2",
     "framer-motion": "^13.1.1",
     "lucide-react": "^1.21.0",
-    "next": "16.2.9",
+    "next": "16.4.6",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "react-icons": "^5.7.0",
@@ -34,8 +34,18 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.2.9",
+    "eslint-config-next": "16.4.6",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "pnpm": {
+    "overrides": {
+      "brace-expansion": ">=5.0.13",
+      "minimatch": ">=11.0.8",
+      "fast-uri": ">=3.1.9",
+      "glob": ">=14.0.2",
+      "postcss": ">=8.5.23",
+      "js-yaml": ">=4.3.2"
+    }
   }
 }

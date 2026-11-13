@@ -4,7 +4,6 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
-  ArrowRight,
   ArrowUpRight,
   ChevronLeft,
   ChevronRight,
@@ -143,7 +142,8 @@ export default function V2HomePage() {
 
   const mainImage =
     currentProject.imageRefs[selectedImageIndex]?.imageRef ||
-    currentProject.imageRefs[0]?.imageRef;
+    currentProject.imageRefs[0]?.imageRef ||
+    "/newheroimage.jpg";
 
   // 4 other supporting pictures in a single column
   const supportingImages = currentProject.imageRefs.slice(1, 5);
@@ -461,6 +461,16 @@ export default function V2HomePage() {
               <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 z-10 flex flex-col justify-end text-left pointer-events-auto">
                 <AnimatePresence mode="wait">
                   <div key={currentProject.projectId} className="flex flex-col">
+                    {selectedImageIndex > 0 && (
+                      <motion.span
+                        initial={{ opacity: 0, y: -6 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="font-mono text-xs uppercase tracking-wider text-rose-400 mb-1 inline-flex items-center gap-1.5"
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse" />
+                        Screenshot 0{selectedImageIndex + 1} of 0{currentProject.imageRefs.length}
+                      </motion.span>
+                    )}
                     <motion.a
                       href={`/projects/${currentProject.projectId}`}
                       initial={{ opacity: 0, y: 20 }}
@@ -503,7 +513,11 @@ export default function V2HomePage() {
                     projectName={currentProject.projectName}
                     index={idx}
                     isSelected={selectedImageIndex === idx + 1}
-                    onSelect={() => setSelectedImageIndex(idx + 1)}
+                    onSelect={() =>
+                      setSelectedImageIndex(
+                        selectedImageIndex === idx + 1 ? 0 : idx + 1,
+                      )
+                    }
                   />
                 ))}
               </div>

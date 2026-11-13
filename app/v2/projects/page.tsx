@@ -40,6 +40,8 @@ const AVAILABLE_TECHS = [
   "MySQL",
   "PostgreSQL",
   "React Native",
+  "AWS Bedrock",
+  "LangChain",
 ];
 
 function ProjectsPageContent() {

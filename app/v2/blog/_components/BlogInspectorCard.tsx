@@ -33,7 +33,7 @@ export function BlogInspectorCard({
 
   const handleCopyLink = () => {
     if (typeof window !== "undefined") {
-      const url = `${window.location.origin}/v2/blog?post=${post.id}`;
+      const url = `${window.location.origin}/blog?post=${post.id}`;
       navigator.clipboard?.writeText(url);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
