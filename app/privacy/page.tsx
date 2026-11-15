@@ -74,7 +74,7 @@ export default function PrivacyPage() {
               Communication & Direct Inquiries
             </h2>
             <p>
-              When you initiate contact via direct email or the portfolio inquiry link, your email address, name, and message content are transmitted directly via your chosen email client to <code className="text-rose-400 font-mono text-xs px-1.5 py-0.5 rounded bg-neutral-900 border border-white/10">miguejustin1026@gmail.com</code>.
+              When you initiate contact via direct email or the portfolio inquiry link, your email address, name, and message content are transmitted directly via your chosen email client to <code className="text-rose-400 font-mono text-xs px-1.5 py-0.5 rounded bg-neutral-900 border border-white/10">migueljustin.bunda@gmail.com</code>.
               This information is used strictly to respond to professional opportunities, collaboration requests, and technical inquiries. It is never sold, leased, or disclosed to unauthorized third parties.
             </p>
           </section>
@@ -103,7 +103,7 @@ export default function PrivacyPage() {
               For any questions regarding this statement or to exercise your statutory privacy rights, please contact:
             </p>
             <p className="font-mono text-sm text-rose-400">
-              Miguel Justin Bunda · <a href="mailto:miguejustin1026@gmail.com" className="underline hover:text-rose-300">miguejustin1026@gmail.com</a>
+              Miguel Justin Bunda · <a href="mailto:migueljustin.bunda@gmail.com" className="underline hover:text-rose-300">migueljustin.bunda@gmail.com</a>
             </p>
           </section>
         </article>

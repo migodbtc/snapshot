@@ -5,12 +5,8 @@ import {
   BriefcaseBusinessIcon,
   FileText,
   Mail,
-  User,
-  Braces,
-  GraduationCap,
-  Briefcase,
+  Home,
   Newspaper,
-  Eye,
   Laptop,
   Sparkles,
   X,
@@ -195,11 +191,11 @@ const LegalModal = ({ open, onClose }: LegalModalProps) => {
                       For any questions regarding these Terms, please reach out
                       via the{" "}
                       <Link
-                        href="/contact"
+                        href="/#contact"
                         className="text-rose-500 hover:underline cursor-pointer"
                         onClick={onClose}
                       >
-                        Contact page
+                        Contact section
                       </Link>{" "}
                       or email{" "}
                       <a
@@ -319,11 +315,11 @@ const LegalModal = ({ open, onClose }: LegalModalProps) => {
                     <p>
                       For privacy-related questions, please reach out via the{" "}
                       <Link
-                        href="/contact"
+                        href="/#contact"
                         className="text-rose-500 hover:underline cursor-pointer"
                         onClick={onClose}
                       >
-                        Contact page
+                        Contact section
                       </Link>{" "}
                       or email{" "}
                       <a
@@ -422,6 +418,11 @@ export const V2Footer = () => {
               <Compass size={16} className="text-rose-600 shrink-0" />
               <span>Navigation</span>
             </h3>
+
+            <Link href="/" className={footerLinkStyle}>
+              <Home size={16} className="shrink-0" />
+              Home
+            </Link>
 
             <Link href="/projects" className={footerLinkStyle}>
               <Laptop size={16} className="shrink-0" />
@@ -548,14 +549,19 @@ export const V2Footer = () => {
                 <span>Navigation</span>
               </h3>
 
-              <Link href="/skills" className={`${footerLinkStyle} text-sm`}>
-                <Braces size={14} className="shrink-0" />
-                Skills
+              <Link href="/" className={`${footerLinkStyle} text-sm`}>
+                <Home size={14} className="shrink-0" />
+                Home
               </Link>
 
               <Link href="/projects" className={`${footerLinkStyle} text-sm`}>
                 <Laptop size={14} className="shrink-0" />
                 Projects
+              </Link>
+
+              <Link href="/skills" className={`${footerLinkStyle} text-sm`}>
+                <Sparkles size={14} className="shrink-0" />
+                Skills
               </Link>
 
               <Link href="/blog" className={`${footerLinkStyle} text-sm`}>

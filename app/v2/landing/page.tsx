@@ -107,7 +107,7 @@ export default function V2HomePage() {
     e.preventDefault();
     if (!newsletterEmail) return;
     if (typeof window !== "undefined") {
-      window.location.href = `mailto:miguejustin1026@gmail.com?subject=Portfolio%20Inquiry&body=Hi%20Miguel,%20reaching%20out%20from%20your%20portfolio.%20My%20email%20is%20${encodeURIComponent(newsletterEmail)}.`;
+      window.location.href = `mailto:migueljustin.bunda@gmail.com?subject=Portfolio%20Inquiry&body=Hi%20Miguel,%20reaching%20out%20from%20your%20portfolio.%20My%20email%20is%20${encodeURIComponent(newsletterEmail)}.`;
     }
     setNewsletterSubmitted(true);
     setTimeout(() => {
@@ -865,11 +865,11 @@ export default function V2HomePage() {
                 </span>
                 <div>
                   <a
-                    href="mailto:miguejustin1026@gmail.com?subject=Inquiry%20via%20migueljustin.vercel.app"
+                    href="mailto:migueljustin.bunda@gmail.com?subject=Inquiry%20via%20migueljustin.vercel.app"
                     className="group inline-flex items-center gap-1.5 text-slate-300 hover:text-rose-400 font-mono transition-colors cursor-pointer"
                   >
                     <Mail className="w-3.5 h-3.5 text-slate-400 group-hover:text-rose-400 transition-colors shrink-0" />
-                    <span>miguejustin1026@gmail.com</span>
+                    <span>migueljustin.bunda@gmail.com</span>
                   </a>
                 </div>
               </div>
